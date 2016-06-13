@@ -31,6 +31,7 @@ class Main(Frame):
         new.ok_cancel_buttons()
 
 class Node(Toplevel):
+    """ This class is a catchall for all popup windows."""
     def __init__(self, parent):
         Toplevel.__init__(self)
         self.parent = parent
