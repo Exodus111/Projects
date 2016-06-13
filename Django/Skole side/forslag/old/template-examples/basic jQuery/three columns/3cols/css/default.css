@@ -1,0 +1,370 @@
+/*******************************/
+/************ Reset ************/
+/*******************************/
+html,body,div,span,applet,object,iframe,
+h1,h2,h3,h4,h5,h6,p,blockquote,pre,
+a,abbr,acronym,address,big,cite,code,
+del,dfn,font,img,ins,kbd,q,s,samp,
+small,strike,sub,tt,var,
+dl,dt,dd,ol,ul,li,
+fieldset,form,label,legend,
+table,caption,tbody,tfoot,thead,tr,th,td {border:0;font-family:inherit;font-size:100%;font-style:inherit;font-weight:inherit;margin:0;outline:0;padding:0;}
+:focus{outline:0;}
+ol,ul{list-style:none;}
+table {border-collapse:separate;border-spacing:0;}
+caption,th,td{font-weight:normal;text-align:left;}
+blockquote:before,blockquote:after,q:before,q:after{content:"";}
+blockquote,q{quotes:"" "";}
+
+html{overflow:-moz-scrollbars-vertical;}
+
+/*******************************/
+/*********** Clearfix **********/
+/*******************************/
+.clear {clear:both;}
+.clearRight {clear:right;}
+.clearLeft {clear:left;}
+.clearfix:after, .verticalList:after, .verticalList > li:after , #header:after , .fakeHoverList > li:after, .hoverList > li a:after , .timeList > li a:after , .coments .comment {clear:both;content:" ";display:block;font-size:0;height:0;visibility:hidden;}
+.clearfixLeft:after {clear:left;content:" ";display:block;font-size:0;height:0;visibility:hidden;}
+.clearfixRight:after {clear:right;content:" ";display:block;font-size:0;height:0;visibility:hidden;}
+.inlineList > li:after, .horizontalList > li:after {clear:none;content:" ";display:inline;font-size:0;height:0;visibility:hidden;}
+
+/*******************************/
+/************ sizes ************/
+/*******************************/
+	/*****rigid ******/
+	.siteWidth {display:block;width:980px !important;}			/* site width */
+	.aux {display:block;width:310px;margin-left:14px;}			/* aux column if needed */
+		.aux .pushRight {margin-right:0; padding-right:14px;}
+	.edit {width:642px; padding:10px 0 10px 14px;}				/* edit column if needed */
+		
+	/*****liquid ******/
+	.w100 {width:100%}
+	.w1, .w12, .w13, .w23, .w14, .w34 , .w15 , .w25 , .w35 , .w45 , .w16 , .w56 , .w18, .w38, .w58 , .w78{padding-right:1%;padding-left:1%;vertical-align:top;display:block;}
+	.w1 {width:98%} .w100 {width:100%;padding-right:0 !important;padding-left:0 !important}
+	.w12 {width:48%;width:47.7%}
+		/*****thirds ******/
+		.w13 {width:31%;width:31.3%}
+		.w23 {width:64%;width:64.7%}
+		/*****quarters ******/
+		.w14 {width:23%;width:22.5%}
+		.w34 {width:73%;width:72.5%}
+		
+		/*****Fifths ******/
+		.w15 {width:18%;width:17.5%;}
+		.w25 {width:38%;width:37.5%;}
+		.w35 {width:58%;width:57.5%;}
+		.w45 {width:78%;width:77.5%;}
+		
+		/*****sixths ******/
+		.w16 {width:14%}
+		.w56 {width:82%}
+		
+		/*****eights ******/
+		.w18 {width:11%} .w38 {width:36%} .w58 {width:61%} .w78 {width:85%} 
+	/***** heights ******/
+	.height20 {height:20px !important;line-height:20px !important;display:block;}
+	.lineHeight20 {line-height:20px !important;}
+	.height30 {height:30px !important;line-height:30px !important;display:block;}
+	.lineHeight30 {line-height:30px !important;}
+	.height40 {height:40px !important;line-height:40px !important;display:block;}
+	.height60 {height:60px !important;} .height100 {height:100px !important;}.height125 {height:125px !important;} .height150 {height:150px !important;}  .height200 {height:200px !important;}  .height250 {height:250px !important;} .height300 {height:300px !important;} .height500 {height:500px !important;} 
+	
+/*******************************/
+/********** Position ***********/
+/*******************************/
+	.inline {display:inline !important;}
+	.center {display:block;margin:0 auto;}
+	.left {display:block;float:left !important;}
+	.right {display:block;float:right !important;}
+	
+	.fixed {position:fixed !important;top:0;left:0;}
+	.static {position:absolute !important;top:0;left:0;}
+	.relative {position:relative !important;}
+	.absolute {position:absolute;top:0;left:0}
+		.relative .topRight {top:0;left:auto;right:0}
+	.hidden{display:none !important;}
+	.invisible {visibility:hidden !important}
+	.noOverflow {overflow:hidden}
+	
+	.pullLeft {margin-left:-14px !important; padding-left:14px;}
+	.pullRight {margin-right:-14px !important; padding-right:14px;}	
+	.pullUp {margin-top:-14px !important; padding-top:14px;}
+	.pullDown {margin-bottom:-14px !important; padding-bottom:14px;}
+	
+	.pushLeft, .push {margin-left:14px !important; }
+	.pushRight, .push  {margin-right:14px;}	
+	.pushUp, .push  {margin-top:10px !important; }
+	.pushDown, .push  {padding-bottom:10px !important;}
+	.pushRightAux {margin-right:325px;}
+	
+	.paddingTop, .padding {padding-top:5px !important}
+	.paddingRight , .padding {padding-right:5px !important}
+	.paddingBottom , .padding {padding-bottom:5px !important}
+	.paddingLeft , .padding {padding-left:5px !important}
+	.noPadding {padding:0 !important}
+	
+	.marginTop, .margin {margin-top:5px !important}
+	.marginRight , .margin {margin-right:5px !important}
+	.marginBottom , .margin {margin-bottom:5px !important}
+	.marginLeft , .margin {margin-left:5px !important}
+	.noMargin {margin:0 !important;} 
+	
+	.scroll {overflow:auto; scroll:auto}
+	
+/*******************************/
+/************ Texts ************/
+/*******************************/
+		
+	/* other text styles */
+	.tReset  {color:#444;font:12px/18px Arial,Helvetica,sans-serif;letter-spacing:0px;text-transform:none;} 
+	.tLeft{text-align:left;}
+	.tRight{text-align:right !important;}
+	.tCenter{text-align:center;vertical-align:middle !important;}
+		.tCenter img {vertical-align:middle;}
+	.tQuiet{color:#888 !important;}
+	.tLight {font-weight:normal;}
+	.tLoud{font-weight:bold;}
+	.tIndent {text-indent:20px;}
+	.tHide {text-indent:-3333px}
+	.tMedium {font-size:14px;line-height:16px;}
+	.tSmall, small{font-size:11px;line-height:16px;}
+	.tXSmall{font-size:10px;line-height:16px;}
+	.tBig {font-size:18px !important;}
+	.tHuge {font-size:30px !important;}
+	.tBlack {color:black !important}
+	.tShadow {text-shadow:1px 1px #DDDDDD;}
+	.tNoSelect {-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-o-user-select: none;user-select: none;}
+
+/*******************************/
+/********* Bloc styles *********/
+/*******************************/
+	/* borders */
+	.curved {-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;}
+	.curvedNE, .curvedN, .curvedE {-moz-border-radius-topright:5px; -webkit-border-top-right-radius:5px;}
+	.curvedNW, .curvedN, .curvedW {-moz-border-radius-topleft:5px; -webkit-border-top-left-radius:5px;}
+	.curvedSE, .curvedS, .curvedE {-moz-border-radius-bottomright:5px; -webkit-border-bottom-right-radius:5px;}
+	.curvedSW, .curvedS, .curvedW {-moz-border-radius-bottomleft:5px; -webkit-border-bottom-left-radius:5px;}
+	.noBorder, .noBorder img {border:none !important;}
+	.borderS {border-width:1px;border-style:solid;border-color:white;}	.borderL {border-width:3px !important;border-style:solid;}	
+	
+	/* buttons */
+		/* normal */	
+		button , .button , a.button {font-size:11px;line-height:24px;font-weight:bold;padding:7px !important;-moz-border-radius:4px; -webkit-border-radius:4px;}
+			button:hover , .button:hover , a.button:hover, a.buttonSelected {cursor:pointer !important;}
+			
+	/* blocs */
+	.noBackground {background:none !important;}
+	.block {padding:14px !important;}	
+
+
+/*******************************/
+/********* List styles *********/
+/*******************************/
+ul.inlineList > li , ol.inlineList > li {display:inline;}
+.verticalList > li {display:block;padding-top:1px ;padding-bottom:1px ;}
+	.verticalList > li:first-child {padding-top:0}
+ul.horizontalList > li , ol.horizontalList > li {display: -moz-inline-stack; /* Pour Firefox 1-2 */display: inline-block; /* ecrase la valeur precedente si le navigateur comprend inline-block */}
+	/* pagination */
+	.pagination {margin:10px 0;}
+	.pagination a, .pagination span {padding:2px 7px;}
+		.pagination  li {background-image:none !important;}
+		.pagination li.selected a , .pagination li.selected span {display:inline !important;}
+		
+	/* arrows list */
+	ul.arrows > li, ol.arrows > li , a.readMore {list-style-type:square;padding-left:10px !important;}
+	ul.arrows > li.noBullet {padding-left:0;}
+	
+	/* hover lists */
+	/* fake hover liste is when there are various links inside the li but whe want to highlight only one */
+	.hoverList > li a,  .timeList > li a, .fakeHoverList > li  {display:block;padding:3px;}
+		.fakeHoverList > li {position:relative;overflow:hidden;display:block;}
+			.fakeHoverList .liLink {clear:both;height:500px;width:100%;position:absolute;top:1px;left:0;display:block;text-indent:-33333px; overflow:hidden}
+		.timeList > li a {margin-left:45px;padding:3px; }
+		.timeList > li .time {float:left;font-weight:bold;padding:3px;width:33px;}
+		
+	/* comments */
+	.comment {float:right;position:relative;padding-left:0 !important;}	
+	.comment .message {margin-left:9px;font-weight:normal;display:block; padding:5px;} 
+		.comment .message img {max-width:100%;border:none;}
+	.comment .arrow	{display:block;height:20px;left:0;position:absolute;top:0;width:10px;}
+		
+/* menu */
+	ul.menu > li , ul.menuPacked > li{height:inherit;}
+	ul.menu > li a {padding-left:12px;padding-right:12px;height:inherit;display:block}
+		ul.menuPacked > li a {padding-left:8px;padding-right:8px;height:inherit;display:block}
+
+	/* simpleList */
+	ul.simpleList > li {background:none !important;padding:0 !important;}
+	
+	
+	/****************************************************************************************************/
+	/********************************  SPECIFIC COLORS & FONTS ******************************************/
+	/****************************************************************************************************/	
+	
+	/*******************************/
+	/**********   Lists   **********/
+	/*******************************/
+	/* pagination */
+	.pagination a, .pagination span {border:2px solid #DCD6D6;font-family:Helvetica,Arial;font-weight:bold;}
+		.pagination li.selected a , .pagination li.selected span {border:1px solid #9E2E19;}	
+	
+	/* arrows list */
+	ul.arrows > li, ol.arrows > li , a.readMore {background:url("../i/arrow.gif") no-repeat scroll left center transparent !important;list-style-type:none}
+	ul.arrows > li.noBullet {background:transparent none !important;list-style-type:none}
+	
+	/* hover lists */
+	/* fake hover liste is when there are various links inside the li but whe want to highlight only one */
+	.hoverList > li a,  .timeList > li a, .fakeHoverList > li  {border:1px solid #e7e7e7;}
+		
+	/* comments */
+	.comment .message { border:1px solid #e7e7e7;padding:5px;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;} 
+	.comment .arrow	{background:url("../i/share.png") no-repeat scroll -11px -437px transparent;}
+		a:hover .comment .arrow {background-position:-11px -457px}
+	
+	/* menu */
+	ul.menu > li , ul.menuPacked > li{font-family:Tahoma;font-weight:bold;}
+	
+	/* simpleList */
+	ul.simpleList > li {background:none !important;padding:0 !important;}
+
+	/*******************************/
+	/************ Forms ************/
+	/*******************************/
+	form {}
+	fieldset {font-weight:bold;padding:5px 0;}
+	legend {font-family: Arial, Helvetica;color:black;padding:4px;}
+	label {font-weight:bold;}
+	input , textarea, select {padding-right:0 !important;padding-left:3px;font-family:Arial;}
+	textarea {border-width:1px;}
+
+	/*******************************/
+	/**********    Text   **********/
+	/*******************************/
+	@font-face { font-family: 'Lobster'; font-style: normal; font-weight: normal; src: local('Lobster1.4'), local('Lobster'), url('http://themes.googleusercontent.com/font?kit=TSDaXhyJuDJ-NBU0popSWA') format('truetype');}
+	
+	/* headings */
+		.h1 , h1 {color: #9E2E19;font-family: 'Lobster',arial,serif; font-size: 30px;letter-spacing: 1px;line-height:30px}
+		.h2, h2, a.h2:visited {color:black;font:bold 22px/20px Tahoma,Arial;line-height:30px}
+		.h3, h3 {color:black;font-family:Tahoma;font-size:18px;font-style:normal;font-weight:normal;padding-bottom:15px;}
+		.h4, h4 {color:#444444;font-family:Tahoma,Arial,sans-serif;font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;line-height:30px;}
+		
+	.tColor , .tColor a {color:#9E2E19 !important;}
+		.tColor a:hover{color:#FF0000;}
+	.tWhite {color:white !important;}
+
+	button , .button , a.button {background-color:white;border:1px solid #E3E3E3;background-color:white;border:1px solid #E3E3E3;color:black;}
+		button:hover , .button:hover , a.button:hover, a.buttonSelected {background-color:#e3e3e3 !important; color:black !important}	
+		
+	/********** Inputs *************/
+	input , textarea, select {border-color:#CCCCCC;background:#fefefe;}
+		input:focus , textarea:focus, select:focus {background:white;border-color:#666666}
+	textarea {color:#777777;}
+		textarea:focus {color:#444444;}
+	
+	/*******************************/
+	/********** Linkology **********/
+	/*******************************/
+	a , a * , a:link {color:#1E5B7E;text-decoration:none;}
+		a img, a .img , a.img {border-color:#EEEEEE;}	
+	a:visited, a:visited * {color:#1C7595;}
+	a:hover , a:hover * , a.h2:hover , a:focus {cursor:pointer;color:#9E2E19;}	
+		a:hover img, a:hover .img , a.img:hover , a:focus .thumb , a.thumb:focus , a:focus img {border-color:#CC0000;}
+	.whiteLink a , .whiteLink a * , .whiteLink a:visited , a.whiteLink, a.whiteLink *, a.whiteLink:visited , a.whiteLink:visited *  {color:#eeeeee;}
+    .whiteLink a:hover, .whiteLink a:focus, a.whiteLink:hover, a.whiteLink:focus , a.whiteLink:hover *, a.whiteLink:focus *{color:#FFD800;}    
+
+	.bkgLink {background-color:#EEEEEE ; border-color:#CCCCCC;}	
+		a.bkgLink:hover , a:hover .bkgLink , .fakeHoverList li:hover .bkgLink{color:white !important;background-color:#CC0000 !important;border-color:#990000 !important;}
+			
+	/********** Borders **********/
+	.borderLightGrey {border-color:#CCCCCC !important;}
+	.borderGrey {border-color:#999999 !important;}
+	
+	/*******************************/
+	/******** Editorial Text ********/
+	/*******************************/
+	.editText p , .editText .p , .comment .message , .editText {display:block; line-height:140%;padding-bottom:10px;text-align:justify;}
+		.editText p:last-child , .editText .p:last-child {padding-bottom:0;}
+		.editText a {font-weight:bold;}
+	
+	/********** Lists **********/
+	.pagination a, .pagination span {background-color:#F5F1F1;border-color:#DCD6D6;color:black !important;}
+		.pagination a:hover {background:#dcd6d6;}
+		.pagination li.selected a , .pagination li.selected span {background:#D72E0E;border-color:#9E2E19;color:white !important;}
+	
+	.hoverList li a,  .timeList li a, .fakeHoverList li  {border-color:white white #dddddd white; }
+		.timeList li a {background-color:#fAFAFA; border-color:white;}
+		.hoverList li a:hover, .hoverList li a.selected, .hoverList li.selected a, .timeList li a:hover, .timeList li a.selected , .fakeHoverList li:hover {background-color:#EEE;border-color:#CCC;color:#000000;}
+		.timeList li .time {color:#000000;}
+
+		.comment .message {background:#fAFAFA;color:black; border:1px solid #e7e7e7;} 
+			a:hover .comment .message {background-color:#FDF7F6;border-color:#f3401f;}
+	
+	/********** Background **********/
+	body {background:#DDDDDD;color:#444;font:12px/18px Arial,Helvetica,sans-serif;text-align:center;line-height:1;position:relative;}
+		
+	.bkgBlack {background-color:black;} 
+	.bkgWhite, .bkgWhite, a.bkgWhite:visited, a.bkgWhite:link  {background-color:white;color:black;border-color:#ecece6}
+			a.bkgWhite:hover {color:black;}
+	.selectedBlock {background:none repeat scroll 0 0 #FFF5C0;border:1px solid #F7E16A;}
+	.bkgGrey {background-color:#EEEEEE;border:1px solid #E5E5E5;}		
+	.bkgDarker , a.bkgDarker, .bkgDarkerOnHover:hover   {background-color:#fAFAFA;border:1px solid #ecece6;}
+		.bkgDarker .bkgDarker {background-color:#F8F8F8}
+		
+	/* in white */
+	.bkgWhite .bkgDarker {padding:5px;}
+		.bkgWhite .bkgDarker a.selected {background-color:#E3E3E3 !important;}	
+		
+	/* bkgDark */
+	.bkgDark {background-color:#290b03;color:#9F9F9F;}
+		.bkgDark .bkgLighter {background-color:#381106 !important; border-top:1px solid #441609;}
+		.bkgDark .bkgDarker, .bkgDark .bkgDarkerOnHover:hover {background-color: #1f0708; border-color: #100203 #381213 #381213 #100203; border-style: solid; border-width: 1px;}
+		.bkgDark .bkgWhite {border:3px solid #919191;}	
+		.bkgDark .bkgColor {border-right:2px solid #202729;border-bottom:2px solid #202729;}
+		.bkgDark .hoverList li a, .bkgDark .timeList li a ,.hoverList li.bkgDark  a, .timeList li.bkgDark  a , .bkgDark .comments .message {border-color:#222222;background-color:none;}
+		.bkgDark .hoverList li a.selected {background-color:#FFD800;border-color:#D2AD00;color:black;font-weight:bold;}
+		.bkgDark .hoverList li a:hover, .bkgDark .timeList li a:hover , .bkgDark .comments li a:hover .message {background-color:#333333;border-color:#555555;color:white;}
+			.bkgDark li.bkgLighter a:hover {background-color:transparent}
+		.bkgDark button , .bkgDark .button , .bkgDark a.button , .darkButton, a.darkButton {color:white !important;background-color:#210809 !important; border:none !important;}		
+			.bkgDark button:hover , .bkgDark .button:hover , .darkButton:hover,.darkButton:focus,a.darkButton:hover,a.darkButton:focus, .bkgDark button:focus ,.bkgDark .button:focus , .bkgDark  a.button:hover {color:white !important;background-color:#441508  !important;}
+		.bkgDark textarea:focus, .bkgDark input:focus {border-color:#FFD800;} 
+		.bkgDark a img {border-color:#465258;}
+			.bkgDark a:hover img , .bkgDark .selected  img{border-color:#FFD800;}
+		.bkgDark .tShadow {text-shadow:1px 1px #171d20;}
+		.bkgDark .tColor {color:#FFD800 !important}
+	
+	/* bkgMedium */
+	.bkgMedium {background-color:#5f5455; border-bottom:2px solid #444444;border-top:none;color:white;}							/* si on ets dans du contenu blanc, ombre en haut */
+		.bkgWhite .bkgMedium {border-top:1px solid #444444;padding-top:5px;}
+		.bkgDark .bkgMedium {border-top:3px solid #ffd800;}
+		.bkgMedium .bkgDarker,  .bkgMedium .bkgDarkerOnHover:hover {border:0 none;border-color:#333333 #777777 #777777 #333333; background-color:#352828;}
+		.bkgMedium .bkgLighter {background-color:#888888; border-color:#999999 #777777 #777777 #999999}
+		.bkgMedium .bkgColor {border-width:0;}
+		.bkgMedium .hoverList li a.selected {background-color:#FDCA00;border-color:#e6b800;color:black;font-weight:bold;}
+		.bkgMedium .hoverList li a, .bkgMedium .timeList li a ,.bkgMedium .comments .message {border-color:#2F2F2F;background-color:transparent;color:white;}
+		.bkgMedium button , .bkgMedium .button , .bkgMedium a.button {background-color:#7F7F73; border:none !important;color:white;}		
+			.bkgMedium button:hover , .bkgMedium .button:hover , .bkgMedium button:focus ,.bkgMedium .button:focus , .bkgMedium  a.button:hover {background-color:#ffd800 !important;color:black}
+		.bkgMedium textarea:focus, .bkgMedium input:focus {border-color:#FFD800;} 
+		.bkgMedium .hoverList li a:hover, .bkgMedium .timeList li a:hover , .bkgMedium .comments li a:hover .message {background-color:#333333;border-color:#555555;color:white;}
+			.bkgMedium .timeList li .time { color: #FFD800 !important;}
+		.bkgMedium a.selected {background-color:#222222;color:white}	
+		.bkgMedium .tShadow {text-shadow:1px 1px #444444;}
+		.bkgMedium a img {border-color:#4C4C44;}
+			.bkgMedium a:hover img , .bkgMedium .selected  img{border-color:#;}
+	
+	/* bkgColor */
+	.bkgColor, a.bkgColor, a.bkgColor:visited, a.bkgColor:link  {background-color:#ffd800;color:black;border-color:#d2ad00}
+		.bkgColor button , .bkgColor .button , .bkgColor a.button {background-color:#f0cb00; color:black;}		
+		.bkgColor .bkgLink {background-color:transparent;border-color:#FFD800}
+		.bkgColor .tShadow {text-shadow:1px 1px #444444;}
+	.menu .selected, .menuPacked .selected  {color:black;border:none;border-right:1px solid #444444;}
+			.menu .bkgWhite, .menuPacked .bkgWhite {margin-bottom:-3px;padding-bottom:3px;} 
+			.menu .bkgWhite a, .menu .bkgWhite a:visited, .menuPacked .selected a , .menuPacked .selected a:visited {color:black}
+			.menu .hover >a , .menuPacked .hover > a {background-color:#210809;color:#FFD800  !important;position:relative;z-index:10000;}
+	
+	.bkgDark .tShadow, .bkgMedium .tShadow {text-shadow:1px 1px #000000;}
+	/*sub menus */
+	.subMenu  {background-color:#210809 !important;border-top:2px solid #1a0405;text-align:left;}
+		 .subMenu a, .subMenu a:visited ,.subMenu a:visited *, .subMenu .h2, .subMenu .h3 {color:#EEEEEE;}
+	
+	

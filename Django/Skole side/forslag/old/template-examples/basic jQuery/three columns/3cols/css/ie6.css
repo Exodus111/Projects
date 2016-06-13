@@ -1,0 +1,95 @@
+/*******************************/
+/************ WIDTH ************/
+/*******************************/
+.edit {width:628px; }
+.w1, .w12, .w13, .w23, .w14, .w34 , .w15 , .w25 , .w35 , .w45 , .w16 , .w56 {padding-right:3px;padding-left:3px}
+	.w12 {width:47%;}
+		/*****thirds ******/
+		.w13 {width:30%;}
+		.w23 {width:64%;}
+		/*****quarters ******/
+		.w14 {width:22%;}
+		.w34 {width:72%;}
+		
+		/*****Fifths ******/
+		.w15 {width:17%}
+		.w25 {width:37%;}
+		.w35 {width:58%;}
+		.w45 {width:78%;}
+		
+		/*****sixths ******/
+		.w16 {width:16%;}
+		.w56 {width:79%;}
+
+/* fix of img in link */
+a img {vertical-align:bottom;}
+
+/* pikabu */
+html .clearfix , ol, ul, li, div , .block  {_height:1%;} 
+
+/*******************************/
+/************ LISTS ************/
+/*******************************/
+
+ul.inlineList li , ol.inlineList li {display:inline;}
+.verticalList li {display:block;padding-top:1px ;padding-bottom:1px ; clear:both}
+.verticalList li, .verticalList , .subMenu {height:auto !important;}	
+ul.horizontalList li , ol.horizontalList li {float:left;text-align:center;display:inline !important;height:1%}
+
+	/* pagination */
+	.pagination {margin:10px 0;}
+	.pagination a, .pagination span {padding:2px 7px;}
+		.pagination li {margin-right:5px;padding-top:3px;line-height:23px;clear:none;}
+		.pagination li.selected a , .pagination li.selected span {display:inline !important;}
+		
+	/* arrows list */
+	ul.arrows li, ol.arrows li , a.readMore {background:url("../i/arrow.gif") no-repeat scroll left center transparent !important;padding-left:10px !important;}
+	ul.arrows li.noBullet {padding-left:0;background:transparent none !important;}
+	
+	/* hover lists */
+	/* fake hover liste is when there are various links inside the li but whe want to highlight only one */
+	
+	.hoverList li a,  .timeList li a, .fakeHoverList li  {display:block;border:1px solid #e7e7e7;padding:3px;}
+		.fakeHoverList {overflow:hidden !important;zoom:1 !important}
+			.fakeHoverList li {position:relative;display:block;border:1px solid #e7e7e7 !important;overflow:hidden !important;}
+				.hoverList a .pull , .fakeHoverList .pull {zoom:1 !important;position:relative;margin-right:-5px;display:block}
+				.fakeHoverList a:hover {cursor: pointer !important;}
+				.fakeHoverList .liLink {clear:both;height:500px;width:100%;position:absolute;top:1px;left:0;display:block;text-indent:-33333px; overflow:hidden}
+		.timeList li a {margin-left:45px;padding:3px; }
+		.timeList li .time {float:left;font-weight:bold;padding:3px;width:33px;}
+		
+	/* comments */
+	.comment {float:right;position:relative;padding-left:0 !important;}	
+	.comment .message {margin-left:9px;font-weight:normal;display:block; border:1px solid #e7e7e7;padding:5px;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;} 
+		.comment .message img {max-width:100%;border:none;}
+	.comment .arrow	{background:url("../i/share.png") no-repeat scroll -11px -437px transparent;display:block;height:20px;left:0;position:absolute;top:0;width:10px;}
+		a:hover .comment .arrow {background-position:-11px -457px}
+		
+/* menu */
+	ul.menu li , ul.menuPacked li{height:inherit;font-family:Tahoma;font-weight:bold;}
+	ul.menu li a {padding-left:12px;padding-right:12px;height:inherit;display:block}
+		ul.menuPacked li a {padding-left:8px;padding-right:8px;height:inherit;display:block}
+		.menu  a:hover , .menuPacked a:hover {color:#FFD800 !important}
+		.menu .selected a:hover, .menuPacked .selected a:hover {}
+	
+	/* simpleList */
+	ul.simpleList li {background:none !important;padding:0 !important;}
+	
+	/* start commented backslash hack \*/
+	html .clearfix , ol, ul, li, div , .block , .borderedBlock {height:1%;} 
+	.clearfix, .verticalList, .fakeHoverList li, .hoverList li a, .timeList li a, .coments .comment, .clearfix {height:1%;}
+	.clearfix , .block {display:block;}
+	/* close commented backslash hack */
+	
+	.fixed .menu a.selected, .fixed .menuPacked a.selected {height:1%}
+	.scroll {position:relative;}
+
+/*******************************/
+/************ BLOCS ************/
+/*******************************/
+.pullLeft , .pullRight , .pullUp , .pullDown, .selected {position:relative;}
+
+/*******************************/
+/************ FORMS ************/
+/*******************************/
+.fixed {_position:absolute !important;}

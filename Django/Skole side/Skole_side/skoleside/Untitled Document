@@ -1,0 +1,25 @@
+    <div class="container">
+      <ul class="nav navbar-inverse nav-tabs">
+        <li><a href="#" role="presentation" class="active">Home</a></li>
+        {% for category in categories %}
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            {{ category.title }} <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            {% for sub in subcategories %}
+            <li><a href="">{{ sub.title }}</a></li>
+            {% endfor %}
+          </ul>
+
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+        <div class="collapse navbar-collapse">
+
+<link rel="stylesheet" href="{% static 'articles/bootstrap-3.3.6-dist/css/bootstrap.min.css' %}">
+
+<script src="{% static 'articles/js/jquery-2.1.4.min.js' %}" ></script>
+<script src="{% static 'articles/bootstrap-3.3.6-dist/js/bootstrap.min.js' %}" ></script>

@@ -1,0 +1,38 @@
+///Global responses
+
++ who is my * {weight=10}
+* <get <star>> == undefined => I'm not sure who your <star> is. \n
+^ Why don't you tell me about your <star>?
+- <get star> is your <star>
+
++ my * name is *
+% * tell me about your *
+- <call>setvar <botstar2> <star2></call> Ok, I'll make a note of that.
+
++ what is my *
+- I don't know what your <star> is.
+
++ where are my *
+- I don't know where your <star> are.
+
++ where is my *
+- I don't know where your <star> is.
+
++ how (is|does) *
+- That is really beyond my programming.
+
++ how (is|does) my *
+- I really can't help you with that.
+
++ why *
+- Philosophy is really beyond my programming.
+
++ (what|where|who) is [an|a] *
+- <call>setvar temp <star2></call>
+^ <call>wiki_short <star2></call>
+^ Would you like to know more?
+
++ (@yes) [*]
+% would you like to know more 
+- <call>wiki_long <get temp></call>
+^ Source is from Wikipedia.

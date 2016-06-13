@@ -1,0 +1,59 @@
+/// My Python Scripts
+
+> object read python
+
+    # read
+    import Scripts
+    Scripts.read(rs) 
+
+< object
+
+> object write python
+
+    # write
+    import scripts
+    scripts.write(rs)
+
+< object
+
++ [*] write [to|on] [the|a] file [*]
+- Ok, writing to file. <call>write</call>
+
++ [*] read [from] [the|a] file [*]
+- Ok, reading from file. <call>read</call>
+
+> object wiki_short python
+    
+    print("\033[96mAnia> Please wait one second while I look that up. \033[0m")
+    if len(args) > 1:
+        data = ""
+        for word in args:
+            data += words
+            data += " "
+    else:
+        data = args[0]
+    import scripts
+    reply = scripts.wiki(data, True)
+    print(reply)
+
+< object
+
+> object wiki_long python
+
+    print("\033[96mAnia> Ok, please wait. \033[0m")
+    if len(args) > 1:
+        data = ""
+        for word in args:
+            data += words
+            data += " "
+    else:
+        data = args[0]
+    import scripts
+    reply = scripts.wiki(data, False)
+    print(reply)
+
+< object
+
+
+
+

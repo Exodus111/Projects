@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog Front Page</title>
+</head>
+<body>
+  {% if articles %}
+  {% for article in articles %}
+  <li><a href="./articles/{{ article.slug }}">{{ article.title }}</a></li>
+  {% endfor %}
+  {% else %}
+  <h1>Nothing Here</h1>
+  {% endif %}
+</body>
+</html>

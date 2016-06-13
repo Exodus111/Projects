@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}My Base Template{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'articles/css/default.css' %}">
+  </head>
+<body>
+  <div id="page">
+
+    <div id="sidebar">
+      {% block sidebar %}
+      <ul>
+        <li><a href="/articles/all">Articles</a></li>
+        <li><a href="/admin/">Admin</a></li>
+      </ul>
+      {% endblock %}
+    </div>
+    <div id="content">
+      {% block content %}This is the content area{% endblock %}
+
+      <img src="{% static 'articles/images/python-logo.jpg' %}" width="200"/>
+
+    </div>
+  </div>
+</body>
+</html>>

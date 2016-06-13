@@ -1,0 +1,44 @@
+#:import random random
+#:kivy 1.7.2
+
+<MyTile>
+    size: 32, 32
+    canvas:
+        Color:
+            rgba: self.color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<MyPlayer>
+    size: 20, 20
+    pos: self.pos
+    canvas:
+        Color: 
+            rgba: 1, 0, 0, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+<MyGame>
+    player: player
+    keyboard: keyboard
+    level: level
+    fps: fps
+
+    MyKeyboardListener:
+        id: keyboard
+    GridLayout:
+        id: level
+        size: root.size[0], root.size[1]
+        cols: 32
+    MyPlayer:
+        id: player
+        center: root.center
+        top: root.top - 150
+    FPSLabel:
+        id: fps
+        text: self.myfps
+        center: root.center
+        top: root.top - 50

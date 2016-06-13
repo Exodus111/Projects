@@ -1,0 +1,1069 @@
+{
+    "Block size": 64, 
+    "FileIDs": {
+        "maptile1": {
+            "id": 1
+        }, 
+        "maptile10": {
+            "id": 10
+        }, 
+        "maptile100": {
+            "id": 100
+        }, 
+        "maptile101": {
+            "id": 101
+        }, 
+        "maptile102": {
+            "id": 102
+        }, 
+        "maptile103": {
+            "id": 103
+        }, 
+        "maptile104": {
+            "id": 104
+        }, 
+        "maptile105": {
+            "id": 105
+        }, 
+        "maptile106": {
+            "id": 106
+        }, 
+        "maptile107": {
+            "id": 107
+        }, 
+        "maptile108": {
+            "id": 108
+        }, 
+        "maptile109": {
+            "id": 109
+        }, 
+        "maptile11": {
+            "id": 11
+        }, 
+        "maptile110": {
+            "id": 110
+        }, 
+        "maptile111": {
+            "id": 111
+        }, 
+        "maptile112": {
+            "id": 112
+        }, 
+        "maptile113": {
+            "id": 113
+        }, 
+        "maptile114": {
+            "id": 114
+        }, 
+        "maptile115": {
+            "id": 115
+        }, 
+        "maptile116": {
+            "id": 116
+        }, 
+        "maptile117": {
+            "id": 117
+        }, 
+        "maptile118": {
+            "id": 118
+        }, 
+        "maptile119": {
+            "id": 119
+        }, 
+        "maptile12": {
+            "id": 12
+        }, 
+        "maptile120": {
+            "id": 120
+        }, 
+        "maptile121": {
+            "id": 121
+        }, 
+        "maptile122": {
+            "id": 122
+        }, 
+        "maptile123": {
+            "id": 123
+        }, 
+        "maptile124": {
+            "id": 124
+        }, 
+        "maptile125": {
+            "id": 125
+        }, 
+        "maptile126": {
+            "id": 126
+        }, 
+        "maptile127": {
+            "id": 127
+        }, 
+        "maptile128": {
+            "id": 128
+        }, 
+        "maptile129": {
+            "id": 129
+        }, 
+        "maptile13": {
+            "id": 13
+        }, 
+        "maptile130": {
+            "id": 130
+        }, 
+        "maptile131": {
+            "id": 131
+        }, 
+        "maptile132": {
+            "id": 132
+        }, 
+        "maptile133": {
+            "id": 133
+        }, 
+        "maptile134": {
+            "id": 134
+        }, 
+        "maptile135": {
+            "id": 135
+        }, 
+        "maptile136": {
+            "id": 136
+        }, 
+        "maptile137": {
+            "id": 137
+        }, 
+        "maptile138": {
+            "id": 138
+        }, 
+        "maptile139": {
+            "id": 139
+        }, 
+        "maptile14": {
+            "id": 14
+        }, 
+        "maptile140": {
+            "id": 140
+        }, 
+        "maptile141": {
+            "id": 141
+        }, 
+        "maptile142": {
+            "id": 142
+        }, 
+        "maptile143": {
+            "id": 143
+        }, 
+        "maptile144": {
+            "id": 144
+        }, 
+        "maptile145": {
+            "id": 145
+        }, 
+        "maptile146": {
+            "id": 146
+        }, 
+        "maptile147": {
+            "id": 147
+        }, 
+        "maptile148": {
+            "id": 148
+        }, 
+        "maptile149": {
+            "id": 149
+        }, 
+        "maptile15": {
+            "id": 15
+        }, 
+        "maptile150": {
+            "id": 150
+        }, 
+        "maptile151": {
+            "id": 151
+        }, 
+        "maptile152": {
+            "id": 152
+        }, 
+        "maptile153": {
+            "id": 153
+        }, 
+        "maptile154": {
+            "id": 154
+        }, 
+        "maptile155": {
+            "id": 155
+        }, 
+        "maptile156": {
+            "id": 156
+        }, 
+        "maptile157": {
+            "id": 157
+        }, 
+        "maptile158": {
+            "id": 158
+        }, 
+        "maptile159": {
+            "id": 159
+        }, 
+        "maptile16": {
+            "id": 16
+        }, 
+        "maptile160": {
+            "id": 160
+        }, 
+        "maptile161": {
+            "id": 161
+        }, 
+        "maptile162": {
+            "id": 162
+        }, 
+        "maptile163": {
+            "id": 163
+        }, 
+        "maptile164": {
+            "id": 164
+        }, 
+        "maptile165": {
+            "id": 165
+        }, 
+        "maptile166": {
+            "id": 166
+        }, 
+        "maptile167": {
+            "id": 167
+        }, 
+        "maptile168": {
+            "id": 168
+        }, 
+        "maptile169": {
+            "id": 169
+        }, 
+        "maptile17": {
+            "id": 17
+        }, 
+        "maptile170": {
+            "id": 170
+        }, 
+        "maptile171": {
+            "id": 171
+        }, 
+        "maptile172": {
+            "id": 172
+        }, 
+        "maptile173": {
+            "id": 173
+        }, 
+        "maptile174": {
+            "id": 174
+        }, 
+        "maptile175": {
+            "id": 175
+        }, 
+        "maptile176": {
+            "id": 176
+        }, 
+        "maptile177": {
+            "id": 177
+        }, 
+        "maptile178": {
+            "id": 178
+        }, 
+        "maptile179": {
+            "id": 179
+        }, 
+        "maptile18": {
+            "id": 18
+        }, 
+        "maptile180": {
+            "id": 180
+        }, 
+        "maptile181": {
+            "id": 181
+        }, 
+        "maptile182": {
+            "id": 182
+        }, 
+        "maptile183": {
+            "id": 183
+        }, 
+        "maptile184": {
+            "id": 184
+        }, 
+        "maptile185": {
+            "id": 185
+        }, 
+        "maptile186": {
+            "id": 186
+        }, 
+        "maptile187": {
+            "id": 187
+        }, 
+        "maptile188": {
+            "id": 188
+        }, 
+        "maptile189": {
+            "id": 189
+        }, 
+        "maptile19": {
+            "id": 19
+        }, 
+        "maptile190": {
+            "id": 190
+        }, 
+        "maptile191": {
+            "id": 191
+        }, 
+        "maptile192": {
+            "id": 192
+        }, 
+        "maptile193": {
+            "id": 193
+        }, 
+        "maptile194": {
+            "id": 194
+        }, 
+        "maptile195": {
+            "id": 195
+        }, 
+        "maptile196": {
+            "id": 196
+        }, 
+        "maptile197": {
+            "id": 197
+        }, 
+        "maptile198": {
+            "id": 198
+        }, 
+        "maptile199": {
+            "id": 199
+        }, 
+        "maptile2": {
+            "id": 2
+        }, 
+        "maptile20": {
+            "id": 20
+        }, 
+        "maptile200": {
+            "id": 200
+        }, 
+        "maptile201": {
+            "id": 201
+        }, 
+        "maptile202": {
+            "id": 202
+        }, 
+        "maptile203": {
+            "id": 203
+        }, 
+        "maptile204": {
+            "id": 204
+        }, 
+        "maptile205": {
+            "id": 205
+        }, 
+        "maptile206": {
+            "id": 206
+        }, 
+        "maptile207": {
+            "id": 207
+        }, 
+        "maptile208": {
+            "id": 208
+        }, 
+        "maptile209": {
+            "id": 209
+        }, 
+        "maptile21": {
+            "id": 21
+        }, 
+        "maptile210": {
+            "id": 210
+        }, 
+        "maptile211": {
+            "id": 211
+        }, 
+        "maptile212": {
+            "id": 212
+        }, 
+        "maptile213": {
+            "id": 213
+        }, 
+        "maptile214": {
+            "id": 214
+        }, 
+        "maptile215": {
+            "id": 215
+        }, 
+        "maptile216": {
+            "id": 216
+        }, 
+        "maptile217": {
+            "id": 217
+        }, 
+        "maptile218": {
+            "id": 218
+        }, 
+        "maptile219": {
+            "id": 219
+        }, 
+        "maptile22": {
+            "id": 22
+        }, 
+        "maptile220": {
+            "id": 220
+        }, 
+        "maptile221": {
+            "id": 221
+        }, 
+        "maptile222": {
+            "id": 222
+        }, 
+        "maptile223": {
+            "id": 223
+        }, 
+        "maptile224": {
+            "id": 224
+        }, 
+        "maptile225": {
+            "id": 225
+        }, 
+        "maptile226": {
+            "id": 226
+        }, 
+        "maptile227": {
+            "id": 227
+        }, 
+        "maptile228": {
+            "id": 228
+        }, 
+        "maptile229": {
+            "id": 229
+        }, 
+        "maptile23": {
+            "id": 23
+        }, 
+        "maptile230": {
+            "id": 230
+        }, 
+        "maptile231": {
+            "id": 231
+        }, 
+        "maptile232": {
+            "id": 232
+        }, 
+        "maptile233": {
+            "id": 233
+        }, 
+        "maptile234": {
+            "id": 234
+        }, 
+        "maptile235": {
+            "id": 235
+        }, 
+        "maptile236": {
+            "id": 236
+        }, 
+        "maptile237": {
+            "id": 237
+        }, 
+        "maptile238": {
+            "id": 238
+        }, 
+        "maptile239": {
+            "id": 239
+        }, 
+        "maptile24": {
+            "id": 24
+        }, 
+        "maptile240": {
+            "id": 240
+        }, 
+        "maptile241": {
+            "id": 241
+        }, 
+        "maptile242": {
+            "id": 242
+        }, 
+        "maptile243": {
+            "id": 243
+        }, 
+        "maptile244": {
+            "id": 244
+        }, 
+        "maptile245": {
+            "id": 245
+        }, 
+        "maptile246": {
+            "id": 246
+        }, 
+        "maptile247": {
+            "id": 247
+        }, 
+        "maptile248": {
+            "id": 248
+        }, 
+        "maptile249": {
+            "id": 249
+        }, 
+        "maptile25": {
+            "id": 25
+        }, 
+        "maptile250": {
+            "id": 250
+        }, 
+        "maptile251": {
+            "id": 251
+        }, 
+        "maptile252": {
+            "id": 252
+        }, 
+        "maptile253": {
+            "id": 253
+        }, 
+        "maptile254": {
+            "id": 254
+        }, 
+        "maptile255": {
+            "id": 255
+        }, 
+        "maptile256": {
+            "id": 256
+        }, 
+        "maptile257": {
+            "id": 257
+        }, 
+        "maptile258": {
+            "id": 258
+        }, 
+        "maptile259": {
+            "id": 259
+        }, 
+        "maptile26": {
+            "id": 26
+        }, 
+        "maptile260": {
+            "id": 260
+        }, 
+        "maptile261": {
+            "id": 261
+        }, 
+        "maptile262": {
+            "id": 262
+        }, 
+        "maptile263": {
+            "id": 263
+        }, 
+        "maptile264": {
+            "id": 264
+        }, 
+        "maptile265": {
+            "id": 265
+        }, 
+        "maptile266": {
+            "id": 266
+        }, 
+        "maptile267": {
+            "id": 267
+        }, 
+        "maptile268": {
+            "id": 268
+        }, 
+        "maptile269": {
+            "id": 269
+        }, 
+        "maptile27": {
+            "id": 27
+        }, 
+        "maptile270": {
+            "id": 270
+        }, 
+        "maptile271": {
+            "id": 271
+        }, 
+        "maptile272": {
+            "id": 272
+        }, 
+        "maptile273": {
+            "id": 273
+        }, 
+        "maptile274": {
+            "id": 274
+        }, 
+        "maptile275": {
+            "id": 275
+        }, 
+        "maptile276": {
+            "id": 276
+        }, 
+        "maptile277": {
+            "id": 277
+        }, 
+        "maptile278": {
+            "id": 278
+        }, 
+        "maptile279": {
+            "id": 279
+        }, 
+        "maptile28": {
+            "id": 28
+        }, 
+        "maptile280": {
+            "id": 280
+        }, 
+        "maptile281": {
+            "id": 281
+        }, 
+        "maptile282": {
+            "id": 282
+        }, 
+        "maptile283": {
+            "id": 283
+        }, 
+        "maptile284": {
+            "id": 284
+        }, 
+        "maptile285": {
+            "id": 285
+        }, 
+        "maptile286": {
+            "id": 286
+        }, 
+        "maptile287": {
+            "id": 287
+        }, 
+        "maptile288": {
+            "id": 288
+        }, 
+        "maptile289": {
+            "id": 289
+        }, 
+        "maptile29": {
+            "id": 29
+        }, 
+        "maptile290": {
+            "id": 290
+        }, 
+        "maptile291": {
+            "id": 291
+        }, 
+        "maptile292": {
+            "id": 292
+        }, 
+        "maptile293": {
+            "id": 293
+        }, 
+        "maptile294": {
+            "id": 294
+        }, 
+        "maptile295": {
+            "id": 295
+        }, 
+        "maptile296": {
+            "id": 296
+        }, 
+        "maptile297": {
+            "id": 297
+        }, 
+        "maptile298": {
+            "id": 298
+        }, 
+        "maptile299": {
+            "id": 299
+        }, 
+        "maptile3": {
+            "id": 3
+        }, 
+        "maptile30": {
+            "id": 30
+        }, 
+        "maptile300": {
+            "id": 300
+        }, 
+        "maptile301": {
+            "id": 301
+        }, 
+        "maptile302": {
+            "id": 302
+        }, 
+        "maptile303": {
+            "id": 303
+        }, 
+        "maptile304": {
+            "id": 304
+        }, 
+        "maptile305": {
+            "id": 305
+        }, 
+        "maptile306": {
+            "id": 306
+        }, 
+        "maptile307": {
+            "id": 307
+        }, 
+        "maptile308": {
+            "id": 308
+        }, 
+        "maptile309": {
+            "id": 309
+        }, 
+        "maptile31": {
+            "id": 31
+        }, 
+        "maptile310": {
+            "id": 310
+        }, 
+        "maptile311": {
+            "id": 311
+        }, 
+        "maptile312": {
+            "id": 312
+        }, 
+        "maptile313": {
+            "id": 313
+        }, 
+        "maptile314": {
+            "id": 314
+        }, 
+        "maptile315": {
+            "id": 315
+        }, 
+        "maptile316": {
+            "id": 316
+        }, 
+        "maptile317": {
+            "id": 317
+        }, 
+        "maptile318": {
+            "id": 318
+        }, 
+        "maptile319": {
+            "id": 319
+        }, 
+        "maptile32": {
+            "id": 32
+        }, 
+        "maptile320": {
+            "id": 320
+        }, 
+        "maptile321": {
+            "id": 321
+        }, 
+        "maptile322": {
+            "id": 322
+        }, 
+        "maptile323": {
+            "id": 323
+        }, 
+        "maptile324": {
+            "id": 324
+        }, 
+        "maptile325": {
+            "id": 325
+        }, 
+        "maptile326": {
+            "id": 326
+        }, 
+        "maptile327": {
+            "id": 327
+        }, 
+        "maptile328": {
+            "id": 328
+        }, 
+        "maptile329": {
+            "id": 329
+        }, 
+        "maptile33": {
+            "id": 33
+        }, 
+        "maptile330": {
+            "id": 330
+        }, 
+        "maptile331": {
+            "id": 331
+        }, 
+        "maptile332": {
+            "id": 332
+        }, 
+        "maptile333": {
+            "id": 333
+        }, 
+        "maptile334": {
+            "id": 334
+        }, 
+        "maptile335": {
+            "id": 335
+        }, 
+        "maptile336": {
+            "id": 336
+        }, 
+        "maptile337": {
+            "id": 337
+        }, 
+        "maptile338": {
+            "id": 338
+        }, 
+        "maptile339": {
+            "id": 339
+        }, 
+        "maptile34": {
+            "id": 34
+        }, 
+        "maptile340": {
+            "id": 340
+        }, 
+        "maptile341": {
+            "id": 341
+        }, 
+        "maptile342": {
+            "id": 342
+        }, 
+        "maptile343": {
+            "id": 343
+        }, 
+        "maptile344": {
+            "id": 344
+        }, 
+        "maptile345": {
+            "id": 345
+        }, 
+        "maptile346": {
+            "id": 346
+        }, 
+        "maptile347": {
+            "id": 347
+        }, 
+        "maptile348": {
+            "id": 348
+        }, 
+        "maptile349": {
+            "id": 349
+        }, 
+        "maptile35": {
+            "id": 35
+        }, 
+        "maptile350": {
+            "id": 350
+        }, 
+        "maptile351": {
+            "id": 351
+        }, 
+        "maptile352": {
+            "id": 352
+        }, 
+        "maptile36": {
+            "id": 36
+        }, 
+        "maptile37": {
+            "id": 37
+        }, 
+        "maptile38": {
+            "id": 38
+        }, 
+        "maptile39": {
+            "id": 39
+        }, 
+        "maptile4": {
+            "id": 4
+        }, 
+        "maptile40": {
+            "id": 40
+        }, 
+        "maptile41": {
+            "id": 41
+        }, 
+        "maptile42": {
+            "id": 42
+        }, 
+        "maptile43": {
+            "id": 43
+        }, 
+        "maptile44": {
+            "id": 44
+        }, 
+        "maptile45": {
+            "id": 45
+        }, 
+        "maptile46": {
+            "id": 46
+        }, 
+        "maptile47": {
+            "id": 47
+        }, 
+        "maptile48": {
+            "id": 48
+        }, 
+        "maptile49": {
+            "id": 49
+        }, 
+        "maptile5": {
+            "id": 5
+        }, 
+        "maptile50": {
+            "id": 50
+        }, 
+        "maptile51": {
+            "id": 51
+        }, 
+        "maptile52": {
+            "id": 52
+        }, 
+        "maptile53": {
+            "id": 53
+        }, 
+        "maptile54": {
+            "id": 54
+        }, 
+        "maptile55": {
+            "id": 55
+        }, 
+        "maptile56": {
+            "id": 56
+        }, 
+        "maptile57": {
+            "id": 57
+        }, 
+        "maptile58": {
+            "id": 58
+        }, 
+        "maptile59": {
+            "id": 59
+        }, 
+        "maptile6": {
+            "id": 6
+        }, 
+        "maptile60": {
+            "id": 60
+        }, 
+        "maptile61": {
+            "id": 61
+        }, 
+        "maptile62": {
+            "id": 62
+        }, 
+        "maptile63": {
+            "id": 63
+        }, 
+        "maptile64": {
+            "id": 64
+        }, 
+        "maptile65": {
+            "id": 65
+        }, 
+        "maptile66": {
+            "id": 66
+        }, 
+        "maptile67": {
+            "id": 67
+        }, 
+        "maptile68": {
+            "id": 68
+        }, 
+        "maptile69": {
+            "id": 69
+        }, 
+        "maptile7": {
+            "id": 7
+        }, 
+        "maptile70": {
+            "id": 70
+        }, 
+        "maptile71": {
+            "id": 71
+        }, 
+        "maptile72": {
+            "id": 72
+        }, 
+        "maptile73": {
+            "id": 73
+        }, 
+        "maptile74": {
+            "id": 74
+        }, 
+        "maptile75": {
+            "id": 75
+        }, 
+        "maptile76": {
+            "id": 76
+        }, 
+        "maptile77": {
+            "id": 77
+        }, 
+        "maptile78": {
+            "id": 78
+        }, 
+        "maptile79": {
+            "id": 79
+        }, 
+        "maptile8": {
+            "id": 8
+        }, 
+        "maptile80": {
+            "id": 80
+        }, 
+        "maptile81": {
+            "id": 81
+        }, 
+        "maptile82": {
+            "id": 82
+        }, 
+        "maptile83": {
+            "id": 83
+        }, 
+        "maptile84": {
+            "id": 84
+        }, 
+        "maptile85": {
+            "id": 85
+        }, 
+        "maptile86": {
+            "id": 86
+        }, 
+        "maptile87": {
+            "id": 87
+        }, 
+        "maptile88": {
+            "id": 88
+        }, 
+        "maptile89": {
+            "id": 89
+        }, 
+        "maptile9": {
+            "id": 9
+        }, 
+        "maptile90": {
+            "id": 90
+        }, 
+        "maptile91": {
+            "id": 91
+        }, 
+        "maptile92": {
+            "id": 92
+        }, 
+        "maptile93": {
+            "id": 93
+        }, 
+        "maptile94": {
+            "id": 94
+        }, 
+        "maptile95": {
+            "id": 95
+        }, 
+        "maptile96": {
+            "id": 96
+        }, 
+        "maptile97": {
+            "id": 97
+        }, 
+        "maptile98": {
+            "id": 98
+        }, 
+        "maptile99": {
+            "id": 99
+        }
+    }, 
+    "Mapfile_bg": "./save/bg_savemap1.npy", 
+    "Mapfile_fg": "./save/fg_savemap1.npy", 
+    "Name": "savemap", 
+    "Sheet File": "./img/magecity_64p.png", 
+    "Size": [
+        2560, 
+        2560
+    ]
+}

@@ -1,0 +1,55 @@
+#ghostContainer , body { background-position:fixed ; }
+div, ul, p , inlineList >li>a{zoom:1;}
+/*******************************/
+/************ WIDTH ************/
+/*******************************/
+.w1 {min-width: 98%;}
+	.w12 {width:47%;min-width: 47%}
+		/*****thirds ******/
+		.w13 {width:30%;min-width: 30%}
+		.w23 {width:64%;min-width: 64%}
+		/*****quarters ******/
+		.w14 {width:22%;min-width: 22%}
+		.w34 {width:73%;min-width: 73%;}
+		
+		/*****Fifths ******/
+		.w15 {width:18%;min-width: 18%}
+		.w25 {width:37%;min-width: 37%}
+		.w35 {width:58%;min-width: 58%}
+		.w45 {width:78%;min-width: 78%}
+		
+		/*****sixths ******/
+		.w16 {width:16%;min-width: 16%}
+		.w56 {width:79%;min-width: 79%}
+
+/*******************************/
+/************ LISTS ************/
+/*******************************/
+.verticalList > li, .verticalList , .subMenu {height:auto !important;}
+
+	html .clearfix , ol, ul, li, div , .block {height:auto;} 
+	.clearfix, .verticalList, .verticalList > li, .fakeHoverList > li, .hoverList > li a, .timeList > li a, .coments .comment, .clearfix {min-height:1%;}
+	.clearfix , .block {display:block;}
+	.verticalList > li {clear:both;}
+	
+	ul.horizontalList > li , ol.horizontalList > li {display:block !important;  float:left;text-align:center;/*width:80px;*/}
+	ul.horizontalList > li {display:inline !important;height:auto;_height:1%}
+	
+	ul.pagination > li {margin-right:5px;padding-top:3px;line-height:23px;clear:none;}
+	.fixed .menu a.selected, .fixed .menuPacked a.selected {min-height:1%}
+	.hoverList a .pull , .fakeHoverList .pull {position:relative;margin-right:-5px;display:block}
+		.fakeHoverList a:hover {cursor: pointer !important;}
+	.scroll {position:relative;}
+	.fakeHoverList {overflow:hidden !important;zoom:1 !important}
+	.fakeHoverList > li {_border:1px solid #e7e7e7 !important;overflow:hidden !important;}
+		.fakeHoverList > li .pull {_zoom:1 !important;}
+/*******************************/
+/************ BLOCS ************/
+/*******************************/
+.pullLeft , .pullRight , .pullUp , .pullDown, .selected {position:relative;}
+
+/*******************************/
+/************ FORMS ************/
+/*******************************/
+input {table-layout:fixed;}
+.wAuto {width:auto;}

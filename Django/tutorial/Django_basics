@@ -1,0 +1,32 @@
+# Starting a new Django project:
+
+django-admin.py startproject myproject
+
+# Migrating Database:
+
+python manage.py migrate
+
+# Create a superuser (requires email):
+
+python manage.py createsuperuser
+
+# Adding an app to your project:
+
+python manage.py startapp myapp
+
+# Remember to add the appname to INSTALLED_APPS in settings.py.
+# Creating database tables, after adding a(or more) field type(s) in models.py:
+
+python manage.py makemigrations APPNAME
+
+python manage.py migrate APPNAME
+
+#Updating database for new staticfiles:
+
+python manage.py syncdb
+
+# Django shell:
+
+python manage.py shell
+
+ 

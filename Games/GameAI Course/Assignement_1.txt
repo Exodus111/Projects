@@ -1,0 +1,42 @@
+Racing Driver
+=============
+
+* Input Information
+
+	- Road information.
+	- Location of other cars.
+
+* Output Generated
+
+	- Movement & Animation.
+
+----
+
+Card Game Opponent
+==================
+
+* Input Information
+
+	- Information of the state of the game board.
+	- Information of the other player's moves.
+
+* Output Generated
+
+	- Move commands
+
+----
+
+Squad Leader
+============
+
+* Input Information
+
+	- Terrain information/geometry.
+	- Player position and state.
+  - Position and State of fellow NPCs.
+
+* Output Generated
+
+	- Movement & Animations.
+	- Attack orders.
+  - Voice messages. 

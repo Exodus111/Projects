@@ -1,0 +1,13 @@
+<html>
+<head> <h1>This is the header.</h1>  </head>
+<body>
+  {% if my_entries %}
+    {% for entry in my_entries %}
+      <h2>{{ entry.title }}</h2><br>
+      {{ entry.body }}
+    {% endfor %}
+  {% else %}
+    <h1>Nothing found.</h1>
+  {% endif %}
+</body>
+</html>
