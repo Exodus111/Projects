@@ -1,50 +1,63 @@
+import sys
+from random import randint as ri
+import pygame as pg
+from pygame.locals import *
+
+from load.load import Template, Tile
+
+if sys.version_info < (3, 0):
+    range = xrange
+
+class Main(Template):
+    def __init__(self, size):
+        Template.__init__(self, size)
+        self.size = size
+        self.background = []
+        self.create_background()
+
+    def create_background(self):
+        sizex = int(self.size[0]/32)
+        sizey = int(self.size[1]/32)
+        for x in range(sizex):
+            for y in range(sizey):
+                tile = Tile()
+                tile.rect = pg.Rect(x*32+1, y*32+1, 32, 32)
+                tile.color = (255,255,255)
+                self.background.append(tile)
+
+    def update(self, dt):
+        pass
+
+    def draw(self):
+        # Background
+        for tile in self.background:
+            pg.draw.rect(self.screen, tile.color, tile.rect, 1)
+
+        # Characters
+
+        # GUI
+
+        # Mouse pointer
+        pass
 
 
-
-class Node():
-    """docstring for Node"""
-    def __init__(self, name, stages, owner=None, verbose=None):
-        self.name = name
-        self.verbose = verbose
-        self.owner = owner
-        self.event_trigger = None
-        self.stages = set_stages(stages)
-
-    def set_stages(self, stages):
-        stage_dict = {}
-        for i in range(stages):
-            stage_dict["Stage{}".format(i+1)] = {"Done":False, "Question":"", "Answer":""}
-        return stage_dict
-
-    def add_text(self, stage, question, answer):
-        self.stages["Stage{}".format(stage)]["Question"] = question
-        self.stages["Stage{}".format(stage)]["Answer"] = answer
-
-class EventManager():
-    def __init__(self):
-        self.events = {}
-        self.m_events = {}
-        self.nodes = []
-        self.active_node = None
-
-    def add_event(self, name):
-        self.events[name] = False
-
-    def select_node(self, owner, event):
-        for node in self.nodes:
-            if node.owner == owner:
-                if node.event_trigger == event:
-                    self.active_node = node
-
-    def create_multi_event(self, name, true_list, false_list):
-        self.m_events[name] = {}
-        for t in true_list:
-            self.m_events[name][t] = True
-        for f in false_list:
-            self.m_events[name][f] = False
+    def key_down(self, key):
+        if key == K_ESCAPE:
+            self.game_on = False
 
 
+    def key_up(self, key):
+        pass
 
+    def mouse_down(self, button, pos):
+        pass
+
+    def mouse_up(self, button, pos):
+        pass
+
+    def mouse_motion(self, button, pos, rel):
+        pass
 
 if __name__ == "__main__":
-    main()
+    s = Main((800, 600))
+    s.mainloop()
