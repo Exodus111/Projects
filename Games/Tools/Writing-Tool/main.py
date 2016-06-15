@@ -1,12 +1,14 @@
 from tkinter import Tk, Canvas, Menu, Toplevel, Text, Scrollbar, Listbox, StringVar
-from tkinter.ttk import Frame, Label, Entry, Button, Style
+from tkinter.ttk import Frame, Label, Entry, Button, Style, LabelFrame
 
 class Main(Frame):
     def __init__(self, parent):
         Frame.__init__(self, parent)
         self.parent = parent
         self.info = {}
-        self.parent.geometry("1400x900+150+150")
+        self.window = None
+        self.size = (640, 480)
+        #self.parent.geometry("1400x900+150+150")
         self.fields = []
         self.init_ui()
 
@@ -22,8 +24,16 @@ class Main(Frame):
         menubar.add_command(label="Show Info", command=self.get_info)
         menubar.add_command(label="Exit", command=self.quit)
 
-        canvas = Canvas(self, background="white")
-        canvas.pack(fill="both", expand=1)
+        self.canvas = Canvas(self, background="white", width=self.size[0], height=self.size[1])
+        self.canvas.pack(fill="both", expand=1)
+        self.canvas.bind("<B1-Motion>", self.move_boxes)
+
+    def move_boxes(self, event):
+        x, y = (event.x-1, event.y-1)
+        x1, y1, x2, y2 = self.canvas.bbox("test")
+        if x > x1 and y > y1 and x < x2 and y < y2:
+            print("Hit")
+
 
     def onNew(self):
         new = Node(self, "Node_entry")
@@ -33,11 +43,22 @@ class Main(Frame):
         new.ok_cancel_buttons()
 
     def get_info(self):
+        x, y = (self.size[0]/2, self.size[1]/2)
         for i in self.info:
+            label_frame= LabelFrame(self, text="name")
+            label_frame.pack(fill="y")
             for entry in self.info[i]["Entry"]:
-                print(self.info[i]["Entry"][entry])
+                frame = Frame(label_frame)
+                frame.pack(fill="x")
+                label = Label(label_frame, text=self.info[i]["Entry"][entry], width=6)
+                label.pack(side="left", anchor="n", padx=5, pady=5)
             for text in self.info[i]["Text"]:
-                print(self.info[i]["Text"][text])
+                frame = Frame(label_frame)
+                frame.pack(fill="x")
+                label = Label(label_frame, text=self.info[i]["Text"][text], width=6)
+                label.pack(side="left", anchor="n", padx=5, pady=5)
+        window = self.canvas.create_window(x, y, window=label_frame, tag="test")
+
 
 class Node(Toplevel):
     """ This class is a catchall for all popup windows."""
@@ -68,7 +89,6 @@ class Node(Toplevel):
             self.entries["Entry"][i] = self.entries["Entry"][i].get()
         for i in self.entries["Text"]:
             self.entries["Text"][i] = self.entries["Text"][i].get("1.0", "end-1c")
-
         self.parent.info[self.name] = self.entries
         self.destroy()
 
