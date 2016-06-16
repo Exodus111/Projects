@@ -1,4 +1,4 @@
-from tkinter import Tk, Canvas, Menu, Toplevel, Text, Scrollbar, Listbox, StringVar
+from tkinter import Tk, Canvas, Menu, Toplevel, Text, Scrollbar, Listbox
 from tkinter.ttk import Frame, Label, Entry, Button, Style, LabelFrame
 
 class Main(Frame):
@@ -8,7 +8,6 @@ class Main(Frame):
         self.info = {}
         self.window = None
         self.size = (640, 480)
-        #self.parent.geometry("1400x900+150+150")
         self.fields = []
         self.init_ui()
 
@@ -36,7 +35,6 @@ class Main(Frame):
         else:
             print("Missed")
 
-
     def onNew(self):
         new = Node(self, "Node_entry")
         label = new.insert_entry_field("Labels")
@@ -61,13 +59,12 @@ class Main(Frame):
                 label.pack(side="left", anchor="n", padx=5, pady=5)
         window = self.canvas.create_window(x, y, window=label_frame, tag="test")
 
-
 class Node(Toplevel):
     """ This class is a catchall for all popup windows."""
     def __init__(self, parent, name):
         Toplevel.__init__(self)
         self.parent = parent
-        self.name = name
+        self.title = name
         self.entries = {"Entry":{}, "Text":{}}
         self.resizable(0,0)
         self.frame = Frame(self)
@@ -85,13 +82,12 @@ class Node(Toplevel):
         cancel_button.pack(side="right", padx=5, pady=5)
         ok_button.pack(side="right")
 
-
     def save(self):
         for i in self.entries["Entry"]:
             self.entries["Entry"][i] = self.entries["Entry"][i].get()
         for i in self.entries["Text"]:
             self.entries["Text"][i] = self.entries["Text"][i].get("1.0", "end-1c")
-        self.parent.info[self.name] = self.entries
+        self.parent.info[self.title] = self.entries
         self.destroy()
 
     def insert_entry_field(self, txt):
