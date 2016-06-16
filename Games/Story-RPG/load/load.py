@@ -62,12 +62,11 @@ class Template(object):
 
     def end_game(self):
         pygame.quit()
-        print "Thank you for playing."
-        print "Time played: {}".format(self.dt)
+        print("Thank you for playing.")
+        print("Time played: {}".format(self.dt))
 
 class Tile(pygame.sprite.DirtySprite):
     def __init__(self, image=None):
         if image != None:
             self.image = image
             self.rect = self.image.get_rect()
-    

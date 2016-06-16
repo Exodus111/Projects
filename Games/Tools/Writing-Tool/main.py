@@ -26,13 +26,15 @@ class Main(Frame):
 
         self.canvas = Canvas(self, background="white", width=self.size[0], height=self.size[1])
         self.canvas.pack(fill="both", expand=1)
-        self.canvas.bind("<B1-Motion>", self.move_boxes)
+        self.canvas.bind("<Button-1>", self.move_boxes)
 
     def move_boxes(self, event):
         x, y = (event.x-1, event.y-1)
         x1, y1, x2, y2 = self.canvas.bbox("test")
         if x > x1 and y > y1 and x < x2 and y < y2:
             print("Hit")
+        else:
+            print("Missed")
 
 
     def onNew(self):
