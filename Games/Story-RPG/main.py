@@ -1,11 +1,11 @@
-import sys
 from random import randint as ri
 import pygame as pg
 from pygame.locals import *
 
 from load.load import Template, Tile
 
-if sys.version_info < (3, 0):
+import sys
+if sys.version_info[0] < 3:
     range = xrange
 
 class Main(Template):
