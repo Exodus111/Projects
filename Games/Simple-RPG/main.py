@@ -1,4 +1,4 @@
-import random
+import random, os
 import pygame as pg
 from pygame.locals import *
 from myfuncs import *
@@ -9,6 +9,7 @@ from entity import Player, Npc
 class Main(Template):
     def __init__(self, size):
         Template.__init__(self, size)
+        check_dir("saveload.py")
         self.size = size
         self.background = pg.Surface((40*64, 40*64))
         self.bgpos = (0,0)
@@ -23,7 +24,7 @@ class Main(Template):
         self.characters.add(self.mob)
 
     def make_world(self):
-        load = LoadMap("./save/savemap1.sav")
+        load = LoadMap(os.path.join("save", "savemap1.sav"))
         return load.bg_group
 
 

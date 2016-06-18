@@ -1,4 +1,13 @@
+from path import Path
 
+def check_dir(file_name):
+    this = Path(".")
+    print(this.abspath())
+    if file_name not in this.files():
+        myglob = this.glob("*/**/{}".format(file_name))
+        myfile = myglob[0]
+        myfolder = myfile.parent
+        myfolder.chdir()
 
 mytimers = {}
 
@@ -34,7 +43,7 @@ def tuple_mult(t1, n):
 def tuple_div(t1, n):
     return (t1[0]/n, t1[1]/n)
 
-def extract_images(filename, out_folder):
+def extract_images(filename, out_folder, group_name="mapfile"):
     from PIL import Image
     im = Image.open(filename)
     size = im.size
@@ -49,7 +58,7 @@ def extract_images(filename, out_folder):
             r = l+b
             d = u+b
             a = im.crop((l,u,r,d))
-            a.save("{}mapfile{}.png".format(out_folder, num))
+            a.save("{}{}{}.png".format(out_folder, group_name, num))
             num += 1
 
 

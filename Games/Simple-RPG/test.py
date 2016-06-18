@@ -2,7 +2,14 @@
 # Notepad style testing ground for random code.
 #
 #
+from path import Path
 
+this = Path(".")
+that = this / "Games" / "GameAI"
+for f in that.files():
+    print(f.abspath())
+
+"""
 class Class1:
     j = 5
     def some_method(self):
@@ -12,7 +19,7 @@ s = Class1()
 s.some_method()
 print(s.j)
 
-"""
+
 import numpy as np
 from path import Path
 
