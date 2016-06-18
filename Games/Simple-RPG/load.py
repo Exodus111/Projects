@@ -28,7 +28,7 @@ class Template(object):
     def events(self):
         for event in pygame.event.get():
             if event.type == QUIT:
-                print "Quitting..."
+                print("Quitting...")
                 self.game_on = False
             elif event.type == KEYDOWN:
                 self.key_down(event.key)
@@ -64,8 +64,8 @@ class Template(object):
 
     def end_game(self):
         #pygame.quit()
-        print "Thank you for playing."
-        print "Time played: {} seconds.".format(self.dt)
+        print("Thank you for playing.")
+        print("Time played: {} seconds.".format(self.dt))
         sys.exit()
 
 class Tile(pygame.sprite.DirtySprite):
