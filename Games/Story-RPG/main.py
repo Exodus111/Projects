@@ -13,16 +13,17 @@ class Main(Template):
         Template.__init__(self, size)
         self.size = size
         self.background = []
+        self.screen.fill((250, 250, 250))
         self.create_background()
 
     def create_background(self):
         sizex = int(self.size[0]/32)
         sizey = int(self.size[1]/32)
-        for x in range(sizex):
-            for y in range(sizey):
+        for x in range(sizex+2):
+            for y in range(sizey+2):
                 tile = Tile()
                 tile.rect = pg.Rect(x*32+1, y*32+1, 32, 32)
-                tile.color = (255,255,255)
+                tile.color = (0,0,0)
                 self.background.append(tile)
 
     def update(self, dt):
