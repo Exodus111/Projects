@@ -18,7 +18,6 @@ SUNFLOWER = (241,196,15)
 WHITE = (255,255,255)
 BLACK = (0,0,0)
 
-
 class Main(Template):
     def __init__(self, size):
         Template.__init__(self, size)
@@ -118,11 +117,11 @@ class Main(Template):
         self.menu.setup(CYAN)
 
     def setup_menu(self):
-        sheet = SpriteSheet("./img/magecity_64p.png", 64, (0,0), (8,44))
+        sheet = SpriteSheet("img/magecity_64p.png", 64, (0,0), (8,44))
         self.menu_list = sum(sheet.image_list, [])
         length = len(self.menu_list)
-        size = (10, length/10)
-        menu = Map(self.size, size, self.block, "./tiles/Empty_tile_64p.png")
+        size = (10, int(length/10))
+        menu = Map(self.size, size, self.block, "tiles/Empty_tile_64p.png")
         menu.setup(CYAN)
         i = 1
         for tile in menu.group:
@@ -138,7 +137,7 @@ class Main(Template):
 
     def key_down(self, key):
         if key == K_ESCAPE:
-            print "Quitting..."
+            print("Quitting...")
             self.game_on == False
             self.end_game()
 
@@ -257,7 +256,7 @@ class Main(Template):
 
     def savemap(self):
         size = tuple_mult((40,40), self.block)
-        save = SaveMap("savemap", size, self.block, "./img/magecity_64p.png",
+        save = SaveMap("savemap", size, self.block, "img/magecity_64p.png",
                         self.map1.group, self.map2.group)
         save.write_to_file()
         self.floating_text.set_text("Map Saved", True)
@@ -302,8 +301,8 @@ class Map(object):
 
     def make_grid(self):
         group = pg.sprite.LayeredDirty()
-        for y in xrange(self.grid[1]):
-            for x in xrange(self.grid[0]):
+        for y in range(self.grid[1]):
+            for x in range(self.grid[0]):
                 tile = Tile(self.image, (x*self.block, y*self.block))
                 tile.dirty = 1
                 group.add(tile)
@@ -359,5 +358,6 @@ class Map(object):
         surf.blit(self.map, self.xy)
 
 if __name__ == "__main__":
-    s = Main((1024,960))
+    set_dir(__file__)
+    s = Main((800,640))
     s.mainloop()

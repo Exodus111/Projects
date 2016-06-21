@@ -26,7 +26,7 @@ class SaveMap(object):
         imagelist = sum(sheet.image_list, [])
         size = len(imagelist)
         image_dict = {}
-        for num in xrange(size):
+        for num in range(size):
             num += 1
             self.save_dic["FileIDs"]["maptile{}".format(num)] = {"id":num}
 
@@ -65,8 +65,7 @@ class SaveMap(object):
 class LoadMap(object):
     """Load Game Object"""
     def __init__(self, name):
-        print name
-        self.default = "./tiles/Empty_tile_64p.png"
+        self.default = Path("./tiles/Empty_tile_64p.png")
         self.name = name
         self.dict = self.load_file(name)
         self.image_dict = self.read_sheet()
@@ -89,8 +88,8 @@ class LoadMap(object):
             array = np.load(outfile)
         group = pg.sprite.LayeredDirty()
         size = tuple_div(self.dict["Size"], self.dict["Block size"])
-        for x in xrange(size[0]):
-            for y in xrange(size[1]):
+        for x in range(size[0]):
+            for y in range(size[1]):
                 num = array[x][y]
                 xy = tuple_mult((x,y), self.dict["Block size"])
                 tile = self.make_tile(num, xy)
@@ -104,7 +103,6 @@ class LoadMap(object):
             tile.image = image
             tile.reload()
         else:
-            print "We got a Zero!"
             tile = Tile(self.default, xy)
         tile.dirty = 1
         return tile
@@ -116,5 +114,5 @@ class LoadMap(object):
             with open(name, "r") as outfile:
                 return json.loads(outfile.read())
         else:
-            print "File not Found"
+            print("File not Found")
             return None
