@@ -1,8 +1,7 @@
 from path import Path
 
-here = Path(__file__).parent
-save = Path("save")
+myfolder = Path("./")
 
-there = here / save
-
-print(there)
+for d in myfolder.dirs():
+    for f in d.files():
+        print(f.basename())
