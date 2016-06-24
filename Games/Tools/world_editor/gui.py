@@ -1,7 +1,7 @@
 import pygame as pg
 from myfuncs import *
 
-class Button(object):
+class Button():
     def __init__(self, size, xy, text):
         pg.font.init()
         self.xy = xy
@@ -35,11 +35,11 @@ class Button(object):
         pg.draw.rect(self.surf, self.color["BG"], self.rect)
         pg.draw.rect(self.surf, self.color["FG"], self.rect, 1)
         self.surf.blit(self.ren_text, self.text_xy)
-        
+
 
         screen.blit(self.surf, self.xy)
 
-class Menu(object):
+class Menu():
     """Gui object, self reliant menu object."""
     def __init__(self, size, xy):
         self.size = size
@@ -52,7 +52,7 @@ class Menu(object):
         if amount > 0:
             sizex = self.size[0]/amount
             sizey = self.size[1]/amount
-            for b in xrange(amount):
+            for b in range(amount):
                 b = Button((self.size[0], sizey),(0, sizey*b), text_list[b])
                 self.buttons.append(b)
 
@@ -69,14 +69,14 @@ class Menu(object):
     def set_bg_color(self, color):
         for button in self.buttons:
             button.color["BG"] = color
-        
+
     def draw(self, screen):
         for button in self.buttons:
             button.draw(self.surf)
 
         screen.blit(self.surf, self.xy)
 
-class FloatingText(object):
+class FloatingText():
     def __init__(self, text, size):
         self.size = size
         self.font = pg.font.SysFont("arial", 72)
@@ -92,7 +92,7 @@ class FloatingText(object):
         text_size = tuple_div(text_size, 2)
         self.xy = tuple_div(self.size, 2)
         self.xy = tuple_sub(self.xy, text_size)
-        self.xy = (lambda (x,y): (x, y/2))(self.xy)
+        self.xy = (self.xy[0], int(self.xy[1]/2)) 
         self.write = write
 
     def update(self, dt):

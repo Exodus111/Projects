@@ -3,6 +3,7 @@ import pygame as pg
 from pygame.locals import *
 
 from load.load import Template, Tile
+from load import myfuncs
 
 import sys
 if sys.version_info[0] < 3:

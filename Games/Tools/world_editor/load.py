@@ -2,7 +2,6 @@ import os, sys, pygame
 from pygame.locals import *
 from vec2d import vec2d
 
-
 class Template(object):
     def __init__(self, size=(640, 480)):
         self.size = size
@@ -28,7 +27,6 @@ class Template(object):
     def events(self):
         for event in pygame.event.get():
             if event.type == QUIT:
-                print "Quitting..."
                 self.game_on = False
             elif event.type == KEYDOWN:
                 self.key_down(event.key)
@@ -64,8 +62,8 @@ class Template(object):
 
     def end_game(self):
         #pygame.quit()
-        print "Thank you for playing."
-        print "Time played: {} seconds.".format(self.dt)
+        print("Thank you for playing.")
+        print("Time played: {} seconds.".format(self.dt))
         sys.exit()
 
 class Tile(pygame.sprite.DirtySprite):
@@ -96,8 +94,8 @@ class Room(object):
         self.make_room(block)
 
     def make_room(self, block):
-        for y in xrange(self.size[1]):
-            for x in xrange(self.size[0]):
+        for y in range(self.size[1]):
+            for x in range(self.size[0]):
                 if y == 0 or x == 0 or y == self.size[1]-1 or x == self.size[0]-1:
                     tile = Tile(self.wall, (x*block, y*block))
                     self.walls_group.add(tile)
@@ -217,9 +215,9 @@ class SpriteSheet(object):
         self.sheet = pygame.image.load(filename).convert_alpha()
         x_b, y_b = size
         rects = []
-        for y in xrange(y_b):
+        for y in range(y_b):
             line_rects = []
-            for x in xrange(x_b):
+            for x in range(x_b):
                 rect = pygame.Rect(start[0]+(x*block), start[1]+(y*block), block, block)
                 line_rects.append(rect)
             rects.append(line_rects)
