@@ -2,7 +2,7 @@ import os, sys, pygame
 from pygame.locals import *
 from vec2d import vec2d
 
-class Template(object):
+class Template():
     def __init__(self, size=(640, 480)):
         self.size = size
         os.environ["SDL_VIDEO_CENTERED"] = "1"

@@ -25,9 +25,10 @@ class Main(Template):
         self.size = size
         self.block = 64
         self.dt = 0.
-        self.map1 = Map(self.size, (40,40), self.block, "./tiles/Empty_tile_64p.png")
-        self.map2 = Map(self.size, (40,40), self.block, "./tiles/Empty_tile_64p.png")
-        self.menu = Map(self.size, (2,14), self.block, "./tiles/Empty_tile_64p.png")
+        self.empty_tile = pg.image.load("./tiles/Empty_tile_64p.png").convert_alpha()
+        self.map1 = Map(self.size, (40,40), self.block, self.empty_tile)
+        self.map2 = Map(self.size, (40,40), self.block, self.empty_tile)
+        self.menu = Map(self.size, (2,14), self.block, self.empty_tile)
         self.menu_list = []
         self.palette = self.setup_menu()
         self.palette.xy = [250,0]
@@ -122,7 +123,7 @@ class Main(Template):
         self.menu_list = sum(sheet.image_list, [])
         length = len(self.menu_list)
         size = (10, int(length/10))
-        menu = Map(self.size, size, self.block, "tiles/Empty_tile_64p.png")
+        menu = Map(self.size, size, self.block, self.empty_tile)
         menu.setup(CYAN)
         for i, tile in enumerate(menu.group):
             tile.filename = "{}".format(i)
@@ -264,7 +265,7 @@ class Main(Template):
 
     def loadmap(self):
         loadmap = LoadMap()
-        data = loadmap.load_from_file("./save/savefile.sav")
+        data = loadmap.load_from_file("./save/savefile.sav", self.menu_list)
         self.name = data["Name"]
         self.map1 = data["Background"]
         self.map2 = data["Foreground"]
@@ -296,8 +297,8 @@ class Map(object):
         self.screen_size = screen_size
         self.grid = grid
         self.block = block
-        self.image_string = image
-        self.image = pg.image.load(image).convert_alpha()
+        self.image = image
+        self.image_string = "Empty_tile"
         self.size = (self.grid[0]*self.block, self.grid[1]*self.block)
         self.rect = pg.Rect(0,0,screen_size[0]/2, screen_size[1]/2)
         self.map = pg.Surface(self.size)
@@ -325,6 +326,7 @@ class Map(object):
             for x in range(self.grid[0]):
                 tile = Tile(None, xy=(x*self.block, y*self.block))
                 tile.image = self.image
+                tile.filename = self.image_string
                 tile.rect = tile.image.get_rect()
                 tile.rect.topleft = tile.xy
                 tile.dirty = 1
@@ -381,6 +383,7 @@ class Map(object):
         surf.blit(self.map, self.xy)
 
 if __name__ == "__main__":
+    print("Starting")
     set_dir(__file__)
     s = Main((800,640))
     s.mainloop()
