@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" id="theimage">
+    <a href="/page/{{ num+1 }}"><img src="{{ image }}" alt=""></a>
+    <p>Page {{ num }}</p>
+</div>
+{% endblock %}

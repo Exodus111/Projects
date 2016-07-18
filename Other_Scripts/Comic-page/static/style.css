@@ -1,0 +1,9 @@
+
+body {
+    background-color: red;
+}
+.theimage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
