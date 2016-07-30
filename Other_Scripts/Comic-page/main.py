@@ -15,19 +15,19 @@ app = Flask(__name__)
 def index(redir=False):
     global series
     if not redir:
-        if series.layer != 0:
-            series.set_thumbs(0)
-    return render_template("index.html", thumbs=series.thumbs)
+        thumbs = series.toplayer_thumbs
+    else:
+        thumbs = series.subfolder_thumbs[series.act_fold_id]
+    return render_template("index.html", thumbs=thumbs)
 
 @app.route("/comic<int:cid>")
 def set_page(cid):
     global series
     series.set_active(cid)
-    if series.subfolder:
-        series.set_thumbs(series.active_comic.folder_id)
-        return redirect(url_for("index", redir=True))
-    else:
+    if series.act_fold_id == 0:
         return redirect(url_for("get_page", num=0))
+    else:
+        return redirect(url_for("index", redir=True))
 
 @app.route("/page<int:num>")
 def get_page(num=0):
