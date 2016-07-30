@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container" id="theimage">
-    <a href="/page/{{ num+1 }}"><img src="{{ image }}" alt=""></a>
-    <p>Page {{ num }}</p>
+<div class="container">
+    {% for thumb in thumbs %}
+    <div class="col-md-3">
+        <a href="/comic{{ thumb }}"><img src="{{ thumbs[thumb] }}" alt="" class="img-responsive mythumb"></a>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}

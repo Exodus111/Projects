@@ -1,4 +1,3 @@
-
-for num, i in enumerate(range(10)):
-    print(num, i)
-print("last one: "+str(num))
+a = "sfsdfdsaftestsdgsdfsdf"
+b = a.index("test")
+print(b)
