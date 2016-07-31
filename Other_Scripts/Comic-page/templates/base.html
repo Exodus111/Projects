@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comic Page App</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="style.css") }}">
+</head>
+<body>
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <p class="navbar-text navbar-right aileron">Web Comic app by Exodus111</p>
+                <a href="/"><button type="button" class="btn btn-default navbar-btn btn-custom habana">Home</button></a>
+                {% if num  or num == 0 %}
+                <a href="/page0"><button type="button" class="btn btn-default navbar-btn btn-custom habana">First</button></a>
+                <a href="/page{% if num >= 1 %}{{ num-1 }}{% else %}{{ num }}{% endif %}"><button type="button" class="btn btn-default navbar-btn btn-custom habana">Previous</button></a>
+                <a href="/page{{ num+1 }}"><button type="button" class="btn btn-default navbar-btn btn-custom habana">Next</button></a>
+                {% endif %}
+            </div>
+        </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
