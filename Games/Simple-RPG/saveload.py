@@ -65,7 +65,6 @@ class SaveMap(object):
 class LoadMap(object):
     """Load Game Object"""
     def __init__(self, name):
-        print name
         self.default = "./tiles/Empty_tile_64p.png"
         self.name = name
         self.dict = self.load_file(name)
@@ -104,17 +103,18 @@ class LoadMap(object):
             tile.image = image
             tile.reload()
         else:
-            print "We got a Zero!"
+            print("We got a Zero!")
             tile = Tile(self.default, xy)
         tile.dirty = 1
         return tile
 
     def load_file(self, name):
         folder = Path("./save")
+        print(folder.abspath())
         savfiles = [f for f in folder.files("*.sav")]
         if name in savfiles:
             with open(name, "r") as outfile:
                 return json.loads(outfile.read())
         else:
-            print "File not Found"
+            print("File not Found")
             return None

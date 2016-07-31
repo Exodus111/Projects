@@ -1,4 +1,4 @@
-from tkinter import Tk, Canvas, Menu, Toplevel, Text, Scrollbar, Listbox, StringVar
+from tkinter import Tk, Canvas, Menu, Toplevel, Text, Scrollbar, Listbox
 from tkinter.ttk import Frame, Label, Entry, Button, Style, LabelFrame
 
 class Main(Frame):
@@ -8,7 +8,6 @@ class Main(Frame):
         self.info = {}
         self.window = None
         self.size = (640, 480)
-        #self.parent.geometry("1400x900+150+150")
         self.fields = []
         self.init_ui()
 
@@ -26,14 +25,18 @@ class Main(Frame):
 
         self.canvas = Canvas(self, background="white", width=self.size[0], height=self.size[1])
         self.canvas.pack(fill="both", expand=1)
-        self.canvas.bind("<B1-Motion>", self.move_boxes)
+        self.canvas.bind("<Motion>", self.move_boxes)
 
     def move_boxes(self, event):
+        print(event.x, event.y)
+        """
         x, y = (event.x-1, event.y-1)
         x1, y1, x2, y2 = self.canvas.bbox("test")
         if x > x1 and y > y1 and x < x2 and y < y2:
             print("Hit")
-
+        else:
+            print("Missed")
+        """
 
     def onNew(self):
         new = Node(self, "Node_entry")
@@ -59,13 +62,12 @@ class Main(Frame):
                 label.pack(side="left", anchor="n", padx=5, pady=5)
         window = self.canvas.create_window(x, y, window=label_frame, tag="test")
 
-
 class Node(Toplevel):
     """ This class is a catchall for all popup windows."""
     def __init__(self, parent, name):
         Toplevel.__init__(self)
         self.parent = parent
-        self.name = name
+        self.title = name
         self.entries = {"Entry":{}, "Text":{}}
         self.resizable(0,0)
         self.frame = Frame(self)
@@ -83,13 +85,12 @@ class Node(Toplevel):
         cancel_button.pack(side="right", padx=5, pady=5)
         ok_button.pack(side="right")
 
-
     def save(self):
         for i in self.entries["Entry"]:
             self.entries["Entry"][i] = self.entries["Entry"][i].get()
         for i in self.entries["Text"]:
             self.entries["Text"][i] = self.entries["Text"][i].get("1.0", "end-1c")
-        self.parent.info[self.name] = self.entries
+        self.parent.info[self.title] = self.entries
         self.destroy()
 
     def insert_entry_field(self, txt):

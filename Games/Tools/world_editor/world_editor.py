@@ -18,16 +18,17 @@ SUNFLOWER = (241,196,15)
 WHITE = (255,255,255)
 BLACK = (0,0,0)
 
-
 class Main(Template):
     def __init__(self, size):
         Template.__init__(self, size)
+        self.name = "Under Construction"
         self.size = size
         self.block = 64
         self.dt = 0.
-        self.map1 = Map(self.size, (40,40), self.block, "./tiles/Empty_tile_64p.png")
-        self.map2 = Map(self.size, (40,40), self.block, "./tiles/Empty_tile_64p.png")
-        self.menu = Map(self.size, (2,14), self.block, "./tiles/Empty_tile_64p.png")
+        self.empty_tile = pg.image.load("./tiles/Empty_tile_64p.png").convert_alpha()
+        self.map1 = Map(self.size, (40,40), self.block, self.empty_tile)
+        self.map2 = Map(self.size, (40,40), self.block, self.empty_tile)
+        self.menu = Map(self.size, (2,14), self.block, self.empty_tile)
         self.menu_list = []
         self.palette = self.setup_menu()
         self.palette.xy = [250,0]
@@ -105,7 +106,7 @@ class Main(Template):
 
     def setup_loadmenu(self):
         folder = Path("./save")
-        filelist = [f for f in folder.files("*.sav")]
+        filelist = [f.basename() for f in folder.files("*.sav")]
         amount = len(filelist)
         menu = Menu((240, amount*21), (250, 21))
         menu.add_buttons(amount, filelist)
@@ -118,27 +119,24 @@ class Main(Template):
         self.menu.setup(CYAN)
 
     def setup_menu(self):
-        sheet = SpriteSheet("./img/magecity_64p.png", 64, (0,0), (8,44))
+        sheet = SpriteSheet("img/magecity_64p.png", 64, (0,0), (8,44))
         self.menu_list = sum(sheet.image_list, [])
         length = len(self.menu_list)
-        size = (10, length/10)
-        menu = Map(self.size, size, self.block, "./tiles/Empty_tile_64p.png")
+        size = (10, int(length/10))
+        menu = Map(self.size, size, self.block, self.empty_tile)
         menu.setup(CYAN)
-        i = 1
-        for tile in menu.group:
-            tile.filename = "maptile{}".format(i)
+        for i, tile in enumerate(menu.group):
+            tile.filename = "{}".format(i)
             tile.image = self.menu_list[i]
-            if i+1 >= len(self.menu_list):
+            if i+1 >= length:
                 break
-            else:
-                i += 1
         return menu
 
 #################### Key and Mouse Methods #####################################
 
     def key_down(self, key):
         if key == K_ESCAPE:
-            print "Quitting..."
+            print("Quitting...")
             self.game_on == False
             self.end_game()
 
@@ -256,13 +254,33 @@ class Main(Template):
             tile.dirty = 1
 
     def savemap(self):
+        data = {
+        "Name":self.name,
+        "Background":self.map1,
+        "Foreground":self.map2,
+        "Menu":self.menu
+        }
+        save = SaveMap(data)
+        save.write_to_file("./save/savefile.sav")
+
+    def loadmap(self):
+        loadmap = LoadMap()
+        data = loadmap.load_from_file("./save/savefile.sav", self.menu_list)
+        self.name = data["Name"]
+        self.map1 = data["Background"]
+        self.map2 = data["Foreground"]
+        self.menu = data["Menu"]
+        print("map loaded")
+
+
+    def old_savemap(self):
         size = tuple_mult((40,40), self.block)
-        save = SaveMap("savemap", size, self.block, "./img/magecity_64p.png",
+        save = SaveMap("savemap", size, self.block, "img/magecity_64p.png",
                         self.map1.group, self.map2.group)
         save.write_to_file()
         self.floating_text.set_text("Map Saved", True)
 
-    def loadmap(self):
+    def old_loadmap(self):
         select = None
         for button in self.load_menu.buttons:
             if button.clicked:
@@ -280,6 +298,7 @@ class Map(object):
         self.grid = grid
         self.block = block
         self.image = image
+        self.image_string = "Empty_tile"
         self.size = (self.grid[0]*self.block, self.grid[1]*self.block)
         self.rect = pg.Rect(0,0,screen_size[0]/2, screen_size[1]/2)
         self.map = pg.Surface(self.size)
@@ -292,6 +311,7 @@ class Map(object):
         self.clipped = False
         self.selected = None
         self.sel_old = None
+        self.saved_surf = None
 
     def setup(self, color, alpha=255):
         self.alpha = alpha
@@ -302,9 +322,13 @@ class Map(object):
 
     def make_grid(self):
         group = pg.sprite.LayeredDirty()
-        for y in xrange(self.grid[1]):
-            for x in xrange(self.grid[0]):
-                tile = Tile(self.image, (x*self.block, y*self.block))
+        for y in range(self.grid[1]):
+            for x in range(self.grid[0]):
+                tile = Tile(None, xy=(x*self.block, y*self.block))
+                tile.image = self.image
+                tile.filename = self.image_string
+                tile.rect = tile.image.get_rect()
+                tile.rect.topleft = tile.xy
                 tile.dirty = 1
                 group.add(tile)
         return group
@@ -359,5 +383,7 @@ class Map(object):
         surf.blit(self.map, self.xy)
 
 if __name__ == "__main__":
-    s = Main((1024,960))
+    print("Starting")
+    set_dir(__file__)
+    s = Main((800,640))
     s.mainloop()
