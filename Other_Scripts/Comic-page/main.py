@@ -38,4 +38,4 @@ def get_page(num=0):
 
 if __name__ == "__main__":
     series = Series("./static/comics")
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
