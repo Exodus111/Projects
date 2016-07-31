@@ -1,7 +1,13 @@
-from path import Path
 
-myfolder = Path("./")
+player = "rock"
 
-for d in myfolder.dirs():
-    for f in d.files():
-        print(f.basename())
+AI = "paper"
+
+win = ["rockscissor", "scissorpaper", "paperrock"]
+
+if player + AI in win:
+    print("You win!")
+elif player == AI:
+    print("Draw!")
+else:
+    print("You lose!")
