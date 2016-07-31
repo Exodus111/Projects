@@ -12,22 +12,22 @@ if here != os.getcwd():
 app = Flask(__name__)
 
 @app.route("/")
-def index(redir=False):
+def index():
     global series
-    if not redir:
-        thumbs = series.toplayer_thumbs
-    else:
-        thumbs = series.subfolder_thumbs[series.act_fold_id]
+    return render_template("index.html", thumbs=series.toplayer_thumbs)
+
+@app.route("/folder<int:fid>")
+def pick_folder(fid):
+    global series
+    thumbs = series.set_active_folder(fid)
     return render_template("index.html", thumbs=thumbs)
 
-@app.route("/comic<int:cid>")
+@app.route("/issue<int:cid>")
 def set_page(cid):
     global series
-    series.set_active(cid)
-    if series.act_fold_id == 0:
-        return redirect(url_for("get_page", num=0))
-    else:
-        return redirect(url_for("index", redir=True))
+    series.set_active_issue(cid)
+    return redirect(url_for("get_page", num=0))
+
 
 @app.route("/page<int:num>")
 def get_page(num=0):

@@ -7,10 +7,9 @@ class Series():
     def __init__(self, folder):
         self.num = defaultdict(int)
         self.comics = defaultdict(list)
-        self.subfolder = defaultdict(dict)
+        self.subfolder_thumbs = defaultdict(OrderedDict)
         self.toplayer_thumbs = OrderedDict()
-        self.subfolder = False
-        self.subfolder_thumbs = []
+        self.first = False
         self.folder = Path(folder)
         self.active_comic = None
         self.act_fold_id = 0
@@ -18,7 +17,7 @@ class Series():
 
     def numerate(self, typ):
         self.num[typ] += 1
-        return self.num[typ]
+        return "/{}{}".format(typ, self.num[typ])
 
     def check_folders(self):
         folder_id = self.numerate("folder")
@@ -26,41 +25,30 @@ class Series():
             comic = Comic(fil)
             comic.id = self.numerate("issue")
             comic.folder_id = folder_id
-            self.comics[0].append(comic)
+            self.comics["/folder0"].append(comic)
             self.toplayer_thumbs[comic.id] = comic.get_image(0)
         for sub in self.folder.dirs():
-            if ".cbr" in sub.files():
-                f_id = self.numerate("folder")
-                for f in sub.files("*.cbr"):
-                    c = Comic(f)
-                    c.id = self.numerate("issue")
-                    c.folder_id = f_id
-                    self.comics[c.folder_id].append(c)
-                    self.subfolder[f_id][c.id] = c.get_image(0)
-                    if f_id not in self.subfolder:
-                        self.toplayer_thumbs[c.id] = c.get_image(0)
+            f_id = self.numerate("folder")
+            for f in sub.files("*.cbr"):
+                c = Comic(f)
+                c.id = self.numerate("issue")
+                c.folder_id = f_id
+                self.comics[c.folder_id].append(c)
+                if f_id not in self.subfolder_thumbs.keys():
+                    self.toplayer_thumbs[f_id] = c.get_image(0)
+                self.subfolder_thumbs[f_id][c.id] = c.get_image(0)
 
-
-    def set_thumbs(self, fold):
-        mydict = OrderedDict()
-        for com in self.comics[fold]:
-            mydict[com.id] = com.get_image(0)
-        if fold == 0:
-            mydict[self.comics[fold][0].folder_id] = self.comics[fold][0].get_image(0)
-        self.layer = fold
-        self.thumbs = mydict
-
-    def set_active(self, cid):
+    def set_active_issue(self, c_id):
+        cid = "/issue"+str(c_id)
         for folder_id in self.comics:
             for c in self.comics[folder_id]:
                 if cid == c.id:
                     self.active_comic = c
-                    if folder_id != 0:
-                        self.act_fold_id = folder_id
-                        self.subfolder = True
-                    else:
-                        self.subfolders = False
                     break
+
+    def set_active_folder(self, f_id):
+        folder_id = "/folder"+str(f_id)
+        return self.subfolder_thumbs[folder_id]
 
 class Comic():
     def __init__(self, comic):
