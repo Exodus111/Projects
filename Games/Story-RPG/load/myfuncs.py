@@ -1,5 +1,10 @@
 from path import Path
 
+def set_dir(file_path):
+    here = Path(file_path).parent
+    here.chdir()
+
+
 def check_dir(file_name):
     this = Path(".")
     print(this.abspath())
