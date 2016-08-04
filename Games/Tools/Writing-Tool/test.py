@@ -1,5 +1,5 @@
-test = False
 
-(lambda c: if True: test = True)("")
 
-print(test)
+a = "test,test"
+b = a.split(",")
+print(b)
