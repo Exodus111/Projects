@@ -1,6 +1,7 @@
 from collections import defaultdict
 from tkinter import Tk, Canvas, Menu
 from tkinter.ttk import Frame, Label, Entry, Button, Style
+
 from load import Node, Sticker, Canv, TopMenuBar, numerate
 
 class Main(Frame):
@@ -50,7 +51,6 @@ class Main(Frame):
                 canv.pack(fill="both", expand=True)
             else:
                 canv.pack_forget()
-
 
     # Test function, to be removed.
     def get_info(self):

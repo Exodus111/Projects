@@ -36,31 +36,57 @@ class Node(Toplevel):
         self.destroy()
         self.parent.save_info(self.name, self.entries, self.pos)
 
+    def update_box(self):
+        if "Header" in self.entries["Entry"]:
+            txt = self.entries["Entry"]["Header"].get()
+            txt = txt.split(",")
+            sticky = [i for i in self.parent.stickies if i.name == self.origin]
+            box = [b for b in sticky[0].boxes.values() if b.sid == "head"]
+            box[0].config(state="normal")
+            box[0].insert("end", txt)
+            self.parent.info[self.origin]["Entry"]["Header"] = txt
+        elif "Footer" in self.entries["Entry"]:
+            txt = self.entries["Entry"]["Footer"].get()
+            txt = txt.split(",")
+            self.parent.info[self.origin]["Entry"]["Footer"] = txt
+        else:
+            txt = self.entries["Text"]["Body"].get("1.0", "end-1c")
+            self.parent.info[self.origin]["Text"]["Body"] = txt
+            self.destroy()
+            return
+        self.destroy()
+        self.parent.check_relation_single(self.origin)
 
-    def ok_cancel_buttons(self):
+    def ok_cancel_buttons(self, call=None):
+        if not call:
+            call = self.save
         button_frame = Frame(self.frame)
-        ok_button = Button(button_frame, text="Ok", command=self.save)
+        ok_button = Button(button_frame, text="Ok", command=call)
         cancel_button = Button(button_frame, text="Cancel", command=self.destroy)
         button_frame.pack(fill="x")
         cancel_button.pack(side="right", padx=5, pady=5)
         ok_button.pack(side="right")
 
-    def insert_entry_field(self, txt):
+    def insert_entry_field(self, txt, default=None):
         frame = Frame(self.frame)
         frame.pack(fill="x")
         label = Label(frame, text=txt, width=6)
         label.pack(side="left", anchor="n", padx=5, pady=5)
         entry = Entry(frame)
         entry.pack(fill="x", padx=5, pady=5, expand=True)
+        if default:
+            entry.insert("end", default)
         self.entries["Entry"][txt] = entry
 
-    def insert_text_field(self, txt):
+    def insert_text_field(self, txt, default=None):
         frame = Frame(self.frame)
         frame.pack(fill="x")
         label = Label(frame, text=txt, width=6)
         label.pack(side="left", anchor="n", padx=5, pady=5)
         entry = Text(frame)
         entry.pack(fill="both", pady=5, padx=5, expand=True)
+        if default:
+            entry.insert("end", default)
         self.entries["Text"][txt] = entry
 
 class Text2(Frame):
@@ -131,12 +157,25 @@ class Sticker(Frame):
         box.bind("<B1-Motion>", self.drag)
         box.bind("<ButtonRelease-1>", self.drag_start_stop)
         b_id = numerate(self.num, "box")
-        func = partial(self.edit_box, b_id)
-        box.bind("<Button-3>", func)
+        box.bind("<Button-3>", lambda x: self.edit_box(b_id, x))
         self.boxes[b_id] = box
+
 
     def edit_box(self, boxid, _):
         box = self.boxes[boxid]
+        pop = Node(self.parent, numerate(self.num, "edit"))
+        pop.origin = self.name
+        if box.sid == "head":
+            txt = box.get("1.0", "end-1c")
+            pop.insert_entry_field("Header", txt)
+        elif box.sid == "foot":
+            txt = box.get("1.0", "end-1c")
+            pop.insert_entry_field("Footer", txt)
+        else:
+            txt = box.get("1.0", "end-1c")
+            pop.insert_text_field("Body", txt)
+        pop.ok_cancel_buttons(pop.update_box)
+        """
         if not self.b_edit[boxid]:
             box.config(state="normal")
             self.b_edit[boxid] = True
@@ -154,6 +193,7 @@ class Sticker(Frame):
                 self.parent.info[self.name]["Entry"]["Body"] = txt
                 return
             self.parent.check_relation_single(self.name)
+            """
 
     def drag_start_stop(self, _event):
         self.dragging = not self.dragging
@@ -203,6 +243,7 @@ class Canv(Canvas):
         self.num = defaultdict(int)
         self.sticky_size = (250, 220)
         self.stickies = []
+        self.lines = {}
         self.bind("<ButtonPress-1>", self.smark)
         self.bind("<B1-Motion>", self.sdrag)
         self.bind("<Button-3>", self.insert_node)
@@ -242,10 +283,14 @@ class Canv(Canvas):
                     for j in l1:
                         if j in lx2:
                              self.draw_line(i, name)
+                        else:
+                            self.remove_if_needed(i, name)
                 if lx1 != ['']:
                     for k in l2:
                         if k in lx1:
                             self.draw_line(name, i)
+                        else:
+                            self.remove_if_needed(name, i)
 
     def csv(self, list1):
         return "".join(i+", " for i in list1).strip(", ")
@@ -260,6 +305,24 @@ class Canv(Canvas):
                     for l in l1:
                         if l in l2:
                             self.draw_line(i, j)
+                        else:
+                            self.remove_if_needed(i, j)
+
+    def remove_if_needed(self, name1, name2):
+        stick1 = stick2 = None
+        for i in self.stickies:
+            if i.name == name1:
+                stick1 = i
+            elif i.name == name2:
+                stick2 = i
+        if stick1 and stick2:
+            coname = "{}{}".format(stick1.name, stick2.name)
+            if coname in self.lines.keys():
+                l_id = self.lines[coname]
+                self.delete(l_id)
+                stick1.line_ex_ids = [i for i in stick1.line_ex_ids if i != l_id]
+                stick2.line_en_ids = [i for i in stick1.line_en_ids if i != l_id]
+                del(self.lines[coname])
 
     def draw_line(self, name1, name2):
         stick1 = stick2 = None
@@ -269,11 +332,14 @@ class Canv(Canvas):
             elif i.name == name2:
                 stick2 = i
         if stick1 and stick2:
-            x1, y1 = stick1.exit_dot
-            x2, y2 = stick2.entr_dot
-            l_id = self.create_line(x1, y1, x2, y2, fill="red", width=3)
-            stick1.line_ex_ids.append(l_id)
-            stick2.line_en_ids.append(l_id)
+            coname = "{}{}".format(stick1.name, stick2.name)
+            if coname not in self.lines.keys():
+                x1, y1 = stick1.exit_dot
+                x2, y2 = stick2.entr_dot
+                l_id = self.create_line(x1, y1, x2, y2, fill="red", width=3)
+                stick1.line_ex_ids.append(l_id)
+                stick2.line_en_ids.append(l_id)
+                self.lines[coname] = l_id
 
     def make_sticky(self, name, txt, pos):
         sticky = Sticker(self, name, (pos.x, pos.y), self.sticky_size, txt)

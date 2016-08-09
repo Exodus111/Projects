@@ -1,3 +1,8 @@
-a = "sfsdfdsaftestsdgsdfsdf"
-b = a.index("test")
-print(b)
+
+a = {1,2,3}
+a.add(4)
+a.add(4)
+a.add(4)
+a.add(4)
+
+print(a)
