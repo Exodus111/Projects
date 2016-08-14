@@ -1,79 +1,70 @@
 from collections import defaultdict
 from tkinter import Tk, Canvas, Menu
 from tkinter.ttk import Frame, Label, Entry, Button, Style
-from load import Node, Sticker
+
+from load import Node, Sticker, Canv, TopMenuBar, numerate
 
 class Main(Frame):
     def __init__(self, parent):
         Frame.__init__(self, parent)
         self.parent = parent
-        self.info = defaultdict(dict)
-        self.num = defaultdict(int)
         self.window = None
         self.size = (960, 480)
-        self.sticky_size = (250, 220)
-        self.fields = []
+        self.width = self.size[0]
+        self.height = self.size[1]
+        self.num = defaultdict(int)
+        self.canvasi = []
+        self.db = {}
         self.init_ui()
 
     def init_ui(self):
         self.parent.title("Node Writer")
-        self.style = Style(self)              # Doesnt seem to
+        self.style = Style(self)              # This doesn't seem to
         self.style.theme_use("alt")           # do anything in Windows.
         self.pack(fill="both", expand=True)
 
-        menubar = Menu(self.parent)
-        self.parent.config(menu=menubar)
-        menubar.add_command(label="New", command=self.onNew)
-        menubar.add_command(label="Show Info", command=self.get_info)
-        menubar.add_command(label="Exit", command=self.quit)
+        self.menubar = TopMenuBar(self)
+        self.parent.config(menu=self.menubar)
 
-        self.canvas = Canvas(self, background="white", width=self.size[0], height=self.size[1])
-        self.canvas.pack(fill="both", expand=1)
-        self.canvas.bind("<Button-1>", self.insert_node)
+    def save(self):
+        pass
 
-    def _numerate(self, pre):
-        self.num[pre] += 1
-        return "{}{}".format(pre, self.num[pre])
+    def load(self):
+        pass
 
     def onNew(self):
-        node = Node(self, self._numerate("Name"))
+        node = Node(self, numerate(self.num, "Name"))
         node.insert_entry_field("Name")
         node.ok_cancel_buttons()
 
-    def save_info(self, title, entries, pos):
-        if "Node" in title:
-            txtdict = {
-            "header":entries["Entry"]["Header"],
-            "body":entries["Text"]["Body"],
-            "footer":entries["Entry"]["Footer"]
-            }
-            if pos != (0,0):
-                self.make_sticky(txtdict, pos)
-        self.info[title] = entries
+    def save_info(self, name_id, entries, _):
+        if "Name" in name_id:
+            name = "".join(entries["Entry"]["Name"])
+            self.db[name] = {}
+            self.canvasi.append(Canv(self, name, self.size))
+            self.canvas_switch(name)
+            self.menubar.add_button("show", name, self.canvas_switch)
 
-    def make_sticky(self, txt, pos):
-        sticky = Sticker(self, self.sticky_size, txt)
-        sticky.id = self.canvas.create_window(pos.x, pos.y, window=sticky)
-        tl, br = self.extrapolate_rect(pos, (self.sticky_size[0]-45, self.sticky_size[1]+10))
-        sticky.rect_id = self.canvas.create_rectangle(tl, br, fill="black")
+    def canvas_switch(self, name):
+        for canv in self.canvasi:
+            if name == canv.name:
+                canv.pack(fill="both", expand=True)
+            else:
+                canv.pack_forget()
 
-    def extrapolate_rect(self, pos, size):
-        tl = pos.x - (size[0]/2), pos.y - (size[1]/2)
-        br = pos.x + (size[0]/2), pos.y + (size[1]/2)
-        return tl, br
-
+    # Test function, to be removed.
     def get_info(self):
-        for i in self.info:
-            print(i, self.info[i], sep="\t")
-
-    def insert_node(self, pos):
-        node = Node(self, self._numerate("Node"), pos)
-        node.insert_entry_field("Header")
-        node.insert_text_field("Body")
-        node.insert_entry_field("Footer")
-        node.ok_cancel_buttons()
+        for can in self.canvasi:
+            for node in can.info:
+                self.db[can.name][node] = {
+                "Header":can.info[node]["Entry"]["Header"],
+                "Body":can.info[node]["Text"]["Body"],
+                "Footer":can.info[node]["Entry"]["Footer"]
+                    }
+        print(self.db)
 
 if __name__ == "__main__":
     root = Tk()
+    root.state("zoomed")
     app = Main(root)
     root.mainloop()
