@@ -148,14 +148,16 @@ class Comic():
         We return the image path, removing the folders that Flask will add automatically.
         """
         strpage = "page {}".format(page)
-        lastpage = self.comic_dict["lastpage"]
-        if page <= lastpage:
+        lastpage = self.comic_dict["lastpage"]-1
+        l_strpage = "page {}".format(lastpage)
+        if page < lastpage:
             if strpage not in self.comic_dict:
                 self.extract_image(page)
             image = self.comic_dict[strpage]
             return image.replace("./static/comics/", "")
         else:
-            if strpage not in self.comic_dict:
-                self.extract_image(page)
-            image = self.comic_dict["page {}".format(lastpage)]
+            print("Page: {}\n LastPage: {}".format(page, lastpage))
+            if l_strpage not in self.comic_dict:
+                self.extract_image(lastpage)
+            image = self.comic_dict[l_strpage]
             return image.replace("./static/comics/", "")

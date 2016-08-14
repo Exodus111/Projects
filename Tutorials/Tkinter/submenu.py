@@ -1,4 +1,4 @@
-from Tkinter import Tk, Frame, Menu
+from tkinter import Tk, Frame, Menu
 
 class Example(Frame):
     def __init__(self, parent):
