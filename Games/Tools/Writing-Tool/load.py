@@ -39,18 +39,32 @@ class Node(Toplevel):
     def update_box(self):
         if "Header" in self.entries["Entry"]:
             txt = self.entries["Entry"]["Header"].get()
-            txt = txt.split(",")
+            txt = "".join(txt)
             sticky = [i for i in self.parent.stickies if i.name == self.origin]
             box = [b for b in sticky[0].boxes.values() if b.sid == "head"]
             box[0].config(state="normal")
-            box[0].insert("end", txt)
+            box[0].delete("1.0", "end")
+            box[0].insert("1.0", txt)
+            box[0].config(state="disabled")
             self.parent.info[self.origin]["Entry"]["Header"] = txt
         elif "Footer" in self.entries["Entry"]:
             txt = self.entries["Entry"]["Footer"].get()
-            txt = txt.split(",")
+            txt = "".join(txt)
+            sticky = [i for i in self.parent.stickies if i.name == self.origin]
+            box = [b for b in sticky[0].boxes.values() if b.sid == "foot"]
+            box[0].config(state="normal")
+            box[0].delete("1.0", "end")
+            box[0].insert("1.0", txt)
+            box[0].config(state="disabled")
             self.parent.info[self.origin]["Entry"]["Footer"] = txt
         else:
             txt = self.entries["Text"]["Body"].get("1.0", "end-1c")
+            sticky = [i for i in self.parent.stickies if i.name == self.origin]
+            box = [b for b in sticky[0].boxes.values() if b.sid == "body"]
+            box[0].config(state="normal")
+            box[0].delete("1.0", "end")
+            box[0].insert("1.0", txt)
+            box[0].config(state="disabled")
             self.parent.info[self.origin]["Text"]["Body"] = txt
             self.destroy()
             return
@@ -101,6 +115,9 @@ class Text2(Frame):
 
     def insert(self, *args, **kwargs):
         self.text_widget.insert(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        self.text_widget.delete(*args, **kwargs)
 
     def config(self, *args, **kwargs):
         self.text_widget.config(*args, **kwargs)
@@ -228,7 +245,6 @@ class Sticker(Frame):
         rx = int((x1-x2)/2)
         ry = int((y1-y2)/2)
         return (x1-rx, y2+ry)
-
 
 class Canv(Canvas):
     def __init__(self, parent, name, size):
