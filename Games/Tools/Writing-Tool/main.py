@@ -19,8 +19,8 @@ class Main(Frame):
 
     def init_ui(self):
         self.parent.title("Node Writer")
-        self.style = Style(self)              # This doesn't seem to
-        self.style.theme_use("alt")           # do anything in Windows.
+        self.style = Style(self)                  # This doesn't seem to
+        self.style.theme_use("classic")           # do anything in Windows.
         self.pack(fill="both", expand=True)
 
         self.menubar = TopMenuBar(self)
