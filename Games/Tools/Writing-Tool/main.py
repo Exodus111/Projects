@@ -1,8 +1,10 @@
 from collections import defaultdict
-from tkinter import Tk, Canvas, Menu
+from tkinter import Tk
 from tkinter.ttk import Frame, Label, Entry, Button, Style
 
-from load import Node, Sticker, Canv, TopMenuBar, numerate
+from db import DataBase
+from gui_items import *
+from mod_items import *
 
 class Main(Frame):
     def __init__(self, parent):
@@ -14,13 +16,13 @@ class Main(Frame):
         self.height = self.size[1]
         self.num = defaultdict(int)
         self.canvasi = []
-        self.db = {}
+        self.db = DataBase()
         self.init_ui()
 
     def init_ui(self):
         self.parent.title("Node Writer")
         self.style = Style(self)                  # This doesn't seem to
-        self.style.theme_use("classic")           # do anything in Windows.
+        self.style.theme_use("alt")               # do anything in Windows.
         self.pack(fill="both", expand=True)
 
         self.menubar = TopMenuBar(self)
@@ -34,13 +36,13 @@ class Main(Frame):
 
     def onNew(self):
         node = Node(self, numerate(self.num, "Name"))
-        node.insert_entry_field("Name")
+        node.insert_entry_field("Name", focus=True)
         node.ok_cancel_buttons()
 
-    def save_info(self, name_id, entries, _):
+    def save_info(self, name_id, entries, pos):
         if "Name" in name_id:
             name = "".join(entries["Entry"]["Name"])
-            self.db[name] = {}
+            self.db.add_npc(name)
             self.canvasi.append(Canv(self, name, self.size))
             self.canvas_switch(name)
             self.menubar.add_button("show", name, self.canvas_switch)
@@ -54,17 +56,11 @@ class Main(Frame):
 
     # Test function, to be removed.
     def get_info(self):
-        for can in self.canvasi:
-            for node in can.info:
-                self.db[can.name][node] = {
-                "Header":can.info[node]["Entry"]["Header"],
-                "Body":can.info[node]["Text"]["Body"],
-                "Footer":can.info[node]["Entry"]["Footer"]
-                    }
-        print(self.db)
+        self.db.save()
+
 
 if __name__ == "__main__":
     root = Tk()
-    root.state("zoomed")
+    root.attributes('-zoomed', True)
     app = Main(root)
     root.mainloop()

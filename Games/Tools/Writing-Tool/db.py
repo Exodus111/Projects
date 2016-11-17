@@ -1,15 +1,99 @@
 from collections import defaultdict
+from path import Path
+import json, os
 
+#This is a hack for Atom, since it doesn't run your file from the files own directory.
+here = Path(__file__).abspath().parent
+if here != os.getcwd():
+    print("Changing dir")
+    here.chdir()
 
 class DataBase():
+    """ Simple JSON DB class """
     def __init__(self):
-        self.npcs = []
-        self.quests = defaultdict(list)
-        self.dialogue = defaultdict(list)
+        self.names = []                           # List of NPC names.
+        self.nodes = defaultdict(list)            # npc name paired with a list of node_ids.
+        self.tags = defaultdict(list)             # node_ids paired with a list of tags.
+        self.p_tags = defaultdict(dict)           # node_ids paired with a dict of string keys and int/str values.
+        self.coords = defaultdict(tuple)          # node_ids paired with tuple of x,y coordinates.
+        self.text = defaultdict(str)              # node_ids paired with String of text.
+        self.data_path = Path("./data")
 
-    def add_info(self, info):
-        for npc in info:
-            if "quest" in npc["Header"]:
-                pass
-            elif "question" in npc["Header"]:
-                pass
+    def add_npc(self, npc):
+        """
+        Saves one NPC name to the db.
+        npc strings should be a string, that is saved to a list.
+        """
+        self.names.append(npc)
+
+    def add_node(self, npc, node):
+        """
+        Saves one node to the db.
+        The node should be a dict, the node id as key, containing 3 more dicts.
+        The first has the key 'tags', and its value should be a list containing strings.
+        The second has the key 'text', its value should be a string.
+        The third dict has the key p_tags and contains another dictionary.
+        """
+        node_id = [i for i, j in node][0]
+        self.nodes[npc].append(node_id)
+        self.tags[node_id].append(node[node_id]["tags"])
+        self.text[node_id].append(node[node_id]["text"])
+        self.p_tags[node_id] = node[node_id]["p_tags"]
+        self.coords[node_id] = node[node_id]["p_tags"]["coords"]
+
+    def add_nodes(self, npc, nodes):
+        """
+        Adds multiple nodes to the same npc.
+        """
+        for node in nodes:
+            self.add_node(npc, nodes[node])
+
+    def add_data(self, data):
+        for i in data.keys():
+            self.add_npc(i)
+            self.add_nodes(i, data[i])
+
+    def save(self):
+        """
+        Saves everything to files.
+        """
+        data = {
+            "names":self.names,
+            "nodes":self.nodes,
+            "text":self.text,
+            "tags":self.tags,
+            "p_tags":self.p_tags,
+            "coords":self.coords
+        }
+        self.save_file(data)
+
+    def load(self):
+        """
+        Loads everything from files.
+        """
+        data = self.load_file(num)
+        self.names = data["names"]
+        self.nodes = data["nodes"]
+        self.text = data["text"]
+        self.tags = data["tags"]
+        self.p_tags = data["p_tags"]
+        self.coords = data["coords"]
+
+    def save_file(self, data):
+        """
+        Save method. Called from self.save.
+        """
+        print("writing data...")
+        self.data_path.mkdir_p()
+        fname = "/data"
+        with open(self.data_path + fname, "w") as f:
+            json.dump(data, f)
+
+    def load_file(self, num):
+        """
+        Load method. Called from self.load.
+        """
+        fname = "/data"
+        with open(self.data_path + fname, "r") as f:
+            data = json.load(f)
+        return data
