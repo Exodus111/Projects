@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 from path import Path
 import json, os
 
@@ -34,12 +34,12 @@ class DataBase():
         The second has the key 'text', its value should be a string.
         The third dict has the key p_tags and contains another dictionary.
         """
-        node_id = [i for i, j in node][0]
+        node_id = [i for i, j in node.items()][0]
         self.nodes[npc].append(node_id)
         self.tags[node_id].append(node[node_id]["tags"])
-        self.text[node_id].append(node[node_id]["text"])
+        self.text[node_id] = node[node_id]["text"]
         self.p_tags[node_id] = node[node_id]["p_tags"]
-        self.coords[node_id] = node[node_id]["p_tags"]["coords"]
+        self.coords[node_id] = node[node_id]["coords"]
 
     def add_nodes(self, npc, nodes):
         """
@@ -53,25 +53,25 @@ class DataBase():
             self.add_npc(i)
             self.add_nodes(i, data[i])
 
-    def save(self):
+    def save(self, fname):
         """
         Saves everything to files.
         """
-        data = {
-            "names":self.names,
-            "nodes":self.nodes,
-            "text":self.text,
-            "tags":self.tags,
-            "p_tags":self.p_tags,
-            "coords":self.coords
-        }
-        self.save_file(data)
+        data = OrderedDict()
+        data["names"] = self.names,
+        data["nodes"] = self.nodes,
+        data["text"] = self.text,
+        data["tags"] = self.tags,
+        data["p_tags"] = self.p_tags,
+        data["coords"] = self.coords
 
-    def load(self):
+        self.save_file(data, fname)
+
+    def load(self, fname):
         """
         Loads everything from files.
         """
-        data = self.load_file(num)
+        data = self.load_file(fname)
         self.names = data["names"]
         self.nodes = data["nodes"]
         self.text = data["text"]
@@ -79,21 +79,18 @@ class DataBase():
         self.p_tags = data["p_tags"]
         self.coords = data["coords"]
 
-    def save_file(self, data):
+    def save_file(self, data, fname):
         """
         Save method. Called from self.save.
         """
         print("writing data...")
-        self.data_path.mkdir_p()
-        fname = "/data"
-        with open(self.data_path + fname, "w") as f:
+        with open(fname, "w") as f:
             json.dump(data, f)
 
-    def load_file(self, num):
+    def load_file(self, fname):
         """
         Load method. Called from self.load.
         """
-        fname = "/data"
-        with open(self.data_path + fname, "r") as f:
+        with open(fname, "r") as f:
             data = json.load(f)
         return data

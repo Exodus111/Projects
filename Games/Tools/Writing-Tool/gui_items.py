@@ -1,6 +1,7 @@
 from collections import defaultdict
 from functools import partial
-from tkinter import Canvas, Menu
+from path import Path
+from tkinter import Canvas, Menu, Label
 from mod_items import *
 
 class Canv(Canvas):
@@ -8,18 +9,23 @@ class Canv(Canvas):
         Canvas.__init__(self, parent)
         self.parent = parent
         self.name = name
-        self.background = "white"
+        self.config(bg="white")
         self.size = size
         self.width = size[0]
         self.height = size[1]
         self.info = defaultdict(dict)
-        self.num = defaultdict(int)
+        self.marked = None
         self.sticky_size = (250, 220)
-        self.stickies = []
+        self.stickies = {}
         self.lines = {}
         self.bind("<ButtonPress-1>", self.smark)
         self.bind("<B1-Motion>", self.sdrag)
         self.bind("<Button-3>", self.insert_node)
+
+    def mouse_coords(self):
+        x = self.canvasx(self.parent.parent.winfo_pointerx() - self.winfo_rootx())
+        y = self.canvasy(self.parent.parent.winfo_pointery() - self.winfo_rooty())
+        return x,y
 
     def smark(self, pos):
         self.scan_mark(pos.x, pos.y)
@@ -29,16 +35,21 @@ class Canv(Canvas):
 
     def insert_node(self, e):
         pos = (e.x, e.y)
-        node = Node(self, numerate(self.num, "Node"), pos)
-        node.insert_entry_field("tags", focus=True)
-        node.insert_text_field("text")
+        name = numerate("Node")
+        self.make_node(name, pos)
+
+    def make_node(self, name, pos, default=(None, None)):
+        node = Node(self, name, pos)
+        node.insert_entry_field("tags", default=default[0], focus=True)
+        node.insert_text_field("text", default=default[1])
         node.ok_cancel_buttons()
 
     def save_info(self, name, entries, pos):
         if "Node" in name:
             node = {name:{"tags":entries["Entry"]["tags"],
-                        "text":entries["Text"]["text"]}}
-            # Fix Later----->#self.parent.db.add_nodes(self.name, node)
+                        "text":entries["Text"]["text"],
+                        "p_tags":[], "coords":pos}}
+            self.parent.db.add_node(self.name, node)
             self.insert_sticker(name, node, pos)
 
     def insert_sticker(self, name, node, pos):
@@ -46,7 +57,11 @@ class Canv(Canvas):
         sticker.add_entry(node[name]["tags"])
         sticker.add_text(node[name]["text"])
         sticker.add_buttons()
+        if name in self.stickies:
+            self.delete(self.stickies[name].w_id)
         w_id = self.create_window(pos, window=sticker)
+        sticker.w_id = w_id
+        self.stickies[name] = sticker
         sticker.draw_box()
 
 class TopMenuBar(Menu):
@@ -72,7 +87,6 @@ class TopMenuBar(Menu):
             self.newmenu.add_command(label=name, command=func)
         elif menu == "show":
             self.showmenu.add_command(label=name, command=func)
-
 
 if __name__ == "__main__":
     pass    #<--- For testing!

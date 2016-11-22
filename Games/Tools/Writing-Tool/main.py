@@ -1,6 +1,9 @@
+#!/usr/bin/python3
+
 from collections import defaultdict
-from tkinter import Tk
+from tkinter import Tk, filedialog
 from tkinter.ttk import Frame, Label, Entry, Button, Style
+from path import Path
 
 from db import DataBase
 from gui_items import *
@@ -14,7 +17,6 @@ class Main(Frame):
         self.size = (960, 480)
         self.width = self.size[0]
         self.height = self.size[1]
-        self.num = defaultdict(int)
         self.canvasi = []
         self.db = DataBase()
         self.init_ui()
@@ -28,14 +30,8 @@ class Main(Frame):
         self.menubar = TopMenuBar(self)
         self.parent.config(menu=self.menubar)
 
-    def save(self):
-        pass
-
-    def load(self):
-        pass
-
     def onNew(self):
-        node = Node(self, numerate(self.num, "Name"))
+        node = Node(self, numerate("Name"))
         node.insert_entry_field("Name", focus=True)
         node.ok_cancel_buttons()
 
@@ -51,12 +47,22 @@ class Main(Frame):
         for canv in self.canvasi:
             if name == canv.name:
                 canv.pack(fill="both", expand=True)
+                self.parent.title(canv.name)
             else:
                 canv.pack_forget()
 
+    def save(self):
+        fname = filedialog.asksaveasfile(parent=self, mode='w', title='Choose a filename')
+        self.db.save(fname.name)
+
+    def load(self):
+        fname = filedialog.askopenfile(parent=self, mode='rb', title='Choose a file')
+        self.db.load(fname.name)
+        print(self.db.names)
+
     # Test function, to be removed.
     def get_info(self):
-        self.db.save()
+        pass
 
 
 if __name__ == "__main__":
