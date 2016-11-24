@@ -38,27 +38,30 @@ class Canv(Canvas):
         name = numerate("Node")
         self.make_node(name, pos)
 
-    def make_node(self, name, pos, default=(None, None)):
+    def make_node(self, name, pos, default=(None, None), links=[]):
         node = Node(self, name, pos)
         node.insert_entry_field("tags", default=default[0], focus=True)
         node.insert_text_field("text", default=default[1])
         node.ok_cancel_buttons()
+        node.links = links
 
-    def save_info(self, name, entries, pos):
+    def save_info(self, name, entries, pos, links):
         if "Node" in name:
             node = {name:{"tags":entries["Entry"]["tags"],
                         "text":entries["Text"]["text"],
-                        "p_tags":[], "coords":pos}}
+                        "links":links, "coords":pos}}
             self.parent.db.add_node(self.name, node)
             self.insert_sticker(name, node)
 
     def insert_sticker(self, name, node):
         sticker = Sticker(self, node[name]["coords"], name)
-        sticker.p_tags = node[name]["p_tags"]
+        sticker.links = node[name]["links"]
         sticker.add_entry(node[name]["tags"])
         sticker.add_text(node[name]["text"])
         sticker.add_buttons()
         if name in self.stickies:
+            sticker.my_lines = self.stickies[name].my_lines
+            #sticker.links = self.stickies[name].links
             self.delete(self.stickies[name].w_id)
             self.delete(self.stickies[name].rect_id)
         w_id = self.create_window(node[name]["coords"], window=sticker)

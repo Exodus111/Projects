@@ -35,7 +35,7 @@ class Main(Frame):
         node.insert_entry_field("Name", focus=True)
         node.ok_cancel_buttons()
 
-    def save_info(self, name_id, entries, pos):
+    def save_info(self, name_id, entries, *args):
         if "Name" in name_id:
             name = "".join(entries["Entry"]["Name"])
             self.db.add_npc(name)
@@ -52,11 +52,11 @@ class Main(Frame):
                 canv.pack_forget()
 
     def save(self):
-        fname = filedialog.asksaveasfile(parent=self, mode='w', title='Choose a filename')
+        fname = filedialog.asksaveasfile(parent=self, mode='w', title='Choose a filename', initialdir="./data")
         self.db.save(fname.name)
 
     def load(self):
-        fname = filedialog.askopenfile(parent=self, mode='rb', title='Choose a file')
+        fname = filedialog.askopenfile(parent=self, mode='rb', title='Choose a file', initialdir="./data")
         self.db.load(fname.name)
         for name in self.db.names:
             canv = Canv(self, name, self.size)
@@ -69,16 +69,17 @@ class Main(Frame):
                 n[node]["tags"] = self.db.tags[node]
                 n[node]["text"] = self.db.text[node]
                 n[node]["coords"] = self.db.coords[node]
-                n[node]["p_tags"] = self.db.p_tags[node]
+                n[node]["links"] = self.db.links[node]
                 canv.insert_sticker(node, n)
             for sticky in canv.stickies:
-                for other in canv.stickies[sticky].p_tags:
-                    canv.stickies[sticky].my_line = canv.create_line(1,1,1,1, fill="green")
-                    canv.stickies[sticky].connect2box(canv.stickies[other].w_id, other)
+                for other in canv.stickies[sticky].links:
+                    canv.stickies[sticky].connect2box(other, True)
 
     # Test function, to be removed.
     def get_info(self):
-        pass
+        for canv in self.canvasi:
+            for sticky in canv.stickies:
+                print("{} ----> {}".format(sticky, canv.stickies[sticky].links))
 
 
 if __name__ == "__main__":

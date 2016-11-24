@@ -14,7 +14,7 @@ class DataBase():
         self.names = []                           # List of NPC names.
         self.nodes = defaultdict(list)            # npc name paired with a list of node_ids.
         self.tags = defaultdict(list)             # node_ids paired with a list of tags.
-        self.p_tags = defaultdict(dict)           # node_ids paired with a dict of string keys and int/str values.
+        self.links = defaultdict(dict)           # node_ids paired with a dict of string keys and int/str values.
         self.coords = defaultdict(tuple)          # node_ids paired with tuple of x,y coordinates.
         self.text = defaultdict(str)              # node_ids paired with String of text.
         self.data_path = Path("./data")
@@ -29,26 +29,24 @@ class DataBase():
     def add_node(self, npc, node):
         """
         Saves one node to the db.
-        The node should be a dict, the node id as key, containing 3 more dicts.
+        The node should be a dict, the node id as key, containing 4 more dicts.
         The first has the key 'tags', and its value should be a list containing strings.
         The second has the key 'text', its value should be a string.
-        The third dict has the key p_tags and contains another dictionary.
+        The third dict has the key links and contains another dictionary.
+        The fourth...
         """
         node_id = [i for i, j in node.items()][0]
         if node_id not in self.nodes[npc]:
             self.nodes[npc].append(node_id)
-        if node[node_id]["tags"] not in self.tags[node_id]:
-            for n in node[node_id]["tags"]:
-                if n not in self.tags[node_id]:
-                    self.tags[node_id].append(n)
+        self.tags[node_id] = node[node_id]["tags"]
         self.text[node_id] = node[node_id]["text"]
-        self.p_tags[node_id] = node[node_id]["p_tags"]
+        self.links[node_id] = node[node_id]["links"]
         self.coords[node_id] = node[node_id]["coords"]
 
-    def update_p_tags(self, node, p_tags):
-        for t in p_tags:
-            if t not in self.p_tags[node]:
-                self.p_tags[node].append(t)
+    def update_links(self, node, links):
+        for t in links:
+            if t not in self.links[node]:
+                self.links[node].append(t)
 
 
     def save(self, fname):
@@ -60,7 +58,7 @@ class DataBase():
         data["nodes"] = self.nodes
         data["text"] = self.text
         data["tags"] = self.tags
-        data["p_tags"] = self.p_tags
+        data["links"] = self.links
         data["coords"] = self.coords
 
         self.save_file(data, fname)
@@ -82,7 +80,7 @@ class DataBase():
         self.nodes = data["nodes"]
         self.text = data["text"]
         self.tags = data["tags"]
-        self.p_tags = data["p_tags"]
+        self.links = data["links"]
         self.coords = data["coords"]
 
     def load_file(self, fname):
