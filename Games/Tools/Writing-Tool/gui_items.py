@@ -50,16 +50,18 @@ class Canv(Canvas):
                         "text":entries["Text"]["text"],
                         "p_tags":[], "coords":pos}}
             self.parent.db.add_node(self.name, node)
-            self.insert_sticker(name, node, pos)
+            self.insert_sticker(name, node)
 
-    def insert_sticker(self, name, node, pos):
-        sticker = Sticker(self, pos, name)
+    def insert_sticker(self, name, node):
+        sticker = Sticker(self, node[name]["coords"], name)
+        sticker.p_tags = node[name]["p_tags"]
         sticker.add_entry(node[name]["tags"])
         sticker.add_text(node[name]["text"])
         sticker.add_buttons()
         if name in self.stickies:
             self.delete(self.stickies[name].w_id)
-        w_id = self.create_window(pos, window=sticker)
+            self.delete(self.stickies[name].rect_id)
+        w_id = self.create_window(node[name]["coords"], window=sticker)
         sticker.w_id = w_id
         self.stickies[name] = sticker
         sticker.draw_box()

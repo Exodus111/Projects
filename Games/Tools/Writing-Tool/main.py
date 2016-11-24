@@ -58,7 +58,23 @@ class Main(Frame):
     def load(self):
         fname = filedialog.askopenfile(parent=self, mode='rb', title='Choose a file')
         self.db.load(fname.name)
-        print(self.db.names)
+        for name in self.db.names:
+            canv = Canv(self, name, self.size)
+            self.canvasi.append(canv)
+            self.canvas_switch(name)
+            self.menubar.add_button("show", name, self.canvas_switch)
+            for node in self.db.nodes[name]:
+                n = {}
+                n[node] = {}
+                n[node]["tags"] = self.db.tags[node]
+                n[node]["text"] = self.db.text[node]
+                n[node]["coords"] = self.db.coords[node]
+                n[node]["p_tags"] = self.db.p_tags[node]
+                canv.insert_sticker(node, n)
+            for sticky in canv.stickies:
+                for other in canv.stickies[sticky].p_tags:
+                    canv.stickies[sticky].my_line = canv.create_line(1,1,1,1, fill="green")
+                    canv.stickies[sticky].connect2box(canv.stickies[other].w_id, other)
 
     # Test function, to be removed.
     def get_info(self):

@@ -1,1 +1,56 @@
-{"names": [["Donald"]], "nodes": [{"Donald": ["Node1"]}], "text": [{"Node1": ""}], "tags": [{"Node1": [["asdasdasdasdsda"]]}], "p_tags": [{"Node1": []}], "coords": {"Node1": [387, 194]}}
+{
+    "coords": {
+        "Node1": [
+            246,
+            205
+        ],
+        "Node2": [
+            842,
+            183
+        ],
+        "Node3": [
+            531,
+            556
+        ]
+    },
+    "names": [
+        "Donald"
+    ],
+    "nodes": {
+        "Donald": [
+            "Node1",
+            "Node2",
+            "Node3"
+        ]
+    },
+    "p_tags": {
+        "Node1": [
+            "Node2",
+            "Node3"
+        ],
+        "Node2": [
+            "Node1",
+            "Node3"
+        ],
+        "Node3": [
+            "Node1",
+            "Node2"
+        ]
+    },
+    "tags": {
+        "Node1": [
+            ""
+        ],
+        "Node2": [
+            ""
+        ],
+        "Node3": [
+            ""
+        ]
+    },
+    "text": {
+        "Node1": "",
+        "Node2": "",
+        "Node3": ""
+    }
+}

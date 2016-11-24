@@ -35,37 +35,43 @@ class DataBase():
         The third dict has the key p_tags and contains another dictionary.
         """
         node_id = [i for i, j in node.items()][0]
-        self.nodes[npc].append(node_id)
-        self.tags[node_id].append(node[node_id]["tags"])
+        if node_id not in self.nodes[npc]:
+            self.nodes[npc].append(node_id)
+        if node[node_id]["tags"] not in self.tags[node_id]:
+            for n in node[node_id]["tags"]:
+                if n not in self.tags[node_id]:
+                    self.tags[node_id].append(n)
         self.text[node_id] = node[node_id]["text"]
         self.p_tags[node_id] = node[node_id]["p_tags"]
         self.coords[node_id] = node[node_id]["coords"]
 
-    def add_nodes(self, npc, nodes):
-        """
-        Adds multiple nodes to the same npc.
-        """
-        for node in nodes:
-            self.add_node(npc, nodes[node])
+    def update_p_tags(self, node, p_tags):
+        for t in p_tags:
+            if t not in self.p_tags[node]:
+                self.p_tags[node].append(t)
 
-    def add_data(self, data):
-        for i in data.keys():
-            self.add_npc(i)
-            self.add_nodes(i, data[i])
 
     def save(self, fname):
         """
         Saves everything to files.
         """
         data = OrderedDict()
-        data["names"] = self.names,
-        data["nodes"] = self.nodes,
-        data["text"] = self.text,
-        data["tags"] = self.tags,
-        data["p_tags"] = self.p_tags,
+        data["names"] = self.names
+        data["nodes"] = self.nodes
+        data["text"] = self.text
+        data["tags"] = self.tags
+        data["p_tags"] = self.p_tags
         data["coords"] = self.coords
 
         self.save_file(data, fname)
+
+    def save_file(self, data, fname):
+        """
+        Save method. Called from self.save.
+        """
+        print("writing data...")
+        with open(fname, "w") as f:
+            json.dump(data, f, indent=4, sort_keys=True)
 
     def load(self, fname):
         """
@@ -78,14 +84,6 @@ class DataBase():
         self.tags = data["tags"]
         self.p_tags = data["p_tags"]
         self.coords = data["coords"]
-
-    def save_file(self, data, fname):
-        """
-        Save method. Called from self.save.
-        """
-        print("writing data...")
-        with open(fname, "w") as f:
-            json.dump(data, f)
 
     def load_file(self, fname):
         """

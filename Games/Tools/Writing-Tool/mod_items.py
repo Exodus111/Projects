@@ -21,10 +21,12 @@ class Sticker(Frame):
         self.parent = parent
         self.pos = pos
         self.name = name
+        self.w_id = None
         self.size = (250, 220)
         self.entries = []
         self.text_fields = []
         self.my_lines = {}
+        self.p_tags = []
         self.rect_id = None
         self.bind("<B1-Motion>", self.move)
         self.bind("<ButtonPress-3>", self.draw_line)
@@ -35,14 +37,21 @@ class Sticker(Frame):
         x,y = self.parent.mouse_coords()
         overlap = self.parent.find_overlapping(x-5, y-5, x+5, y+5)
         if len(overlap) >= 2:
-            rect = self.parent.coords(overlap[0])
-            self.parent.coords(self.my_line, self.pos[0], self.pos[1], rect[0], rect[1])
-            self.my_lines[self.my_line] = [self.pos[0], self.pos[1], rect[0], rect[1]]
             for sticky in self.parent.stickies:
                 if self.parent.stickies[sticky].w_id == overlap[0]:
-                    self.parent.stickies[sticky].my_lines[self.my_line] = [rect[0], rect[1], self.pos[0], self.pos[1]]
+                    self.connect2box(overlap[0], sticky)
         else:
             self.parent.delete(self.my_line)
+
+    def connect2box(self, b_id, other):
+        print("check")
+        rect = self.parent.coords(b_id)
+        self.parent.coords(self.my_line, self.pos[0], self.pos[1], int(rect[0]), int(rect[1]))
+        self.my_lines[self.my_line] = [self.pos[0], self.pos[1], int(rect[0]), int(rect[1])]
+        self.parent.stickies[other].my_lines[self.my_line] = [rect[0], rect[1], self.pos[0], self.pos[1]]
+        self.p_tags.append(self.parent.stickies[other].name)
+        self.parent.stickies[other].p_tags.append(self.name)
+        self.parent.parent.db.update_p_tags(self.name, self.p_tags)
 
     def draw_line(self, e):
         new_x, new_y = self.parent.mouse_coords()
@@ -56,9 +65,16 @@ class Sticker(Frame):
     def move(self, e):
         self.parent.move(self.w_id, e.x, e.y)
         self.parent.move(self.rect_id, e.x, e.y)
-        self.pos = self.parent.coords(self.w_id)
+        self.pos = [int(co) for co in self.parent.coords(self.w_id)]
         for line in self.my_lines.keys():
             self.parent.coords(line, self.pos[0], self.pos[1], self.my_lines[line][2], self.my_lines[line][3])
+            for sticky in self.parent.stickies:
+                if sticky != self.name:
+                    if line in self.parent.stickies[sticky].my_lines.keys():
+                        self.parent.stickies[sticky].my_lines[line][2] = int(self.pos[0])
+                        self.parent.stickies[sticky].my_lines[line][3] = int(self.pos[1])
+
+
 
     def add_entry(self, text):
         entry = Entry(self)
