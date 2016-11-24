@@ -77,6 +77,7 @@ class Main(Frame):
 
     # Test function, to be removed.
     def get_info(self):
+        print("Getting Info: ")
         for canv in self.canvasi:
             for sticky in canv.stickies:
                 print("{} ----> {}".format(sticky, canv.stickies[sticky].links))

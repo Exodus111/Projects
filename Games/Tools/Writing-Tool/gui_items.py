@@ -34,16 +34,19 @@ class Canv(Canvas):
         self.scan_dragto(pos.x, pos.y, 5)
 
     def insert_node(self, e):
+        print("Running insert node: ")
         pos = (e.x, e.y)
         name = numerate("Node")
         self.make_node(name, pos)
 
-    def make_node(self, name, pos, default=(None, None), links=[]):
+    def make_node(self, name, pos, default=(None, None), links=None):
         node = Node(self, name, pos)
         node.insert_entry_field("tags", default=default[0], focus=True)
         node.insert_text_field("text", default=default[1])
         node.ok_cancel_buttons()
-        node.links = links
+        if links:
+            node.links = links
+        print(links)
 
     def save_info(self, name, entries, pos, links):
         if "Node" in name:
@@ -61,7 +64,6 @@ class Canv(Canvas):
         sticker.add_buttons()
         if name in self.stickies:
             sticker.my_lines = self.stickies[name].my_lines
-            #sticker.links = self.stickies[name].links
             self.delete(self.stickies[name].w_id)
             self.delete(self.stickies[name].rect_id)
         w_id = self.create_window(node[name]["coords"], window=sticker)

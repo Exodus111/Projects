@@ -43,8 +43,8 @@ class DataBase():
         self.links[node_id] = node[node_id]["links"]
         self.coords[node_id] = node[node_id]["coords"]
 
-    def update_links(self, node, links):
-        for t in links:
+    def update_links(self, node, l):
+        for t in l:
             if t not in self.links[node]:
                 self.links[node].append(t)
 
