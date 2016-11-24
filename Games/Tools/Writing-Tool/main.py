@@ -1,6 +1,9 @@
+#!/usr/bin/python3
+
 from collections import defaultdict
-from tkinter import Tk
+from tkinter import Tk, filedialog
 from tkinter.ttk import Frame, Label, Entry, Button, Style
+from path import Path
 
 from db import DataBase
 from gui_items import *
@@ -14,7 +17,6 @@ class Main(Frame):
         self.size = (960, 480)
         self.width = self.size[0]
         self.height = self.size[1]
-        self.num = defaultdict(int)
         self.canvasi = []
         self.db = DataBase()
         self.init_ui()
@@ -28,18 +30,12 @@ class Main(Frame):
         self.menubar = TopMenuBar(self)
         self.parent.config(menu=self.menubar)
 
-    def save(self):
-        pass
-
-    def load(self):
-        pass
-
     def onNew(self):
-        node = Node(self, numerate(self.num, "Name"))
+        node = Node(self, numerate("Name"))
         node.insert_entry_field("Name", focus=True)
         node.ok_cancel_buttons()
 
-    def save_info(self, name_id, entries, pos):
+    def save_info(self, name_id, entries, *args):
         if "Name" in name_id:
             name = "".join(entries["Entry"]["Name"])
             self.db.add_npc(name)
@@ -51,12 +47,39 @@ class Main(Frame):
         for canv in self.canvasi:
             if name == canv.name:
                 canv.pack(fill="both", expand=True)
+                self.parent.title(canv.name)
             else:
                 canv.pack_forget()
 
+    def save(self):
+        fname = filedialog.asksaveasfile(parent=self, mode='w', title='Choose a filename', initialdir="./data")
+        self.db.save(fname.name)
+
+    def load(self):
+        fname = filedialog.askopenfile(parent=self, mode='rb', title='Choose a file', initialdir="./data")
+        self.db.load(fname.name)
+        for name in self.db.names:
+            canv = Canv(self, name, self.size)
+            self.canvasi.append(canv)
+            self.canvas_switch(name)
+            self.menubar.add_button("show", name, self.canvas_switch)
+            for node in self.db.nodes[name]:
+                n = {}
+                n[node] = {}
+                n[node]["tags"] = self.db.tags[node]
+                n[node]["text"] = self.db.text[node]
+                n[node]["coords"] = self.db.coords[node]
+                n[node]["links"] = self.db.links[node]
+                canv.insert_sticker(node, n)
+            for sticky in canv.stickies:
+                for other in canv.stickies[sticky].links:
+                    canv.stickies[sticky].connect2box(other, True)
+
     # Test function, to be removed.
     def get_info(self):
-        self.db.save()
+        for canv in self.canvasi:
+            for sticky in canv.stickies:
+                print("{} ----> {}".format(sticky, canv.stickies[sticky].links))
 
 
 if __name__ == "__main__":

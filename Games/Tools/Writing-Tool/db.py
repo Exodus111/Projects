@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 from path import Path
 import json, os
 
@@ -14,7 +14,7 @@ class DataBase():
         self.names = []                           # List of NPC names.
         self.nodes = defaultdict(list)            # npc name paired with a list of node_ids.
         self.tags = defaultdict(list)             # node_ids paired with a list of tags.
-        self.p_tags = defaultdict(dict)           # node_ids paired with a dict of string keys and int/str values.
+        self.links = defaultdict(dict)           # node_ids paired with a dict of string keys and int/str values.
         self.coords = defaultdict(tuple)          # node_ids paired with tuple of x,y coordinates.
         self.text = defaultdict(str)              # node_ids paired with String of text.
         self.data_path = Path("./data")
@@ -29,71 +29,64 @@ class DataBase():
     def add_node(self, npc, node):
         """
         Saves one node to the db.
-        The node should be a dict, the node id as key, containing 3 more dicts.
+        The node should be a dict, the node id as key, containing 4 more dicts.
         The first has the key 'tags', and its value should be a list containing strings.
         The second has the key 'text', its value should be a string.
-        The third dict has the key p_tags and contains another dictionary.
+        The third dict has the key links and contains another dictionary.
+        The fourth...
         """
-        node_id = [i for i, j in node][0]
-        self.nodes[npc].append(node_id)
-        self.tags[node_id].append(node[node_id]["tags"])
-        self.text[node_id].append(node[node_id]["text"])
-        self.p_tags[node_id] = node[node_id]["p_tags"]
-        self.coords[node_id] = node[node_id]["p_tags"]["coords"]
+        node_id = [i for i, j in node.items()][0]
+        if node_id not in self.nodes[npc]:
+            self.nodes[npc].append(node_id)
+        self.tags[node_id] = node[node_id]["tags"]
+        self.text[node_id] = node[node_id]["text"]
+        self.links[node_id] = node[node_id]["links"]
+        self.coords[node_id] = node[node_id]["coords"]
 
-    def add_nodes(self, npc, nodes):
-        """
-        Adds multiple nodes to the same npc.
-        """
-        for node in nodes:
-            self.add_node(npc, nodes[node])
+    def update_links(self, node, links):
+        for t in links:
+            if t not in self.links[node]:
+                self.links[node].append(t)
 
-    def add_data(self, data):
-        for i in data.keys():
-            self.add_npc(i)
-            self.add_nodes(i, data[i])
 
-    def save(self):
+    def save(self, fname):
         """
         Saves everything to files.
         """
-        data = {
-            "names":self.names,
-            "nodes":self.nodes,
-            "text":self.text,
-            "tags":self.tags,
-            "p_tags":self.p_tags,
-            "coords":self.coords
-        }
-        self.save_file(data)
+        data = OrderedDict()
+        data["names"] = self.names
+        data["nodes"] = self.nodes
+        data["text"] = self.text
+        data["tags"] = self.tags
+        data["links"] = self.links
+        data["coords"] = self.coords
 
-    def load(self):
-        """
-        Loads everything from files.
-        """
-        data = self.load_file(num)
-        self.names = data["names"]
-        self.nodes = data["nodes"]
-        self.text = data["text"]
-        self.tags = data["tags"]
-        self.p_tags = data["p_tags"]
-        self.coords = data["coords"]
+        self.save_file(data, fname)
 
-    def save_file(self, data):
+    def save_file(self, data, fname):
         """
         Save method. Called from self.save.
         """
         print("writing data...")
-        self.data_path.mkdir_p()
-        fname = "/data"
-        with open(self.data_path + fname, "w") as f:
-            json.dump(data, f)
+        with open(fname, "w") as f:
+            json.dump(data, f, indent=4, sort_keys=True)
 
-    def load_file(self, num):
+    def load(self, fname):
+        """
+        Loads everything from files.
+        """
+        data = self.load_file(fname)
+        self.names = data["names"]
+        self.nodes = data["nodes"]
+        self.text = data["text"]
+        self.tags = data["tags"]
+        self.links = data["links"]
+        self.coords = data["coords"]
+
+    def load_file(self, fname):
         """
         Load method. Called from self.load.
         """
-        fname = "/data"
-        with open(self.data_path + fname, "r") as f:
+        with open(fname, "r") as f:
             data = json.load(f)
         return data
