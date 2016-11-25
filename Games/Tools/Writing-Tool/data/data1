@@ -1,0 +1,102 @@
+{
+    "coords": {
+        "Node1": [
+            313,
+            213
+        ],
+        "Node2": [
+            1022,
+            179
+        ],
+        "Node3": [
+            686,
+            464
+        ],
+        "Node4": [
+            1041,
+            533
+        ],
+        "Node5": [
+            172,
+            195
+        ],
+        "Node6": [
+            934,
+            238
+        ]
+    },
+    "links": {
+        "Node1": [
+            "Node2",
+            "Node3",
+            "Node4"
+        ],
+        "Node2": [
+            "Node1",
+            "Node3",
+            "Node4"
+        ],
+        "Node3": [
+            "Node1",
+            "Node2",
+            "Node4"
+        ],
+        "Node4": [
+            "Node3",
+            "Node1",
+            "Node2"
+        ],
+        "Node5": [
+            "Node6"
+        ],
+        "Node6": [
+            "Node5"
+        ]
+    },
+    "names": [
+        "Heidi",
+        "Donald"
+    ],
+    "nodes": {
+        "Donald": [
+            "Node5",
+            "Node6"
+        ],
+        "Heidi": [
+            "Node1",
+            "Node2",
+            "Node3",
+            "Node4"
+        ]
+    },
+    "tags": {
+        "Node1": [
+            "test1",
+            " test2"
+        ],
+        "Node2": [
+            "test2",
+            " test3"
+        ],
+        "Node3": [
+            "test4"
+        ],
+        "Node4": [
+            ""
+        ],
+        "Node5": [
+            "test2"
+        ],
+        "Node6": [
+            "test1"
+        ]
+    },
+    "text": {
+        "Node1": "asdasdasd\n",
+        "Node2": "",
+        "Node3": "asdasdsda\n\nasdsaddsa",
+        "Node4": "",
+        "Node5": "",
+        "Node6": ""
+    }
+}

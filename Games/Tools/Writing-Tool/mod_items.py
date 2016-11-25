@@ -39,7 +39,6 @@ class Sticker(Frame):
         if len(overlap) >= 2:
             for sticky in self.parent.stickies:
                 if self.parent.stickies[sticky].w_id == overlap[0]:
-                    print("{} overlapped with {}.".format(self.name, self.parent.stickies[sticky].name))
                     self.connect2box(sticky)
                     self.save_connect(sticky)
         else:
@@ -55,7 +54,6 @@ class Sticker(Frame):
         self.parent.stickies[other].my_lines[self.my_line] = [coords[0], coords[1], self.pos[0], self.pos[1]]
 
     def save_connect(self, other):
-        print("Saving link from {} to {}".format(self.name, other))
         if other not in self.links:
             self.links.append(other)
         if self.name not in self.parent.stickies[other].links:

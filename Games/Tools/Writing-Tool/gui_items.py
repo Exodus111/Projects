@@ -18,9 +18,24 @@ class Canv(Canvas):
         self.sticky_size = (250, 220)
         self.stickies = {}
         self.lines = {}
+        self.scale_by = 0
         self.bind("<ButtonPress-1>", self.smark)
         self.bind("<B1-Motion>", self.sdrag)
         self.bind("<Button-3>", self.insert_node)
+        self.bind("<Button-4>", self.zoom_up)
+        self.bind("<Button-5>", self.zoom_down)
+
+
+    def zoom_up(self, e):
+        if self.scale_by <= 0:
+            self.scale("all", e.x, e.y, 1.05, 1.05)
+            self.configure(scrollregion = self.bbox("all"))
+            self.scale_by += 1
+
+    def zoom_down(self, e):
+        self.scale("all", e.x, e.y, 0.95, 0.95)
+        self.configure(scrollregion = self.bbox("all"))
+        self.scale_by -= 1
 
     def mouse_coords(self):
         x = self.canvasx(self.parent.parent.winfo_pointerx() - self.winfo_rootx())
@@ -34,7 +49,6 @@ class Canv(Canvas):
         self.scan_dragto(pos.x, pos.y, 5)
 
     def insert_node(self, e):
-        print("Running insert node: ")
         pos = (e.x, e.y)
         name = numerate("Node")
         self.make_node(name, pos)
@@ -46,7 +60,6 @@ class Canv(Canvas):
         node.ok_cancel_buttons()
         if links:
             node.links = links
-        print(links)
 
     def save_info(self, name, entries, pos, links):
         if "Node" in name:

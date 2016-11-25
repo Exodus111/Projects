@@ -34,6 +34,7 @@ class Main(Frame):
         node = Node(self, numerate("Name"))
         node.insert_entry_field("Name", focus=True)
         node.ok_cancel_buttons()
+        node.entries["Entry"]["Name"].bind("<Return>", lambda x : node.save())
 
     def save_info(self, name_id, entries, *args):
         if "Name" in name_id:
@@ -77,10 +78,7 @@ class Main(Frame):
 
     # Test function, to be removed.
     def get_info(self):
-        print("Getting Info: ")
-        for canv in self.canvasi:
-            for sticky in canv.stickies:
-                print("{} ----> {}".format(sticky, canv.stickies[sticky].links))
+        pass
 
 
 if __name__ == "__main__":
