@@ -5,14 +5,14 @@ from tkinter import Canvas, Menu, Label
 from mod_items import *
 
 class Canv(Canvas):
-    def __init__(self, parent, name, size):
+    def __init__(self, parent, name):
         Canvas.__init__(self, parent)
         self.parent = parent
         self.name = name
         self.config(bg="white")
-        self.size = size
-        self.width = size[0]
-        self.height = size[1]
+        #self.size = size
+        #self.width = size[0]
+        #self.height = size[1]
         self.info = defaultdict(dict)
         self.marked = None
         self.sticky_size = (250, 220)
@@ -31,11 +31,21 @@ class Canv(Canvas):
             self.scale("all", e.x, e.y, 1.05, 1.05)
             self.configure(scrollregion = self.bbox("all"))
             self.scale_by += 1
+        else:
+            for sticky in self.stickies:
+                pos = self.coords(self.stickies[sticky].rect_id)
+                x = pos[0] + (pos[2] - pos[0])/2
+                y = pos[1] + (pos[3] - pos[1])/2
+                self.stickies[sticky].pos = (x,y)
+                self.stickies[sticky].w_id = self.create_window(self.stickies[sticky].pos, window=self.stickies[sticky])
+
 
     def zoom_down(self, e):
         self.scale("all", e.x, e.y, 0.95, 0.95)
         self.configure(scrollregion = self.bbox("all"))
         self.scale_by -= 1
+        for sticky in self.stickies:
+            self.delete(self.stickies[sticky].w_id)
 
     def mouse_coords(self):
         x = self.canvasx(self.parent.parent.winfo_pointerx() - self.winfo_rootx())
@@ -95,6 +105,7 @@ class TopMenuBar(Menu):
         self.newmenu.add_command(label="Save", command=self.parent.save)
         self.newmenu.add_command(label="Load", command=self.parent.load)
         self.showmenu.add_command(label="Info", command=self.parent.get_info)
+        self.showmenu.add_command(label="Save Image", command=self.parent.save_image)
         self.newmenu.add_separator()
         self.showmenu.add_separator()
         self.add_cascade(label="New", menu=self.newmenu)

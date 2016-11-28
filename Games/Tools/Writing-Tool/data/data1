@@ -1,102 +1,56 @@
 {
     "coords": {
         "Node1": [
-            313,
-            213
+            162,
+            142
         ],
         "Node2": [
-            1022,
-            179
+            1176,
+            314
         ],
         "Node3": [
-            686,
-            464
-        ],
-        "Node4": [
-            1041,
-            533
-        ],
-        "Node5": [
-            172,
-            195
-        ],
-        "Node6": [
-            934,
-            238
+            558,
+            623
         ]
     },
     "links": {
         "Node1": [
             "Node2",
-            "Node3",
-            "Node4"
+            "Node3"
         ],
         "Node2": [
             "Node1",
-            "Node3",
-            "Node4"
+            "Node3"
         ],
         "Node3": [
             "Node1",
-            "Node2",
-            "Node4"
-        ],
-        "Node4": [
-            "Node3",
-            "Node1",
             "Node2"
-        ],
-        "Node5": [
-            "Node6"
-        ],
-        "Node6": [
-            "Node5"
         ]
     },
     "names": [
-        "Heidi",
-        "Donald"
+        "Heidi"
     ],
     "nodes": {
-        "Donald": [
-            "Node5",
-            "Node6"
-        ],
         "Heidi": [
             "Node1",
             "Node2",
-            "Node3",
-            "Node4"
+            "Node3"
         ]
     },
     "tags": {
         "Node1": [
-            "test1",
-            " test2"
+            "test3"
         ],
         "Node2": [
-            "test2",
-            " test3"
+            "test1"
         ],
         "Node3": [
-            "test4"
-        ],
-        "Node4": [
-            ""
-        ],
-        "Node5": [
             "test2"
-        ],
-        "Node6": [
-            "test1"
         ]
     },
     "text": {
-        "Node1": "asdasdasd\n",
-        "Node2": "",
-        "Node3": "asdasdsda\n\nasdsaddsa",
-        "Node4": "",
-        "Node5": "",
-        "Node6": ""
+        "Node1": "adfasdasd\n\nsgsgsdsdfsdfsdf",
+        "Node2": "asdasd\nasasdasd",
+        "Node3": "sdfadfadf\nsdfsdfsdf"
     }
 }

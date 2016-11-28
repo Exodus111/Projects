@@ -33,6 +33,7 @@ class Sticker(Frame):
         self.bind("<ButtonRelease-3>", self.pair_boxes)
         self.bind("<B3-Motion>", self.move_line)
 
+
     def pair_boxes(self, e):
         x,y = self.parent.mouse_coords()
         overlap = self.parent.find_overlapping(x-5, y-5, x+5, y+5)

@@ -4,6 +4,8 @@ from collections import defaultdict
 from tkinter import Tk, filedialog
 from tkinter.ttk import Frame, Label, Entry, Button, Style
 from path import Path
+from PIL import Image
+from mss import mss
 
 from db import DataBase
 from gui_items import *
@@ -14,7 +16,7 @@ class Main(Frame):
         Frame.__init__(self, parent)
         self.parent = parent
         self.window = None
-        self.size = (960, 480)
+        self.size = (4096, 2160)
         self.width = self.size[0]
         self.height = self.size[1]
         self.canvasi = []
@@ -40,7 +42,7 @@ class Main(Frame):
         if "Name" in name_id:
             name = "".join(entries["Entry"]["Name"])
             self.db.add_npc(name)
-            self.canvasi.append(Canv(self, name, self.size))
+            self.canvasi.append(Canv(self, name))
             self.canvas_switch(name)
             self.menubar.add_button("show", name, self.canvas_switch)
 
@@ -60,11 +62,12 @@ class Main(Frame):
         fname = filedialog.askopenfile(parent=self, mode='rb', title='Choose a file', initialdir="./data")
         self.db.load(fname.name)
         for name in self.db.names:
-            canv = Canv(self, name, self.size)
+            canv = Canv(self, name)
             self.canvasi.append(canv)
             self.canvas_switch(name)
             self.menubar.add_button("show", name, self.canvas_switch)
             for node in self.db.nodes[name]:
+                noname = numerate("Node") 
                 n = {}
                 n[node] = {}
                 n[node]["tags"] = self.db.tags[node]
@@ -76,9 +79,16 @@ class Main(Frame):
                 for other in canv.stickies[sticky].links:
                     canv.stickies[sticky].connect2box(other, True)
 
+    def save_image(self):
+        for num, canv in enumerate(self.canvasi):
+            canv.postscript(file="filetest{}.ps".format(num), colormode='color')
+
+
     # Test function, to be removed.
     def get_info(self):
-        pass
+        for canv in self.canvasi:
+            ca_dict = canv.config()
+            print("{}{}".format(ca_dict["height"], ca_dict["width"]))
 
 
 if __name__ == "__main__":
