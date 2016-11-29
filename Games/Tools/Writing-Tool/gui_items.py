@@ -10,17 +10,14 @@ class Canv(Canvas):
         self.parent = parent
         self.name = name
         self.config(bg="white")
-        #self.size = size
-        #self.width = size[0]
-        #self.height = size[1]
         self.info = defaultdict(dict)
         self.marked = None
         self.sticky_size = (250, 220)
         self.stickies = {}
         self.lines = {}
         self.scale_by = 0
-        self.bind("<ButtonPress-1>", self.smark)
-        self.bind("<B1-Motion>", self.sdrag)
+        self.bind("<ButtonPress-2>", self.smark)
+        self.bind("<B2-Motion>", self.sdrag)
         self.bind("<Button-3>", self.insert_node)
         self.bind("<Button-4>", self.zoom_up)
         self.bind("<Button-5>", self.zoom_down)
@@ -29,7 +26,6 @@ class Canv(Canvas):
     def zoom_up(self, e):
         if self.scale_by <= 0:
             self.scale("all", e.x, e.y, 1.05, 1.05)
-            self.configure(scrollregion = self.bbox("all"))
             self.scale_by += 1
         else:
             for sticky in self.stickies:
@@ -38,11 +34,11 @@ class Canv(Canvas):
                 y = pos[1] + (pos[3] - pos[1])/2
                 self.stickies[sticky].pos = (x,y)
                 self.stickies[sticky].w_id = self.create_window(self.stickies[sticky].pos, window=self.stickies[sticky])
+                self.stickies[sticky].draw_box(box_id=self.stickies[sticky].rect_id)
 
 
     def zoom_down(self, e):
         self.scale("all", e.x, e.y, 0.95, 0.95)
-        self.configure(scrollregion = self.bbox("all"))
         self.scale_by -= 1
         for sticky in self.stickies:
             self.delete(self.stickies[sticky].w_id)
@@ -52,11 +48,11 @@ class Canv(Canvas):
         y = self.canvasy(self.parent.parent.winfo_pointery() - self.winfo_rooty())
         return x,y
 
-    def smark(self, pos):
-        self.scan_mark(pos.x, pos.y)
+    def smark(self, e):
+        self.scan_mark(e.x, e.y)
 
-    def sdrag(self, pos):
-        self.scan_dragto(pos.x, pos.y, 5)
+    def sdrag(self, e):
+        self.scan_dragto(e.x, e.y, 5)
 
     def insert_node(self, e):
         pos = (e.x, e.y)
@@ -73,6 +69,7 @@ class Canv(Canvas):
 
     def save_info(self, name, entries, pos, links):
         if "Node" in name:
+            pos = (self.canvasx(pos[0]), self.canvasy(pos[1]))
             node = {name:{"tags":entries["Entry"]["tags"],
                         "text":entries["Text"]["text"],
                         "links":links, "coords":pos}}
@@ -89,7 +86,7 @@ class Canv(Canvas):
             sticker.my_lines = self.stickies[name].my_lines
             self.delete(self.stickies[name].w_id)
             self.delete(self.stickies[name].rect_id)
-        w_id = self.create_window(node[name]["coords"], window=sticker)
+        w_id = self.create_window(sticker.pos, window=sticker)
         sticker.w_id = w_id
         self.stickies[name] = sticker
         sticker.draw_box()

@@ -1,4 +1,4 @@
-from tkinter import Toplevel, Text
+from tkinter import Toplevel, Text, Listbox
 from tkinter.ttk import Frame, Label, Entry, Button
 from collections import defaultdict
 
@@ -28,10 +28,13 @@ class Sticker(Frame):
         self.my_lines = {}
         self.links = []
         self.rect_id = None
-        self.bind("<B1-Motion>", self.move)
-        self.bind("<ButtonPress-3>", self.draw_line)
-        self.bind("<ButtonRelease-3>", self.pair_boxes)
-        self.bind("<B3-Motion>", self.move_line)
+        self.bindings(self)
+
+    def bindings(self, w):
+        w.bind("<B1-Motion>", self.move)
+        w.bind("<ButtonPress-3>", self.draw_line)
+        w.bind("<ButtonRelease-3>", self.pair_boxes)
+        w.bind("<B3-Motion>", self.move_line)
 
 
     def pair_boxes(self, e):
@@ -48,7 +51,7 @@ class Sticker(Frame):
     def connect2box(self, other, load=False):
         coords = self.parent.stickies[other].pos
         if load:
-            self.my_line = self.parent.create_line(self.pos[0], self.pos[1], coords[0], coords[1], fill="green")
+            self.my_line = self.parent.create_line(self.pos[0], self.pos[1], coords[0], coords[1], fill="green", width=3)
         else:
             self.parent.coords(self.my_line, self.pos[0], self.pos[1], coords[0], coords[1])
         self.my_lines[self.my_line] = [self.pos[0], self.pos[1], coords[0], coords[1]]
@@ -63,7 +66,7 @@ class Sticker(Frame):
 
     def draw_line(self, e):
         new_x, new_y = self.parent.mouse_coords()
-        self.my_line = self.parent.create_line(self.pos[0], self.pos[1], new_x, new_y, fill="green")
+        self.my_line = self.parent.create_line(self.pos[0], self.pos[1], new_x, new_y, fill="green", width=3)
 
 
     def move_line(self, e):
@@ -89,10 +92,7 @@ class Sticker(Frame):
         entry.insert(0, ",".join(text))
         entry.pack(fill="both", expand=True)
         entry.config(state="readonly")
-        entry.bind("<B1-Motion>", self.move)
-        entry.bind("<Button-3>", self.draw_line)
-        entry.bind("<B3-Motion>", self.move_line)
-        entry.bind("<ButtonRelease-3>", self.pair_boxes)
+        self.bindings(entry)
         self.entries.append(entry)
 
     def add_text(self, text):
@@ -101,10 +101,7 @@ class Sticker(Frame):
         field.pack()
         field.insert("1.0", text)
         field.config(state="disable")
-        field.bind("<B1-Motion>", self.move)
-        field.bind("<Button-3>", self.draw_line)
-        field.bind("<B3-Motion>", self.move_line)
-        field.bind("<ButtonRelease-3>", self.pair_boxes)
+        self.bindings(field)
         self.text_fields.append(field)
 
     def add_buttons(self):
@@ -112,15 +109,20 @@ class Sticker(Frame):
         frame.pack(fill="x")
         edit = Button(frame, text="Edit", command=self.edit)
         edit.pack(side="right", padx=5, pady=5)
+        delete = Button(frame, text="Del", command=self.delete_menu)
+        delete.pack(side="right")
 
-    def draw_box(self, color="green"):
+    def draw_box(self, color="green", box_id=None):
         x1 = self.pos[0]-(self.size[0]/2)
         y1 = self.pos[1]-(self.size[1]/2)
         x2 = x1 + self.size[0]
         y2 = y1 + self.size[1]
         ad = 27                          #<--Adjustment variable
         bbox = ((x1, y1-ad), (x2, y2+ad))
-        self.rect_id = self.parent.create_rectangle(bbox, width=7., outline=color)
+        if not box_id:
+            self.rect_id = self.parent.create_rectangle(bbox, width=7., outline=color)
+        else:
+            self.parent.coords(box_id, (x1, y1-ad, x2, y2+ad))
 
 
     def edit(self):
@@ -128,6 +130,29 @@ class Sticker(Frame):
         text = [text.get("1.0", "end-1c") for text in self.text_fields]
         links = self.links
         node = self.parent.make_node(self.name, self.pos, (entries, text), links)
+
+    def delete_menu(self):
+        delmenu = Node(self, self.name, self.pos)
+        item_list = ["This box: {}".format(self.name)]
+        for lin in self.links:
+            item_list.append("The line to: {}".format(lin))
+        delmenu.insert_list(item_list)
+
+    def delete_items(self, inx):
+        for i in inx:
+            if i == 0:
+                #Delete Rect.
+                #Delete DB entry.
+                #Delete relation in OTHER Stickies.
+                self.destroy()
+            else:
+                #Delete line in self.links.
+                #Delete line in self.lines.
+                #Delete DB Entry (if any).
+                #Delete line from Other stickies.
+                #Remove line from Canvas.
+
+
 
 class Node(Toplevel):
     """ This class is a catchall for all popup windows."""
@@ -161,6 +186,16 @@ class Node(Toplevel):
         button_frame.pack(fill="x")
         cancel_button.pack(side="right", padx=5, pady=5)
         ok_button.pack(side="right")
+
+    def insert_list(self, items):
+        frame = self.frame
+        frame.pack(fill="y")
+        lb = Listbox(frame, selectmode="multiple")
+        for i in items:
+            lb.insert("end", i)
+        lb.pack()
+        self.ok_cancel_buttons(call=lambda : self.parent.delete_items(lb.curselection()))
+
 
     def insert_entry_field(self, txt, default=None, focus=False):
         frame = Frame(self.frame)

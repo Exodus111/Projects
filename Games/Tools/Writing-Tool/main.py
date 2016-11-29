@@ -4,8 +4,6 @@ from collections import defaultdict
 from tkinter import Tk, filedialog
 from tkinter.ttk import Frame, Label, Entry, Button, Style
 from path import Path
-from PIL import Image
-from mss import mss
 
 from db import DataBase
 from gui_items import *
@@ -67,7 +65,7 @@ class Main(Frame):
             self.canvas_switch(name)
             self.menubar.add_button("show", name, self.canvas_switch)
             for node in self.db.nodes[name]:
-                noname = numerate("Node") 
+                noname = numerate("Node")
                 n = {}
                 n[node] = {}
                 n[node]["tags"] = self.db.tags[node]
@@ -81,7 +79,9 @@ class Main(Frame):
 
     def save_image(self):
         for num, canv in enumerate(self.canvasi):
-            canv.postscript(file="filetest{}.ps".format(num), colormode='color')
+            x1, y1, x2, y2 = canv.bbox("all")
+            canv.postscript(file="filetest{}.ps".format(num), colormode='color', x=x1-25, y=y1-25, width=x2+25, height=y2+25)
+            print("Writing filetest{}.ps...".format(num))
 
 
     # Test function, to be removed.
