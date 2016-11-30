@@ -40,12 +40,14 @@ class Sticker(Frame):
     def pair_boxes(self, e):
         x,y = self.parent.mouse_coords()
         overlap = self.parent.find_overlapping(x-5, y-5, x+5, y+5)
+        to_be_removed = True
         if len(overlap) >= 2:
             for sticky in self.parent.stickies:
-                if self.parent.stickies[sticky].w_id == overlap[0]:
+                if self.parent.stickies[sticky].w_id == overlap[0] and self.w_id != overlap[0]:
                     self.connect2box(sticky)
                     self.save_connect(sticky)
-        else:
+                    to_be_removed = False
+        if to_be_removed:
             self.parent.delete(self.my_line)
 
     def connect2box(self, other, load=False):
@@ -139,19 +141,35 @@ class Sticker(Frame):
         delmenu.insert_list(item_list)
 
     def delete_items(self, inx):
-        for i in inx:
-            if i == 0:
-                #Delete Rect.
-                #Delete DB entry.
-                #Delete relation in OTHER Stickies.
+        for j in inx:
+            if j == 0: #<---Selected the Box.
+                self.parent.delete(self.rect_id)
+                self.parent.parent.db.delete_node(self.parent.name, self.name)
+                for stick in self.parent.stickies:
+                    if self.parent.stickies[stick] != self:
+                        for link in self.parent.stickies[stick].links:
+                            if link == self.name:
+                                self.parent.stickies[stick].links.remove(link)
+                for link in self.links:
+                    self.remove_line(link)
                 self.destroy()
-            else:
-                #Delete line in self.links.
-                #Delete line in self.lines.
-                #Delete DB Entry (if any).
-                #Delete line from Other stickies.
-                #Remove line from Canvas.
+            else: #<---Selected a line.
+                self.parent.parent.db.delete_link(self.name, self.links[j-1])
+                self.remove_line(self.links[j-1])
 
+    def remove_line(self, node):
+        for stick in self.parent.stickies:
+            to_be_removed = []
+            if self.parent.stickies[stick].name == node:
+                for link in self.parent.stickies[stick].links:
+                    if link == self.name:
+                        self.parent.stickies[stick].links.remove(link)
+                for i in self.parent.stickies[stick].my_lines:
+                    if i in self.my_lines.keys():
+                        to_be_removed.append(i)
+            for j in to_be_removed:
+                self.parent.delete(j)
+                del self.parent.stickies[stick].my_lines[j]
 
 
 class Node(Toplevel):
@@ -194,7 +212,11 @@ class Node(Toplevel):
         for i in items:
             lb.insert("end", i)
         lb.pack()
-        self.ok_cancel_buttons(call=lambda : self.parent.delete_items(lb.curselection()))
+        self.ok_cancel_buttons(call=lambda : self.del_items(lb.curselection()))
+
+    def del_items(self, selection):
+        self.parent.delete_items(selection)
+        self.destroy()
 
 
     def insert_entry_field(self, txt, default=None, focus=False):

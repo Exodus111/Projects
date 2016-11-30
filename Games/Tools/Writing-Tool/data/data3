@@ -1,0 +1,53 @@
+{
+    "coords": {
+        "Node1": [
+            411.0,
+            141.0
+        ],
+        "Node3": [
+            771.0,
+            243.0
+        ],
+        "Node4": [
+            1232.0,
+            574.0
+        ]
+    },
+    "links": {
+        "Node1": [
+            "Node4",
+            "Node3"
+        ],
+        "Node3": [],
+        "Node4": [
+            "Node1",
+            "Node3"
+        ]
+    },
+    "names": [
+        "Heidi"
+    ],
+    "nodes": {
+        "Heidi": [
+            "Node1",
+            "Node3",
+            "Node4"
+        ]
+    },
+    "tags": {
+        "Node1": [
+            ""
+        ],
+        "Node3": [
+            "test2"
+        ],
+        "Node4": [
+            "test3"
+        ]
+    },
+    "text": {
+        "Node1": "",
+        "Node3": "asdasdasda",
+        "Node4": "aadfafa\nsd\n\nsdfsdfsdf"
+    }
+}

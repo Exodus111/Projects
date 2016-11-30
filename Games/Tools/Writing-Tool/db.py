@@ -38,9 +38,9 @@ class DataBase():
         node_id = [i for i, j in node.items()][0]
         if node_id not in self.nodes[npc]:
             self.nodes[npc].append(node_id)
-        self.tags[node_id] = node[node_id]["tags"]
+        self.tags[node_id] = node[node_id]["tags"].copy()
         self.text[node_id] = node[node_id]["text"]
-        self.links[node_id] = node[node_id]["links"]
+        self.links[node_id] = node[node_id]["links"].copy()
         self.coords[node_id] = node[node_id]["coords"]
 
     def update_links(self, node, l):
@@ -48,6 +48,23 @@ class DataBase():
             if t not in self.links[node]:
                 self.links[node].append(t)
 
+    def delete_node(self, npc, node_id):
+        self.nodes[npc].remove(node_id)
+        del self.tags[node_id]
+        del self.text[node_id]
+        del self.links[node_id]
+        del self.coords[node_id]
+        for n in self.links:
+            for link in self.links[n]:
+                if link == node_id:
+                    self.links[n].remove(link)
+
+    def delete_link(self, origin, target):
+        for n in self.links:
+            if n == origin:
+                for link in self.links[n]:
+                    if link == target:
+                        self.links[n].remove(link)
 
     def save(self, fname):
         """
