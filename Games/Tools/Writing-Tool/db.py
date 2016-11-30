@@ -60,11 +60,9 @@ class DataBase():
                     self.links[n].remove(link)
 
     def delete_link(self, origin, target):
-        for n in self.links:
-            if n == origin:
-                for link in self.links[n]:
-                    if link == target:
-                        self.links[n].remove(link)
+            for link in self.links[origin]:
+                if link == target:
+                    self.links[origin].remove(link)
 
     def save(self, fname):
         """

@@ -1,0 +1,80 @@
+{
+    "coords": {
+        "Node2": [
+            174.0,
+            158.0
+        ],
+        "Node3": [
+            1154.0,
+            211.0
+        ],
+        "Node4": [
+            254.0,
+            535.0
+        ],
+        "Node5": [
+            1095.0,
+            620.0
+        ],
+        "Node6": [
+            697.0,
+            360.0
+        ]
+    },
+    "links": {
+        "Node2": [
+            "Node3",
+            "Node4"
+        ],
+        "Node3": [
+            "Node2",
+            "Node5"
+        ],
+        "Node4": [
+            "Node5"
+        ],
+        "Node5": [],
+        "Node6": [
+            "Node3",
+            "Node2",
+            "Node4",
+            "Node5"
+        ]
+    },
+    "names": [
+        "Donald"
+    ],
+    "nodes": {
+        "Donald": [
+            "Node2",
+            "Node3",
+            "Node4",
+            "Node5",
+            "Node6"
+        ]
+    },
+    "tags": {
+        "Node2": [
+            ""
+        ],
+        "Node3": [
+            ""
+        ],
+        "Node4": [
+            ""
+        ],
+        "Node5": [
+            ""
+        ],
+        "Node6": [
+            "test1"
+        ]
+    },
+    "text": {
+        "Node2": "",
+        "Node3": "",
+        "Node4": "",
+        "Node5": "",
+        "Node6": ""
+    }
+}

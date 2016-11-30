@@ -68,10 +68,10 @@ class Main(Frame):
                 noname = numerate("Node")
                 n = {}
                 n[node] = {}
-                n[node]["tags"] = self.db.tags[node]
+                n[node]["tags"] = self.db.tags[node].copy()
                 n[node]["text"] = self.db.text[node]
                 n[node]["coords"] = self.db.coords[node]
-                n[node]["links"] = self.db.links[node]
+                n[node]["links"] = self.db.links[node].copy()
                 canv.insert_sticker(node, n)
             for sticky in canv.stickies:
                 for other in canv.stickies[sticky].links:
