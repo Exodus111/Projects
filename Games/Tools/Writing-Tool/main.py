@@ -39,7 +39,6 @@ class Main(Frame):
     def save_info(self, name_id, entries, *args):
         if "Name" in name_id:
             name = "".join(entries["Entry"]["Name"])
-            self.db.add_npc(name)
             self.canvasi.append(Canv(self, name))
             self.canvas_switch(name)
             self.menubar.add_button("show", name, self.canvas_switch)
@@ -53,19 +52,37 @@ class Main(Frame):
                 canv.pack_forget()
 
     def save(self):
+        self.db = DataBase()
+        for canv in self.canvasi:
+            self.db.add_npc(canv.name)
+            for stick in canv.stickies:
+                node = {canv.stickies[stick].name:{"tags":[], "text":"", "links":{}, "coords":{}}}
+                node[canv.stickies[stick].name]["tags"] = [field.get() for field in canv.stickies[stick].entries]
+                node[canv.stickies[stick].name]["text"] = "".join([text.get("1.0", "end-1c") for text in canv.stickies[stick].text])
+                node[canv.stickies[stick].name]["links"] = canv.stickies[stick].links
+                node[canv.stickies[stick].name]["coords"] = canv.stickies[stick].pos
+                self.db.add_node(canv.name, node)
         fname = filedialog.asksaveasfile(parent=self, mode='w', title='Choose a filename', initialdir="./data")
         self.db.save(fname.name)
 
     def load(self):
         fname = filedialog.askopenfile(parent=self, mode='rb', title='Choose a file', initialdir="./data")
         self.db.load(fname.name)
+        for canvas in self.canvasi:
+            self.menubar.remove_item(canvas.name)
+            canvas.delete("all")
+            canvas.destroy()
+        self.canvasi = []
         for name in self.db.names:
+            num = 0
             canv = Canv(self, name)
             self.canvasi.append(canv)
             self.canvas_switch(name)
             self.menubar.add_button("show", name, self.canvas_switch)
             for node in self.db.nodes[name]:
-                noname = numerate("Node")
+                cur = int(node[-1])
+                if cur > num:
+                    num = cur
                 n = {}
                 n[node] = {}
                 n[node]["tags"] = self.db.tags[node].copy()
@@ -73,6 +90,8 @@ class Main(Frame):
                 n[node]["coords"] = self.db.coords[node]
                 n[node]["links"] = self.db.links[node].copy()
                 canv.insert_sticker(node, n)
+            for i in range(num):
+                noname = numerate("Node")
             for sticky in canv.stickies:
                 for other in canv.stickies[sticky].links:
                     canv.stickies[sticky].connect2box(other, True)

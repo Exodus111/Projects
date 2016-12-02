@@ -46,7 +46,7 @@ class Canv(Canvas):
     def mouse_coords(self):
         x = self.canvasx(self.parent.parent.winfo_pointerx() - self.winfo_rootx())
         y = self.canvasy(self.parent.parent.winfo_pointery() - self.winfo_rooty())
-        return x,y
+        return (x,y)
 
     def smark(self, e):
         self.scan_mark(e.x, e.y)
@@ -73,7 +73,6 @@ class Canv(Canvas):
             node = {name:{"tags":entries["Entry"]["tags"],
                         "text":entries["Text"]["text"],
                         "links":links, "coords":pos}}
-            self.parent.db.add_node(self.name, node)
             self.insert_sticker(name, node)
 
     def insert_sticker(self, name, node):
@@ -97,6 +96,7 @@ class TopMenuBar(Menu):
         self.parent = parent
         self.newmenu = Menu(self)
         self.showmenu = Menu(self)
+        self.added_buttons = []
         self.newmenu.add_command(label="NPC", command=self.parent.onNew)
         self.newmenu.add_separator()
         self.newmenu.add_command(label="Save", command=self.parent.save)
@@ -115,6 +115,15 @@ class TopMenuBar(Menu):
             self.newmenu.add_command(label=name, command=func)
         elif menu == "show":
             self.showmenu.add_command(label=name, command=func)
+        self.added_buttons.append(name)
+
+    def remove_all(self):
+        for but in self.added_buttons:
+            self.remove_item(name)
+
+    def remove_item(self, name):
+        self.showmenu.delete(name)
+
 
 if __name__ == "__main__":
     pass    #<--- For testing!

@@ -21,10 +21,11 @@ class Sticker(Frame):
         self.parent = parent
         self.pos = pos
         self.name = name
+        self.drawing = False
         self.w_id = None
         self.size = (250, 220)
         self.entries = []
-        self.text_fields = []
+        self.text = []
         self.my_lines = {}
         self.links = []
         self.rect_id = None
@@ -38,17 +39,19 @@ class Sticker(Frame):
 
 
     def pair_boxes(self, e):
-        x,y = self.parent.mouse_coords()
-        overlap = self.parent.find_overlapping(x-5, y-5, x+5, y+5)
-        to_be_removed = True
-        if len(overlap) >= 2:
-            for sticky in self.parent.stickies:
-                if self.parent.stickies[sticky].w_id == overlap[0] and self.w_id != overlap[0]:
-                    self.connect2box(sticky)
-                    self.save_connect(sticky)
-                    to_be_removed = False
-        if to_be_removed:
-            self.parent.delete(self.my_line)
+        if self.drawing:
+            x,y = self.parent.mouse_coords()
+            overlap = self.parent.find_overlapping(x-5, y-5, x+5, y+5)
+            to_be_removed = True
+            if len(overlap) >= 2:
+                for sticky in self.parent.stickies:
+                    if self.parent.stickies[sticky].w_id == overlap[0] and self.w_id != overlap[0]:
+                        self.connect2box(sticky)
+                        self.save_connect(sticky)
+                        to_be_removed = False
+            if to_be_removed:
+                self.parent.delete(self.my_line)
+            self.drawing = False
 
     def connect2box(self, other, load=False):
         coords = self.parent.stickies[other].pos
@@ -64,21 +67,22 @@ class Sticker(Frame):
             self.links.append(other)
         if self.name not in self.parent.stickies[other].links:
             self.parent.stickies[other].links.append(self.name)
-        self.parent.parent.db.update_links(self.name, self.links)
 
     def draw_line(self, e):
+        self.drawing = True
         new_x, new_y = self.parent.mouse_coords()
         self.my_line = self.parent.create_line(self.pos[0], self.pos[1], new_x, new_y, fill="green", width=3)
 
 
     def move_line(self, e):
-        new_x, new_y = self.parent.mouse_coords()
-        self.parent.coords(self.my_line, (self.pos[0], self.pos[1], new_x, new_y))
+        if self.drawing:
+            new_x, new_y = self.parent.mouse_coords()
+            self.parent.coords(self.my_line, (self.pos[0], self.pos[1], new_x, new_y))
 
     def move(self, e):
         self.parent.move(self.w_id, e.x, e.y)
         self.parent.move(self.rect_id, e.x, e.y)
-        self.pos = [int(co) for co in self.parent.coords(self.w_id)]
+        self.pos = tuple([int(co) for co in self.parent.coords(self.w_id)])
         for line in self.my_lines.keys():
             self.parent.coords(line, self.pos[0], self.pos[1], self.my_lines[line][2], self.my_lines[line][3])
             for sticky in self.parent.stickies:
@@ -104,7 +108,7 @@ class Sticker(Frame):
         field.insert("1.0", text)
         field.config(state="disable")
         self.bindings(field)
-        self.text_fields.append(field)
+        self.text.append(field)
 
     def add_buttons(self):
         frame = Frame(self)
@@ -129,7 +133,7 @@ class Sticker(Frame):
 
     def edit(self):
         entries = [field.get() for field in self.entries]
-        text = [text.get("1.0", "end-1c") for text in self.text_fields]
+        text = [text.get("1.0", "end-1c") for text in self.text]
         links = self.links
         node = self.parent.make_node(self.name, self.pos, (entries, text), links)
 
@@ -144,22 +148,22 @@ class Sticker(Frame):
         for j in inx:
             if j == 0: #<---Selected the Box.
                 self.parent.delete(self.rect_id)
-                self.parent.parent.db.delete_node(self.parent.name, self.name)
+                for link in self.links:
+                    self.remove_line(link)
                 for stick in self.parent.stickies:
-                    if self.parent.stickies[stick] != self:
+                    if stick != self.name:
                         for link in self.parent.stickies[stick].links:
                             if link == self.name:
                                 self.parent.stickies[stick].links.remove(link)
-                for link in self.links:
-                    self.remove_line(link)
+                del self.parent.stickies[self.name]
                 self.destroy()
             else: #<---Selected a line.
-                self.parent.parent.db.delete_link(self.name, self.links[j-1])
                 self.remove_line(self.links[j-1])
+                self.links.remove(self.links[j-1])
 
     def remove_line(self, node):
+        to_be_removed = []
         for stick in self.parent.stickies:
-            to_be_removed = []
             if self.parent.stickies[stick].name == node:
                 for link in self.parent.stickies[stick].links:
                     if link == self.name:
@@ -167,9 +171,12 @@ class Sticker(Frame):
                 for i in self.parent.stickies[stick].my_lines:
                     if i in self.my_lines.keys():
                         to_be_removed.append(i)
-            for j in to_be_removed:
-                self.parent.delete(j)
-                del self.parent.stickies[stick].my_lines[j]
+                for j in to_be_removed:
+                    del self.parent.stickies[stick].my_lines[j]
+        for h in to_be_removed:
+            self.parent.delete(h)
+
+
 
 
 class Node(Toplevel):

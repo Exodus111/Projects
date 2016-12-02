@@ -32,8 +32,8 @@ class DataBase():
         The node should be a dict, the node id as key, containing 4 more dicts.
         The first has the key 'tags', and its value should be a list containing strings.
         The second has the key 'text', its value should be a string.
-        The third dict has the key links and contains another dictionary.
-        The fourth...
+        The third dict has the key 'links' and contains another dictionary.
+        The fourth has the key 'coords' and contains another dict.
         """
         node_id = [i for i, j in node.items()][0]
         if node_id not in self.nodes[npc]:
