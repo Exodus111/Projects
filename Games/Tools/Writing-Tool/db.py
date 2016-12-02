@@ -32,22 +32,37 @@ class DataBase():
         The node should be a dict, the node id as key, containing 4 more dicts.
         The first has the key 'tags', and its value should be a list containing strings.
         The second has the key 'text', its value should be a string.
-        The third dict has the key links and contains another dictionary.
-        The fourth...
+        The third dict has the key 'links' and contains another dictionary.
+        The fourth has the key 'coords' and contains another dict.
         """
         node_id = [i for i, j in node.items()][0]
         if node_id not in self.nodes[npc]:
             self.nodes[npc].append(node_id)
-        self.tags[node_id] = node[node_id]["tags"]
+        self.tags[node_id] = node[node_id]["tags"].copy()
         self.text[node_id] = node[node_id]["text"]
-        self.links[node_id] = node[node_id]["links"]
+        self.links[node_id] = node[node_id]["links"].copy()
         self.coords[node_id] = node[node_id]["coords"]
 
-    def update_links(self, node, links):
-        for t in links:
+    def update_links(self, node, l):
+        for t in l:
             if t not in self.links[node]:
                 self.links[node].append(t)
 
+    def delete_node(self, npc, node_id):
+        self.nodes[npc].remove(node_id)
+        del self.tags[node_id]
+        del self.text[node_id]
+        del self.links[node_id]
+        del self.coords[node_id]
+        for n in self.links:
+            for link in self.links[n]:
+                if link == node_id:
+                    self.links[n].remove(link)
+
+    def delete_link(self, origin, target):
+            for link in self.links[origin]:
+                if link == target:
+                    self.links[origin].remove(link)
 
     def save(self, fname):
         """

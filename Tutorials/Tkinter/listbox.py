@@ -1,6 +1,6 @@
-
-from ttk import Frame, Label
-from Tkinter import Tk, BOTH, Listbox, StringVar, END
+#!/usr/bin/python3
+from tkinter.ttk import Frame, Label
+from tkinter import Tk, BOTH, Listbox, StringVar, END
 
 class Example(Frame):
     def __init__(self, parent):
@@ -15,7 +15,7 @@ class Example(Frame):
         acts = ["Scarlett Johansson", "Rachel Weiss", "Natalie Portman", "Jessica Alba", "Angelina jolie", "Emma Stone", "Sandra Bullock", "Julia Roberts",
         "Jennifer Lawrence", "Mila Kunis", "Jennifer Aniston", "Charlize Theron", "Cameron Diaz", "Nicole Kidman", "Meryl Streep", "Reese Witherspoon"]
 
-        lb = Listbox(self)
+        lb = Listbox(self, selectmode="multiple")
         for i in acts:
             lb.insert(END, i)
 
