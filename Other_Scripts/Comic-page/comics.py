@@ -53,14 +53,25 @@ class Series():
             self.toplayer_thumbs[comic.id] = comic.get_image(0)
         for sub in self.folder.dirs():
             f_id = self.numerate("folder")
-            for f in sub.files("*.cbr"):
-                c = Comic(f)
-                c.id = self.numerate("issue")
-                c.folder_id = f_id
-                self.comics[c.folder_id].append(c)
-                if f_id not in self.subfolder_thumbs.keys():
-                    self.toplayer_thumbs[f_id] = c.get_image(0)
-                self.subfolder_thumbs[f_id][c.id] = c.get_image(0)
+            self._find_files(sub, f_id)
+
+    def _find_files(self, fold, f_id):
+        """
+        A recursive method to find .cbr files in any and all subfolders.
+         'fold' : (Path object) The path.py object of the folder.
+        """
+        for f in fold.files("*.cbr"):
+            c = Comic(f)
+            c.id = self.numerate("issue")
+            c.folder_id = f_id
+            self.comics[c.folder_id].append(c)
+            if f_id not in self.subfolder_thumbs.keys():
+                self.toplayer_thumbs[f_id] = c.get_image(0)
+            self.subfolder_thumbs[f_id][c.id] = c.get_image(0)
+        if fold.dirs() != []:
+            for sub in fold.dirs():
+                fid = self.numerate("folder")
+                self._find_files(sub, fid)
 
     def set_active_issue(self, c_id):
         """
@@ -106,7 +117,6 @@ class Comic():
         self.comic_dict["lastpage"] = len(self.img_list)
         self.folder = Path("./{}".format(name))
         if not self.folder.exists(): self.folder.mkdir()
-
 
     def _rem_folder(self, fn):
         """
