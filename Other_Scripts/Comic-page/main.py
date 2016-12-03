@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # WebComic App by Exodus111
 # www.github.com/exodus111
 # Use freely, but credit me.
