@@ -1,6 +1,6 @@
+#!/usr/bin/python3
 
 import pygame as pg
-import numpy as np
 import json
 from myfuncs import *
 from pygame.locals import *
@@ -26,14 +26,16 @@ class Main(Template):
         self.block = 64
         self.dt = 0.
         self.empty_tile = pg.image.load("./tiles/Empty_tile_64p.png").convert_alpha()
-        self.map1 = Map(self.size, (40,40), self.block, self.empty_tile)
-        self.map2 = Map(self.size, (40,40), self.block, self.empty_tile)
-        self.menu = Map(self.size, (2,14), self.block, self.empty_tile)
+        self.map1 = Map("Background", self.size, (40,40), self.block, self.empty_tile)
+        self.map2 = Map("Foreground", self.size, (40,40), self.block, self.empty_tile)
+        self.menu = Map("Menu", self.size, (2,14), self.block, self.empty_tile)
         self.menu_list = []
-        self.palette = self.setup_menu()
+        self.palette = self.setup_palette()
         self.palette.xy = [250,0]
         self.clip = pg.Rect(0,0, self.size[0],self.size[1])
         self.c_pos = self.clip.topleft
+        self.show_full_map = False
+        self.full_map = None
         self.current_tile = None
         self.show_foreground = -1
         self.right_m_button = False
@@ -43,7 +45,7 @@ class Main(Template):
         self.m_select_rect = pg.Rect(1,1,1,1)
         self.button1 = Button((120, 20), (129,1), "Menu")
         self.drop_menu = Menu((120, 160), (129, 21))
-        self.drop_menu.add_buttons(4, ["Save", "Load", "Palette", "Info"])
+        self.drop_menu.add_buttons(5, ["Save", "Load", "Palette", "See Map", "Info"])
         self.drop_menu.set_bg_color(CONCRETE)
         self.load_menu = self.setup_loadmenu()
         self.floating_text = FloatingText("no text", self.size)
@@ -99,6 +101,9 @@ class Main(Template):
             screen_rect.x += self.map1.xy[0]
             screen_rect.y += self.map1.xy[1]
             pg.draw.rect(self.screen, WHITE, screen_rect, 1)
+        if self.show_full_map:
+            if self.full_map:
+                self.screen.blit(self.full_map, (0,0))
 
         self.floating_text.draw(self.screen)
 
@@ -118,12 +123,12 @@ class Main(Template):
         self.map2.setup(CONCRETE, 200)
         self.menu.setup(CYAN)
 
-    def setup_menu(self):
+    def setup_palette(self):
         sheet = SpriteSheet("img/magecity_64p.png", 64, (0,0), (8,44))
         self.menu_list = sum(sheet.image_list, [])
         length = len(self.menu_list)
         size = (10, int(length/10))
-        menu = Map(self.size, size, self.block, self.empty_tile)
+        menu = Map("Palette", self.size, size, self.block, self.empty_tile)
         menu.setup(CYAN)
         for i, tile in enumerate(menu.group):
             tile.filename = "{}".format(i)
@@ -165,24 +170,33 @@ class Main(Template):
     def mouse_down(self, button, pos):
         not_menu = True
         if button == 1:
-            if self.button1.click(pos):
-                not_menu = False
-            if self.button1.clicked:
-                if self.drop_menu.click(pos):
+            if not self.show_full_map:
+                if self.button1.click(pos):
                     not_menu = False
-            if self.drop_menu.buttons[1].clicked:
-                if self.load_menu.click(pos):
-                    self.loadmap()
-            if not_menu:
-                if self.drop_menu.buttons[2].clicked:
-                    self.find_tile(pos, self.palette, self.menu)
-                elif self.show_foreground > 0:
-                    self.find_tile(pos, self.menu, self.map2)
-                else:
-                    self.find_tile(pos, self.menu, self.map1)
+                if self.button1.clicked:
+                    if self.drop_menu.click(pos):
+                        not_menu = False
+                if self.drop_menu.buttons[1].clicked:
+                    if self.load_menu.click(pos):
+                        self.loadmap(self.load_menu.clickinfo)
+                elif self.drop_menu.buttons[3].clicked:
+                    self.show_map()
+                    self.drop_menu.buttons[3].clicked = False
+                if not_menu:
+                    if self.drop_menu.buttons[2].clicked:
+                        self.find_tile(pos, self.palette, self.menu)
+                    elif self.show_foreground > 0:
+                        self.find_tile(pos, self.menu, self.map2)
+                    else:
+                        self.find_tile(pos, self.menu, self.map1)
+            else:
+                self.show_full_map = False
         if button == 3:
-            self.right_m_button = True
-            self.right_m_pos = pos
+            if not self.show_full_map:
+                self.right_m_button = True
+                self.right_m_pos = pos
+            else:
+                self.take_image(self.full_map)
 
     def mouse_up(self, button, pos):
         if button == 3:
@@ -253,47 +267,53 @@ class Main(Template):
             tile.image = self.current_tile.image
             tile.dirty = 1
 
+    def show_map(self):
+        full_map = pg.Surface((40*64, 40*64))
+        for tile in self.map1.group:
+            full_map.blit(tile.image, tile.rect.topleft)
+        for tile in self.map2.group:
+            if tile.filename != "Empty_tile":
+                full_map.blit(tile.image, tile.rect.topleft)
+        self.full_map = pg.transform.smoothscale(full_map, self.size)
+        self.show_full_map = True
+
+    def take_image(self, surf):
+        folder = Path("./image")
+        amount = len(folder.files("*.jpg"))
+        filename = "{}{}{}{}".format(folder, "/map", amount, ".jpg")
+        pg.image.save(surf, filename)
+
     def savemap(self):
-        data = {
-        "Name":self.name,
-        "Background":self.map1,
-        "Foreground":self.map2,
-        "Menu":self.menu
-        }
-        save = SaveMap(data)
-        save.write_to_file("./save/savefile.sav")
+        saving = SaveMap("Empty_tile")
+        saving.add_map(self.map1)
+        saving.add_map(self.map2)
+        saving.write_to_file()
 
-    def loadmap(self):
-        loadmap = LoadMap()
-        data = loadmap.load_from_file("./save/savefile.sav", self.menu_list)
-        self.name = data["Name"]
-        self.map1 = data["Background"]
-        self.map2 = data["Foreground"]
-        self.menu = data["Menu"]
-        print("map loaded")
+    def loadmap(self, filename):
+        load = LoadMap(filename)
+        maplist = []
+        for m in load.maps.values():
+            a_map = Map(m["info"]["name"], m["info"]["size"], m["info"]["grid"], m["info"]["block"], self.empty_tile)
+            a_map.setup(m["info"]["color"])
+            for t in a_map.group:
+                for i in m["tiles"]:
+                    if list(t.rect.topleft) in m["tiles"][i]:
+                        t.filename = i
+                        t.image = self.menu_list[int(i)]
+                        t.dirty = 1
+            maplist.append(a_map)
+        for j in maplist:
+            if j.name == "Background":
+                self.map1 = j
+            if j.name == "Foreground":
+                self.map2 = j
+        print("Loading from file...")
 
-
-    def old_savemap(self):
-        size = tuple_mult((40,40), self.block)
-        save = SaveMap("savemap", size, self.block, "img/magecity_64p.png",
-                        self.map1.group, self.map2.group)
-        save.write_to_file()
-        self.floating_text.set_text("Map Saved", True)
-
-    def old_loadmap(self):
-        select = None
-        for button in self.load_menu.buttons:
-            if button.clicked:
-                select = button.text
-        if select != None:
-            load = LoadMap(select)
-            self.map1.group = load.bg_group
-            self.map2.group = load.fg_group
-            self.floating_text.set_text("Map Loaded", True)
 
 
 class Map(object):
-    def __init__(self, screen_size, grid, block, image):
+    def __init__(self, name, screen_size, grid, block, image):
+        self.name = name
         self.screen_size = screen_size
         self.grid = grid
         self.block = block
@@ -324,11 +344,7 @@ class Map(object):
         group = pg.sprite.LayeredDirty()
         for y in range(self.grid[1]):
             for x in range(self.grid[0]):
-                tile = Tile(None, xy=(x*self.block, y*self.block))
-                tile.image = self.image
-                tile.filename = self.image_string
-                tile.rect = tile.image.get_rect()
-                tile.rect.topleft = tile.xy
+                tile = Tile(self.image, self.image_string, xy=(x*self.block, y*self.block))
                 tile.dirty = 1
                 group.add(tile)
         return group

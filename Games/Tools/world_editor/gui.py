@@ -17,9 +17,7 @@ class Button():
         self.text_xy = ((self.size[0]/2)-(size_of_text[0]/2), (self.size[1]/2)-(size_of_text[1]/2))
         self.clicked = False
         self.ren_text = self.font.render(self.text, True, self.color["FG"])
-
         self.once = 0
-
 
     def click(self, point):
         if self.collide_rect.collidepoint(point):
@@ -47,6 +45,7 @@ class Menu():
         self.surf = pg.Surface(size)
         self.rect = pg.Rect(xy, size)
         self.buttons = []
+        self.clickinfo = None
 
     def add_buttons(self, amount, text_list):
         if amount > 0:
@@ -61,6 +60,7 @@ class Menu():
             point = (pos[0] - self.xy[0], pos[1] - self.xy[1])
             for button in self.buttons:
                 if button.click(point):
+                    self.clickinfo = button.text
                     break
             return True
         else:
@@ -92,7 +92,7 @@ class FloatingText():
         text_size = tuple_div(text_size, 2)
         self.xy = tuple_div(self.size, 2)
         self.xy = tuple_sub(self.xy, text_size)
-        self.xy = (self.xy[0], int(self.xy[1]/2)) 
+        self.xy = (self.xy[0], int(self.xy[1]/2))
         self.write = write
 
     def update(self, dt):

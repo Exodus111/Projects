@@ -1,4 +1,12 @@
 from path import Path
+import os
+
+def folder_check():
+    #This is a hack for Atom, since it doesn't run your file from the files own directory.
+    here = Path(__file__).abspath().parent
+    if here != os.getcwd():
+        print("Changing dir")
+        here.chdir()
 
 def set_dir(file_path):
     here = Path(file_path).parent

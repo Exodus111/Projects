@@ -1,47 +1,38 @@
-import pickle, myfuncs
-import pygame as pg
+#!/usr/bin/python3
+from collections import defaultdict
 from path import Path
-
+import json
 
 class SaveMap():
-    def __init__(self, data):
-        self.data = data.copy()
+    def __init__(self, empty):
+        self.maps = defaultdict(dict)
+        self.empty = empty
+        self.savefolder = Path("./save")
 
-    def write_to_file(self, path):
-        filename = Path(path)
+    def add_map(self, mymap):
+        self.maps[mymap.name]["tiles"] = defaultdict(list)
+        self.maps[mymap.name]["info"] = {
+            "name":mymap.name,
+            "size":mymap.screen_size,
+            "grid":mymap.grid,
+            "block":mymap.block,
+            "color":mymap.color
+        }
+        for tile in mymap.group:
+            if self.empty != tile.filename:
+                self.maps[mymap.name]["tiles"][tile.filename].append(tile.rect.topleft)
 
-        for d in self.data:
-            if d != "Name":
-                savename = "{}{}{}".format("./save/", d, ".png")
-                savename = savename.lower()
-                pg.image.save(self.data[d].map, savename)
-                self.data[d].saved_surf = savename
-                self.data[d].map = None
-                for tile in self.data[d].group:
-                    tile.image = None
-        pickle.dump(self.data, open(filename, "wb"))
-
+    def write_to_file(self):
+        num = len(self.savefolder.files("*.sav"))
+        with open("./save/savefile{}.sav".format(num), "w+") as f:
+            json.dump(self.maps, f, indent=4, sort_keys=True)
+        print("Writing Save file...")
 
 class LoadMap():
-    def __init__(self):
+    def __init__(self, filename):
+        fullpath = Path("./save/") + filename
+        with open(fullpath, "r+") as f:
+            self.maps = json.load(f)
+
+    def extract_map(self, mymap):
         pass
-
-    def load_from_file(self, filename, menu_list):
-        filename = Path(filename)
-        data = pickle.load(open(filename, "rb"))
-        for d in data:
-            if d != "Name":
-                data[d].image = pg.image.load(data[d].image_string).convert_alpha()
-                data[d].map = pg.image.load(data[d].saved_surf).convert_alpha()
-                for tile in data[d].group:
-                    if tile.filename != data[d].image_string:
-                        num = int(tile.filename)
-                        tile.image = menu_list[num]
-                    else:
-                        tile.image = data[d].image
-        return data
-
-class Export():
-    def __init__(self, name, data):
-        self.name = name
-        self.data = data
