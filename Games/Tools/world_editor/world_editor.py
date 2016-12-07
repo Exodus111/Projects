@@ -6,8 +6,9 @@ from myfuncs import *
 from pygame.locals import *
 from load import Template, Tile, SpriteSheet
 from path import Path
-from gui import Button, Menu, FloatingText
+from gui import Button, Menu, FloatingText, Panel
 from saveload import SaveMap, LoadMap
+from maps import Map
 
 TEAL = (0,171,169)
 STEEL = (100,118,135)
@@ -28,8 +29,10 @@ class Main(Template):
         self.empty_tile = pg.image.load("./tiles/Empty_tile_64p.png").convert_alpha()
         self.map1 = Map("Background", self.size, (40,40), self.block, self.empty_tile)
         self.map2 = Map("Foreground", self.size, (40,40), self.block, self.empty_tile)
-        self.menu = Map("Menu", self.size, (2,14), self.block, self.empty_tile)
-        self.menu_list = []
+        self.menus = [Map("Menu", self.size, (2,14), self.block, self.empty_tile)]
+        self.menu = self.menus[0]
+        self.menu.xy[1] += 20
+        self.men_list = []
         self.palette = self.setup_palette()
         self.palette.xy = [250,0]
         self.clip = pg.Rect(0,0, self.size[0],self.size[1])
@@ -44,11 +47,15 @@ class Main(Template):
         self.fill = False
         self.m_select_rect = pg.Rect(1,1,1,1)
         self.button1 = Button((120, 20), (129,1), "Menu")
+        self.button2 = Button((128,20), (0,0), "Palette")
+        self.pal_menu = Menu((128, 40), (0,21))
+        self.pal_menu.add_buttons(2, ["New", "Pal-1"])
         self.drop_menu = Menu((120, 160), (129, 21))
-        self.drop_menu.add_buttons(5, ["Save", "Load", "Palette", "See Map", "Info"])
+        self.drop_menu.add_buttons(5, ["Save", "Load", "Sprites", "See Map", "Info"])
         self.drop_menu.set_bg_color(CONCRETE)
         self.load_menu = self.setup_loadmenu()
         self.floating_text = FloatingText("no text", self.size)
+        self.info_panel = Panel((self.size[0] - self.size[0]/3, self.size[1] - self.size[1]/3), (self.size[0]/6, self.size[1]/6))
         self.setup()
 
         self.selected_map = self.map1
@@ -88,10 +95,13 @@ class Main(Template):
             self.map2.draw(self.screen, self.clip)
 
         # GUI
-        self.menu.draw(self.screen, None)
+        self.menu.draw(self.screen)
         self.button1.draw(self.screen)
+        self.button2.draw(self.screen)
         if self.button1.clicked:
             self.drop_menu.draw(self.screen)
+        if self.button2.clicked:
+            self.pal_menu.draw(self.screen)
         if self.drop_menu.buttons[1].clicked:
             self.load_menu.draw(self.screen)
         if self.drop_menu.buttons[2].clicked:
@@ -104,7 +114,7 @@ class Main(Template):
         if self.show_full_map:
             if self.full_map:
                 self.screen.blit(self.full_map, (0,0))
-
+        self.info_panel.draw(self.screen)
         self.floating_text.draw(self.screen)
 
 ########################## Setup methods #######################################
@@ -121,18 +131,18 @@ class Main(Template):
     def setup(self):
         self.map1.setup(TEAL)
         self.map2.setup(CONCRETE, 200)
-        self.menu.setup(CYAN)
+        self.menu.setup(STEEL)
 
     def setup_palette(self):
         sheet = SpriteSheet("img/magecity_64p.png", 64, (0,0), (8,44))
-        self.menu_list = sum(sheet.image_list, [])
-        length = len(self.menu_list)
+        self.men_list = sum(sheet.image_list, [])
+        length = len(self.men_list)
         size = (10, int(length/10))
         menu = Map("Palette", self.size, size, self.block, self.empty_tile)
         menu.setup(CYAN)
         for i, tile in enumerate(menu.group):
             tile.filename = "{}".format(i)
-            tile.image = self.menu_list[i]
+            tile.image = self.men_list[i]
             if i+1 >= length:
                 break
         return menu
@@ -170,27 +180,44 @@ class Main(Template):
     def mouse_down(self, button, pos):
         not_menu = True
         if button == 1:
-            if not self.show_full_map:
-                if self.button1.click(pos):
-                    not_menu = False
-                if self.button1.clicked:
-                    if self.drop_menu.click(pos):
+            if not self.info_panel.display:
+                if not self.show_full_map:
+                    if self.button1.click(pos):
                         not_menu = False
-                if self.drop_menu.buttons[1].clicked:
-                    if self.load_menu.click(pos):
-                        self.loadmap(self.load_menu.clickinfo)
-                elif self.drop_menu.buttons[3].clicked:
-                    self.show_map()
-                    self.drop_menu.buttons[3].clicked = False
-                if not_menu:
-                    if self.drop_menu.buttons[2].clicked:
-                        self.find_tile(pos, self.palette, self.menu)
-                    elif self.show_foreground > 0:
-                        self.find_tile(pos, self.menu, self.map2)
-                    else:
-                        self.find_tile(pos, self.menu, self.map1)
+                    elif self.button2.click(pos):
+                        not_menu = False
+                    if self.button1.clicked:
+                        if self.drop_menu.click(pos):
+                            not_menu = False
+                    if self.button2.clicked:
+                        if self.pal_menu.click(pos):
+                            not_menu = False
+                    if self.drop_menu.buttons[1].clicked:
+                        if self.load_menu.click(pos):
+                            self.loadmap(self.load_menu.clickinfo)
+                    elif self.drop_menu.buttons[3].clicked:
+                        self.show_map()
+                        self.drop_menu.buttons[3].clicked = False
+                    elif self.drop_menu.buttons[4].clicked:
+                        self.info_panel.display_panel()
+                        self.drop_menu.buttons[4].clicked = False
+                    if self.pal_menu.click(pos):
+                        if self.pal_menu.clickinfo == "New":
+                            self.new_palette()
+                        else:
+                            self.switch_palette(text=self.pal_menu.clickinfo)
+                    if not_menu:
+                        if self.drop_menu.buttons[2].clicked:
+                            self.find_tile(pos, self.palette, self.menu)
+                        elif self.show_foreground > 0:
+                            self.find_tile(pos, self.menu, self.map2)
+                        else:
+                            self.find_tile(pos, self.menu, self.map1)
+                else:
+                    self.show_full_map = False
             else:
-                self.show_full_map = False
+                self.info_panel.click(pos)
+
         if button == 3:
             if not self.show_full_map:
                 self.right_m_button = True
@@ -267,6 +294,22 @@ class Main(Template):
             tile.image = self.current_tile.image
             tile.dirty = 1
 
+    def new_palette(self):
+        self.menus.append(Map("Menu", self.size, (2,14), self.block, self.empty_tile))
+        self.menus[-1].setup(STEEL)
+
+        size = self.pal_menu.size
+        self.pal_menu.change_size((size[0], size[1]+20))
+        num = len(self.menus)
+        self.pal_menu.add_buttons(1, ["Pal-{}".format(num)])
+        self.switch_palette(ind=-1)
+
+    def switch_palette(self, ind=None, text=None):
+        if ind:
+            self.menu = self.menus[ind]
+        elif text:
+            self.menu = self.menus[int(text[-1])-1]
+
     def show_map(self):
         full_map = pg.Surface((40*64, 40*64))
         for tile in self.map1.group:
@@ -299,7 +342,7 @@ class Main(Template):
                 for i in m["tiles"]:
                     if list(t.rect.topleft) in m["tiles"][i]:
                         t.filename = i
-                        t.image = self.menu_list[int(i)]
+                        t.image = self.men_list[int(i)]
                         t.dirty = 1
             maplist.append(a_map)
         for j in maplist:
@@ -309,94 +352,6 @@ class Main(Template):
                 self.map2 = j
         print("Loading from file...")
 
-
-
-class Map(object):
-    def __init__(self, name, screen_size, grid, block, image):
-        self.name = name
-        self.screen_size = screen_size
-        self.grid = grid
-        self.block = block
-        self.image = image
-        self.image_string = "Empty_tile"
-        self.size = (self.grid[0]*self.block, self.grid[1]*self.block)
-        self.rect = pg.Rect(0,0,screen_size[0]/2, screen_size[1]/2)
-        self.map = pg.Surface(self.size)
-        self.alpha = 150
-        self.xy = [0,0]
-        self.move = {"up":False,"left":False,"down":False,"right":False}
-        self.speed = 1
-        self.dt = 0.
-        self.once = False
-        self.clipped = False
-        self.selected = None
-        self.sel_old = None
-        self.saved_surf = None
-
-    def setup(self, color, alpha=255):
-        self.alpha = alpha
-        self.color = color
-        self.map.fill(color)
-        self.group = self.make_grid()
-        self.map.set_alpha(self.alpha)
-
-    def make_grid(self):
-        group = pg.sprite.LayeredDirty()
-        for y in range(self.grid[1]):
-            for x in range(self.grid[0]):
-                tile = Tile(self.image, self.image_string, xy=(x*self.block, y*self.block))
-                tile.dirty = 1
-                group.add(tile)
-        return group
-
-    def move_map(self):
-        if self.move["up"]:
-            if not self.xy[1] > self.screen_size[1] - (self.screen_size[1]*0.2):
-                self.xy[1] += self.speed
-        if self.move["left"]:
-            if not self.xy[0] > self.screen_size[0] - (self.screen_size[0]*.2):
-                self.xy[0] += self.speed
-        if self.move["down"]:
-            if not self.xy[1]+(self.size[1]-(self.block*4)) < 0:
-                self.xy[1] -= self.speed
-        if self.move["right"]:
-            if not self.xy[0]+(self.size[0]-(self.block*4)) < 0:
-                self.xy[0] -= self.speed
-        if True in self.move.values():
-            self.once = True
-            if mytimer("map_speed", .05, self.dt):
-                if self.speed < 100:
-                    self.speed *= 1.8
-        else:
-            self.speed = 1
-            if self.once:
-                self.clipped = True
-                self.map.set_clip()
-
-    def clear_map(self):
-        self.map.fill(self.color)
-        for tile in self.group:
-            tile.dirty = 1
-
-    def update(self, dt):
-        self.dt = dt
-        self.move_map()
-        if self.selected != self.sel_old:
-            if self.sel_old != None:
-                self.clear_map()
-            self.sel_old = self.selected
-
-    def draw(self, surf, clip=None):
-        self.group.draw(self.map)
-        if self.selected != None:
-            myrect = self.selected.rect.copy()
-            myrect.inflate_ip(-1, -1)
-            pg.draw.rect(self.map, SUNFLOWER, myrect, 2)
-
-        if clip != None:
-            self.map.set_clip(clip)
-
-        surf.blit(self.map, self.xy)
 
 if __name__ == "__main__":
     print("Starting")

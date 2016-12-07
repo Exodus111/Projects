@@ -1,5 +1,124 @@
 import pygame as pg
+from collections import OrderedDict
 from myfuncs import *
+
+STEEL = (100,118,135)
+CONCRETE = (149,165,166)
+SUNFLOWER = (241,196,15)
+BLACK = (0,0,0)
+
+class Border():
+    def __init__(self, size, xy):
+        self.size = size
+        self.xy = xy
+        self.bg_color = BLACK
+        self.mn_color = CONCRETE
+        self.fg_color = BLACK
+        self.border = [{
+            "rect": pg.Rect((0,0), self.size),
+            "color": (0,0,0)},
+                {
+            "rect": pg.Rect((0,0), self.size).inflate(-3, -3),
+            "color": CONCRETE},
+                {
+            "rect": pg.Rect((0,0), self.size).inflate(-8, -8),
+            "color": (0,0,0)}]
+
+    def draw(self, surf):
+        for b in self.border:
+            pg.draw.rect(surf, b["color"], b["rect"])
+
+class Panel():
+    def __init__(self, size, xy, color=STEEL):
+        self.size = size
+        self.xy = xy
+        self.color = color
+        self.display = False
+        self.surf = pg.Surface(size)
+        self.border = Border(self.size, self.xy)
+        self.rect = pg.Rect((0,0), size).inflate(-10, -10)
+        self.menus = []
+        self.setup()
+        self.text = self.setup_text()
+
+    def setup(self):
+        gap = self.size[0]/60
+        w, h = (self.size[0]/8, self.size[1]/18)
+        x, y = (self.size[0] - w - gap, self.size[1] - h - gap)
+        self.add_menu((w,h), (x,y))
+        self.menus[0].add_buttons(1, ["OK"])
+
+    def setup_text(self):
+        text = "This Editing tool is made by Aurelio Aguirre"
+        font_obj = pg.font.SysFont("arial", 14)
+        size_of_text = font_obj.size(text)
+        self.text_xy = ((self.size[0]/2)-(size_of_text[0]/2), (self.size[1]/2)-(size_of_text[1]/2))
+        return font_obj.render(text, True, SUNFLOWER)
+
+    def display_panel(self):
+        self.display = (lambda x: False if x else True)(self.display)
+
+    def add_menu(self, size, xy):
+        self.menus.append(Menu(size, xy))
+
+    def click(self, pos):
+        new_pos = (pos[0] - self.xy[0], pos[1] - self.xy[1])
+        if self.menus[0].click(new_pos):
+            self.display_panel()
+
+    def draw(self, screen):
+        if self.display:
+            self.border.draw(self.surf)
+            pg.draw.rect(self.surf, self.color, self.rect)
+            for menu in self.menus:
+                menu.draw(self.surf)
+            self.surf.blit(self.text, self.text_xy)
+            screen.blit(self.surf, self.xy)
+
+
+class Menu():
+    """Gui object, self reliant menu object."""
+    def __init__(self, size, xy):
+        self.size = size
+        self.xy = xy
+        self.surf = pg.Surface(size)
+        self.rect = pg.Rect(xy, size)
+        self.buttons = []
+        self.clickinfo = None
+
+    def change_size(self, size):
+        self.size = size
+        self.surf = pg.Surface(size)
+        self.rect = pg.Rect(self.xy, size)
+
+    def add_buttons(self, amount, text_list):
+        if amount > 0:
+            adj = len(self.buttons)
+            sizex = self.size[0]
+            sizey = self.size[1]/(amount + adj)
+            for b in range(amount):
+                b = Button((sizex, sizey),(0, sizey*(b + adj)), text_list[b])
+                self.buttons.append(b)
+
+    def click(self, pos):
+        if self.rect.collidepoint(pos):
+            point = (pos[0] - self.xy[0], pos[1] - self.xy[1])
+            for button in self.buttons:
+                if button.click(point):
+                    self.clickinfo = button.text
+                    break
+            return True
+        else:
+            return False
+
+    def set_bg_color(self, color):
+        for button in self.buttons:
+            button.color["BG"] = color
+
+    def draw(self, screen):
+        for button in self.buttons:
+            button.draw(self.surf)
+        screen.blit(self.surf, self.xy)
 
 class Button():
     def __init__(self, size, xy, text):
@@ -33,47 +152,6 @@ class Button():
         pg.draw.rect(self.surf, self.color["BG"], self.rect)
         pg.draw.rect(self.surf, self.color["FG"], self.rect, 1)
         self.surf.blit(self.ren_text, self.text_xy)
-
-
-        screen.blit(self.surf, self.xy)
-
-class Menu():
-    """Gui object, self reliant menu object."""
-    def __init__(self, size, xy):
-        self.size = size
-        self.xy = xy
-        self.surf = pg.Surface(size)
-        self.rect = pg.Rect(xy, size)
-        self.buttons = []
-        self.clickinfo = None
-
-    def add_buttons(self, amount, text_list):
-        if amount > 0:
-            sizex = self.size[0]/amount
-            sizey = self.size[1]/amount
-            for b in range(amount):
-                b = Button((self.size[0], sizey),(0, sizey*b), text_list[b])
-                self.buttons.append(b)
-
-    def click(self, pos):
-        if self.rect.collidepoint(pos):
-            point = (pos[0] - self.xy[0], pos[1] - self.xy[1])
-            for button in self.buttons:
-                if button.click(point):
-                    self.clickinfo = button.text
-                    break
-            return True
-        else:
-            return False
-
-    def set_bg_color(self, color):
-        for button in self.buttons:
-            button.color["BG"] = color
-
-    def draw(self, screen):
-        for button in self.buttons:
-            button.draw(self.surf)
-
         screen.blit(self.surf, self.xy)
 
 class FloatingText():
