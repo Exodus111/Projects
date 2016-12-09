@@ -92,4 +92,4 @@ class Map(object):
         surf.blit(self.map, self.xy)
 
 if __name__ == "__main__":
-    testmap = Map("name", (100, 100), (10, 10), 32, "image")
+    pass

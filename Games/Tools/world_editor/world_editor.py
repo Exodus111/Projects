@@ -29,6 +29,8 @@ class Main(Template):
         self.empty_tile = pg.image.load("./tiles/Empty_tile_64p.png").convert_alpha()
         self.map1 = Map("Background", self.size, (40,40), self.block, self.empty_tile)
         self.map2 = Map("Foreground", self.size, (40,40), self.block, self.empty_tile)
+        self.poi_map = Map("POI Map", self.size, (40,40), self.block, self.empty_tile)
+        self.poi_menu = Map("POI Menu", self.size, (3,1), self.block, self.empty_tile)
         self.menus = [Map("Menu", self.size, (2,14), self.block, self.empty_tile)]
         self.menu = self.menus[0]
         self.menu.xy[1] += 20
@@ -38,6 +40,7 @@ class Main(Template):
         self.clip = pg.Rect(0,0, self.size[0],self.size[1])
         self.c_pos = self.clip.topleft
         self.show_full_map = False
+        self.show_poi = False
         self.full_map = None
         self.current_tile = None
         self.show_foreground = -1
@@ -57,7 +60,7 @@ class Main(Template):
         self.floating_text = FloatingText("no text", self.size)
         self.info_panel = Panel((self.size[0] - self.size[0]/3, self.size[1] - self.size[1]/3), (self.size[0]/6, self.size[1]/6))
         self.setup()
-
+        self.setup_poi()
         self.selected_map = self.map1
 
     def update(self, dt):
@@ -65,6 +68,8 @@ class Main(Template):
         self.map1.update(dt)
         self.menu.update(dt)
         self.palette.update(dt)
+        self.poi_map.update(dt)
+        self.poi_menu.update(dt)
         self.floating_text.update(dt)
         if self.drop_menu.buttons[0].clicked:
             self.savemap()
@@ -75,6 +80,7 @@ class Main(Template):
             self.selected_map = self.map1
         if self.map1.clipped:
             self.map2.map.set_clip()
+            self.poi_map.map.set_clip()
             self.map1.clipped = False
         if self.c_pos != self.clip.topleft:
             self.c_pos = (self.c_pos[0] - self.map1.xy[0], self.c_pos[1] - self.map1.xy[1])
@@ -94,8 +100,16 @@ class Main(Template):
             self.map2.xy = self.map1.xy
             self.map2.draw(self.screen, self.clip)
 
+        # POI Map
+        if self.show_poi:
+            self.poi_map.xy = self.map1.xy
+            self.poi_map.draw(self.screen, self.clip)
+
+
         # GUI
         self.menu.draw(self.screen)
+        if self.show_poi:
+            self.poi_menu.draw(self.screen)
         self.button1.draw(self.screen)
         self.button2.draw(self.screen)
         if self.button1.clicked:
@@ -132,6 +146,23 @@ class Main(Template):
         self.map1.setup(TEAL)
         self.map2.setup(CONCRETE, 200)
         self.menu.setup(STEEL)
+        self.poi_map.setup((0,0,0), alpha=150)
+        self.poi_menu.setup(STEEL)
+
+    def setup_poi(self):
+        wall = pg.image.load("./tiles/Wall.png").convert_alpha()
+        door = pg.image.load("./tiles/Door.png").convert_alpha()
+        poi = pg.image.load("./tiles/POI.png").convert_alpha()
+        self.poi_dict = {"Poi Wall":wall, "Poi Door":door, "Poi Symbol":poi}
+        p = [i for i in self.poi_dict.keys()]
+        for num, tile in enumerate(self.poi_menu.group):
+            tile.image = self.poi_dict[p[num]]
+            tile.rect = tile.image.get_rect()
+            tile.rect.topleft = ((self.block*num), 1)
+            tile.filename = p[num]
+            tile.dirty = 1
+        xplace = self.size[0] - self.block*3
+        self.poi_menu.xy = [xplace, 1]
 
     def setup_palette(self):
         sheet = SpriteSheet("img/magecity_64p.png", 64, (0,0), (8,44))
@@ -157,6 +188,9 @@ class Main(Template):
 
         if key == K_e:
             self.show_foreground *= -1
+
+        if key == K_q:
+            self.show_poi = not self.show_poi
 
         if key in (K_w, K_UP):
             self.selected_map.move["up"] = True
@@ -209,6 +243,8 @@ class Main(Template):
                     if not_menu:
                         if self.drop_menu.buttons[2].clicked:
                             self.find_tile(pos, self.palette, self.menu)
+                        elif self.show_poi:
+                            self.find_tile(pos, self.poi_menu, self.poi_map)
                         elif self.show_foreground > 0:
                             self.find_tile(pos, self.menu, self.map2)
                         else:
@@ -231,7 +267,9 @@ class Main(Template):
             self.right_m_pos = pos
             new_rect = self._invert_rect(self.m_select_rect)
 
-            if self.show_foreground < 0:
+            if self.show_poi:
+                self.group_select(new_rect, self.poi_map.group)
+            elif self.show_foreground < 0:
                 self.group_select(new_rect, self.map1.group)
             else:
                 self.group_select(new_rect, self.map2.group)
@@ -281,12 +319,15 @@ class Main(Template):
                 menu.fill = True
                 menu.selected = tile
                 self.current_tile = tile
+            if found:
+                break
         if not found:
             for tile in bg_map.group:
                 map_pos = (pos[0] - bg_map.xy[0], pos[1] - bg_map.xy[1])
                 if tile.rect.collidepoint(map_pos):
                     self.change_tile(tile)
                     bg_map.clear_map()
+        return found
 
     def change_tile(self, tile):
         if self.current_tile != None:
@@ -330,6 +371,7 @@ class Main(Template):
         saving = SaveMap("Empty_tile")
         saving.add_map(self.map1)
         saving.add_map(self.map2)
+        saving.add_map(self.poi_map)
         saving.write_to_file()
 
     def loadmap(self, filename):
@@ -337,19 +379,30 @@ class Main(Template):
         maplist = []
         for m in load.maps.values():
             a_map = Map(m["info"]["name"], m["info"]["size"], m["info"]["grid"], m["info"]["block"], self.empty_tile)
-            a_map.setup(m["info"]["color"])
+            if m["info"]["name"] == "Foreground":
+                a_map.setup(m["info"]["color"], 200)
+            elif m["info"]["name"] == "POI Map":
+                a_map.setup(m["info"]["color"], 150)
+            else:
+                a_map.setup(m["info"]["color"])
             for t in a_map.group:
                 for i in m["tiles"]:
                     if list(t.rect.topleft) in m["tiles"][i]:
                         t.filename = i
-                        t.image = self.men_list[int(i)]
-                        t.dirty = 1
+                        if i[0] == "P":
+                            t.image = self.poi_dict[i]
+                            t.dirty = 1
+                        else:
+                            t.image = self.men_list[int(i)]
+                            t.dirty = 1
             maplist.append(a_map)
         for j in maplist:
             if j.name == "Background":
                 self.map1 = j
             if j.name == "Foreground":
                 self.map2 = j
+            if j.name == "POI Map":
+                self.poi_map = j
         print("Loading from file...")
 
 
