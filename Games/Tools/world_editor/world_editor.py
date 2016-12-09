@@ -59,6 +59,7 @@ class Main(Template):
         self.load_menu = self.setup_loadmenu()
         self.floating_text = FloatingText("no text", self.size)
         self.info_panel = Panel((self.size[0] - self.size[0]/3, self.size[1] - self.size[1]/3), (self.size[0]/6, self.size[1]/6))
+        self.info_panel.setup_text(["World Editor 1.0", "Made by Aurelio Aguirre", "", "Use WASD to move around.", "Use E to toggle the Foreground.", "Use Q to toggle the Point of Interest map."])
         self.setup()
         self.setup_poi()
         self.selected_map = self.map1

@@ -38,8 +38,9 @@ class Panel():
         self.border = Border(self.size, self.xy)
         self.rect = pg.Rect((0,0), size).inflate(-10, -10)
         self.menus = []
+        self.text = []
+        self.text_xy = []
         self.setup()
-        self.text = self.setup_text()
 
     def setup(self):
         gap = self.size[0]/60
@@ -48,12 +49,15 @@ class Panel():
         self.add_menu((w,h), (x,y))
         self.menus[0].add_buttons(1, ["OK"])
 
-    def setup_text(self):
-        text = "This Editing tool is made by Aurelio Aguirre"
-        font_obj = pg.font.SysFont("arial", 14)
-        size_of_text = font_obj.size(text)
-        self.text_xy = ((self.size[0]/2)-(size_of_text[0]/2), (self.size[1]/2)-(size_of_text[1]/2))
-        return font_obj.render(text, True, SUNFLOWER)
+    def setup_text(self, text_list):
+        for num, t in enumerate(text_list):
+            font_obj = pg.font.SysFont("arial", 14)
+            size_of_text = font_obj.size(t)
+            if len(self.text_xy) >= 1:
+                for coord in self.text_xy:
+                    coord[1] -= (size_of_text[1] +5)
+            self.text_xy.append([(self.size[0]/2)-(size_of_text[0]/2), (self.size[1]/2)-(size_of_text[1]/2)])
+            self.text.append(font_obj.render(t, True, SUNFLOWER))
 
     def display_panel(self):
         self.display = (lambda x: False if x else True)(self.display)
@@ -72,7 +76,8 @@ class Panel():
             pg.draw.rect(self.surf, self.color, self.rect)
             for menu in self.menus:
                 menu.draw(self.surf)
-            self.surf.blit(self.text, self.text_xy)
+            for num, t in enumerate(self.text):
+                self.surf.blit(t, self.text_xy[num])
             screen.blit(self.surf, self.xy)
 
 
