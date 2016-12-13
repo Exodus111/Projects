@@ -7,8 +7,9 @@ from myfuncs import *
 SUNFLOWER = (241,196,15)
 
 class Map(object):
-    def __init__(self, name, screen_size, grid, block, image):
+    def __init__(self, name, parent, screen_size, grid, block, image):
         self.name = name
+        self.parent = parent
         self.screen_size = screen_size
         self.grid = grid
         self.block = block
@@ -20,11 +21,11 @@ class Map(object):
         self.alpha = 150
         self.xy = [0,0]
         self.move = {"up":False,"left":False,"down":False,"right":False}
+        self.clear_select = False
         self.speed = 1
         self.dt = 0.
         self.once = False
         self.clipped = False
-        self.selected = None
         self.sel_old = None
         self.saved_surf = None
 
@@ -34,6 +35,7 @@ class Map(object):
         self.map.fill(color)
         self.group = self.make_grid()
         self.map.set_alpha(self.alpha)
+        self.parent.states.add_state({name:self})
 
     def make_grid(self):
         group = pg.sprite.LayeredDirty()
@@ -76,17 +78,23 @@ class Map(object):
     def update(self, dt):
         self.dt = dt
         self.move_map()
-        if self.selected != self.sel_old:
-            if self.sel_old != None:
-                self.clear_map()
-            self.sel_old = self.selected
+        if self.clear_select:
+            self.clear_map()
+            self.clear_select = False
 
     def draw(self, surf, clip=None):
         self.group.draw(self.map)
-        if self.selected != None:
-            myrect = self.selected.rect.copy()
-            myrect.inflate_ip(-1, -1)
-            pg.draw.rect(self.map, SUNFLOWER, myrect, 2)
+        if self.parent.select_group.sprite != None:
+            sel_sprite = self.parent.select_group.sprite
+            if self.sel_old != sel_sprite:
+                if self.group.has(sel_sprite):
+                    self.sel_old = sel_sprite
+                    myrect = sel_sprite.rect.copy()
+                    myrect.inflate_ip(-1, -1)
+                    pg.draw.rect(self.map, SUNFLOWER, myrect, 2)
+                else:
+                    self.clear_select = True
+
         if clip != None:
             self.map.set_clip(clip)
         surf.blit(self.map, self.xy)

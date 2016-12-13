@@ -2,6 +2,7 @@
 
 import pygame as pg
 import json
+from collections import OrderedDict, defaultdict
 from myfuncs import *
 from pygame.locals import *
 from load import Template, Tile, SpriteSheet
@@ -23,15 +24,19 @@ class Main(Template):
     def __init__(self, size):
         Template.__init__(self, size)
         self.name = "Under Construction"
+        self.states = State()
         self.size = size
         self.block = 64
         self.dt = 0.
         self.empty_tile = pg.image.load("./tiles/Empty_tile_64p.png").convert_alpha()
-        self.map1 = Map("Background", self.size, (40,40), self.block, self.empty_tile)
-        self.map2 = Map("Foreground", self.size, (40,40), self.block, self.empty_tile)
-        self.poi_map = Map("POI Map", self.size, (40,40), self.block, self.empty_tile)
-        self.poi_menu = Map("POI Menu", self.size, (3,1), self.block, self.empty_tile)
-        self.menus = [Map("Menu", self.size, (2,14), self.block, self.empty_tile)]
+        self.select_group = pg.sprite.GroupSingle()
+        self.map1 = Map("Background", self, self.size, (40,40), self.block, self.empty_tile)
+        self.map2 = Map("Foreground", self, self.size, (40,40), self.block, self.empty_tile)
+        self.poi_map = Map("POI Map", self, self.size, (40,40), self.block, self.empty_tile)
+        self.poi_menu = Map("POI Menu", self, self.size, (3,1), self.block, self.empty_tile)
+        self.delete_button = Map("Del Button", self, self.size, (1,1), self.block, pg.image.load("./tiles/Eliminate.png").convert_alpha())
+        self.delete_button.image_string = "Poi Eliminate"
+        self.menus = [Map("Menu", self, self.size, (2,14), self.block, self.empty_tile)]
         self.menu = self.menus[0]
         self.menu.xy[1] += 20
         self.men_list = []
@@ -109,6 +114,7 @@ class Main(Template):
 
         # GUI
         self.menu.draw(self.screen)
+        self.delete_button.draw(self.screen)
         if self.show_poi:
             self.poi_menu.draw(self.screen)
         self.button1.draw(self.screen)
@@ -149,12 +155,13 @@ class Main(Template):
         self.menu.setup(STEEL)
         self.poi_map.setup((0,0,0), alpha=150)
         self.poi_menu.setup(STEEL)
+        self.delete_button.setup(STEEL)
 
     def setup_poi(self):
         wall = pg.image.load("./tiles/Wall.png").convert_alpha()
         door = pg.image.load("./tiles/Door.png").convert_alpha()
         poi = pg.image.load("./tiles/POI.png").convert_alpha()
-        self.poi_dict = {"Poi Wall":wall, "Poi Door":door, "Poi Symbol":poi}
+        self.poi_dict = OrderedDict((("Poi Wall", wall), ("Poi Door", door), ("Poi Symbol", poi)))
         p = [i for i in self.poi_dict.keys()]
         for num, tile in enumerate(self.poi_menu.group):
             tile.image = self.poi_dict[p[num]]
@@ -162,15 +169,16 @@ class Main(Template):
             tile.rect.topleft = ((self.block*num), 1)
             tile.filename = p[num]
             tile.dirty = 1
-        xplace = self.size[0] - self.block*3
+        xplace = self.size[0] - self.block*4
         self.poi_menu.xy = [xplace, 1]
+        self.delete_button.xy = [(self.size[0] - self.block), 1]
 
     def setup_palette(self):
         sheet = SpriteSheet("img/magecity_64p.png", 64, (0,0), (8,44))
         self.men_list = sum(sheet.image_list, [])
         length = len(self.men_list)
         size = (10, int(length/10))
-        menu = Map("Palette", self.size, size, self.block, self.empty_tile)
+        menu = Map("Palette", self, self.size, size, self.block, self.empty_tile)
         menu.setup(CYAN)
         for i, tile in enumerate(menu.group):
             tile.filename = "{}".format(i)
@@ -244,6 +252,8 @@ class Main(Template):
                     if not_menu:
                         if self.drop_menu.buttons[2].clicked:
                             self.find_tile(pos, self.palette, self.menu)
+                        elif self.find_tile(pos, self.delete_button, self.poi_map):
+                            pass
                         elif self.show_poi:
                             self.find_tile(pos, self.poi_menu, self.poi_map)
                         elif self.show_foreground > 0:
@@ -318,7 +328,7 @@ class Main(Template):
             if tile.rect.collidepoint(map_pos):
                 found = True
                 menu.fill = True
-                menu.selected = tile
+                self.select_group.add(tile)
                 self.current_tile = tile
             if found:
                 break
@@ -332,9 +342,14 @@ class Main(Template):
 
     def change_tile(self, tile):
         if self.current_tile != None:
-            tile.filename = self.current_tile.filename
-            tile.image = self.current_tile.image
-            tile.dirty = 1
+            if self.current_tile.filename != "Poi Eliminate":
+                tile.filename = self.current_tile.filename
+                tile.image = self.current_tile.image
+                tile.dirty = 1
+            else:
+                tile.filename = "Empty_tile"
+                tile.image = self.empty_tile
+                tile.dirty = 1
 
     def new_palette(self):
         self.menus.append(Map("Menu", self.size, (2,14), self.block, self.empty_tile))
@@ -406,9 +421,24 @@ class Main(Template):
                 self.poi_map = j
         print("Loading from file...")
 
+class State():
+    def __init__(self):
+        self.states = {}
+        self.selected_state = None
+
+    def add_state(self, newstate):
+        for n in newstate:
+            self.states[n] = newstate[n] 
+
+    def set_state(self, state):
+        self.selected_state = self.states[state]
+
+    def get_state(self):
+        return self.selected_state
+
 
 if __name__ == "__main__":
     print("Starting")
-    set_dir(__file__)
+    #set_dir(__file__)
     s = Main((800,640))
     s.mainloop()
