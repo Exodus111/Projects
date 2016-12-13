@@ -24,7 +24,6 @@ class Main(Template):
     def __init__(self, size):
         Template.__init__(self, size)
         self.name = "Under Construction"
-        self.states = State()
         self.size = size
         self.block = 64
         self.dt = 0.
@@ -34,9 +33,10 @@ class Main(Template):
         self.map2 = Map("Foreground", self, self.size, (40,40), self.block, self.empty_tile)
         self.poi_map = Map("POI Map", self, self.size, (40,40), self.block, self.empty_tile)
         self.poi_menu = Map("POI Menu", self, self.size, (3,1), self.block, self.empty_tile)
-        self.delete_button = Map("Del Button", self, self.size, (1,1), self.block, pg.image.load("./tiles/Eliminate.png").convert_alpha())
-        self.delete_button.image_string = "Poi Eliminate"
-        self.menus = [Map("Menu", self, self.size, (2,14), self.block, self.empty_tile)]
+        self.menus = []
+        self.pal_menu = Menu((128, 40), (0,21))
+        self.pal_menu.add_buttons(2, ["New", "Pal-1"])
+        self.new_palette()
         self.menu = self.menus[0]
         self.menu.xy[1] += 20
         self.men_list = []
@@ -56,8 +56,6 @@ class Main(Template):
         self.m_select_rect = pg.Rect(1,1,1,1)
         self.button1 = Button((120, 20), (129,1), "Menu")
         self.button2 = Button((128,20), (0,0), "Palette")
-        self.pal_menu = Menu((128, 40), (0,21))
-        self.pal_menu.add_buttons(2, ["New", "Pal-1"])
         self.drop_menu = Menu((120, 160), (129, 21))
         self.drop_menu.add_buttons(5, ["Save", "Load", "Sprites", "See Map", "Info"])
         self.drop_menu.set_bg_color(CONCRETE)
@@ -72,6 +70,7 @@ class Main(Template):
     def update(self, dt):
         self.dt = dt
         self.map1.update(dt)
+        self.map2.update(dt)
         self.menu.update(dt)
         self.palette.update(dt)
         self.poi_map.update(dt)
@@ -114,7 +113,7 @@ class Main(Template):
 
         # GUI
         self.menu.draw(self.screen)
-        self.delete_button.draw(self.screen)
+        #self.delete_button.draw(self.screen)
         if self.show_poi:
             self.poi_menu.draw(self.screen)
         self.button1.draw(self.screen)
@@ -155,7 +154,7 @@ class Main(Template):
         self.menu.setup(STEEL)
         self.poi_map.setup((0,0,0), alpha=150)
         self.poi_menu.setup(STEEL)
-        self.delete_button.setup(STEEL)
+        #self.delete_button.setup(STEEL)
 
     def setup_poi(self):
         wall = pg.image.load("./tiles/Wall.png").convert_alpha()
@@ -169,9 +168,9 @@ class Main(Template):
             tile.rect.topleft = ((self.block*num), 1)
             tile.filename = p[num]
             tile.dirty = 1
-        xplace = self.size[0] - self.block*4
+        xplace = self.size[0] - self.block*3
         self.poi_menu.xy = [xplace, 1]
-        self.delete_button.xy = [(self.size[0] - self.block), 1]
+        #self.delete_button.xy = [(self.size[0] - self.block), 1]
 
     def setup_palette(self):
         sheet = SpriteSheet("img/magecity_64p.png", 64, (0,0), (8,44))
@@ -235,6 +234,10 @@ class Main(Template):
                     if self.button2.clicked:
                         if self.pal_menu.click(pos):
                             not_menu = False
+                            if self.pal_menu.clickinfo == "New":
+                                self.new_palette()
+                            else:
+                                self.switch_palette(text=self.pal_menu.clickinfo)
                     if self.drop_menu.buttons[1].clicked:
                         if self.load_menu.click(pos):
                             self.loadmap(self.load_menu.clickinfo)
@@ -244,17 +247,10 @@ class Main(Template):
                     elif self.drop_menu.buttons[4].clicked:
                         self.info_panel.display_panel()
                         self.drop_menu.buttons[4].clicked = False
-                    if self.pal_menu.click(pos):
-                        if self.pal_menu.clickinfo == "New":
-                            self.new_palette()
-                        else:
-                            self.switch_palette(text=self.pal_menu.clickinfo)
                     if not_menu:
-                        if self.drop_menu.buttons[2].clicked:
+                        if self.drop_menu.buttons[2].clicked: # Tiles are showing.
                             self.find_tile(pos, self.palette, self.menu)
-                        elif self.find_tile(pos, self.delete_button, self.poi_map):
-                            pass
-                        elif self.show_poi:
+                        elif self.show_poi: # POI Map is up.
                             self.find_tile(pos, self.poi_menu, self.poi_map)
                         elif self.show_foreground > 0:
                             self.find_tile(pos, self.menu, self.map2)
@@ -328,6 +324,8 @@ class Main(Template):
             if tile.rect.collidepoint(map_pos):
                 found = True
                 menu.fill = True
+                menu.select_rect = tile.rect
+                menu.draw_border = True
                 self.select_group.add(tile)
                 self.current_tile = tile
             if found:
@@ -352,7 +350,7 @@ class Main(Template):
                 tile.dirty = 1
 
     def new_palette(self):
-        self.menus.append(Map("Menu", self.size, (2,14), self.block, self.empty_tile))
+        self.menus.append(Map("Menu", self, self.size, (2,14), self.block, self.empty_tile))
         self.menus[-1].setup(STEEL)
 
         size = self.pal_menu.size
@@ -420,22 +418,6 @@ class Main(Template):
             if j.name == "POI Map":
                 self.poi_map = j
         print("Loading from file...")
-
-class State():
-    def __init__(self):
-        self.states = {}
-        self.selected_state = None
-
-    def add_state(self, newstate):
-        for n in newstate:
-            self.states[n] = newstate[n] 
-
-    def set_state(self, state):
-        self.selected_state = self.states[state]
-
-    def get_state(self):
-        return self.selected_state
-
 
 if __name__ == "__main__":
     print("Starting")
