@@ -32,7 +32,7 @@ class Main(Template):
         self.map1 = Map("Background", self, self.size, (40,40), self.block, self.empty_tile)
         self.map2 = Map("Foreground", self, self.size, (40,40), self.block, self.empty_tile)
         self.poi_map = Map("POI Map", self, self.size, (40,40), self.block, self.empty_tile)
-        self.poi_menu = Map("POI Menu", self, self.size, (3,1), self.block, self.empty_tile)
+        self.poi_menu = Map("POI Menu", self, self.size, (4,1), self.block, self.empty_tile)
         self.menus = []
         self.pal_menu = Menu((128, 40), (0,21))
         self.pal_menu.add_buttons(2, ["New", "Pal-1"])
@@ -54,8 +54,8 @@ class Main(Template):
         self.m_pos = None
         self.fill = False
         self.m_select_rect = pg.Rect(1,1,1,1)
-        self.button1 = Button((120, 20), (129,1), "Menu")
-        self.button2 = Button((128,20), (0,0), "Palette")
+        self.menu_button = Button((120, 20), (129,1), "Menu")
+        self.pal_button = Button((128,20), (0,0), "Palette")
         self.drop_menu = Menu((120, 160), (129, 21))
         self.drop_menu.add_buttons(5, ["Save", "Load", "Sprites", "See Map", "Info"])
         self.drop_menu.set_bg_color(CONCRETE)
@@ -76,13 +76,20 @@ class Main(Template):
         self.poi_map.update(dt)
         self.poi_menu.update(dt)
         self.floating_text.update(dt)
-        if self.drop_menu.buttons[0].clicked:
+        if self.drop_menu.buttons[0].active:
             self.savemap()
-            self.drop_menu.buttons[0].clicked = False
-        if self.drop_menu.buttons[2].clicked:
+            self.drop_menu.buttons[0].active = False
+        if self.drop_menu.buttons[2].active:
             self.selected_map = self.palette
         else:
             self.selected_map = self.map1
+        if self.pal_button.active:
+            if self.pal_menu.clickinfo != None:
+                if self.pal_menu.clickinfo == "New":
+                    self.new_palette()
+                else:
+                    self.switch_palette(text=self.pal_menu.clickinfo)
+                self.pal_menu.clickinfo = None
         if self.map1.clipped:
             self.map2.map.set_clip()
             self.poi_map.map.set_clip()
@@ -90,7 +97,7 @@ class Main(Template):
         if self.c_pos != self.clip.topleft:
             self.c_pos = (self.c_pos[0] - self.map1.xy[0], self.c_pos[1] - self.map1.xy[1])
             self.clip.topleft = self.c_pos
-        self.button1.update(self.dt)
+        self.menu_button.update(self.dt)
         self.mouse_select()
 
     def draw(self):
@@ -113,18 +120,17 @@ class Main(Template):
 
         # GUI
         self.menu.draw(self.screen)
-        #self.delete_button.draw(self.screen)
         if self.show_poi:
             self.poi_menu.draw(self.screen)
-        self.button1.draw(self.screen)
-        self.button2.draw(self.screen)
-        if self.button1.clicked:
+        self.menu_button.draw(self.screen)
+        self.pal_button.draw(self.screen)
+        if self.menu_button.active:
             self.drop_menu.draw(self.screen)
-        if self.button2.clicked:
+        if self.pal_button.active:
             self.pal_menu.draw(self.screen)
-        if self.drop_menu.buttons[1].clicked:
+        if self.drop_menu.buttons[1].active:
             self.load_menu.draw(self.screen)
-        if self.drop_menu.buttons[2].clicked:
+        if self.drop_menu.buttons[2].active:
             self.palette.draw(self.screen)
         if self.right_m_button:
             screen_rect = self.m_select_rect.copy()
@@ -154,13 +160,13 @@ class Main(Template):
         self.menu.setup(STEEL)
         self.poi_map.setup((0,0,0), alpha=150)
         self.poi_menu.setup(STEEL)
-        #self.delete_button.setup(STEEL)
 
     def setup_poi(self):
         wall = pg.image.load("./tiles/Wall.png").convert_alpha()
         door = pg.image.load("./tiles/Door.png").convert_alpha()
         poi = pg.image.load("./tiles/POI.png").convert_alpha()
-        self.poi_dict = OrderedDict((("Poi Wall", wall), ("Poi Door", door), ("Poi Symbol", poi)))
+        delete = pg.image.load("./tiles/Eliminate.png").convert_alpha()
+        self.poi_dict = OrderedDict((("Poi Wall", wall), ("Poi Door", door), ("Poi Symbol", poi), ("Delete", delete)))
         p = [i for i in self.poi_dict.keys()]
         for num, tile in enumerate(self.poi_menu.group):
             tile.image = self.poi_dict[p[num]]
@@ -168,9 +174,9 @@ class Main(Template):
             tile.rect.topleft = ((self.block*num), 1)
             tile.filename = p[num]
             tile.dirty = 1
-        xplace = self.size[0] - self.block*3
+        xplace = self.size[0] - self.block*4
         self.poi_menu.xy = [xplace, 1]
-        #self.delete_button.xy = [(self.size[0] - self.block), 1]
+
 
     def setup_palette(self):
         sheet = SpriteSheet("img/magecity_64p.png", 64, (0,0), (8,44))
@@ -199,6 +205,7 @@ class Main(Template):
 
         if key == K_q:
             self.show_poi = not self.show_poi
+            self.current_tile = None
 
         if key in (K_w, K_UP):
             self.selected_map.move["up"] = True
@@ -222,41 +229,46 @@ class Main(Template):
     def mouse_down(self, button, pos):
         not_menu = True
         if button == 1:
+            # First we check for the unique states, Info Panel and Full Map.
             if not self.info_panel.display:
                 if not self.show_full_map:
-                    if self.button1.click(pos):
+                    # Now we check for menu buttons being clicked, and switch our
+                    # not_menu switch if they are. From here the rest is handled by update.
+                    if self.menu_button.click(pos):
                         not_menu = False
-                    elif self.button2.click(pos):
+                    elif self.pal_button.click(pos):
                         not_menu = False
-                    if self.button1.clicked:
+                    if self.menu_button.active:
                         if self.drop_menu.click(pos):
                             not_menu = False
-                    if self.button2.clicked:
+                    if self.pal_button.active:
                         if self.pal_menu.click(pos):
                             not_menu = False
-                            if self.pal_menu.clickinfo == "New":
-                                self.new_palette()
-                            else:
-                                self.switch_palette(text=self.pal_menu.clickinfo)
-                    if self.drop_menu.buttons[1].clicked:
+                    # Assuming we are in our main menu we check for the the buttons being clicked.
+                    # This part is allowed to happen WHILE maps are also being manipulated. (not_menu is not switched)
+                    if self.drop_menu.buttons[1].active:
                         if self.load_menu.click(pos):
                             self.loadmap(self.load_menu.clickinfo)
-                    elif self.drop_menu.buttons[3].clicked:
+                    elif self.drop_menu.buttons[3].active:
                         self.show_map()
-                        self.drop_menu.buttons[3].clicked = False
-                    elif self.drop_menu.buttons[4].clicked:
+                        self.drop_menu.buttons[3].active = False
+                    elif self.drop_menu.buttons[4].active:
                         self.info_panel.display_panel()
-                        self.drop_menu.buttons[4].clicked = False
+                        self.drop_menu.buttons[4].active = False
+                    # Here we look for our Maps. Basically we are moving a tile from one map to another.
+                    # We just need to pick the right one, and they should all overwrite each other.
+                    # In other words, only one map is active at a time.
                     if not_menu:
-                        if self.drop_menu.buttons[2].clicked: # Tiles are showing.
+                        if self.drop_menu.buttons[2].active: # Tiles are showing.
                             self.find_tile(pos, self.palette, self.menu)
                         elif self.show_poi: # POI Map is up.
                             self.find_tile(pos, self.poi_menu, self.poi_map)
-                        elif self.show_foreground > 0:
+                        elif self.show_foreground > 0: # We are on the Foreground map.
                             self.find_tile(pos, self.menu, self.map2)
-                        else:
+                        else: # We default to the Background map.
                             self.find_tile(pos, self.menu, self.map1)
                 else:
+                    # While the full map is up, any left mouse click will deactivate it.
                     self.show_full_map = False
             else:
                 self.info_panel.click(pos)
@@ -340,7 +352,7 @@ class Main(Template):
 
     def change_tile(self, tile):
         if self.current_tile != None:
-            if self.current_tile.filename != "Poi Eliminate":
+            if self.current_tile.filename != "Delete":
                 tile.filename = self.current_tile.filename
                 tile.image = self.current_tile.image
                 tile.dirty = 1

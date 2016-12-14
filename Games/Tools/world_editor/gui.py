@@ -139,13 +139,13 @@ class Button():
 
         size_of_text = self.font.size(text)
         self.text_xy = ((self.size[0]/2)-(size_of_text[0]/2), (self.size[1]/2)-(size_of_text[1]/2))
-        self.clicked = False
+        self.active = False
         self.ren_text = self.font.render(self.text, True, self.color["FG"])
         self.once = 0
 
     def click(self, point):
         if self.collide_rect.collidepoint(point):
-            self.clicked = (lambda x: False if x else True)(self.clicked)
+            self.active = (lambda x: False if x else True)(self.active)
             return True
         else:
             return False
@@ -184,7 +184,7 @@ class FloatingText():
                 self.write = False
                 self.alpha = 255
                 remove_timer("floating text")
-            if mytimer("alpha timer", .08, dt):
+            if mytimer("alpha timer", .02, dt):
                 self.alpha -= 5
 
     def draw(self, surf):
