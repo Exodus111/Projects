@@ -1,0 +1,62 @@
+{
+    "Background": {
+        "info": {
+            "block": 64,
+            "color": [
+                0,
+                171,
+                169
+            ],
+            "grid": [
+                40,
+                40
+            ],
+            "name": "Background",
+            "size": [
+                800,
+                640
+            ]
+        },
+        "tiles": {}
+    },
+    "Foreground": {
+        "info": {
+            "block": 64,
+            "color": [
+                149,
+                165,
+                166
+            ],
+            "grid": [
+                40,
+                40
+            ],
+            "name": "Foreground",
+            "size": [
+                800,
+                640
+            ]
+        },
+        "tiles": {}
+    },
+    "POI Map": {
+        "info": {
+            "block": 64,
+            "color": [
+                0,
+                0,
+                0
+            ],
+            "grid": [
+                40,
+                40
+            ],
+            "name": "POI Map",
+            "size": [
+                800,
+                640
+            ]
+        },
+        "tiles": {}
+    }
+}
