@@ -11,46 +11,54 @@ from gui import Button, Menu, FloatingText, Panel
 from saveload import SaveMap, LoadMap
 from maps import Map
 
-TEAL = (0,171,169)
-STEEL = (100,118,135)
-BROWN = (138,90,44)
-CYAN = (27,161,226)
-CONCRETE = (149,165,166)
 SUNFLOWER = (241,196,15)
 WHITE = (255,255,255)
 BLACK = (0,0,0)
 
+MIST  = (142, 175, 196)
+STONE = (51, 105, 133)
+SHADOW = (41, 49, 50)
+AUTUMN = (117, 54, 37)
+
+BG_COLOR = SHADOW
+MG_COLOR = AUTUMN
+FG_COLOR = STONE
+POI_MAP = MIST
+POI_MENU = SHADOW
+MENU_COLOR = STONE
+
+
 class Main(Template):
     def __init__(self, size):
         Template.__init__(self, size)
-        self.name = "Under Construction"
+        self.name = "World Editor 1.1"
         self.size = size
         self.block = 64
         self.dt = 0.
         self.empty_tile = pg.image.load("./tiles/Empty_tile_64p.png").convert_alpha()
-        self.select_group = pg.sprite.GroupSingle()
-        self.map1 = Map("Background", self, self.size, (40,40), self.block, self.empty_tile)
-        self.map2 = Map("Foreground", self, self.size, (40,40), self.block, self.empty_tile)
+        self.map_bg = Map("Background", self, self.size, (40,40), self.block, self.empty_tile)
+        self.map_mg = Map("Middleground", self, self.size, (40,40), self.block, self.empty_tile)
+        self.map_fg = Map("Foreground", self, self.size, (40,40), self.block, self.empty_tile)
         self.poi_map = Map("POI Map", self, self.size, (40,40), self.block, self.empty_tile)
         self.poi_menu = Map("POI Menu", self, self.size, (4,1), self.block, self.empty_tile)
-        self.menus = []
+        self.menus = [Map("Menu", self, self.size, (2,14), self.block, self.empty_tile)]
         self.pal_menu = Menu((128, 40), (0,21))
         self.pal_menu.add_buttons(2, ["New", "Pal-1"])
-        self.new_palette()
         self.menu = self.menus[0]
         self.menu.xy[1] += 20
         self.men_list = []
-        self.palette = self.setup_palette()
-        self.palette.xy = [250,0]
+        self.sprite_map = self.setup_spritemap()
+        self.sprite_map.xy = [250,0]
         self.clip = pg.Rect(0,0, self.size[0],self.size[1])
         self.c_pos = self.clip.topleft
         self.show_full_map = False
         self.show_poi = False
         self.full_map = None
         self.current_tile = None
-        self.show_foreground = -1
-        self.right_m_button = False
+        self.current_menu = None
+        self.ground_state = None
         self.right_m_pos = None
+        self.right_m_button = False
         self.m_pos = None
         self.fill = False
         self.m_select_rect = pg.Rect(1,1,1,1)
@@ -58,21 +66,22 @@ class Main(Template):
         self.pal_button = Button((128,20), (0,0), "Palette")
         self.drop_menu = Menu((120, 160), (129, 21))
         self.drop_menu.add_buttons(5, ["Save", "Load", "Sprites", "See Map", "Info"])
-        self.drop_menu.set_bg_color(CONCRETE)
+        self.drop_menu.set_bg_color(STONE)
         self.load_menu = self.setup_loadmenu()
         self.floating_text = FloatingText("no text", self.size)
         self.info_panel = Panel((self.size[0] - self.size[0]/3, self.size[1] - self.size[1]/3), (self.size[0]/6, self.size[1]/6))
-        self.info_panel.setup_text(["World Editor 1.0", "Made by Aurelio Aguirre", "", "Use WASD to move around.", "Use E to toggle the Foreground.", "Use Q to toggle the Point of Interest map."])
+        self.info_panel.setup_text([self.name, "Made by Aurelio Aguirre", "", "Use WASD to move around.", "Use E to toggle the Foreground.", "Use R to toggle the Middleground.", "Use Q to toggle the Point of Interest map."])
         self.setup()
         self.setup_poi()
-        self.selected_map = self.map1
+        self.selected_map = self.map_bg
 
     def update(self, dt):
         self.dt = dt
-        self.map1.update(dt)
-        self.map2.update(dt)
+        self.map_bg.update(dt)
+        self.map_fg.update(dt)
+        self.map_mg.update(dt)
         self.menu.update(dt)
-        self.palette.update(dt)
+        self.sprite_map.update(dt)
         self.poi_map.update(dt)
         self.poi_menu.update(dt)
         self.floating_text.update(dt)
@@ -80,9 +89,9 @@ class Main(Template):
             self.savemap()
             self.drop_menu.buttons[0].active = False
         if self.drop_menu.buttons[2].active:
-            self.selected_map = self.palette
+            self.selected_map = self.sprite_map
         else:
-            self.selected_map = self.map1
+            self.selected_map = self.map_bg
         if self.pal_button.active:
             if self.pal_menu.clickinfo != None:
                 if self.pal_menu.clickinfo == "New":
@@ -90,12 +99,13 @@ class Main(Template):
                 else:
                     self.switch_palette(text=self.pal_menu.clickinfo)
                 self.pal_menu.clickinfo = None
-        if self.map1.clipped:
-            self.map2.map.set_clip()
+        if self.map_bg.clipped:
+            self.map_fg.map.set_clip()
+            self.map_mg.map.set_clip()
             self.poi_map.map.set_clip()
-            self.map1.clipped = False
+            self.map_bg.clipped = False
         if self.c_pos != self.clip.topleft:
-            self.c_pos = (self.c_pos[0] - self.map1.xy[0], self.c_pos[1] - self.map1.xy[1])
+            self.c_pos = (self.c_pos[0] - self.map_bg.xy[0], self.c_pos[1] - self.map_bg.xy[1])
             self.clip.topleft = self.c_pos
         self.menu_button.update(self.dt)
         self.mouse_select()
@@ -103,18 +113,23 @@ class Main(Template):
     def draw(self):
         self.screen.fill(BLACK)
 
-        # MAP
+        # MAPs
         # Background
-        self.map1.draw(self.screen, self.clip)
+        self.map_bg.draw(self.screen, self.clip)
+
+        # Middleground
+        if self.ground_state == "MG":
+            self.map_mg.xy = self.map_bg.xy
+            self.map_mg.draw(self.screen, self.clip)
 
         # Foreground
-        if self.show_foreground > 0:
-            self.map2.xy = self.map1.xy
-            self.map2.draw(self.screen, self.clip)
+        if self.ground_state == "FG":
+            self.map_fg.xy = self.map_bg.xy
+            self.map_fg.draw(self.screen, self.clip)
 
         # POI Map
         if self.show_poi:
-            self.poi_map.xy = self.map1.xy
+            self.poi_map.xy = self.map_bg.xy
             self.poi_map.draw(self.screen, self.clip)
 
 
@@ -131,11 +146,11 @@ class Main(Template):
         if self.drop_menu.buttons[1].active:
             self.load_menu.draw(self.screen)
         if self.drop_menu.buttons[2].active:
-            self.palette.draw(self.screen)
+            self.sprite_map.draw(self.screen)
         if self.right_m_button:
             screen_rect = self.m_select_rect.copy()
-            screen_rect.x += self.map1.xy[0]
-            screen_rect.y += self.map1.xy[1]
+            screen_rect.x += self.map_bg.xy[0]
+            screen_rect.y += self.map_bg.xy[1]
             pg.draw.rect(self.screen, WHITE, screen_rect, 1)
         if self.show_full_map:
             if self.full_map:
@@ -151,15 +166,16 @@ class Main(Template):
         amount = len(filelist)
         menu = Menu((240, amount*21), (250, 21))
         menu.add_buttons(amount, filelist)
-        menu.set_bg_color(CONCRETE)
+        menu.set_bg_color(STONE)
         return menu
 
     def setup(self):
-        self.map1.setup(TEAL)
-        self.map2.setup(CONCRETE, 200)
-        self.menu.setup(STEEL)
-        self.poi_map.setup((0,0,0), alpha=150)
-        self.poi_menu.setup(STEEL)
+        self.map_bg.setup(BG_COLOR)
+        self.map_fg.setup(FG_COLOR, 200)
+        self.map_mg.setup(MG_COLOR, 200)
+        self.menu.setup(MENU_COLOR)
+        self.poi_map.setup(POI_MAP, alpha=150)
+        self.poi_menu.setup(POI_MENU)
 
     def setup_poi(self):
         wall = pg.image.load("./tiles/Wall.png").convert_alpha()
@@ -178,13 +194,13 @@ class Main(Template):
         self.poi_menu.xy = [xplace, 1]
 
 
-    def setup_palette(self):
+    def setup_spritemap(self):
         sheet = SpriteSheet("img/magecity_64p.png", 64, (0,0), (8,44))
         self.men_list = sum(sheet.image_list, [])
         length = len(self.men_list)
         size = (10, int(length/10))
         menu = Map("Palette", self, self.size, size, self.block, self.empty_tile)
-        menu.setup(CYAN)
+        menu.setup(MIST)
         for i, tile in enumerate(menu.group):
             tile.filename = "{}".format(i)
             tile.image = self.men_list[i]
@@ -201,7 +217,16 @@ class Main(Template):
             self.end_game()
 
         if key == K_e:
-            self.show_foreground *= -1
+            if self.ground_state == None or self.ground_state == "MG":
+                self.ground_state = "FG"
+            else:
+                self.ground_state = None
+
+        if key == K_r:
+            if self.ground_state == None or self.ground_state == "FG":
+                self.ground_state = "MG"
+            else:
+                self.ground_state = None
 
         if key == K_q:
             self.show_poi = not self.show_poi
@@ -260,13 +285,15 @@ class Main(Template):
                     # In other words, only one map is active at a time.
                     if not_menu:
                         if self.drop_menu.buttons[2].active: # Tiles are showing.
-                            self.find_tile(pos, self.palette, self.menu)
+                            self.find_tile(pos, self.sprite_map, self.menu)
                         elif self.show_poi: # POI Map is up.
                             self.find_tile(pos, self.poi_menu, self.poi_map)
-                        elif self.show_foreground > 0: # We are on the Foreground map.
-                            self.find_tile(pos, self.menu, self.map2)
+                        elif self.ground_state == "FG": # we are on the Foreground map.
+                            self.find_tile(pos, self.menu, self.map_fg)
+                        elif self.ground_state == "MG": # We are on the middleground map.
+                            self.find_tile(pos, self.menu, self.map_mg)
                         else: # We default to the Background map.
-                            self.find_tile(pos, self.menu, self.map1)
+                            self.find_tile(pos, self.menu, self.map_bg)
                 else:
                     # While the full map is up, any left mouse click will deactivate it.
                     self.show_full_map = False
@@ -288,18 +315,20 @@ class Main(Template):
 
             if self.show_poi:
                 self.group_select(new_rect, self.poi_map.group)
-            elif self.show_foreground < 0:
-                self.group_select(new_rect, self.map1.group)
+            elif self.ground_state == "FG":
+                self.group_select(new_rect, self.map_fg.group)
+            elif self.ground_state == "MG":
+                self.group_select(new_rect, self.map_mg.group)
             else:
-                self.group_select(new_rect, self.map2.group)
+                self.group_select(new_rect, self.map_bg.group)
 
     def mouse_motion(self, button, pos, rel):
         self.m_pos = pos
 
     def mouse_select(self):
         if self.right_m_button:
-            old_pos = (self.right_m_pos[0] - self.map1.xy[0], self.right_m_pos[1] - self.map1.xy[1])
-            new_pos = (self.m_pos[0] - self.map1.xy[0], self.m_pos[1] - self.map1.xy[1])
+            old_pos = (self.right_m_pos[0] - self.map_bg.xy[0], self.right_m_pos[1] - self.map_bg.xy[1])
+            new_pos = (self.m_pos[0] - self.map_bg.xy[0], self.m_pos[1] - self.map_bg.xy[1])
             self.m_select_rect = pg.Rect(1,1,1,1)
             xoff, yoff = new_pos[0] - old_pos[0], new_pos[1] - old_pos[1]
             self.m_select_rect.inflate_ip(xoff, yoff)
@@ -336,10 +365,10 @@ class Main(Template):
             if tile.rect.collidepoint(map_pos):
                 found = True
                 menu.fill = True
-                menu.select_rect = tile.rect
+                menu.select_rect(tile.rect)
                 menu.draw_border = True
-                self.select_group.add(tile)
                 self.current_tile = tile
+                self.current_menu = menu.name
             if found:
                 break
         if not found:
@@ -363,7 +392,7 @@ class Main(Template):
 
     def new_palette(self):
         self.menus.append(Map("Menu", self, self.size, (2,14), self.block, self.empty_tile))
-        self.menus[-1].setup(STEEL)
+        self.menus[-1].setup(STONE)
 
         size = self.pal_menu.size
         self.pal_menu.change_size((size[0], size[1]+20))
@@ -379,9 +408,12 @@ class Main(Template):
 
     def show_map(self):
         full_map = pg.Surface((40*64, 40*64))
-        for tile in self.map1.group:
+        for tile in self.map_bg.group:
             full_map.blit(tile.image, tile.rect.topleft)
-        for tile in self.map2.group:
+        for tile in self.map_mg.group:
+            if tile.filename != "Empty_tile":
+                full_map.blit(tile.image, tile.rect.topleft)
+        for tile in self.map_fg.group:
             if tile.filename != "Empty_tile":
                 full_map.blit(tile.image, tile.rect.topleft)
         self.full_map = pg.transform.smoothscale(full_map, self.size)
@@ -395,8 +427,9 @@ class Main(Template):
 
     def savemap(self):
         saving = SaveMap("Empty_tile")
-        saving.add_map(self.map1)
-        saving.add_map(self.map2)
+        saving.add_map(self.map_bg)
+        saving.add_map(self.map_mg)
+        saving.add_map(self.map_fg)
         saving.add_map(self.poi_map)
         saving.write_to_file()
 
@@ -404,8 +437,8 @@ class Main(Template):
         load = LoadMap(filename)
         maplist = []
         for m in load.maps.values():
-            a_map = Map(m["info"]["name"], m["info"]["size"], m["info"]["grid"], m["info"]["block"], self.empty_tile)
-            if m["info"]["name"] == "Foreground":
+            a_map = Map(m["info"]["name"], self, m["info"]["size"], m["info"]["grid"], m["info"]["block"], self.empty_tile)
+            if m["info"]["name"] == "Foreground" or m["info"]["name"] == "Middleground":
                 a_map.setup(m["info"]["color"], 200)
             elif m["info"]["name"] == "POI Map":
                 a_map.setup(m["info"]["color"], 150)
@@ -424,9 +457,11 @@ class Main(Template):
             maplist.append(a_map)
         for j in maplist:
             if j.name == "Background":
-                self.map1 = j
+                self.map_bg = j
+            if j.name == "Middleground":
+                self.map_mg = j
             if j.name == "Foreground":
-                self.map2 = j
+                self.map_fg = j
             if j.name == "POI Map":
                 self.poi_map = j
         print("Loading from file...")

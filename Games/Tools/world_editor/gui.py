@@ -2,8 +2,7 @@ import pygame as pg
 from collections import OrderedDict
 from myfuncs import *
 
-STEEL = (100,118,135)
-CONCRETE = (149,165,166)
+STONE = (51, 105, 133)
 SUNFLOWER = (241,196,15)
 BLACK = (0,0,0)
 
@@ -12,14 +11,14 @@ class Border():
         self.size = size
         self.xy = xy
         self.bg_color = BLACK
-        self.mn_color = CONCRETE
+        self.mn_color = STONE
         self.fg_color = BLACK
         self.border = [{
             "rect": pg.Rect((0,0), self.size),
             "color": (0,0,0)},
                 {
             "rect": pg.Rect((0,0), self.size).inflate(-3, -3),
-            "color": CONCRETE},
+            "color": STONE},
                 {
             "rect": pg.Rect((0,0), self.size).inflate(-8, -8),
             "color": (0,0,0)}]
@@ -29,7 +28,7 @@ class Border():
             pg.draw.rect(surf, b["color"], b["rect"])
 
 class Panel():
-    def __init__(self, size, xy, color=STEEL):
+    def __init__(self, size, xy, color=STONE):
         self.size = size
         self.xy = xy
         self.color = color
