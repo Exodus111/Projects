@@ -2,33 +2,36 @@ import pygame as pg
 from collections import OrderedDict
 from myfuncs import *
 
-STONE = (51, 105, 133)
+LIGHT =  (7, 12, 15)
 SUNFLOWER = (241,196,15)
+WHITE = (255,255,255)
 BLACK = (0,0,0)
+
+BUTTON_COLOR = WHITE
 
 class Border():
     def __init__(self, size, xy):
         self.size = size
         self.xy = xy
         self.bg_color = BLACK
-        self.mn_color = STONE
+        self.mn_color = WHITE
         self.fg_color = BLACK
         self.border = [{
             "rect": pg.Rect((0,0), self.size),
-            "color": (0,0,0)},
+            "color": self.fg_color},
                 {
             "rect": pg.Rect((0,0), self.size).inflate(-3, -3),
-            "color": STONE},
+            "color": self.mn_color},
                 {
             "rect": pg.Rect((0,0), self.size).inflate(-8, -8),
-            "color": (0,0,0)}]
+            "color": self.fg_color}]
 
     def draw(self, surf):
         for b in self.border:
             pg.draw.rect(surf, b["color"], b["rect"])
 
 class Panel():
-    def __init__(self, size, xy, color=STONE):
+    def __init__(self, size, xy, color=LIGHT):
         self.size = size
         self.xy = xy
         self.color = color
@@ -132,7 +135,7 @@ class Button():
         self.surf = pg.Surface(size)
         self.rect = pg.Rect((0,0), size)
         self.collide_rect = pg.Rect(xy, size)
-        self.color = {"BG":(255,255,255),"FG":(0,0,0)}
+        self.color = {"BG":BUTTON_COLOR,"FG":BLACK}
         self.font = pg.font.SysFont("arial", 14)
         self.text = text
 

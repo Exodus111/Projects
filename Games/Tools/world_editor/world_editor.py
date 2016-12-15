@@ -14,18 +14,21 @@ from maps import Map
 SUNFLOWER = (241,196,15)
 WHITE = (255,255,255)
 BLACK = (0,0,0)
+LIGHT_GREY = (224, 224, 224)
+GREY = (59, 61, 63)
+DARK = (87, 86, 86)
+BLUE = (0, 83, 147)
+RED = (133, 27, 24)
+GREEN = (28, 109, 20)
 
-MIST  = (142, 175, 196)
-STONE = (51, 105, 133)
-SHADOW = (41, 49, 50)
-AUTUMN = (117, 54, 37)
+BG_COLOR = DARK
+MG_COLOR = BLUE
+FG_COLOR = GREEN
+POI_MAP = RED
+POI_MENU = DARK
+PAL_COLOR = WHITE
 
-BG_COLOR = SHADOW
-MG_COLOR = AUTUMN
-FG_COLOR = STONE
-POI_MAP = MIST
-POI_MENU = SHADOW
-MENU_COLOR = STONE
+SUBBUTTON_COLOR = LIGHT_GREY
 
 
 class Main(Template):
@@ -44,6 +47,7 @@ class Main(Template):
         self.menus = [Map("Menu", self, self.size, (2,14), self.block, self.empty_tile)]
         self.pal_menu = Menu((128, 40), (0,21))
         self.pal_menu.add_buttons(2, ["New", "Pal-1"])
+        self.pal_menu.set_bg_color(SUBBUTTON_COLOR)
         self.menu = self.menus[0]
         self.menu.xy[1] += 20
         self.men_list = []
@@ -66,7 +70,7 @@ class Main(Template):
         self.pal_button = Button((128,20), (0,0), "Palette")
         self.drop_menu = Menu((120, 160), (129, 21))
         self.drop_menu.add_buttons(5, ["Save", "Load", "Sprites", "See Map", "Info"])
-        self.drop_menu.set_bg_color(STONE)
+        self.drop_menu.set_bg_color(SUBBUTTON_COLOR)
         self.load_menu = self.setup_loadmenu()
         self.floating_text = FloatingText("no text", self.size)
         self.info_panel = Panel((self.size[0] - self.size[0]/3, self.size[1] - self.size[1]/3), (self.size[0]/6, self.size[1]/6))
@@ -166,14 +170,14 @@ class Main(Template):
         amount = len(filelist)
         menu = Menu((240, amount*21), (250, 21))
         menu.add_buttons(amount, filelist)
-        menu.set_bg_color(STONE)
+        menu.set_bg_color(WHITE)
         return menu
 
     def setup(self):
         self.map_bg.setup(BG_COLOR)
         self.map_fg.setup(FG_COLOR, 200)
         self.map_mg.setup(MG_COLOR, 200)
-        self.menu.setup(MENU_COLOR)
+        self.menu.setup(PAL_COLOR)
         self.poi_map.setup(POI_MAP, alpha=150)
         self.poi_menu.setup(POI_MENU)
 
@@ -200,7 +204,7 @@ class Main(Template):
         length = len(self.men_list)
         size = (10, int(length/10))
         menu = Map("Palette", self, self.size, size, self.block, self.empty_tile)
-        menu.setup(MIST)
+        menu.setup(WHITE)
         for i, tile in enumerate(menu.group):
             tile.filename = "{}".format(i)
             tile.image = self.men_list[i]
@@ -392,7 +396,7 @@ class Main(Template):
 
     def new_palette(self):
         self.menus.append(Map("Menu", self, self.size, (2,14), self.block, self.empty_tile))
-        self.menus[-1].setup(STONE)
+        self.menus[-1].setup(WHITE)
 
         size = self.pal_menu.size
         self.pal_menu.change_size((size[0], size[1]+20))
