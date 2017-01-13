@@ -6,10 +6,6 @@ from pygame.locals import *
 from load.load import Template, Tile
 from load import myfuncs
 
-import sys
-if sys.version_info[0] < 3:
-    range = xrange
-
 class Main(Template):
     def __init__(self, size):
         Template.__init__(self, size)
