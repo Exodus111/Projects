@@ -6,6 +6,7 @@ from kivy.animation import Animation
 from kivy.uix.widget import Widget
 from kivy.uix.image import Image
 from kivy.clock import Clock
+from kivy.graphics import Color, Rectangle
 from kivy.properties import StringProperty, BooleanProperty, NumericProperty, BoundedNumericProperty
 from kivy.atlas import Atlas
 
@@ -29,12 +30,11 @@ class EventHandler(Widget):
     def key_off(self):
         pass
 
-class Sprite(Image):
+class Sprite(Widget):
     current_direction = StringProperty("idle")
     new_frame = BooleanProperty(True)
     def __init__(self, **kwargs):
         super(Sprite, self).__init__(**kwargs)
-        self.size = self.texture_size
         self.new_frame = True
         self.direction = "idle"
         self.anim_timer = 0
@@ -57,8 +57,13 @@ class Sprite(Image):
 
 class Player(Sprite):
     def __init__(self):
+        super(Player, self).__init__()
         self.atlas = Atlas("images/player_sheet.atlas")
-        super(Player, self).__init__(allow_stretch=True, source='atlas://images/player_sheet/idle1')
+        self.image = Image(allow_stretch=True, source='atlas://images/player_sheet/idle1')
+        self.image.size = (64,64)
+        self.size = (32,64)
+        self.add_widget(self.image)
+        self.target = [0,0]
         self.speed = 3
         self.anim = 0
         self.world = (0,0)
@@ -73,10 +78,12 @@ class Player(Sprite):
     def keydown(self, key, mod):
         if key[1] in ("up", "w"):
             self.moves["up"] = True
-            self.change_direction("walkup")
+            if not self.moves["left"] or not self.moves["right"]:
+                self.change_direction("walkup")
         if key[1] in ("down", "s"):
             self.moves["down"] = True
-            self.change_direction("walkdown")
+            if not self.moves["left"] or not self.moves["right"]:
+                self.change_direction("walkdown")
         if key[1] in ("left", "a"):
             self.moves["left"] = True
             self.change_direction("walkleft")
@@ -104,35 +111,41 @@ class Player(Sprite):
             self.change_direction("idle")
 
     def update(self, dt):
+        self.image.center = self.center
         if self.new_frame:
             self.frame = self.current_image()
             self.new_frame = False
         if self.anim > 10:
-            self.texture = next(self.frame)
+            self.image.texture = next(self.frame)
             self.anim = 0
         self.anim += 1
         self.move()
         self.collide_world()
+        self.collide_objects()
 
 
     def collide_world(self):
-
-        if self.pos[0] < 20: # moving west.
-            self.pos[0] += self.speed
-        if self.pos[1] < 25: # moving south.
-            self.pos[1] += self.speed
-        if self.pos[0] > self.world[0] - 50: # moving east.
-            self.pos[0] -= self.speed
-        if self.pos[1] > self.world[1] - 57: # moving north.
-            self.pos[1] -= self.speed
+        if self.center[0] < 25+15: # moving west.
+            self.center[0] += self.speed
+        if self.center[1] < 25+30: # moving south.
+            self.center[1] += self.speed
+        if self.center[0] > self.world[0] - 25-15: # moving east.
+            self.center[0] -= self.speed
+        if self.center[1] > self.world[1] - 25-30: # moving north.
+            self.center[1] -= self.speed
 
     def _project(self, b):
         b_length_squared = b[0]*b[0]+b[1]*b[1]
         projected_length = Vector(self.pos).dot(b)
         return Vector(b)*(projected_length/b_length_squared)
 
-    def collide_objects(self, objects):
-        pass
+    def collide_objects(self):
+        collided = self.parent.world.foreground.coll_childs(self)
+        if collided != []:
+            return True
+        else:
+            return False
+
 
 class GameWorld(Widget):
     def __init__(self, **kwargs):
@@ -140,7 +153,33 @@ class GameWorld(Widget):
         self.background = Image(source='images/game_borders.png', size=(2048/2,1080/2))
         self.size = self.background.size
         self.add_widget(self.background)
-        #self.border = Rectangle()
+        self.foreground = ForeGround(size=self.size)
+        self.foreground.add_widget(Clutter(img='images/obj_32px.png', pos=(100, 200)))
+        self.foreground.add_widget(Clutter(img='images/obj_128x32px.png', pos=(200, 200)))
+        self.foreground.add_widget(Clutter(img='images/obj_64px.png', pos=(100, 400)))
+        self.add_widget(self.foreground)
+
+
+
+    def update(self, dt):
+        self.foreground.update(dt)
+
+class ForeGround(Widget):
+    def coll_childs(self, w):
+        return [child for child in self.children if child.collide_widget(w)]
+
+    def update(self, dt):
+        for child in self.children:
+            child.update(dt)
+
+class Clutter(Widget):
+    def __init__(self, img, pos):
+        super(Clutter, self).__init__()
+        self.image = Image(source=img)
+        self.size = self.image.size = self.image.texture_size
+        self.pos = pos
+        self.image.center = self.center
+        self.add_widget(self.image)
 
     def update(self, dt):
         pass
