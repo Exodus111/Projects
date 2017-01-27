@@ -55,9 +55,14 @@ class Sprite(Widget):
                     frame = self.atlas[self.current_direction + str(j)]
                     yield frame
 
-class Player(Sprite):
+class Player(Widget):
+    current_direction = StringProperty("idle")
+    new_frame = BooleanProperty(True)
     def __init__(self):
         super(Player, self).__init__()
+        self.new_frame = True
+        self.direction = "idle"
+        self.anim_timer = 0
         self.atlas = Atlas("images/player_sheet.atlas")
         self.image = Image(allow_stretch=True, source='atlas://images/player_sheet/idle1')
         self.image.size = (64,64)
@@ -74,6 +79,23 @@ class Player(Sprite):
         "left":(-self.speed, 0),
         "right":(self.speed, 0)
         }
+
+
+    def change_direction(self, d):
+        if d != self.current_direction:
+            self.current_direction = d
+            self.new_frame = True
+
+    def current_image(self):
+        while True:
+            if self.current_direction == "idle":
+                for i in range(1, 2):
+                    frame = self.atlas[self.current_direction + str(i)]
+                    yield frame
+            else:
+                for j in range(1, 5):
+                    frame = self.atlas[self.current_direction + str(j)]
+                    yield frame
 
     def keydown(self, key, mod):
         if key[1] in ("up", "w"):
@@ -107,6 +129,8 @@ class Player(Sprite):
             if self.moves[mov]:
                 idle = False
                 self.pos = Vector(self.pos) + Vector(self.dirs[mov])
+                self.collide_objects(mov)
+
         if idle:
             self.change_direction("idle")
 
@@ -121,7 +145,6 @@ class Player(Sprite):
         self.anim += 1
         self.move()
         self.collide_world()
-        self.collide_objects()
 
 
     def collide_world(self):
@@ -134,17 +157,17 @@ class Player(Sprite):
         if self.center[1] > self.world[1] - 25-30: # moving north.
             self.center[1] -= self.speed
 
-    def _project(self, b):
-        b_length_squared = b[0]*b[0]+b[1]*b[1]
-        projected_length = Vector(self.pos).dot(b)
-        return Vector(b)*(projected_length/b_length_squared)
-
-    def collide_objects(self):
+    def collide_objects(self, mov):
         collided = self.parent.world.foreground.coll_childs(self)
         if collided != []:
-            return True
-        else:
-            return False
+            if mov == "up":
+                self.pos = Vector(self.pos) + Vector(self.dirs["down"])
+            elif mov == "down":
+                self.pos = Vector(self.pos) + Vector(self.dirs["up"])
+            elif mov == "left":
+                self.pos = Vector(self.pos) + Vector(self.dirs["right"])
+            elif mov == "right":
+                self.pos = Vector(self.pos) + Vector(self.dirs["left"])
 
 
 class GameWorld(Widget):
@@ -154,12 +177,10 @@ class GameWorld(Widget):
         self.size = self.background.size
         self.add_widget(self.background)
         self.foreground = ForeGround(size=self.size)
-        self.foreground.add_widget(Clutter(img='images/obj_32px.png', pos=(100, 200)))
-        self.foreground.add_widget(Clutter(img='images/obj_128x32px.png', pos=(200, 200)))
-        self.foreground.add_widget(Clutter(img='images/obj_64px.png', pos=(100, 400)))
+        #self.foreground.add_widget(Clutter(img='images/obj_32px.png', pos=(200, 200)))
+        #self.foreground.add_widget(Clutter(img='images/obj_128x32px.png', pos=(600, 200)))
+        #self.foreground.add_widget(Clutter(img='images/obj_64px.png', pos=(500, 300)))
         self.add_widget(self.foreground)
-
-
 
     def update(self, dt):
         self.foreground.update(dt)

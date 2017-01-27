@@ -410,6 +410,7 @@ class Main(Template):
         elif text:
             self.menu = self.menus[int(text[-1])-1]
 
+# <-------This Needs adjustment, needs to differentiate between Layers-------->
     def show_map(self):
         full_map = pg.Surface((40*64, 40*64))
         for tile in self.map_bg.group:
