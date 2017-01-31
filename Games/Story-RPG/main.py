@@ -1,174 +1,46 @@
 #!/usr/bin/python3
 from kivy.app import App
 from kivy.core.window import Window
-from kivy.vector import Vector
 from kivy.animation import Animation
 from kivy.uix.widget import Widget
 from kivy.uix.image import Image
 from kivy.clock import Clock
-from kivy.graphics import Color, Rectangle
-from kivy.properties import StringProperty, BooleanProperty, NumericProperty, BoundedNumericProperty
-from kivy.atlas import Atlas
+from kivy.properties import StringProperty, ListProperty, BooleanProperty, ObjectProperty, NumericProperty
+
+from entities import *
 
 class EventHandler(Widget):
     def __init__(self):
         super(EventHandler, self).__init__()
         self.calls = {
             "keydown":None,
-            "keyup":None
+            "keyup":None,
+            "dropmenus":None,
+            "speechbubble":None,
+            "npc_speech":None
         }
         self.keyboard = Window.request_keyboard(self.key_off, self)
         self.keyboard.bind(on_key_down=self.key_down)
         self.keyboard.bind(on_key_up=self.key_up)
 
     def key_up(self, k, keycode):
-        self.calls["keyup"](keycode)
+        if keycode[1] in ("up", "down", "left", "right", "w", "a", "s", "d"):
+            self.calls["keyup"](keycode)
+
 
     def key_down(self, keyboard, keycode, text, mod):
-        self.calls["keydown"](keycode, mod)
+        if keycode[1] in ("up", "down", "left", "right", "w", "a", "s", "d"):
+            self.calls["keydown"](keycode, mod)
+        elif keycode[1] in ("t", "b"):
+            self.calls["dropmenus"](keycode[1])
+        elif keycode[1] == "h":
+            self.calls["speechbubble"]()
+        elif keycode[1] in [str(i) for i in range(10)]:
+            self.calls["npc_speech"](keycode[1])
+
 
     def key_off(self):
         pass
-
-class Sprite(Widget):
-    current_direction = StringProperty("idle")
-    new_frame = BooleanProperty(True)
-    def __init__(self, **kwargs):
-        super(Sprite, self).__init__(**kwargs)
-        self.new_frame = True
-        self.direction = "idle"
-        self.anim_timer = 0
-
-    def change_direction(self, d):
-        if d != self.current_direction:
-            self.current_direction = d
-            self.new_frame = True
-
-    def current_image(self):
-        while True:
-            if self.current_direction == "idle":
-                for i in range(1, 2):
-                    frame = self.atlas[self.current_direction + str(i)]
-                    yield frame
-            else:
-                for j in range(1, 5):
-                    frame = self.atlas[self.current_direction + str(j)]
-                    yield frame
-
-class Player(Widget):
-    current_direction = StringProperty("idle")
-    new_frame = BooleanProperty(True)
-    def __init__(self):
-        super(Player, self).__init__()
-        self.new_frame = True
-        self.direction = "idle"
-        self.anim_timer = 0
-        self.atlas = Atlas("images/player_sheet.atlas")
-        self.image = Image(allow_stretch=True, source='atlas://images/player_sheet/idle1')
-        self.image.size = (64,64)
-        self.size = (32,64)
-        self.add_widget(self.image)
-        self.target = [0,0]
-        self.speed = 3
-        self.anim = 0
-        self.world = (0,0)
-        self.moves = {"up":False, "down":False, "left":False, "right":False}
-        self.dirs = {
-        "up":(0, self.speed),
-        "down":(0, -self.speed),
-        "left":(-self.speed, 0),
-        "right":(self.speed, 0)
-        }
-
-
-    def change_direction(self, d):
-        if d != self.current_direction:
-            self.current_direction = d
-            self.new_frame = True
-
-    def current_image(self):
-        while True:
-            if self.current_direction == "idle":
-                for i in range(1, 2):
-                    frame = self.atlas[self.current_direction + str(i)]
-                    yield frame
-            else:
-                for j in range(1, 5):
-                    frame = self.atlas[self.current_direction + str(j)]
-                    yield frame
-
-    def keydown(self, key, mod):
-        if key[1] in ("up", "w"):
-            self.moves["up"] = True
-            if not self.moves["left"] or not self.moves["right"]:
-                self.change_direction("walkup")
-        if key[1] in ("down", "s"):
-            self.moves["down"] = True
-            if not self.moves["left"] or not self.moves["right"]:
-                self.change_direction("walkdown")
-        if key[1] in ("left", "a"):
-            self.moves["left"] = True
-            self.change_direction("walkleft")
-        if key[1] in ("right", "d"):
-            self.moves["right"] = True
-            self.change_direction("walkright")
-
-    def keyup(self, key):
-        if key[1] in ("up", "w"):
-            self.moves["up"] = False
-        if key[1] in ("down", "s"):
-            self.moves["down"] = False
-        if key[1] in ("left", "a"):
-            self.moves["left"] = False
-        if key[1] in ("right", "d"):
-            self.moves["right"] = False
-
-    def move(self):
-        idle = True
-        for mov in self.moves:
-            if self.moves[mov]:
-                idle = False
-                self.pos = Vector(self.pos) + Vector(self.dirs[mov])
-                self.collide_objects(mov)
-
-        if idle:
-            self.change_direction("idle")
-
-    def update(self, dt):
-        self.image.center = self.center
-        if self.new_frame:
-            self.frame = self.current_image()
-            self.new_frame = False
-        if self.anim > 10:
-            self.image.texture = next(self.frame)
-            self.anim = 0
-        self.anim += 1
-        self.move()
-        self.collide_world()
-
-
-    def collide_world(self):
-        if self.center[0] < 25+15: # moving west.
-            self.center[0] += self.speed
-        if self.center[1] < 25+30: # moving south.
-            self.center[1] += self.speed
-        if self.center[0] > self.world[0] - 25-15: # moving east.
-            self.center[0] -= self.speed
-        if self.center[1] > self.world[1] - 25-30: # moving north.
-            self.center[1] -= self.speed
-
-    def collide_objects(self, mov):
-        collided = self.parent.world.foreground.coll_childs(self)
-        if collided != []:
-            if mov == "up":
-                self.pos = Vector(self.pos) + Vector(self.dirs["down"])
-            elif mov == "down":
-                self.pos = Vector(self.pos) + Vector(self.dirs["up"])
-            elif mov == "left":
-                self.pos = Vector(self.pos) + Vector(self.dirs["right"])
-            elif mov == "right":
-                self.pos = Vector(self.pos) + Vector(self.dirs["left"])
-
 
 class GameWorld(Widget):
     def __init__(self, **kwargs):
@@ -205,25 +77,99 @@ class Clutter(Widget):
     def update(self, dt):
         pass
 
+class DropMenu(Widget): pass
+
+class Menus(Widget):
+    top_status = BooleanProperty(False)
+    bot_status = BooleanProperty(False)
+    top_menu = ObjectProperty(None)
+    bot_menu = ObjectProperty(None)
+    y1_animate = NumericProperty(0)
+    y2_animate = NumericProperty(0)
+    top_text = StringProperty("")
+    bot_text = StringProperty("")
+    text_colour = ListProperty([1., 1., 1., 0.])
+
+    def menu_press(self, k):
+        if k == "t":
+            self.top_status = not self.top_status
+            if self.top_status:
+                self.show_top_menu()
+            else:
+                self.hide_top_menu()
+        elif k == "b":
+            self.bot_status = not self.bot_status
+            if self.bot_status:
+                self.show_bottom_menu()
+            else:
+                self.hide_bottom_menu()
+
+
+    def show_top_and_bottom_menu(self, npc):
+        self.top_text = "Hey there, I am {}".format(npc)
+        self.bot_text = "Hi! how are you ?"
+        anim = Animation(y1_animate=self.height-self.top_menu.height, t='out_bounce')
+        anim &= Animation(y2_animate=0, t='out_bounce')
+        anim += Animation(text_colour=[1., 1., 1., 1.])
+        anim.start(self)
+
+    def hide_top_and_bottom_menu(self):
+        anim = Animation(y1_animate=self.height, t='in_out_elastic')
+        anim &= Animation(y2_animate=-self.bot_menu.height, t='in_out_elastic')
+        anim += Animation(text_colour=[1., 1., 1., 0.])
+        anim.start(self)
+        self.top_text = ""
+        self.bot_text = ""
+
+
+    def show_top_menu(self):
+        anim = Animation(x=0, y=self.height-self.top_menu.height, t='out_bounce')
+        anim.start(self.top_menu)
+
+    def hide_top_menu(self):
+        anim = Animation(x=0, y=self.height, t='in_out_elastic')
+        anim.start(self.top_menu)
+
+    def show_bottom_menu(self):
+        anim = Animation(x=0, y=0, t='out_bounce')
+        anim.start(self.bot_menu)
+
+    def hide_bottom_menu(self):
+        anim = Animation(x=0, y=-self.bot_menu.height, t='in_out_elastic')
+        anim.start(self.bot_menu)
+
 class Game(Widget):
     def __init__(self):
         super(Game, self).__init__()
         self.event = EventHandler()
-        self.player = Player()
-        self.player.center = Window.center
-        self.event.calls["keyup"] = self.player.keyup
-        self.event.calls["keydown"] = self.player.keydown
         self.world = GameWorld()
+        self.npcs = NPCController()
+        self.player = Player()
+        self.drop_menus = Menus()
         Window.size = self.world.size
         self.player.world = self.world.size
+        self.drop_menus.size = self.world.size
+        self.event.calls["keyup"] = self.player.keyup
+        self.event.calls["keydown"] = self.player.keydown
+        self.event.calls["dropmenus"] = self.drop_menus.menu_press
+        self.event.calls["speechbubble"] = self.player.animate_speech
+        self.event.calls["npc_speech"] = self.npcs.activate
         self.add_widget(self.event)
         self.add_widget(self.world)
+        self.add_widget(self.npcs)
         self.add_widget(self.player)
+        self.add_widget(self.drop_menus)
 
     def update(self, dt):
         self.world.update(dt)
         self.player.update(dt)
 
+    def toggle_dropmenus(self, name):
+        self.drop_menus.top_status = not self.drop_menus.top_status
+        if self.drop_menus.top_status:
+            self.drop_menus.show_top_and_bottom_menu(name)
+        else:
+            self.drop_menus.hide_top_and_bottom_menu()
 
 class MainApp(App):
     def build(self):

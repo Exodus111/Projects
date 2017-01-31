@@ -1,14 +1,76 @@
 #: kivy 1.9.1
 
-<Player>
+<NPC>
     canvas:
         Color:
-            rgba: 1., 0., 1., .0
+            rgba: 1., 1., 1., 1.
+        Rectangle:
+            source: self.frame
+            pos: self.pos
+            size: self.size
+
+<Player>
+    pos: 500, 50
+    canvas:
+        Color:
+            rgba: 0.1, 0.1, 0.1, 0.
         Rectangle:
             pos: self.pos
             size: self.size
+
+<SpeechBubble>
+    canvas:
+        Color:
+            rgba: self.colour
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Label:
+        font_size: 30
+        color: root.text_colour
+        center_x: root.center_x
+        center_y: root.center_y
+        text: root.text
+
 <Clutter>
     canvas:
         Rectangle:
             pos: self.pos
             size: self.size
+
+<Menus>
+    top_menu: top
+    bot_menu: bot
+    y1_animate: self.height
+    y2_animate: -(self.height/3)
+
+    DropMenu
+        id: top
+        size: root.width, root.height/3
+        x: 0
+        y: root.y1_animate
+        Label:
+            color: root.text_colour
+            font_size: 30
+            text: root.top_text
+            center: root.center_x, root.center_y+200
+
+    DropMenu
+        id: bot
+        size: root.width, root.height/3
+        x: 0
+        y: root.y2_animate
+        Label:
+            color: root.text_colour
+            font_size: 30
+            text: root.bot_text
+            center: root.center_x, root.center_y-200
+
+<DropMenu>
+    canvas:
+        Color:
+            rgba: 0.1, 0.1, 0.1, .9
+
+        Rectangle:
+            size: self.size
+            pos: self.pos
