@@ -13,27 +13,47 @@ import random as ran
 class SpeechBubble(Widget):
     colour = ListProperty([.1, .1, .1, 0.])
     text_colour = ListProperty([.9, .9, .9, 0.])
-    text = StringProperty("")
+    current_text = StringProperty("")
 
 class NPC(Widget):
     frame = StringProperty(None)
+    talking = BooleanProperty(False)
+
+    def get_text_size(self, text):
+        lab = Label(text=text, font_size=30, padding_x=5)
+        lab.texture_update()
+        return lab.texture_size
+
+    def update_speech(self, text):
+        if self.talking:
+            tsize = self.get_text_size(text)
+            anim = Animation(text_colour=[1., 1., 1., 0.], duration=.2)
+            anim += Animation(size=tsize, duration=.5)
+            anim.bind(on_complete=lambda x,y: self._upd_speech(text))
+            anim.start(self.speech)
+
+    def _upd_speech(self, txt):
+        self.speech.current_text = txt
+        anim2 = Animation(text_colour=[.9, .9, .9, 1.], duration=.2)
+        anim2.start(self.speech)
+
 
     def animate_speech(self, text):
         if self.speech.size[0] == 0:
-            lab = Label(text=text, font_size=30, padding_x=5)
-            lab.texture_update()
-            t_size = lab.texture_size
+            t_size = self.get_text_size(text)
             anim = Animation(colour=[.1, .1, .1, .9], duration=.2)
             anim += Animation(size=t_size, duration=.5, t='out_bounce')
             anim += Animation(text_colour=[.9, .9, .9, 1.], duration=1.)
             anim.start(self.speech)
-            self.speech.text = text
+            self.speech.current_text = text
+            self.talking  = True
         else:
             anim = Animation(size=(0, 50), duration=.5, t='out_bounce')
             anim += Animation(colour=[.1, .1, .1, 0.], duration=.2)
             anim &= Animation(text_colour=[.9, .9, .9, 0.])
             anim.start(self.speech)
-            self.speech.text = ""
+            self.speech.current_text = ""
+            self.talking = False
 
 
 class NPCController(Widget):
@@ -61,10 +81,22 @@ class NPCController(Widget):
             x += 200
             self.add_widget(npc)
 
+    def update(self, dt):
+        pass
+
     def activate(self, k):
         num = int(k)-1
         if num < len(self.npcs):
             self.npc_comment(self.npcs[num])
+        elif num == 6:
+            npc = [n for n in self.children if n.talking]
+            if npc != []:
+                npc = npc[0]
+                npc.update_speech(ran.choice(["I mean hello!",
+                                              "Uhmm, Hi?",
+                                              "So, what do you want?",
+                                              "Wassup?",
+                                              "How YOU doin?"]))
 
     def npc_comment(self, name):
         npc = [n for n in self.children if n.name == name][0]
