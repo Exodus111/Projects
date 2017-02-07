@@ -4,11 +4,10 @@ from kivy.animation import Animation
 from kivy.uix.widget import Widget
 from kivy.uix.label import Label
 from kivy.uix.image import Image
-from kivy.properties import StringProperty, ListProperty, BooleanProperty, ObjectProperty, NumericProperty
+from kivy.properties import StringProperty, ListProperty, BooleanProperty, ObjectProperty, NumericProperty, DictProperty
 from kivy.atlas import Atlas
 
 import random as ran
-
 
 class SpeechBubble(Widget):
     colour = ListProperty([.1, .1, .1, 0.])
@@ -37,7 +36,6 @@ class NPC(Widget):
         anim2 = Animation(text_colour=[.9, .9, .9, 1.], duration=.2)
         anim2.start(self.speech)
 
-
     def animate_speech(self, text):
         if self.speech.size[0] == 0:
             t_size = self.get_text_size(text)
@@ -55,13 +53,15 @@ class NPC(Widget):
             self.speech.current_text = ""
             self.talking = False
 
-
 class NPCController(Widget):
-    npcs = ListProperty(["priest",
-                        "apothecary",
-                        "girl",
-                        "wife",
-                        "guy"])
+    npcs = ListProperty([
+                    "Djonsiscus",
+                    "Jarod",
+                    "Tylda Travisteene",
+                    "Sheila Travisteene",
+                    "Mr Johes",
+                    "Riff Danner"
+                ])
     col_points = ListProperty([])
     def __init__(self):
         super(NPCController, self).__init__()
@@ -71,15 +71,29 @@ class NPCController(Widget):
             npc.name = name
             w, h = npc.size
             npc.size = (w-w/4, h-h/4)
-            npc.frame = 'atlas://images/{}/idle1'.format(name)
+            npc.frame = 'atlas://images/{}/idle1'.format(self.gen_name(name))
             npc.pos = (x,y)
             npc.speech = SpeechBubble()
             npc.speech.pos = (npc.center_x, npc.center_y+(npc.height/2)+4)
             npc.speech.size = (0, 50)
             npc.add_widget(npc.speech)
             self.col_points.append({name:npc.center})
-            x += 200
+            x += 130
             self.add_widget(npc)
+
+    def gen_name(self, npc):
+        if npc == "Djonsiscus":
+            return "priest"
+        elif npc == "Mr Johes":
+            return "apothecary"
+        elif npc == "Sheila Travisteene":
+            return "girl"
+        elif npc == "Tylda Travisteene":
+            return "wife"
+        elif npc == "Riff Danner":
+            return "guy"
+        elif npc == "Jarod":
+            return "blacksmith"
 
     def update(self, dt):
         pass
@@ -104,7 +118,6 @@ class NPCController(Widget):
 
     def coll_childs(self, w):
         return [child for child in self.children if child.collide_widget(w)]
-
 
 class Player(Widget):
     current_direction = StringProperty("idle")
@@ -144,7 +157,6 @@ class Player(Widget):
             anim = Animation(size=(0, 50), duration=.5, t='out_bounce')
             anim += Animation(colour=[.1, .1, .1, 0.], duration=.2)
             anim.start(self.speech)
-
 
     def change_direction(self, d):
         if d != self.current_direction:
@@ -252,7 +264,8 @@ class Player(Widget):
                     col.append(name)
         if col != []:
             if not self.parent.drop_menus.top_status:
-                self.parent.toggle_dropmenus(col[0])
+                self.parent.dialogue.conversation = True
+                self.parent.dialogue.current_name = col[0]
         else:
             if self.parent.drop_menus.top_status:
-                self.parent.toggle_dropmenus(None)
+                self.parent.dialogue.conversation = False

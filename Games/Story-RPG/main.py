@@ -9,6 +9,7 @@ from kivy.clock import Clock
 from kivy.properties import StringProperty, ListProperty, BooleanProperty, ObjectProperty, NumericProperty
 
 from entities import *
+from dialogue import *
 
 class EventHandler(Widget):
     def __init__(self):
@@ -38,7 +39,6 @@ class EventHandler(Widget):
             self.calls["speechbubble"]()
         elif keycode[1] in [str(i) for i in range(10)]:
             self.calls["npc_speech"](keycode[1])
-
 
     def key_off(self):
         pass
@@ -80,7 +80,10 @@ class Clutter(Widget):
     def update(self, dt):
         pass
 
-class DropMenu(Widget): pass
+class DropMenu(Widget):
+    act_text = StringProperty("")
+    text_colour = ListProperty([1., 1., 1., 0.])
+
 
 class Menus(Widget):
     top_status = BooleanProperty(False)
@@ -89,8 +92,6 @@ class Menus(Widget):
     bot_menu = ObjectProperty(None)    # Bot stands for Bottom.
     y1_animate = NumericProperty(0)
     y2_animate = NumericProperty(0)
-    top_text = StringProperty("")
-    bot_text = StringProperty("")
     text_colour = ListProperty([1., 1., 1., 0.])
     current_npc = ObjectProperty(None)
 
@@ -113,31 +114,32 @@ class Menus(Widget):
                            ("Dialogue not found for some reason.", "I need to send an error message about this."),
                            ("No dialogue here, sorry.", "Dammit, another bug!")])
 
-    def show_top_and_bottom_menu(self, npc, txt=[]):
+    def show_top_and_bottom_menu(self, txt=[]):
         anim = Animation(y1_animate=self.height-self.top_menu.height, t='out_bounce')
         anim &= Animation(y2_animate=0, t='out_bounce')
         anim.bind(on_complete=lambda x,y: self.add_text(txt))
         anim.start(self)
-        self.current_npc = npc
 
     def add_text(self, txt):
         if txt == []:
             txt = self.ran_text()
         if txt[0] != "":
-            self.top_text = txt[0]
+            self.top_menu.act_text = txt[0]
         if txt[1] != "":
-            self.bot_text = txt[1]
+            self.bot_menu.act_text = txt[1]
         anim2 = Animation(text_colour=[1., 1., 1., 1.])
-        anim2.start(self)
+        anim2.start(self.top_menu)
+        anim2.start(self.bot_menu)
 
     def hide_top_and_bottom_menu(self):
         anim = Animation(y1_animate=self.height, t='in_out_elastic')
         anim &= Animation(y2_animate=-self.bot_menu.height, t='in_out_elastic')
-        anim += Animation(text_colour=[1., 1., 1., 0.])
+        animtext = Animation(text_colour=[1., 1., 1., 0.])
         anim.start(self)
-        self.top_text = ""
-        self.bot_text = ""
-
+        animtext.start(self.top_menu)
+        animtext.start(self.bot_menu)
+        self.top_menu.act_text = ""
+        self.bot_menu.act_text = ""
 
     def show_top_menu(self):
         anim = Animation(x=0, y=self.height-self.top_menu.height, t='out_bounce')
@@ -163,21 +165,28 @@ class Game(Widget):
         self.npcs = NPCController()
         self.player = Player()
         self.drop_menus = Menus()
+        self.dialogue = Dialogue()
         Window.size = self.world.size
         self.player.world = self.world.size
         self.drop_menus.size = self.world.size
+        self.drop_menus.y1_animate = self.drop_menus.height
+        self.drop_menus.y2_animate = -(self.drop_menus.height/3)
         self.event.calls["keyup"] = self.player.keyup
         self.event.calls["keydown"] = self.player.keydown
         self.event.calls["speechbubble"] = self.player.animate_speech
         self.event.calls["npc_speech"] = self.npcs.activate
+        self.add_widget(self.dialogue)
         self.add_widget(self.event)
         self.add_widget(self.world)
         self.add_widget(self.npcs)
         self.add_widget(self.player)
         self.add_widget(self.drop_menus)
 
-    def start_conversaton(self, npc, txt):
-        self.drop_menus.show_top_and_bottom_menu(npc, txt)
+    def start_conversaton(self, txt):
+        self.drop_menus.show_top_and_bottom_menu(txt)
+
+    def end_conversation():
+        self.drop_menus.hide_top_and_bottom_menu()
 
     def change_text(self, top="", bot=""):
         self.drop_menus.add_text([top, bot])
@@ -186,13 +195,7 @@ class Game(Widget):
         self.world.update(dt)
         self.player.update(dt)
         self.npcs.update(dt)
-
-    def toggle_dropmenus(self, name):
-        self.drop_menus.top_status = not self.drop_menus.top_status
-        if self.drop_menus.top_status:
-            self.drop_menus.show_top_and_bottom_menu(name)
-        else:
-            self.drop_menus.hide_top_and_bottom_menu()
+        self.dialogue.update(dt)
 
 class MainApp(App):
     def build(self):

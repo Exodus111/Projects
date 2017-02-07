@@ -1,5 +1,8 @@
 #: kivy 1.9.1
 
+
+
+
 <NPC>
     canvas:
         Color:
@@ -41,30 +44,19 @@
 <Menus>
     top_menu: top
     bot_menu: bot
-    y1_animate: self.height
-    y2_animate: -(self.height/3)
 
     DropMenu
         id: top
         size: root.width, root.height/3
         x: 0
         y: root.y1_animate
-        Label:
-            color: root.text_colour
-            font_size: 30
-            text: root.top_text
-            center: root.center_x, root.center_y+200
 
     DropMenu
         id: bot
         size: root.width, root.height/3
         x: 0
         y: root.y2_animate
-        Label:
-            color: root.text_colour
-            font_size: 30
-            text: root.bot_text
-            center: root.center_x, root.center_y-200
+
 
 <DropMenu>
     canvas:
@@ -74,3 +66,13 @@
         Rectangle:
             size: self.size
             pos: self.pos
+    Label:
+        center_x: root.center_x
+        center_y: root.center_y
+        text: root.act_text
+        font_name: './fonts/DevinneSwash.ttf'
+        font_size: 20
+        font_color: root.text_colour
+        text_size: root.size
+        padding_x: 50
+        padding_y: 5
