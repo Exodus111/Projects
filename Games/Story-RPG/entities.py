@@ -257,15 +257,18 @@ class Player(Widget):
                 self.pos = Vector(self.pos) + Vector(self.dirs["left"])
 
     def collide_npcs(self):
-        col = []
+        col = None
         for p in self.parent.npcs.col_points:
             for name in p:
                 if Vector(self.center).distance(p[name]) <= 75:
-                    col.append(name)
-        if col != []:
-            if not self.parent.drop_menus.top_status:
+                    col = name
+                    break
+            if col != None:
+                break
+        if col != None:
+            if not self.parent.dialogue.conversation:
                 self.parent.dialogue.conversation = True
-                self.parent.dialogue.current_name = col[0]
+                self.parent.dialogue.current_name = col
         else:
-            if self.parent.drop_menus.top_status:
+            if self.parent.dialogue.conversation:
                 self.parent.dialogue.conversation = False

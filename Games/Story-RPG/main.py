@@ -20,6 +20,7 @@ class EventHandler(Widget):
             "dropmenus":None,
             "speechbubble":None,
             "npc_speech":None
+            "menu_click":None
         }
         self.keyboard = Window.request_keyboard(self.key_off, self)
         self.keyboard.bind(on_key_down=self.key_down)
@@ -83,6 +84,10 @@ class Clutter(Widget):
 class DropMenu(Widget):
     act_text = StringProperty("")
     text_colour = ListProperty([1., 1., 1., 0.])
+    y_adjust = NumericProperty(0)
+
+    def change_color(self, instance, color):
+        self.text_colour = color
 
 
 class Menus(Widget):
@@ -92,8 +97,22 @@ class Menus(Widget):
     bot_menu = ObjectProperty(None)    # Bot stands for Bottom.
     y1_animate = NumericProperty(0)
     y2_animate = NumericProperty(0)
-    text_colour = ListProperty([1., 1., 1., 0.])
+    text_color = ListProperty([1., 1., 1., 0.])
     current_npc = ObjectProperty(None)
+    txtlist = ListProperty(["", ""])
+
+    def setup_menus(self):
+        self.top_menu.y_adjust = self.top_menu.height - 20*5
+        self.bot_menu.y_adjust = 50
+        self.bind(text_color=self.top_menu.change_color)
+        self.bind(text_color=self.bot_menu.change_color)
+        self.show_anim = Animation(y1_animate=self.height-self.top_menu.height, t='out_bounce')
+        self.show_anim &= Animation(y2_animate=0, t='out_bounce')
+        self.show_anim += Animation(text_color=[1., 1., 1., 1.])
+
+        self.hide_anim = Animation(text_color=[1., 1., 1., 0.])
+        self.hide_anim += Animation(y1_animate=self.height, t='in_out_elastic')
+        self.hide_anim &= Animation(y2_animate=-self.bot_menu.height, t='in_out_elastic')
 
     def menu_press(self, k):
         if k == "t":
@@ -115,47 +134,20 @@ class Menus(Widget):
                            ("No dialogue here, sorry.", "Dammit, another bug!")])
 
     def show_top_and_bottom_menu(self, txt=[]):
-        anim = Animation(y1_animate=self.height-self.top_menu.height, t='out_bounce')
-        anim &= Animation(y2_animate=0, t='out_bounce')
-        anim.bind(on_complete=lambda x,y: self.add_text(txt))
-        anim.start(self)
+        self.change_text(txt)
+        self.show_anim.start(self)
 
-    def add_text(self, txt):
+    def change_text(self, txt):
         if txt == []:
             txt = self.ran_text()
         if txt[0] != "":
             self.top_menu.act_text = txt[0]
         if txt[1] != "":
             self.bot_menu.act_text = txt[1]
-        anim2 = Animation(text_colour=[1., 1., 1., 1.])
-        anim2.start(self.top_menu)
-        anim2.start(self.bot_menu)
+        self.txtlist = txt
 
     def hide_top_and_bottom_menu(self):
-        anim = Animation(y1_animate=self.height, t='in_out_elastic')
-        anim &= Animation(y2_animate=-self.bot_menu.height, t='in_out_elastic')
-        animtext = Animation(text_colour=[1., 1., 1., 0.])
-        anim.start(self)
-        animtext.start(self.top_menu)
-        animtext.start(self.bot_menu)
-        self.top_menu.act_text = ""
-        self.bot_menu.act_text = ""
-
-    def show_top_menu(self):
-        anim = Animation(x=0, y=self.height-self.top_menu.height, t='out_bounce')
-        anim.start(self.top_menu)
-
-    def hide_top_menu(self):
-        anim = Animation(x=0, y=self.height, t='in_out_elastic')
-        anim.start(self.top_menu)
-
-    def show_bottom_menu(self):
-        anim = Animation(x=0, y=0, t='out_bounce')
-        anim.start(self.bot_menu)
-
-    def hide_bottom_menu(self):
-        anim = Animation(x=0, y=-self.bot_menu.height, t='in_out_elastic')
-        anim.start(self.bot_menu)
+        self.hide_anim.start(self)
 
 class Game(Widget):
     def __init__(self):
@@ -181,15 +173,20 @@ class Game(Widget):
         self.add_widget(self.npcs)
         self.add_widget(self.player)
         self.add_widget(self.drop_menus)
+        self.drop_menus.setup_menus()
+        self.dialogue.setup_nodes()
 
     def start_conversaton(self, txt):
         self.drop_menus.show_top_and_bottom_menu(txt)
 
-    def end_conversation():
+    def end_conversation(self):
         self.drop_menus.hide_top_and_bottom_menu()
 
-    def change_text(self, top="", bot=""):
-        self.drop_menus.add_text([top, bot])
+    def change_top_text(self, txt):
+        self.drop_menus.change_text([txt, ""])
+
+    def change_bot_text(self, txt):
+        self.drop_menus.change_text(["", txt])
 
     def update(self, dt):
         self.world.update(dt)
