@@ -1,13 +1,32 @@
 #!/usr/bin/python3
-# I have to test text limitations.
 import kivy
 kivy.require("1.9.0")
 
+from kivy.lang import Builder
 from kivy.app import App
 from kivy.properties import StringProperty
 from kivy.uix.widget import Widget
+from kivy.uix.label import Label
 from kivy.core.window import Window
 from kivy.clock import Clock
+
+kv =  """
+#: kivy 1.9.1
+
+<Hello>
+    size: self.size
+    Label:
+        size: root.size
+        text: root.mytext
+        font_name: './fonts/DevinneSwash.ttf'
+        font_size: 25
+        text_size: self.width, None
+        padding_x: 50
+        padding_y: 50
+        pos: root.pos
+        markup: True
+        on_ref_press: root.clicked
+"""
 
 class Hello(Widget):
     mytext = StringProperty("""The expense of spirit in a waste of shame
@@ -28,7 +47,11 @@ To shun the heaven that leads men to this hell.""")
     def fix_str(self):
         textlist = self.mytext.split("\n")
         textlist = [line.rstrip('\n') for line in textlist]
-        self.mytext = " ".join(textlist)
+        text = " ".join(textlist)
+        self.mytext = "[ref=click]{}[/ref]".format(text)
+
+    def clicked(self, *args):
+        print("clicked", args)
 
 class HelloApp(App):
 
@@ -40,5 +63,6 @@ class HelloApp(App):
         return hello
 
 if __name__ == "__main__":
+    Builder.load_string(kv)
     app = HelloApp()
     app.run()

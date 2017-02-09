@@ -19,7 +19,7 @@ class EventHandler(Widget):
             "keyup":None,
             "dropmenus":None,
             "speechbubble":None,
-            "npc_speech":None
+            "npc_speech":None,
             "menu_click":None
         }
         self.keyboard = Window.request_keyboard(self.key_off, self)
@@ -89,7 +89,6 @@ class DropMenu(Widget):
     def change_color(self, instance, color):
         self.text_colour = color
 
-
 class Menus(Widget):
     top_status = BooleanProperty(False)
     bot_status = BooleanProperty(False)
@@ -113,6 +112,15 @@ class Menus(Widget):
         self.hide_anim = Animation(text_color=[1., 1., 1., 0.])
         self.hide_anim += Animation(y1_animate=self.height, t='in_out_elastic')
         self.hide_anim &= Animation(y2_animate=-self.bot_menu.height, t='in_out_elastic')
+
+        self.top_menu.children[0].bind(on_ref_press=self.top_text_clicked)
+        self.bot_menu.children[0].bind(on_ref_press=self.bot_text_clicked)
+
+    def top_text_clicked(self, inst, value):
+        print("Top Text Clicked On: ", value)
+
+    def bot_text_clicked(self, inst, value):
+        self.parent.dialogue.selected_node = value
 
     def menu_press(self, k):
         if k == "t":
