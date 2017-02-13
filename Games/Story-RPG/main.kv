@@ -61,16 +61,18 @@
             rgba: 0.1, 0.1, 0.1, .9
 
         Rectangle:
-            size: self.size
-            pos: self.pos
+            size: root.size
+            pos: root.pos
     Label:
+        size: 0, self.texture_size[1]
         center_x: root.center_x
-        y: root.y + root.y_adjust
+        top: root.y + root.size[1]
         text: root.act_text
         font_name: './fonts/DevinneSwash.ttf'
         font_size: 20
         font_color: root.text_colour
         text_size: root.size
-        padding_x: 50
-        padding_y: 15
+        padding_x: 15
         markup: True
+        valign: "top"
+        on_ref_press: root.parent.text_clicked(args)

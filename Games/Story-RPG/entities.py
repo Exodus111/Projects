@@ -112,9 +112,9 @@ class NPCController(Widget):
                                               "Wassup?",
                                               "How YOU doin?"]))
 
-    def npc_comment(self, name):
+    def comment(self, name, txt):
         npc = [n for n in self.children if n.name == name][0]
-        npc.animate_speech("I am a {}".format(npc.name))
+        npc.animate_speech(txt)
 
     def coll_childs(self, w):
         return [child for child in self.children if child.collide_widget(w)]
@@ -127,6 +127,7 @@ class Player(Widget):
         super(Player, self).__init__()
         self.new_frame = True
         self.direction = "idle"
+        self.stopping = False
         self.anim_timer = 0
         self.atlas = Atlas("images/player_sheet.atlas")
         self.image = Image(allow_stretch=True, source='atlas://images/player_sheet/idle1')
@@ -148,15 +149,27 @@ class Player(Widget):
         "right":(self.speed, 0)
         }
 
-    def animate_speech(self):
+    def get_text_size(self, text):
+        lab = Label(text=text, font_size=30, padding_x=5)
+        lab.texture_update()
+        return lab.texture_size
+
+    def comment(self, text=""):
         if self.speech.size[0] == 0:
+            t_size = self.get_text_size(text)
             anim = Animation(colour=[.1, .1, .1, .9], duration=.2)
-            anim += Animation(size=(150, 50), duration=.5, t='out_bounce')
+            anim += Animation(size=t_size, duration=.5, t='out_bounce')
+            anim += Animation(text_colour=[.9, .9, .9, 1.], duration=1.)
             anim.start(self.speech)
+            self.speech.current_text = text
+            self.talking  = True
         else:
             anim = Animation(size=(0, 50), duration=.5, t='out_bounce')
             anim += Animation(colour=[.1, .1, .1, 0.], duration=.2)
+            anim &= Animation(text_colour=[.9, .9, .9, 0.])
             anim.start(self.speech)
+            self.speech.current_text = text
+            self.talking = False
 
     def change_direction(self, d):
         if d != self.current_direction:
@@ -175,38 +188,44 @@ class Player(Widget):
                     yield frame
 
     def keydown(self, key, mod):
-        if key[1] in ("up", "w"):
-            self.moves["up"] = True
-            if not self.moves["left"] and not self.moves["right"]:
-                self.change_direction("walkup")
-        if key[1] in ("down", "s"):
-            self.moves["down"] = True
-            if not self.moves["left"] and not self.moves["right"]:
-                self.change_direction("walkdown")
-        if key[1] in ("left", "a"):
-            self.moves["left"] = True
-            self.change_direction("walkleft")
-        if key[1] in ("right", "d"):
-            self.moves["right"] = True
-            self.change_direction("walkright")
+        if not self.stopping:
+            if key[1] in ("up", "w"):
+                self.moves["up"] = True
+                if not self.moves["left"] and not self.moves["right"]:
+                    self.change_direction("walkup")
+            if key[1] in ("down", "s"):
+                self.moves["down"] = True
+                if not self.moves["left"] and not self.moves["right"]:
+                    self.change_direction("walkdown")
+            if key[1] in ("left", "a"):
+                self.moves["left"] = True
+                self.change_direction("walkleft")
+            if key[1] in ("right", "d"):
+                self.moves["right"] = True
+                self.change_direction("walkright")
 
     def keyup(self, key):
-        if key[1] in ("up", "w"):
-            self.moves["up"] = False
-        if key[1] in ("down", "s"):
-            self.moves["down"] = False
-        if key[1] in ("left", "a"):
-            self.moves["left"] = False
-            if self.moves["up"]:
-                self.change_direction("walkup")
-            if self.moves["down"]:
-                self.change_direction("walkdown")
-        if key[1] in ("right", "d"):
-            self.moves["right"] = False
-            if self.moves["up"]:
-                self.change_direction("walkup")
-            if self.moves["down"]:
-                self.change_direction("walkdown")
+        if not self.stopping:
+            if key[1] in ("up", "w"):
+                self.moves["up"] = False
+            if key[1] in ("down", "s"):
+                self.moves["down"] = False
+            if key[1] in ("left", "a"):
+                self.moves["left"] = False
+                if self.moves["up"]:
+                    self.change_direction("walkup")
+                if self.moves["down"]:
+                    self.change_direction("walkdown")
+            if key[1] in ("right", "d"):
+                self.moves["right"] = False
+                if self.moves["up"]:
+                    self.change_direction("walkup")
+                if self.moves["down"]:
+                    self.change_direction("walkdown")
+
+    def set_idle(self):
+        self.moves = {i:False for i,j in self.moves.items()}
+        self.change_direction("idle")
 
     def move(self):
         idle = True
@@ -229,9 +248,10 @@ class Player(Widget):
             self.image.texture = next(self.frame)
             self.anim = 0
         self.anim += 1
-        self.move()
-        self.collide_world()
-        self.collide_npcs()
+        if not self.stopping:
+            self.move()
+            self.collide_world()
+            self.collide_npcs()
         self.speech.pos = (self.center_x, self.center_y+self.height/2+4)
 
 

@@ -19,12 +19,18 @@ class EventHandler(Widget):
             "keyup":None,
             "dropmenus":None,
             "speechbubble":None,
-            "npc_speech":None,
-            "menu_click":None
+            "dialogue_choice":None,
+            "menu_click":None,
+            "mouse_over":None
         }
+        Window.bind(mouse_pos=self.mouse_over)
         self.keyboard = Window.request_keyboard(self.key_off, self)
         self.keyboard.bind(on_key_down=self.key_down)
         self.keyboard.bind(on_key_up=self.key_up)
+
+    def mouse_over(self, inst, pos):
+        #self.calls["mouse_over"](pos)
+        pass
 
     def key_up(self, k, keycode):
         if keycode[1] in ("up", "down", "left", "right", "w", "a", "s", "d"):
@@ -38,8 +44,8 @@ class EventHandler(Widget):
             self.calls["dropmenus"](keycode[1])
         elif keycode[1] == "h":
             self.calls["speechbubble"]()
-        elif keycode[1] in [str(i) for i in range(10)]:
-            self.calls["npc_speech"](keycode[1])
+        elif keycode[1] in [str(i) for i in range(10)] or keycode[1] == "spacebar":
+            self.calls["dialogue_choice"](keycode[1])
 
     def key_off(self):
         pass
@@ -113,14 +119,20 @@ class Menus(Widget):
         self.hide_anim += Animation(y1_animate=self.height, t='in_out_elastic')
         self.hide_anim &= Animation(y2_animate=-self.bot_menu.height, t='in_out_elastic')
 
-        self.top_menu.children[0].bind(on_ref_press=self.top_text_clicked)
-        self.bot_menu.children[0].bind(on_ref_press=self.bot_text_clicked)
+    def text_clicked(self, args):
+        self.parent.dialogue.line_clicked(args[1])
 
-    def top_text_clicked(self, inst, value):
-        print("Top Text Clicked On: ", value)
+    def text_hovered(self, pos):
+        for child in self.bot_menu.children:
+            for r in child.refs:
+                x1, y1, x2, y2 = child.refs[r][0]
+                x1, y1 = child.to_window(x1, y1)
+                x2, y2 = child.to_window(x2, y2)
+                if pos[0] > x1 and pos[0] < x2 and pos[1] > y1 and pos[1] < y2:
+                    pass # Doesn't work, Y pos misses by some pixels.
+                         # Might need to scrap this approach and redo how Labels handle the text.
+                         # Adding Button Widget around every text element might be a better idea.
 
-    def bot_text_clicked(self, inst, value):
-        self.parent.dialogue.selected_node = value
 
     def menu_press(self, k):
         if k == "t":
@@ -171,10 +183,6 @@ class Game(Widget):
         self.drop_menus.size = self.world.size
         self.drop_menus.y1_animate = self.drop_menus.height
         self.drop_menus.y2_animate = -(self.drop_menus.height/3)
-        self.event.calls["keyup"] = self.player.keyup
-        self.event.calls["keydown"] = self.player.keydown
-        self.event.calls["speechbubble"] = self.player.animate_speech
-        self.event.calls["npc_speech"] = self.npcs.activate
         self.add_widget(self.dialogue)
         self.add_widget(self.event)
         self.add_widget(self.world)
@@ -183,11 +191,18 @@ class Game(Widget):
         self.add_widget(self.drop_menus)
         self.drop_menus.setup_menus()
         self.dialogue.setup_nodes()
+        self.event.calls["keyup"] = self.player.keyup
+        self.event.calls["keydown"] = self.player.keydown
+        self.event.calls["dialogue_choice"] = self.dialogue.key_up
+        self.event.calls["mouse_over"] = self.drop_menus.text_hovered
 
     def start_conversaton(self, txt):
+        self.player.stopping = True
+        self.player.set_idle()
         self.drop_menus.show_top_and_bottom_menu(txt)
 
     def end_conversation(self):
+        self.player.stopping = False
         self.drop_menus.hide_top_and_bottom_menu()
 
     def change_top_text(self, txt):
