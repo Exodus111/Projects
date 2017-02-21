@@ -12,7 +12,14 @@ from entities import *
 from dialogue import *
 
 class EventHandler(Widget):
+    """
+    Takes Keyboard and Mouse events and parses them.
+    """
     def __init__(self):
+        """
+        self.calls contains empty place holders for callables that receive
+         the Keyboard/Mouse events.
+        """
         super(EventHandler, self).__init__()
         self.calls = {
             "keydown":None,
@@ -29,15 +36,26 @@ class EventHandler(Widget):
         self.keyboard.bind(on_key_up=self.key_up)
 
     def mouse_over(self, inst, pos):
+        """
+         Mouse over POS is sent here. The pos is in Window coords.
+        """
         #self.calls["mouse_over"](pos)
         pass
 
     def key_up(self, k, keycode):
+        """
+         All callables for Keyup events (when the finger leaves the key/screen)
+          and parsed then routed to the relevant callable.
+        """
         if keycode[1] in ("up", "down", "left", "right", "w", "a", "s", "d"):
             self.calls["keyup"](keycode)
 
 
     def key_down(self, keyboard, keycode, text, mod):
+        """
+         All callables for Keydown events (when the finger presses the key/screen)
+          and parsed then routed to the relevant callable.
+        """
         if keycode[1] in ("up", "down", "left", "right", "w", "a", "s", "d"):
             self.calls["keydown"](keycode, mod)
         elif keycode[1] in ("t", "b"):
@@ -50,9 +68,10 @@ class EventHandler(Widget):
     def key_off(self):
         pass
 
-class QuestionButton(Button): pass
-
 class GameWorld(Widget):
+    """
+     Main hub for maps and static items in the game.
+    """
     def __init__(self, **kwargs):
         super(GameWorld, self).__init__(**kwargs)
         self.background = Image(source='images/game_borders.png', size=(2048/2,1080/2))
@@ -68,6 +87,9 @@ class GameWorld(Widget):
         self.foreground.update(dt)
 
 class ForeGround(Widget):
+    """
+     Widget for foreground items.
+    """
     def coll_childs(self, w):
         return [child for child in self.children if child.collide_widget(w)]
 
@@ -76,6 +98,9 @@ class ForeGround(Widget):
             child.update(dt)
 
 class Clutter(Widget):
+    """
+     Widget for "Midground" or clutter items.
+    """
     def __init__(self, img, pos):
         super(Clutter, self).__init__()
         self.image = Image(source=img)
@@ -88,6 +113,10 @@ class Clutter(Widget):
         pass
 
 class DropMenu(Widget):
+    """
+     Class for both the top and bottom Drop menues.
+     This class is set up through the .kv file.
+    """
     act_text = StringProperty("")
     text_colour = ListProperty([1., 1., 1., 0.])
     y_adjust = NumericProperty(0)
@@ -96,6 +125,9 @@ class DropMenu(Widget):
         self.text_colour = color
 
 class Menus(Widget):
+    """
+     Main Hub for the Menues of the game.
+    """
     top_status = BooleanProperty(False)
     bot_status = BooleanProperty(False)
     top_menu = ObjectProperty(None)
@@ -106,7 +138,10 @@ class Menus(Widget):
     current_npc = ObjectProperty(None)
     txtlist = ListProperty(["", ""])
 
-    def setup_menus(self):
+    def setup_menus(self): # Trying not to use __init__ here.
+        """
+         Setting the class up. This Method must be run from the parent class.
+        """
         self.top_menu.y_adjust = self.top_menu.height - 20*5
         self.bot_menu.y_adjust = 50
         self.bind(text_color=self.top_menu.change_color)
@@ -120,9 +155,15 @@ class Menus(Widget):
         self.hide_anim &= Animation(y2_animate=-self.bot_menu.height, t='in_out_elastic')
 
     def text_clicked(self, args):
+        """
+         The player has clicked on his/her selected text.
+        """
         self.parent.dialogue.line_clicked(args[1])
 
-    def text_hovered(self, pos):
+    def text_hovered(self, pos): # Either this needs to be fixed somehow, or scrapped.
+        """
+         The mouse cursor is hovering over a piece of text.
+        """
         for child in self.bot_menu.children:
             for r in child.refs:
                 x1, y1, x2, y2 = child.refs[r][0]
@@ -135,6 +176,9 @@ class Menus(Widget):
 
 
     def menu_press(self, k):
+        """
+         The Player has clicked a keyboard button pertinent to a menu.
+        """
         if k == "t":
             self.top_status = not self.top_status
             if self.top_status:
@@ -149,15 +193,27 @@ class Menus(Widget):
                 self.hide_bottom_menu()
 
     def ran_text(self):
+        """
+         Generating some random text in case something has gone wrong.
+        """
         return ran.choice([("Oops, something went wrong here.", "I shouldn't be seeing this."),
                            ("Dialogue not found for some reason.", "I need to send an error message about this."),
                            ("No dialogue here, sorry.", "Dammit, another bug!")])
 
     def show_top_and_bottom_menu(self, txt=[]):
+        """
+         Initiating the drop down of both menues.
+        """
         self.change_text(txt)
         self.show_anim.start(self)
 
     def change_text(self, txt):
+        """
+         Changes the text of the top and bottom drop downs.
+          txt: List with 2 strings.
+          If one of the strings is empty it will not update.
+          If one string is just a space, it will create an empty text field.
+        """
         if txt == []:
             txt = self.ran_text()
         if txt[0] != "":
@@ -167,9 +223,16 @@ class Menus(Widget):
         self.txtlist = txt
 
     def hide_top_and_bottom_menu(self):
+        """
+         Used to close the drop menues.
+        """
         self.hide_anim.start(self)
 
 class Game(Widget):
+    """
+     Main class of the game, everything runs through here.
+     This class needs to parent all hub widget from the rest of the game.
+    """
     def __init__(self):
         super(Game, self).__init__()
         self.event = EventHandler()
@@ -197,18 +260,31 @@ class Game(Widget):
         self.event.calls["mouse_over"] = self.drop_menus.text_hovered
 
     def start_conversaton(self, txt):
+        """
+         Starts a proper conversation.
+         Using the Drop down menues, also renders the player unmovable.
+        """
         self.player.stopping = True
         self.player.set_idle()
         self.drop_menus.show_top_and_bottom_menu(txt)
 
     def end_conversation(self):
+        """
+         Ends conversation and closes the Drop menues.
+        """
         self.player.stopping = False
         self.drop_menus.hide_top_and_bottom_menu()
 
     def change_top_text(self, txt):
+        """
+         Passthrough method, adds text to the top.
+        """
         self.drop_menus.change_text([txt, ""])
 
     def change_bot_text(self, txt):
+        """
+         Passthrough method, adds text to the bottom.
+        """
         self.drop_menus.change_text(["", txt])
 
     def update(self, dt):
@@ -218,6 +294,9 @@ class Game(Widget):
         self.dialogue.update(dt)
 
 class MainApp(App):
+    """
+     Kivy boilerplate app class.
+    """
     def build(self):
         game = Game()
         Clock.schedule_interval(game.update, 1./60.)

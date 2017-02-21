@@ -10,20 +10,33 @@ from kivy.atlas import Atlas
 import random as ran
 
 class SpeechBubble(Widget):
+    """
+     This class is for the speechbuble above the characters heads for comments.
+     Takes info from the .kv file.
+    """
     colour = ListProperty([.1, .1, .1, 0.])
     text_colour = ListProperty([.9, .9, .9, 0.])
     current_text = StringProperty("")
 
 class NPC(Widget):
+    """
+     Class for each individual NPC.
+    """
     frame = StringProperty(None)
     talking = BooleanProperty(False)
 
     def get_text_size(self, text):
+        """
+         Helper method, weighs the size of the text.
+        """
         lab = Label(text=text, font_size=30, padding_x=5)
         lab.texture_update()
         return lab.texture_size
 
     def update_speech(self, text):
+        """
+         Used to change speech in dialogue.
+        """
         if self.talking:
             tsize = self.get_text_size(text)
             anim = Animation(text_colour=[1., 1., 1., 0.], duration=.2)
@@ -32,11 +45,18 @@ class NPC(Widget):
             anim.start(self.speech)
 
     def _upd_speech(self, txt):
+        """
+         Private helper class to update speech.
+         Needed to wait for a delay after an animation.
+        """
         self.speech.current_text = txt
         anim2 = Animation(text_colour=[.9, .9, .9, 1.], duration=.2)
         anim2.start(self.speech)
 
-    def animate_speech(self, text):
+    def animate_speech(self, text=""):
+        """
+         Toggle method that will start or end a comment.
+        """
         if self.speech.size[0] == 0:
             t_size = self.get_text_size(text)
             anim = Animation(colour=[.1, .1, .1, .9], duration=.2)
@@ -54,6 +74,9 @@ class NPC(Widget):
             self.talking = False
 
 class NPCController(Widget):
+    """
+     Controller class for all the NPCs.
+    """
     npcs = ListProperty([
                     "Djonsiscus",
                     "Jarod",
@@ -82,6 +105,10 @@ class NPCController(Widget):
             self.add_widget(npc)
 
     def gen_name(self, npc):
+        """
+          The names of the NPCs do not correspond to what I called them.
+          Probably need to remove this method.
+        """
         if npc == "Djonsiscus":
             return "priest"
         elif npc == "Mr Johes":
@@ -96,9 +123,17 @@ class NPCController(Widget):
             return "blacksmith"
 
     def update(self, dt):
+        """
+          Update method for the NPCs. Runs every frame.
+           dt : Float. Time between frames.
+        """
         pass
 
     def activate(self, k):
+        """
+          Activates a conversation.
+          Not sure I need this method.
+        """
         num = int(k)-1
         if num < len(self.npcs):
             self.npc_comment(self.npcs[num])
@@ -113,13 +148,21 @@ class NPCController(Widget):
                                               "How YOU doin?"]))
 
     def comment(self, name, txt):
+        """
+         This makes the NPC say a comment.
+        """
         npc = [n for n in self.children if n.name == name][0]
         npc.animate_speech(txt)
+        anim = Animation(duration=2.)
+        anim.bind(on_complete=lambda *x: npc.animate_speech())
 
     def coll_childs(self, w):
         return [child for child in self.children if child.collide_widget(w)]
 
 class Player(Widget):
+    """
+      The player class
+    """
     current_direction = StringProperty("idle")
     new_frame = BooleanProperty(True)
 
@@ -150,11 +193,17 @@ class Player(Widget):
         }
 
     def get_text_size(self, text):
+        """
+         Helper method to measure the size of the text.
+        """
         lab = Label(text=text, font_size=30, padding_x=5)
         lab.texture_update()
         return lab.texture_size
 
     def comment(self, text=""):
+        """
+          Activates the player comments.
+        """
         if self.speech.size[0] == 0:
             t_size = self.get_text_size(text)
             anim = Animation(colour=[.1, .1, .1, .9], duration=.2)
@@ -163,6 +212,8 @@ class Player(Widget):
             anim.start(self.speech)
             self.speech.current_text = text
             self.talking  = True
+            anim = Animation(duration=2.)
+            anim.bind(on_complete=lambda *x: self.comment())
         else:
             anim = Animation(size=(0, 50), duration=.5, t='out_bounce')
             anim += Animation(colour=[.1, .1, .1, 0.], duration=.2)
@@ -172,11 +223,17 @@ class Player(Widget):
             self.talking = False
 
     def change_direction(self, d):
+        """
+          Helper method for the walk Animation.
+        """
         if d != self.current_direction:
             self.current_direction = d
             self.new_frame = True
 
     def current_image(self):
+        """
+          Sets up the frames for the walk and idle animation.
+        """
         while True:
             if self.current_direction == "idle":
                 for i in range(1, 2):
@@ -188,6 +245,10 @@ class Player(Widget):
                     yield frame
 
     def keydown(self, key, mod):
+        """
+         Activates on Key down.
+         Sets up the class variables for player walking.
+        """
         if not self.stopping:
             if key[1] in ("up", "w"):
                 self.moves["up"] = True
@@ -205,6 +266,10 @@ class Player(Widget):
                 self.change_direction("walkright")
 
     def keyup(self, key):
+        """
+          Activates when the player releases a button.
+          Removes flags on class variables that controls walking.
+        """
         if not self.stopping:
             if key[1] in ("up", "w"):
                 self.moves["up"] = False
@@ -224,10 +289,17 @@ class Player(Widget):
                     self.change_direction("walkdown")
 
     def set_idle(self):
+        """
+          Helper method for the animation, sets the player to idle.
+        """
         self.moves = {i:False for i,j in self.moves.items()}
         self.change_direction("idle")
 
     def move(self):
+        """
+          Runs every frame through the update method, runs animation based on
+          class variable flags.
+        """
         idle = True
         for mov in self.moves:
             if self.moves[mov]:
@@ -240,6 +312,10 @@ class Player(Widget):
             self.change_direction("idle")
 
     def update(self, dt):
+        """
+          Update method, runs every frame.
+           dt : Float. Time between frames.
+        """
         self.image.center = self.center
         if self.new_frame:
             self.frame = self.current_image()
@@ -256,6 +332,10 @@ class Player(Widget):
 
 
     def collide_world(self):
+        """
+          Collision method for the world.
+          Basically just does a range check, needs improvement.
+        """
         if self.center[0] < 25+15: # moving west.
             self.center[0] += self.speed
         if self.center[1] < 25+30: # moving south.
@@ -266,6 +346,12 @@ class Player(Widget):
             self.center[1] -= self.speed
 
     def collide_objects(self, mov, collided):
+        """
+          Collision method for Objects in the game.
+          Sends the player in the opposite direction of his current direction.
+           mov : String. Direction of the player.
+           collided : List. List of collided widgets.
+        """
         if collided != []:
             if mov == "up":
                 self.pos = Vector(self.pos) + Vector(self.dirs["down"])
@@ -277,6 +363,10 @@ class Player(Widget):
                 self.pos = Vector(self.pos) + Vector(self.dirs["left"])
 
     def collide_npcs(self):
+        """
+          Collision method that collides with NPCs.
+          Reacts on widget collisions, needs improvement.
+        """
         col = None
         for p in self.parent.npcs.col_points:
             for name in p:
