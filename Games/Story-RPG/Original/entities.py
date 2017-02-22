@@ -232,7 +232,7 @@ class Player(Widget):
 
     def current_image(self):
         """
-          Sets up the frames for the walk and idle animation.
+          Generator for the frames for the walk and idle animation.
         """
         while True:
             if self.current_direction == "idle":

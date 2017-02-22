@@ -1,13 +1,23 @@
 #: kivy 1.9.1
 
-<Player>
-    pos: 500,  50
+<Game>
+    size: 1024, 960
+    canvas:
+        Color:
+            rgba: 1., 1., 1., 1.
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<Entity>
+    pos: self.pos
     canvas:
         Color:
             rgba: 1., 1., 1., 0.
         Rectangle:
-            pos: self.pos
-            size: self.size
+            pos: root.pos
+            size: root.size
     Image:
+        pos: root.pos
         texture: root.frame
         allow_stretch: True
