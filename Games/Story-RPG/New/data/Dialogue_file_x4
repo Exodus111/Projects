@@ -1,0 +1,440 @@
+{
+    "coords": {
+        "Node1": [
+            301.0,
+            205.0
+        ],
+        "Node10": [
+            -694.2574844599266,
+            485.85715373574726
+        ],
+        "Node11": [
+            -109.45070214794197,
+            153.93714367410698
+        ],
+        "Node12": [
+            -227.7277093429227,
+            620.5936993343037
+        ],
+        "Node13": [
+            -146.0090498263906,
+            1035.6384700366903
+        ],
+        "Node14": [
+            202.3704986388252,
+            558.22945917695
+        ],
+        "Node15": [
+            327.0989789535323,
+            1010.90782307774
+        ],
+        "Node16": [
+            715.2626116570601,
+            502.31669213932287
+        ],
+        "Node17": [
+            1288.368473792739,
+            261.46169566954404
+        ],
+        "Node18": [
+            1119.5549271599027,
+            591.5620702955357
+        ],
+        "Node19": [
+            1098.0500167608159,
+            1008.7573320378315
+        ],
+        "Node2": [
+            -1090.9575235811026,
+            450.584306883768
+        ],
+        "Node20": [
+            1668.3950475045403,
+            525.3822581875447
+        ],
+        "Node21": [
+            2044.2632554829693,
+            213.5201871197878
+        ],
+        "Node22": [
+            2239.8712138247297,
+            558.2540285991831
+        ],
+        "Node3": [
+            277.0,
+            219.0
+        ],
+        "Node4": [
+            225,
+            246
+        ],
+        "Node5": [
+            457.0,
+            273.0
+        ],
+        "Node53": [
+            2132.436206956919,
+            910.9099897219835
+        ],
+        "Node54": [
+            2713.8368202465317,
+            275.3374830937171
+        ],
+        "Node55": [
+            2749.6783375783452,
+            980.9033528542511
+        ],
+        "Node56": [
+            3162.367808570356,
+            694.1712141997527
+        ],
+        "Node57": [
+            3143.9350282282794,
+            1045.4180840515135
+        ],
+        "Node58": [
+            3111.165640953479,
+            187.26975479269245
+        ],
+        "Node59": [
+            3518.734895183802,
+            1044.394040699176
+        ],
+        "Node6": [
+            431,
+            299
+        ],
+        "Node60": [
+            3660.0528778063785,
+            334.73199752929185
+        ],
+        "Node61": [
+            -1478,
+            894
+        ],
+        "Node62": [
+            -979.8875516348126,
+            853.9219771644017
+        ],
+        "Node7": [
+            359.0,
+            238.0
+        ],
+        "Node8": [
+            410.0,
+            256.0
+        ],
+        "Node9": [
+            313.0,
+            203.0
+        ]
+    },
+    "links": {
+        "Node1": [],
+        "Node10": [
+            "Node11",
+            "Node12",
+            "Node13"
+        ],
+        "Node11": [
+            "Node10",
+            "Node16"
+        ],
+        "Node12": [
+            "Node10",
+            "Node14"
+        ],
+        "Node13": [
+            "Node10",
+            "Node15"
+        ],
+        "Node14": [
+            "Node12",
+            "Node16"
+        ],
+        "Node15": [
+            "Node13",
+            "Node16"
+        ],
+        "Node16": [
+            "Node11",
+            "Node14",
+            "Node15",
+            "Node17",
+            "Node18",
+            "Node19"
+        ],
+        "Node17": [
+            "Node16",
+            "Node20"
+        ],
+        "Node18": [
+            "Node16",
+            "Node20"
+        ],
+        "Node19": [
+            "Node16",
+            "Node20"
+        ],
+        "Node2": [],
+        "Node20": [
+            "Node17",
+            "Node18",
+            "Node19",
+            "Node21",
+            "Node22",
+            "Node53"
+        ],
+        "Node21": [
+            "Node20",
+            "Node54"
+        ],
+        "Node22": [
+            "Node20",
+            "Node54"
+        ],
+        "Node3": [],
+        "Node4": [],
+        "Node5": [],
+        "Node53": [
+            "Node20",
+            "Node55"
+        ],
+        "Node54": [
+            "Node21",
+            "Node22",
+            "Node58"
+        ],
+        "Node55": [
+            "Node53",
+            "Node56",
+            "Node57"
+        ],
+        "Node56": [
+            "Node55",
+            "Node60"
+        ],
+        "Node57": [
+            "Node55",
+            "Node59"
+        ],
+        "Node58": [
+            "Node54",
+            "Node60"
+        ],
+        "Node59": [
+            "Node57",
+            "Node60"
+        ],
+        "Node6": [],
+        "Node60": [
+            "Node58",
+            "Node56",
+            "Node59"
+        ],
+        "Node61": [
+            "Node62"
+        ],
+        "Node62": [
+            "Node61"
+        ],
+        "Node7": [],
+        "Node8": [],
+        "Node9": []
+    },
+    "names": [
+        "Nack",
+        "Djonsiscus",
+        "Mayor Dellry",
+        "Jarod",
+        "Tylda Travisteene",
+        "Sheila Travisteene",
+        "Mr Johes",
+        "Riff Danner",
+        "Mrs. von Duren"
+    ],
+    "nodes": {
+        "Djonsiscus": [
+            "Node62",
+            "Node17",
+            "Node10",
+            "Node12",
+            "Node58",
+            "Node2",
+            "Node60",
+            "Node54",
+            "Node55",
+            "Node14",
+            "Node13",
+            "Node56",
+            "Node18",
+            "Node20",
+            "Node21",
+            "Node53",
+            "Node61",
+            "Node59",
+            "Node57",
+            "Node15",
+            "Node19",
+            "Node11",
+            "Node16",
+            "Node22"
+        ],
+        "Jarod": [
+            "Node4"
+        ],
+        "Mayor Dellry": [
+            "Node3"
+        ],
+        "Mr Johes": [
+            "Node7"
+        ],
+        "Mrs. von Duren": [
+            "Node9"
+        ],
+        "Nack": [
+            "Node1"
+        ],
+        "Riff Danner": [
+            "Node8"
+        ],
+        "Sheila Travisteene": [
+            "Node6"
+        ],
+        "Tylda Travisteene": [
+            "Node5"
+        ]
+    },
+    "tags": {
+        "Node1": [
+            "Description."
+        ],
+        "Node10": [
+            "Greeting."
+        ],
+        "Node11": [
+            "Greeting_reply."
+        ],
+        "Node12": [
+            "greeting_reply."
+        ],
+        "Node13": [
+            "greeting_reply"
+        ],
+        "Node14": [
+            "Answer."
+        ],
+        "Node15": [
+            "Answer."
+        ],
+        "Node16": [
+            "answer."
+        ],
+        "Node17": [
+            "question."
+        ],
+        "Node18": [
+            "Question."
+        ],
+        "Node19": [
+            "Question."
+        ],
+        "Node2": [
+            "Description."
+        ],
+        "Node20": [
+            "Answer."
+        ],
+        "Node21": [
+            "Question."
+        ],
+        "Node22": [
+            "Question."
+        ],
+        "Node3": [
+            "Description."
+        ],
+        "Node4": [
+            "Description."
+        ],
+        "Node5": [
+            "Description."
+        ],
+        "Node53": [
+            "Question."
+        ],
+        "Node54": [
+            "Answer."
+        ],
+        "Node55": [
+            "Answer."
+        ],
+        "Node56": [
+            "Question."
+        ],
+        "Node57": [
+            "Question."
+        ],
+        "Node58": [
+            "Question."
+        ],
+        "Node59": [
+            "Answer."
+        ],
+        "Node6": [
+            "Description."
+        ],
+        "Node60": [
+            "Answer."
+        ],
+        "Node61": [
+            "Comment, initial, thack"
+        ],
+        "Node62": [
+            "Reply."
+        ],
+        "Node7": [
+            "Description."
+        ],
+        "Node8": [
+            "Description."
+        ],
+        "Node9": [
+            "Description."
+        ]
+    },
+    "text": {
+        "Node1": "Thack, the young scribe. \n\nThis is our player character (not actually an NPC). \n\nThe young scribe is an apprentice to the villages preacher, he has recently arrived and is mostly unknown to the people of the village, and knows even less about them. \n\nHis background is unimportant, and will not feature in the game. The player is free to imagine for himself any background he likes, as this is the character the player will be playing, and the player is required to choose a personality trait (like a class) that essentially alters his personality somewhat, it is left to the players to invent their own background. \n\nFor all intents and purposes our young scribe is a blank slate, and only there to be a vessel for the players. He does however speak directly to the players during the intro portion of the game, breaking the fourth wall. He might do so again for game mechanic purposes. Otherwise he is a silent protagonist.\n",
+        "Node10": "Ah Hello there. Good you are finished with your chores, I have an important assignement for you.",
+        "Node11": "Hey Sir. What is it?",
+        "Node12": "Right... chores... Yeah, totally done with those. What's going on?",
+        "Node13": "Ooh! An important assignement, sounds important... literally.",
+        "Node14": "Maybe I should make sure those chores are actually done. But no matter, this is more important.",
+        "Node15": "Yes, your wit will come in handy today I think.",
+        "Node16": "Something horrible has happened. A man has been murdered. The Mayor of our Town, Mayor Dellry has been killed in a most... horrible manner.\n\nI need you to investigate the murder!",
+        "Node17": "What... WHAT!\n\nWhat can I do?",
+        "Node18": "I don't understand, why would you set me on this?",
+        "Node19": "Yes Sir!\n\nI swear I will get to the bottom of this!",
+        "Node2": "The old preacher, Djonsiscus. \n\nThis man has been with the village for many years, and serves as both our players mentor and our player character mentor. \n\nIn a sense, or at least initially, he is not a part of the rest of the game. He is basically the quest giver that instructs our player on what to do. He has general information that the player can seek out, but is largely bound by his vow of secrecy, a trait taken from the Catholic priests during confessionals. \n\nThat works the same in this world (it\u2019s a very common mechanic among priesthoods,  as it satisfies the need in a society both for therapeutic services, and also helps the priest become an integral member of said society. A person that knows everyone\u2019s secrets is a person everyone wants on their good side). So essentially this guy might know a whole lot more than he is allowed to let on, and while he will come off as simply a typical quest giver at first, there might be more to his motivations as the player will discover later on. But at least initially, this old Preacher is not on the suspect list.",
+        "Node20": "Thack, this is a delicate situation.\n\nThe Village is mostly empty due to the Harvest festival in Browntown, the killer has to be someone here. I have forbidden anyone from leaving, in case the murderer wants to escape, and it's too long to wait for anyone else to arrive.\n\nYou Thack, are the only impartial member of the Village, you only arrived recently, and you have spent most of your time locked in your study.\n\nI don't think you even know the people left. That makes you ideally suited to gather information, and investigate what is going on. ",
+        "Node21": "Ok, that makes sense. Where do I begin?",
+        "Node22": "Are you sure about this? I don't know the first thing about investigations.",
+        "Node3": "The Mayor, Mayor Dellry. (This NPC is dead) \n\nAnother NPC not on the suspect list, because he is the victim. The player will never interact with this one, he is a mutilated corpse, torn to shreds in multiple pieces lying all across his study. The player will want to learn all they can about him, from the other people in the village, uncovering his murder is the purpose of the game.\n",
+        "Node4": "Jarold, The Blacksmith. \n\nA Middle aged man. \nThis NPC is one of the two most talkative NPCs the player will interact with, and can supply ample information about the other characters. He has his own Smithy and tends to work on it at all hours of the night.",
+        "Node5": "The Fishmongers Wife, Tylda Travisteene. \nMiddleaged Woman. \n\nThe Fishmonger died years ago, she runs the shop. The second very talkative NPC, no one gossips like a Fishmonger's wife. One of the few NPCs that will not be found alone in the initial portion of the game as she lives and works with her Daughter.",
+        "Node53": "Are you insane old man!?\n\nYou can't give me that job! I'm not a constable, or a knight! Why would you possibly think this is a good idea?",
+        "Node54": "This is not about skill, I assure you. This is about impartiality.\n\nSomething I must ask you to consider deeply.\nYou have to consider the evidence clearly, and with Reason. Emotion will be your enemy today.\n\nThis is why you are perfectly suited. You are bright, learned, and intelligent despite your young age. But most importantly you have no emotional connection to any of potential suspects. It has been my personal experience that the man that see with eyes devoid of emotion, will see the clearest picture.\n\nI think you Thack, can be that man today.",
+        "Node55": "Mind your tongue apprentice.\n\nYou will obey me on this, and you must trust me.     \nYou are the only one suited for this task, you can be impartial and not allow emotion to get in the way of Reason. That is exactly what this task requires.",
+        "Node56": "Ok, if you say so. I will try to not let you down.",
+        "Node57": "Forgive my outburst, but Wait. The men and women of this Village all come to confession to you. Do you not know who this killer is?",
+        "Node58": "Alright. I will try not to let you down.",
+        "Node59": "That is bound by holy confidentiality. I cannot help you, or even advice you. I apologize, my hands are tied.",
+        "Node6": "The Fishmonger's Daughter, Sheila Travisteene. Young Woman. Lives with her mother, works in the store. Hard to approach at first.",
+        "Node60": "This is good.\n\nThe first thing you must do is to see the body. You will find him in the Mayors residence, I warn you, it is a shocking sight.\n\nThen you must talk with each member of the Village in turn. But be aware, mind your questions well. Do not let anything go unasked,  if you can help it. \n\nThink about what you are being told, and try to discern lie from truth.\n\nWhen you are done, return to me, and we can talk about what you have found.\n\n",
+        "Node61": "Hi sir.",
+        "Node62": "Hello apprentice.",
+        "Node7": "The Apothecary, Mr Johes. \nOld Man. Works in the Apothecary Shop. Does not like conversations. ",
+        "Node8": "Riff Danner, The Miller. \n\nYoung Man. He is not the Owner of the Mill, merely the caretaker while everyone else is away. Young handsome guy, very \u201cbro-like\u201d.",
+        "Node9": "The rich old Lady. Mrs. von Duren Old Woman. \n\nLives in her own, rather large, mansion. Richest person in town, inherited all her wealth from her late husband. Hard to approach."
+    }
+}

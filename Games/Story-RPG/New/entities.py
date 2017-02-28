@@ -21,6 +21,7 @@ class Entity(Widget):
 
     def entitysetup(self, atlasfile):
         self.atlas = Atlas(atlasfile)
+        self.set_frame("idle", 1)
         self.gen = self._num()
 
     def update(self, dt):
@@ -29,32 +30,6 @@ class Entity(Widget):
             self.counter = 0
         self.counter += 1
         self.move()
-
-    def set_frame(self, pose, num):
-        if pose == "idle":
-            num = 1
-        self.frame = self.atlas["{}{}".format(pose, num)]
-
-    def _num(self):
-        while True:
-            for i in range(1, 5):
-                yield i
-
-    def collide_npcs(self, mov): # DOES NOT WORK NEEDS FIXING!
-        if self.name != "Thack":
-            collidelist = self.parent._coll_childs(self)
-        else:
-            collidelist = self.parent.npcs._coll_childs(self)
-        if collidelist != []:
-            if mov == "up":
-                self.pos = Vector(self.pos) + Vector(self.dirs["down"])
-            elif mov == "down":
-                self.pos = Vector(self.pos) + Vector(self.dirs["up"])
-            elif mov == "left":
-                self.pos = Vector(self.pos) + Vector(self.dirs["right"])
-            elif mov == "right":
-                self.pos = Vector(self.pos) + Vector(self.dirs["left"])
-
 
     def move(self):
         self.current = "idle"
@@ -75,6 +50,31 @@ class Entity(Widget):
                 else:
                     self.current = "walk{}".format(mov)
         self.set_frame(self.current, self.framenum)
+
+    def set_frame(self, pose, num):
+        if pose == "idle":
+            num = 1
+        self.frame = self.atlas["{}{}".format(pose, num)]
+
+    def _num(self):
+        while True:
+            for i in range(1, 5):
+                yield i
+
+    def collide_npcs(self, mov):
+        if self.name != "Thack":
+            collidelist = self.parent._coll_childs(self)
+        else:
+            collidelist = self.parent.npcs._coll_childs(self)
+        if collidelist != []:
+            if mov == "up":
+                self.pos = Vector(self.pos) + Vector(self.dirs["down"])
+            elif mov == "down":
+                self.pos = Vector(self.pos) + Vector(self.dirs["up"])
+            elif mov == "left":
+                self.pos = Vector(self.pos) + Vector(self.dirs["right"])
+            elif mov == "right":
+                self.pos = Vector(self.pos) + Vector(self.dirs["left"])
 
 class Player(Entity):
     def playersetup(self):
