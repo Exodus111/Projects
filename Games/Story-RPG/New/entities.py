@@ -4,6 +4,8 @@ from kivy.vector import Vector
 from kivy.atlas import Atlas
 from kivy.properties import ListProperty, ObjectProperty, DictProperty, StringProperty, NumericProperty
 
+from tools import *
+
 class Entity(Widget):
     frame = ObjectProperty(None)
     dirs = DictProperty({"up":(0, 3),
@@ -71,12 +73,12 @@ class Entity(Widget):
 
     def collide_npcs(self, mov):
         if self.name != "Thack":
-            pass
-            #collidelist = self.parent.parent.coll_childs(self)
+            collidelist = self.parent.parent.coll_childs(self)
         else:
             collidelist = self.parent.parent.npcs.coll_childs(self)
         if collidelist != []:
-            self.collided_with = collidelist[0].name
+            if collidelist[0].name in self.parent.in_world:
+                self.collided_with = collidelist[0].name
             if mov == "up":
                 self.pos = Vector(self.pos) + Vector(self.dirs["down"])
             elif mov == "down":
@@ -105,6 +107,7 @@ class Player(Entity):
             self.parent.move_world("down")
         if window_pos[1] > self.screen_size[1]-ws:
             self.parent.move_world("up")
+        self.parent.collide_poi(self)
 
     def keydown(self, key):
         if key in ("up", "w"):
@@ -155,10 +158,4 @@ class NPCController(Widget):
             npc.update(dt)
 
     def coll_childs(self, w):
-        return [child for child in self.npcgroup if self._circle_collide(child, w)]
-
-    def _circle_collide(self, w1, w2):
-        if Vector(w1.pos).distance(w2.pos) < 50:
-            return True
-        else:
-            return False
+        return [child for child in self.npcgroup if circle_collide(child, w)]

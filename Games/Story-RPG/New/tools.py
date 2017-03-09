@@ -3,7 +3,14 @@
 from PIL import Image
 from path import Path
 from kivy.atlas import Atlas
+from kivy.vector import Vector
 
+
+def circle_collide(w1, w2):
+    if Vector(w1.pos).distance(w2.pos) < 50:
+        return True
+    else:
+        return False
 
 def divide_image(filename, top, bottom, name):
     im = Image.open(filename)

@@ -9,10 +9,10 @@ from kivy.uix.widget import Widget
 from kivy.uix.floatlayout import FloatLayout
 from kivy.properties import DictProperty, ListProperty, StringProperty
 
-from entities import *
-from dialogue import *
-from gui import *
-from world import *
+from entities import Player, NPCController
+from dialogue import Dialogue
+from gui import Menus
+from world import World
 
 from random import choice
 
@@ -62,6 +62,7 @@ class Game(Widget):
         # Adding everything to the Widget stack
         self.add_widget(self.events)
         for npc in self.npcs.npcgroup:
+            self.world.in_world.append(npc.name)
             self.world.add_widget(npc)
         self.world.add_widget(self.player)
         self.add_widget(self.world)
