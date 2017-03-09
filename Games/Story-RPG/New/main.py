@@ -47,13 +47,26 @@ class Game(Widget):
 
         # Setting up the Player.
         self.player = Player()
-        self.player.playersetup()
+        self.player.playersetup(Window.size)
+        self.player.place(Window.center[0], Window.center[1])
+
+        # Setting up the Dialogue controller.
+        self.dialogue = Dialogue()
+        self.dialogue.dialoguesetup()
+
+        # Setting up the world.
+        self.world = World(size=(768*3, 608*3))
+        self.world.worldcenter = self.center
+        self.world.setupworld()
 
         # Adding everything to the Widget stack
         self.add_widget(self.events)
-        self.add_widget(self.npcs)
-        self.add_widget(self.player)
+        for npc in self.npcs.npcgroup:
+            self.world.add_widget(npc)
+        self.world.add_widget(self.player)
+        self.add_widget(self.world)
         self.add_widget(self.menus)
+        self.add_widget(self.dialogue)
 
     def update(self, dt):
         self.menus.update(dt)
@@ -66,13 +79,21 @@ class Game(Widget):
     def key_down(self, key, mod):
         if key[1] in ("w", "a", "s", "d", "up", "down", "left", "right"):
             self.player.keydown(key[1])
-        if key[1] == "spacebar":
-            self.menus.menu_on = not self.menus.menu_on
+        elif key[1] == "spacebar":
+            print(self.player.pos)
 
+    def key_up(self, key):
+        if key[1] in ("w", "a", "s", "d", "up", "down", "left", "right"):
+            self.player.keyup(key[1])
+
+    def begin_conv(self, npc):
+        self.dialogue.npc = npc
+        self.dialogue.start_conv()
+        self.menus.menu_on = not self.menus.menu_on
 
     def change_top_text(self, txt):
         """
-          Top text area contains only one ppiece of text at a time.
+          Top text area contains only one piece of text at a time.
         """
         self.temp_text = txt
         self.menus.fade_out_top = True
@@ -81,12 +102,12 @@ class Game(Widget):
         """
          Bottom Text contains 4 question areas.
         """
-        self.menus.bottomtext = txtlist
+        for num, _ in enumerate(self.menus.bottomtext):
+            try:
+                self.menus.bottomtext[num] = txtlist[num]
+            except IndexError:
+                self.menus.bottomtext[num] = ""
         self.menus.fade_out_bottom = True
-
-    def key_up(self, key):
-        if key[1] in ("w", "a", "s", "d", "up", "down", "left", "right"):
-            self.player.keyup(key[1])
 
 class MainApp(App):
     def build(self):

@@ -18,6 +18,10 @@ class Entity(Widget):
     framenum = NumericProperty(1)
     counter = NumericProperty(0)
     name = StringProperty("")
+    collided_with = StringProperty("")
+
+    def place(self, x, y):
+        self.pos = self.to_widget(x, y)
 
     def entitysetup(self, atlasfile):
         self.atlas = Atlas(atlasfile)
@@ -30,6 +34,7 @@ class Entity(Widget):
             self.counter = 0
         self.counter += 1
         self.move()
+        self.collide_world()
 
     def move(self):
         self.current = "idle"
@@ -61,12 +66,17 @@ class Entity(Widget):
             for i in range(1, 5):
                 yield i
 
+    def collide_world(self):
+        pass
+
     def collide_npcs(self, mov):
         if self.name != "Thack":
-            collidelist = self.parent._coll_childs(self)
+            pass
+            #collidelist = self.parent.parent.coll_childs(self)
         else:
-            collidelist = self.parent.npcs._coll_childs(self)
+            collidelist = self.parent.parent.npcs.coll_childs(self)
         if collidelist != []:
+            self.collided_with = collidelist[0].name
             if mov == "up":
                 self.pos = Vector(self.pos) + Vector(self.dirs["down"])
             elif mov == "down":
@@ -77,9 +87,24 @@ class Entity(Widget):
                 self.pos = Vector(self.pos) + Vector(self.dirs["left"])
 
 class Player(Entity):
-    def playersetup(self):
+    screen_size = ListProperty([0,0])
+    def playersetup(self, screen_size):
+        self.screen_size = screen_size
         self.entitysetup("images/player_sheet.atlas")
         self.name = "Thack"
+        self.bind(collided_with=lambda x, y: self.parent.parent.begin_conv(y))
+
+    def collide_world(self):
+        ws = 500
+        window_pos = self.to_window(self.pos[0], self.pos[1])
+        if window_pos[0] < ws:
+            self.parent.move_world("right")
+        if window_pos[0] > self.screen_size[0]-ws:
+            self.parent.move_world("left")
+        if window_pos[1] < ws:
+            self.parent.move_world("down")
+        if window_pos[1] > self.screen_size[1]-ws:
+            self.parent.move_world("up")
 
     def keydown(self, key):
         if key in ("up", "w"):
@@ -106,25 +131,34 @@ class NPC(Entity):
         self.entitysetup(atlasfile)
 
 class NPCController(Widget):
-    npcs = ListProperty(["priest",
-                         "blacksmith",
-                         "wife",
-                         "girl",
-                         "apothecary",
-                         "guy"])
+    npcs = ListProperty(["Djonsiscus",
+                         "Jarod",
+                         "Tylda Travisteene",
+                         "Sheila Travisteene",
+                         "Mr Johes",
+                         "Riff Danner"])
+    npcgroup = ListProperty([])
 
     def controllersetup(self):
         x, y = (80, 250)
         for name in self.npcs:
-            npc = NPC()
-            npc.name = name
-            npc.npcsetup("images/{}.atlas".format(name))
-            npc.pos = (x,y)
-            x += 130
-            self.add_widget(npc)
+            if name == "Djonsiscus":
+                npc = NPC()
+                npc.name = name
+                npc.npcsetup("images/{}.atlas".format(name))
+                npc.pos = (1955, 735)
+                x += 130
+                self.npcgroup.append(npc)
 
     def update(self, dt):
-        [npc.update(dt) for npc in self.children]
+        for npc in self.npcgroup:
+            npc.update(dt)
 
-    def _coll_childs(self, w):
-        return [child for child in self.children if child.collide_widget(w)]
+    def coll_childs(self, w):
+        return [child for child in self.npcgroup if self._circle_collide(child, w)]
+
+    def _circle_collide(self, w1, w2):
+        if Vector(w1.pos).distance(w2.pos) < 50:
+            return True
+        else:
+            return False

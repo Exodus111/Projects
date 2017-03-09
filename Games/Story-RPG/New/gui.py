@@ -12,12 +12,15 @@ class Menus(Widget):
     bottom_y = NumericProperty(0)
     topmenu = ObjectProperty(None)
     bottommenu = ObjectProperty(None)
-    toptext = StringProperty("None")
-    bottomtext = ListProperty(["None", "None", "None", "None"])
+    topbutton = ObjectProperty(None)
+    bottombuttons = ListProperty([])
+    toptext = StringProperty("")
+    bottomtext = ListProperty(["", "", "", ""])
     menu_on =  BooleanProperty(False)
     fade_out_top = BooleanProperty(False)
     fade_out_bottom = BooleanProperty(False)
     _counter = NumericProperty(0)
+    temp_w_list = ListProperty([])
 
     def menusetup(self):
         self.top_y = self.size[1]
@@ -25,14 +28,17 @@ class Menus(Widget):
         self.create_animations()
 
         # Creating Answer Area.
-        toptext = TextArea()
-        self.bind(toptext=toptext.set_text)
-        self.topmenu.bind(fontcolor=toptext.set_text_color)
-        self.topmenu.add_widget(toptext)
+        self.topbutton = TextArea(on_press=self.button_pressed)
+        self.bind(toptext=self.topbutton.set_text)
+        self.topmenu.bind(fontcolor=self.topbutton.set_text_color)
+        self.topmenu.add_widget(self.topbutton)
 
         # Creating Question area, with 4 questions.
-        for _ in range(4):
-            self.bottommenu.add_widget(TextArea(text="None"))
+        for num in range(4):
+            button = TextArea(text="None", on_press=self.button_pressed)
+            button.num = num
+            self.bottombuttons.append(button)
+            self.bottommenu.add_widget(button)
 
         # Binding drop menu toggle.
         self.bind(menu_on=lambda *x: self.toggle_drop_menus())
@@ -53,18 +59,24 @@ class Menus(Widget):
         self.bottom_text_fade_in = Animation(color=[1.,1.,1.,1.], duration=.2)
 
         self.top_text_fade_out.bind(on_complete=lambda *x: self.add_answer())
-        self.bottom_text_fade_out.bind(on_complete=self.add_question)
-
+        self.bottom_text_fade_out.bind(on_complete=self.add_text_to_bottom_button)
 
     def update(self, dt):
         if self.fade_out_top:
             self.top_text_fade_out.start(self.topmenu)
             self.fade_out_top = False
         if self.fade_out_bottom:
-            for w in self.bottommenu.children:
+            for w in self.bottombuttons:
                 self.bottommenu.bind(fontcolor=w.set_text_color)
                 self.bottom_text_fade_out.start(w)
             self.fade_out_bottom = False
+
+    def button_pressed(self, obj):
+        if obj.node.tags[0] in ("answer", "greeting"):
+            if self.parent.dialogue.answer_only:
+                self.parent.dialogue.continue_conv(obj)
+        else:
+            self.parent.dialogue.continue_conv(obj)
 
     def add_answer(self):
         """
@@ -76,19 +88,22 @@ class Menus(Widget):
         self.toptext = self.parent.temp_text
         self.top_text_fade_in.start(self.topmenu)
 
-    def add_question(self, _, w):
-        """
-          Method to add new questions to the bottom drop down menu.
-          Requires that self.bottomtext (List) is updated with new Questions.
-          Toggle self.fade_out_bottom to True to start this method.
-        """
-        w.set_text(None, self.bottomtext[self._counter])
+    def add_text_to_bottom_button(self, _, w):
+        w.disabled = False
+        txt = self.bottomtext[w.num]
+        w.set_text(None, txt)
+        if not txt:
+            w.disabled = True
         self.bottommenu.bind(fontcolor=w.set_text_color)
         self.bottom_text_fade_in.start(w)
-        if self._counter >= 3:
-            self._counter = 0
-        else:
-            self._counter += 1
+
+    def update_questions(self):
+        for num, button in enumerate(self.bottombuttons):
+            button.disabled = False
+            button.node = self.parent.dialogue.bottom_nodes[num]
+            button.set_text(None, "")
+            if not self.bottomtext[num]:
+                button.disabled = True
 
     def toggle_drop_menus(self):
         if self.menu_on:
@@ -102,6 +117,8 @@ class BoxMenu(BoxLayout):
     fontcolor =  ListProperty([1.,1.,1.,1.])
 
 class TextArea(Button):
+    node = ObjectProperty(None)
+
     def set_text(self, obj, value):
         self.text = value
 

@@ -3,20 +3,26 @@
 <Game>
     canvas:
         Color:
-            rgba: 1., 1., 1., 1.
+            rgba: 1., 1., 1., .0
         Rectangle:
             pos: self.pos
             size: self.size
 
+<World>
+    center: self.worldcenter
+
+<WorldElement>
+    allow_stretch: True
+
 <Entity>
     pos: self.pos
-    size: 32, 64
+    size: 32, 96
     canvas:
         Color:
-            rgba: .0, .0, .0, 0.
+            rgba: 1.0, 1.0, 1.0, 1.0
         Rectangle:
-            pos: self.x + self.width, self.y
-            size: self.size
+            pos: root.x + root.width, root.y
+            size: root.size
     Image:
         pos: root.pos
         texture: root.frame
@@ -55,5 +61,7 @@
     halign: 'left'
     valign: 'top'
     padding_x: 15
+    padding_y: 15
     background_normal: "images/button_normal.png"
     background_down: "images/button_down.png"
+    markup: True
