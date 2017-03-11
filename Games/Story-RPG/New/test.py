@@ -1,4 +1,8 @@
-mystring = ""
+from kivy.properties import DictProperty
 
-if not mystring:
-    print("Not!") 
+doors = DictProperty({"church":{
+                               {"main":{}},
+                               {"basement":{}},
+                               {"priest_room":{}},
+                               {"tower":{}},
+                               {"thack_room":{}}}})

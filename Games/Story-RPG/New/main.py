@@ -55,9 +55,9 @@ class Game(Widget):
         self.dialogue.dialoguesetup()
 
         # Setting up the world.
-        self.world = World(size=(768*3, 608*3))
+        self.world = World()
         self.world.worldcenter = self.center
-        self.world.setupworld()
+        self.world.setupworld((768*3, 608*3))
 
         # Adding everything to the Widget stack
         self.add_widget(self.events)
