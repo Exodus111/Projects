@@ -7,6 +7,8 @@ from kivy.properties import ListProperty, ObjectProperty, DictProperty, StringPr
 from tools import *
 
 class Entity(Widget):
+    etype = StringProperty("entity")
+    home = StringProperty("")
     frame = ObjectProperty(None)
     dirs = DictProperty({"up":(0, 3),
             "down":(0, -3),
@@ -21,6 +23,7 @@ class Entity(Widget):
     counter = NumericProperty(0)
     name = StringProperty("")
     collided_with = StringProperty("")
+    esize = ListProperty([48, 110])
 
     def place(self, x, y):
         self.pos = self.to_widget(x, y)
@@ -134,24 +137,22 @@ class NPC(Entity):
         self.entitysetup(atlasfile)
 
 class NPCController(Widget):
-    npcs = ListProperty(["Djonsiscus",
-                         "Jarod",
-                         "Tylda Travisteene",
-                         "Sheila Travisteene",
-                         "Mr Johes",
-                         "Riff Danner"])
+    npcs = DictProperty({"Djonsiscus":{"home":"church main", "place":(1955, 733)},
+                         "Jarod":{"home":"church basement", "place":(1955, 733)},
+                         "Tylda Travisteene":{"home":"outside", "place":(1955, 733)},
+                         "Sheila Travisteene":{"home":"outside", "place":(1955, 733)},
+                         "Mr Johes":{"home":"outside", "place":(1955, 733)},
+                         "Riff Danner":{"home":"outside", "place":(1955, 733)}})
     npcgroup = ListProperty([])
 
     def controllersetup(self):
-        x, y = (80, 250)
         for name in self.npcs:
-            if name == "Djonsiscus":
-                npc = NPC()
-                npc.name = name
-                npc.npcsetup("images/{}.atlas".format(name))
-                npc.pos = (1955, 735)
-                x += 130
-                self.npcgroup.append(npc)
+            npc = NPC()
+            npc.name = name
+            npc.home = self.npcs[name]["home"]
+            npc.npcsetup("images/{}.atlas".format(name))
+            npc.pos = self.npcs[name]["place"]
+            self.npcgroup.append(npc)
 
     def update(self, dt):
         for npc in self.npcgroup:

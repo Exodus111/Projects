@@ -6,6 +6,7 @@ from kivy.core.window import Window
 from kivy.app import App
 from kivy.clock import Clock
 from kivy.uix.widget import Widget
+from kivy.vector import Vector
 from kivy.uix.floatlayout import FloatLayout
 from kivy.properties import DictProperty, ListProperty, StringProperty
 
@@ -61,13 +62,17 @@ class Game(Widget):
 
         # Adding everything to the Widget stack
         self.add_widget(self.events)
-        for npc in self.npcs.npcgroup:
-            self.world.in_world.append(npc.name)
-            self.world.add_widget(npc)
+        self.world.add_npcs(self.npcs.npcgroup)
         self.world.add_widget(self.player)
         self.add_widget(self.world)
         self.add_widget(self.menus)
         self.add_widget(self.dialogue)
+
+        # Centering Screen on the player
+        self.center_screen(0.2)
+
+    def center_screen(self, delay=0.1):
+        Clock.schedule_once(self.world.center_screen, delay)
 
     def update(self, dt):
         self.menus.update(dt)
@@ -81,7 +86,7 @@ class Game(Widget):
         if key[1] in ("w", "a", "s", "d", "up", "down", "left", "right"):
             self.player.keydown(key[1])
         elif key[1] == "spacebar":
-            print(self.player.pos)
+            print(self.player.pos, self.player.center)
 
     def key_up(self, key):
         if key[1] in ("w", "a", "s", "d", "up", "down", "left", "right"):

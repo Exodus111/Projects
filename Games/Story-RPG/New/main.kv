@@ -13,16 +13,19 @@
 
 <WorldElement>
     allow_stretch: True
+    keep_ratio: True
+    size_hint_x: 1.0
+    size_hint_y: 1.0
 
 <Entity>
     pos: self.pos
-    size: 32, 96
+    size: self.esize
     canvas:
         Color:
-            rgba: 1.0, 1.0, 1.0, 1.0
+            rgba: 1.0, 1.0, 1.0, .5
         Rectangle:
-            pos: root.x + root.width, root.y
-            size: root.size
+            pos: root.center_x - root.width/2, root.y
+            size: root.esize
     Image:
         pos: root.pos
         texture: root.frame
