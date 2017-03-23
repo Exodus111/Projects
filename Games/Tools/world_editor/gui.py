@@ -1,5 +1,4 @@
 import pygame as pg
-from collections import OrderedDict
 from myfuncs import *
 
 LIGHT =  (7, 12, 15)
@@ -82,7 +81,6 @@ class Panel():
                 self.surf.blit(t, self.text_xy[num])
             screen.blit(self.surf, self.xy)
 
-
 class Menu():
     """Gui object, self reliant menu object."""
     def __init__(self, size, xy):
@@ -147,7 +145,7 @@ class Button():
 
     def click(self, point):
         if self.collide_rect.collidepoint(point):
-            self.active = (lambda x: False if x else True)(self.active)
+            self.active = not self.active
             return True
         else:
             return False

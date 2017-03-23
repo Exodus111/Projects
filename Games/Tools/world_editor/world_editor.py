@@ -11,6 +11,8 @@ from gui import Button, Menu, FloatingText, Panel
 from saveload import SaveMap, LoadMap
 from maps import Map
 
+ALTERNATIVE_MODE = True
+
 SUNFLOWER = (241,196,15)
 WHITE = (255,255,255)
 BLACK = (0,0,0)
@@ -36,13 +38,13 @@ class Main(Template):
         Template.__init__(self, size)
         self.name = "World Editor 1.1"
         self.size = size
-        self.block = 64
+        self.block = 32
         self.dt = 0.
-        self.empty_tile = pg.image.load("./tiles/Empty_tile_64p.png").convert_alpha()
-        self.map_bg = Map("Background", self, self.size, (40,40), self.block, self.empty_tile)
-        self.map_mg = Map("Middleground", self, self.size, (40,40), self.block, self.empty_tile)
-        self.map_fg = Map("Foreground", self, self.size, (40,40), self.block, self.empty_tile)
-        self.poi_map = Map("POI Map", self, self.size, (40,40), self.block, self.empty_tile)
+        self.empty_tile = pg.image.load("./tiles/Empty_tile_32p.png").convert_alpha()
+        self.map_bg = Map("Background", self, self.size, (120,80), self.block, self.empty_tile)
+        self.map_mg = Map("Middleground", self, self.size, (120,80), self.block, self.empty_tile)
+        self.map_fg = Map("Foreground", self, self.size, (120,80), self.block, self.empty_tile)
+        self.poi_map = Map("POI Map", self, self.size, (120,80), self.block, self.empty_tile)
         self.poi_menu = Map("POI Menu", self, self.size, (4,1), self.block, self.empty_tile)
         self.menus = [Map("Menu", self, self.size, (2,14), self.block, self.empty_tile)]
         self.pal_menu = Menu((128, 40), (0,21))
@@ -63,8 +65,8 @@ class Main(Template):
         self.ground_state = None
         self.right_m_pos = None
         self.right_m_button = False
-        self.m_pos = None
         self.fill = False
+        self.m_pos = None
         self.m_select_rect = pg.Rect(1,1,1,1)
         self.menu_button = Button((120, 20), (129,1), "Menu")
         self.pal_button = Button((128,20), (0,0), "Palette")
@@ -78,14 +80,17 @@ class Main(Template):
         self.setup()
         self.setup_poi()
         self.selected_map = self.map_bg
+        self.alternative = ALTERNATIVE_MODE
+        self.enable_alternative_mode()
 
     def update(self, dt):
         self.dt = dt
         self.map_bg.update(dt)
-        self.map_fg.update(dt)
-        self.map_mg.update(dt)
-        self.menu.update(dt)
-        self.sprite_map.update(dt)
+        if not self.alternative:
+            self.map_fg.update(dt)
+            self.map_mg.update(dt)
+            self.sprite_map.update(dt)
+            self.menu.update(dt)
         self.poi_map.update(dt)
         self.poi_menu.update(dt)
         self.floating_text.update(dt)
@@ -96,13 +101,14 @@ class Main(Template):
             self.selected_map = self.sprite_map
         else:
             self.selected_map = self.map_bg
-        if self.pal_button.active:
-            if self.pal_menu.clickinfo != None:
-                if self.pal_menu.clickinfo == "New":
-                    self.new_palette()
-                else:
-                    self.switch_palette(text=self.pal_menu.clickinfo)
-                self.pal_menu.clickinfo = None
+        if not self.alternative:
+            if self.pal_button.active:
+                if self.pal_menu.clickinfo != None:
+                    if self.pal_menu.clickinfo == "New":
+                        self.new_palette()
+                    else:
+                        self.switch_palette(text=self.pal_menu.clickinfo)
+                    self.pal_menu.clickinfo = None
         if self.map_bg.clipped:
             self.map_fg.map.set_clip()
             self.map_mg.map.set_clip()
@@ -120,29 +126,30 @@ class Main(Template):
         # MAPs
         # Background
         self.map_bg.draw(self.screen, self.clip)
+        if not self.alternative:
+            # Middleground
+            if self.ground_state == "MG":
+                self.map_mg.xy = self.map_bg.xy
+                self.map_mg.draw(self.screen, self.clip)
 
-        # Middleground
-        if self.ground_state == "MG":
-            self.map_mg.xy = self.map_bg.xy
-            self.map_mg.draw(self.screen, self.clip)
-
-        # Foreground
-        if self.ground_state == "FG":
-            self.map_fg.xy = self.map_bg.xy
-            self.map_fg.draw(self.screen, self.clip)
+            # Foreground
+            if self.ground_state == "FG":
+                self.map_fg.xy = self.map_bg.xy
+                self.map_fg.draw(self.screen, self.clip)
 
         # POI Map
         if self.show_poi:
             self.poi_map.xy = self.map_bg.xy
             self.poi_map.draw(self.screen, self.clip)
 
-
         # GUI
-        self.menu.draw(self.screen)
+        if not self.alternative:
+            self.menu.draw(self.screen)
         if self.show_poi:
             self.poi_menu.draw(self.screen)
         self.menu_button.draw(self.screen)
-        self.pal_button.draw(self.screen)
+        if not self.alternative:
+            self.pal_button.draw(self.screen)
         if self.menu_button.active:
             self.drop_menu.draw(self.screen)
         if self.pal_button.active:
@@ -164,6 +171,13 @@ class Main(Template):
 
 ########################## Setup methods #######################################
 
+    def enable_alternative_mode(self):
+        if self.alternative:
+            bgimage = pg.image.load("./img/CI Main 128.png").convert_alpha()
+            self.map_bg = Map("Static Image", self, self.size, (120,80), 128, bgimage)
+            self.map_bg.setup(BG_COLOR, alt=True)
+            self.alternative = True
+
     def setup_loadmenu(self):
         folder = Path("./save")
         filelist = [f.basename() for f in folder.files("*.sav")]
@@ -182,10 +196,10 @@ class Main(Template):
         self.poi_menu.setup(POI_MENU)
 
     def setup_poi(self):
-        wall = pg.image.load("./tiles/Wall.png").convert_alpha()
-        door = pg.image.load("./tiles/Door.png").convert_alpha()
-        poi = pg.image.load("./tiles/POI.png").convert_alpha()
-        delete = pg.image.load("./tiles/Eliminate.png").convert_alpha()
+        wall = pg.image.load("./tiles/Wall32.png").convert_alpha()
+        door = pg.image.load("./tiles/Door32.png").convert_alpha()
+        poi = pg.image.load("./tiles/POI32.png").convert_alpha()
+        delete = pg.image.load("./tiles/Eliminate32.png").convert_alpha()
         self.poi_dict = OrderedDict((("Poi Wall", wall), ("Poi Door", door), ("Poi Symbol", poi), ("Delete", delete)))
         p = [i for i in self.poi_dict.keys()]
         for num, tile in enumerate(self.poi_menu.group):
@@ -196,7 +210,6 @@ class Main(Template):
             tile.dirty = 1
         xplace = self.size[0] - self.block*4
         self.poi_menu.xy = [xplace, 1]
-
 
     def setup_spritemap(self):
         sheet = SpriteSheet("img/magecity_64p.png", 64, (0,0), (8,44))
@@ -390,6 +403,7 @@ class Main(Template):
                 tile.image = self.current_tile.image
                 tile.dirty = 1
             else:
+                print("Removing Tile!")
                 tile.filename = "Empty_tile"
                 tile.image = self.empty_tile
                 tile.dirty = 1
@@ -431,12 +445,17 @@ class Main(Template):
         pg.image.save(surf, filename)
 
     def savemap(self):
-        saving = SaveMap("Empty_tile")
-        saving.add_map(self.map_bg)
-        saving.add_map(self.map_mg)
-        saving.add_map(self.map_fg)
-        saving.add_map(self.poi_map)
-        saving.write_to_file()
+        if not self.alternative:
+            saving = SaveMap()
+            saving.add_map(self.map_bg)
+            saving.add_map(self.map_mg)
+            saving.add_map(self.map_fg)
+            saving.add_map(self.poi_map)
+            saving.write_to_file()
+        else:
+            saving = SaveMap()
+            saving.add_map(self.poi_map)
+            saving.write_to_file()
 
     def loadmap(self, filename):
         load = LoadMap(filename)

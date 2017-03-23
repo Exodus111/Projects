@@ -59,17 +59,18 @@ class Canv(Canvas):
         name = numerate("Node")
         self.make_node(name, pos)
 
-    def make_node(self, name, pos, default=(None, None), links=None):
-        node = Node(self, name, pos)
+    def make_node(self, name, pos, default=(None, None), links=None, edit=False):
+        node = Node(self, name, pos, edit)
         node.insert_entry_field("tags", default=default[0], focus=True)
         node.insert_text_field("text", default=default[1])
         node.ok_cancel_buttons()
         if links:
             node.links = links
 
-    def save_info(self, name, entries, pos, links):
+    def save_info(self, name, entries, pos, links, edit=False):
         if "Node" in name:
-            pos = (self.canvasx(pos[0]), self.canvasy(pos[1]))
+            if not edit:
+                pos = (self.canvasx(pos[0]), self.canvasy(pos[1]))
             node = {name:{"tags":entries["Entry"]["tags"],
                         "text":entries["Text"]["text"],
                         "links":links, "coords":pos}}

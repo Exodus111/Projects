@@ -8,6 +8,7 @@ SUNFLOWER = (241,196,15)
 
 class Map(object):
     def __init__(self, name, parent, screen_size, grid, block, image):
+        self.disabled = False
         self.name = name
         self.parent = parent
         self.screen_size = screen_size
@@ -33,11 +34,17 @@ class Map(object):
         self.draw_border = False
         self.remove_border = False
 
-    def setup(self, color, alpha=255):
+    def setup(self, color, alpha=255, alt=False):
         self.alpha = alpha
         self.color = color
         self.map.fill(color)
-        self.group = self.make_grid()
+        if not alt:
+            self.group = self.make_grid()
+        else:
+            self.group = pg.sprite.LayeredDirty()
+            tile = Tile(self.image, self.image_string, xy=(0,0))
+            tile.dirty = 1
+            self.group.add(tile)
         self.map.set_alpha(self.alpha)
 
     def make_grid(self):
@@ -85,27 +92,29 @@ class Map(object):
         self.do_once = True
 
     def update(self, dt):
-        self.dt = dt
-        self.move_map()
-        if self.sel_rect != None:
-            if self.sel_old != self.sel_rect:
+        if not self.disabled:
+            self.dt = dt
+            self.move_map()
+            if self.sel_rect != None:
+                if self.sel_old != self.sel_rect:
+                    self.clear_select = True
+                    self.sel_old = self.sel_rect
+            if self.parent.current_menu != self.name and self.do_once:
+                self.draw_border = False
                 self.clear_select = True
-                self.sel_old = self.sel_rect
-        if self.parent.current_menu != self.name and self.do_once:
-            self.draw_border = False
-            self.clear_select = True
-            self.do_once = False
-        if self.clear_select:
-            self.clear_map()
-            self.clear_select = False
+                self.do_once = False
+            if self.clear_select:
+                self.clear_map()
+                self.clear_select = False
 
     def draw(self, surf, clip=None):
-        self.group.draw(self.map)
-        if self.draw_border:
-            pg.draw.rect(self.map, SUNFLOWER, self.sel_rect, 2)
-        if clip != None:
-            self.map.set_clip(clip)
-        surf.blit(self.map, self.xy)
+        if not self.disabled:
+            self.group.draw(self.map)
+            if self.draw_border:
+                pg.draw.rect(self.map, SUNFLOWER, self.sel_rect, 2)
+            if clip != None:
+                self.map.set_clip(clip)
+            surf.blit(self.map, self.xy)
 
 if __name__ == "__main__":
     pass
