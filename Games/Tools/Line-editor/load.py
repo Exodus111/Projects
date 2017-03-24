@@ -13,7 +13,7 @@ class Template(object):
         self.game_on = True
         self.dt = 0.
 
-    def mainloop(self, fps=0):
+    def mainloop(self, fps=60):
         while self.game_on:
             pygame.display.set_caption("FPS: {}".format(int(self.clock.get_fps())))
             self.clock.tick(fps)
