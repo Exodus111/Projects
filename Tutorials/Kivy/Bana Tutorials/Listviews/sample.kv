@@ -1,0 +1,29 @@
+<SampGridLayout>:
+    rows: 2
+
+    BoxLayout:
+        size_hint_y: None
+        height: 30
+        spacing: 10
+
+        canvas:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Button:
+            background_normal: "open.png"
+            background_down: "open_dn.png"
+            size_hint_x: None
+            width: 30
+        Button:
+            background_normal: "disk.png"
+            background_down: "open_dn.png"
+            size_hint_x: None
+            width: 30
+        Button:
+            background_normal: "exit.png"
+            background_down: "open_dn.png"
+            size_hint_x: None
+            width: 30

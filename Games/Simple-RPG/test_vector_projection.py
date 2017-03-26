@@ -15,7 +15,7 @@ class Main(Template):
         self.player = Entity()
         self.player.image = pygame.image.load("./img/blob.png")
         self.player.rect = self.player.image.get_rect()
-        self.player.rect.center = (400, 500)
+        self.player.rect.center = (450, 500)
         self.playerpos = vec2d(self.player.rect.center)
         self.characters.add(self.player)
 
@@ -40,8 +40,8 @@ class Main(Template):
         wall = "./img/wall1_medium.png"
         floor = "./img/floor1_medium.png"
 
-        for y in xrange(bsize[0]):
-            for x in xrange(bsize[1]+7):
+        for y in range(bsize[0]):
+            for x in range(bsize[1]+7):
                 if y == 9 and x == 15:
                     tile = Tile(wall, (x*block,y*block))
                     self.tilepos = vec2d(tile.rect.center)
@@ -72,7 +72,7 @@ class Main(Template):
     # Vector of the colliding wall. (YELLOW) 
         #pygame.draw.line(self.screen, (255, 255, 35), self.tilepos1.inttup(), self.tilepos2.inttup(), 3)
     # Vector of the players new direction. (WHITE)
-        #pygame.draw.line(self.screen, (255, 255, 255), self.new_dir.inttup(), self.playerpos.inttup(), 3)
+        pygame.draw.line(self.screen, (255, 255, 255), self.new_dir.inttup(), self.playerpos.inttup(), 3)
     # Vector from the player to his perpendicular endpoint.
         pygame.draw.line(self.screen, (35, 255, 35), self.playerpos.inttup(), self.endpoint.inttup())
 

@@ -1,0 +1,70 @@
+#: kivy 1.9.1
+
+<Game>
+    canvas:
+        Color:
+            rgba: 1., 1., 1., .0
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<World>
+    center: self.worldcenter
+
+<WorldElement>
+    allow_stretch: True
+    keep_ratio: True
+    size_hint_x: 1.0
+    size_hint_y: 1.0
+
+<Entity>
+    pos: self.pos
+    size: self.esize
+    canvas:
+        Color:
+            rgba: 1.0, 1.0, 1.0, .5
+        Rectangle:
+            pos: root.center_x - root.width/2, root.y
+            size: root.esize
+    Image:
+        pos: root.pos
+        texture: root.frame
+        allow_stretch: True
+
+<Menus>:
+    topmenu: top
+    bottommenu: bot
+    size: self.size
+    BoxMenu:
+        id: top
+        orientation: "vertical"
+        size: root.size[0], root.size[1]/3
+        y: root.top_y
+        text: root.toptext
+
+    BoxMenu:
+        id: bot
+        orientation: "vertical"
+        size: root.size[0], root.size[1]/3
+        y: root.bottom_y
+        text: root.bottomtext
+
+<BoxMenu>:
+    canvas:
+        Color:
+            rgba: .3, .3, .3, 1.
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<TextArea>:
+    font_name: './fonts/DevinneSwash.ttf'
+    font_size: 20
+    text_size: self.size
+    halign: 'left'
+    valign: 'top'
+    padding_x: 15
+    padding_y: 15
+    background_normal: "images/button_normal.png"
+    background_down: "images/button_down.png"
+    markup: True

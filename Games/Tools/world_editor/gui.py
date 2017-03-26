@@ -1,35 +1,36 @@
 import pygame as pg
-from collections import OrderedDict
 from myfuncs import *
 
-STEEL = (100,118,135)
-CONCRETE = (149,165,166)
+LIGHT =  (7, 12, 15)
 SUNFLOWER = (241,196,15)
+WHITE = (255,255,255)
 BLACK = (0,0,0)
+
+BUTTON_COLOR = WHITE
 
 class Border():
     def __init__(self, size, xy):
         self.size = size
         self.xy = xy
         self.bg_color = BLACK
-        self.mn_color = CONCRETE
+        self.mn_color = WHITE
         self.fg_color = BLACK
         self.border = [{
             "rect": pg.Rect((0,0), self.size),
-            "color": (0,0,0)},
+            "color": self.fg_color},
                 {
             "rect": pg.Rect((0,0), self.size).inflate(-3, -3),
-            "color": CONCRETE},
+            "color": self.mn_color},
                 {
             "rect": pg.Rect((0,0), self.size).inflate(-8, -8),
-            "color": (0,0,0)}]
+            "color": self.fg_color}]
 
     def draw(self, surf):
         for b in self.border:
             pg.draw.rect(surf, b["color"], b["rect"])
 
 class Panel():
-    def __init__(self, size, xy, color=STEEL):
+    def __init__(self, size, xy, color=LIGHT):
         self.size = size
         self.xy = xy
         self.color = color
@@ -79,7 +80,6 @@ class Panel():
             for num, t in enumerate(self.text):
                 self.surf.blit(t, self.text_xy[num])
             screen.blit(self.surf, self.xy)
-
 
 class Menu():
     """Gui object, self reliant menu object."""
@@ -133,19 +133,19 @@ class Button():
         self.surf = pg.Surface(size)
         self.rect = pg.Rect((0,0), size)
         self.collide_rect = pg.Rect(xy, size)
-        self.color = {"BG":(255,255,255),"FG":(0,0,0)}
+        self.color = {"BG":BUTTON_COLOR,"FG":BLACK}
         self.font = pg.font.SysFont("arial", 14)
         self.text = text
 
         size_of_text = self.font.size(text)
         self.text_xy = ((self.size[0]/2)-(size_of_text[0]/2), (self.size[1]/2)-(size_of_text[1]/2))
-        self.clicked = False
+        self.active = False
         self.ren_text = self.font.render(self.text, True, self.color["FG"])
         self.once = 0
 
     def click(self, point):
         if self.collide_rect.collidepoint(point):
-            self.clicked = (lambda x: False if x else True)(self.clicked)
+            self.active = not self.active
             return True
         else:
             return False
@@ -184,7 +184,7 @@ class FloatingText():
                 self.write = False
                 self.alpha = 255
                 remove_timer("floating text")
-            if mytimer("alpha timer", .08, dt):
+            if mytimer("alpha timer", .02, dt):
                 self.alpha -= 5
 
     def draw(self, surf):

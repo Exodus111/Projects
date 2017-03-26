@@ -73,12 +73,11 @@ class Sticker(Frame):
         new_x, new_y = self.parent.mouse_coords()
         self.my_line = self.parent.create_line(self.pos[0], self.pos[1], new_x, new_y, fill="green", width=3)
 
-
     def move_line(self, e):
         if self.drawing:
             new_x, new_y = self.parent.mouse_coords()
             self.parent.coords(self.my_line, (self.pos[0], self.pos[1], new_x, new_y))
-
+        
     def move(self, e):
         self.parent.move(self.w_id, e.x, e.y)
         self.parent.move(self.rect_id, e.x, e.y)
@@ -90,8 +89,6 @@ class Sticker(Frame):
                     if line in self.parent.stickies[sticky].my_lines.keys():
                         self.parent.stickies[sticky].my_lines[line][2] = int(self.pos[0])
                         self.parent.stickies[sticky].my_lines[line][3] = int(self.pos[1])
-
-
 
     def add_entry(self, text):
         entry = Entry(self)
@@ -135,7 +132,7 @@ class Sticker(Frame):
         entries = [field.get() for field in self.entries]
         text = [text.get("1.0", "end-1c") for text in self.text]
         links = self.links
-        node = self.parent.make_node(self.name, self.pos, (entries, text), links)
+        node = self.parent.make_node(self.name, self.pos, (entries, text), links, edit=True)
 
     def delete_menu(self):
         delmenu = Node(self, self.name, self.pos)
@@ -181,11 +178,12 @@ class Sticker(Frame):
 
 class Node(Toplevel):
     """ This class is a catchall for all popup windows."""
-    def __init__(self, parent, name, pos=(0,0)):
+    def __init__(self, parent, name, pos=(0,0), edit=False):
         Toplevel.__init__(self)
         self.parent = parent
         self.name = name
         self.pos = pos
+        self.edit = edit
         self.links = []
         self.entries = {"Entry":{}, "Text":{}}
         self.resizable(0,0)
@@ -200,7 +198,7 @@ class Node(Toplevel):
         for i in self.entries["Text"]:
             self.entries["Text"][i] = self.entries["Text"][i].get("1.0", "end-1c")
         self.destroy()
-        self.parent.save_info(self.name, self.entries, self.pos, self.links)
+        self.parent.save_info(self.name, self.entries, self.pos, self.links, self.edit)
 
     def ok_cancel_buttons(self, call=None):
         if not call:
@@ -224,7 +222,6 @@ class Node(Toplevel):
     def del_items(self, selection):
         self.parent.delete_items(selection)
         self.destroy()
-
 
     def insert_entry_field(self, txt, default=None, focus=False):
         frame = Frame(self.frame)

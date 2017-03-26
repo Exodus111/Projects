@@ -25,7 +25,7 @@ class MyKeyboardListener(Widget):
         self.keyevent = []
     
     def _keyboard_closed(self):
-        print "Keyboard Closed"
+        print("Keyboard Closed")
         self._keyboard.unbind(on_key_down=self._on_keyboard_down)
         self._keyboard = None
         
@@ -92,7 +92,7 @@ class MyGame(Widget):
         self.make_level()
 
     def make_level(self):
-        for i in xrange(960):
+        for i in range(960):
             self.level.add_widget(MyTile())
 
         full_w = 1024

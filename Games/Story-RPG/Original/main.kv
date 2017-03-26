@@ -1,0 +1,79 @@
+#: kivy 1.9.1
+
+<NPC>
+    canvas:
+        Color:
+            rgba: 1., 1., 1., 1.
+        Rectangle:
+            source: self.frame
+            pos: self.pos
+            size: self.size
+
+<Player>
+    pos: 500, 50
+    canvas:
+        Color:
+            rgba: 0.1, 0.1, 0.1, 0.
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<SpeechBubble>
+    canvas:
+        Color:
+            rgba: self.colour
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Label:
+        font_size: 30
+        color: root.text_colour
+        center_x: root.center_x
+        center_y: root.center_y
+        text: root.current_text
+
+<Clutter>
+    canvas:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<Menus>
+    top_menu: top
+    bot_menu: bot
+
+    DropMenu
+        id: top
+        size: root.width, root.height/3
+        x: 0
+        y: root.y1_animate
+
+    DropMenu
+        id: bot
+        size: root.width, root.height/3
+        x: 0
+        y: root.y2_animate
+
+
+<DropMenu>
+    canvas:
+        Color:
+            rgba: 0.1, 0.1, 0.1, .9
+
+        Rectangle:
+            size: root.size
+            pos: root.pos
+    Label:
+        size: 0, self.texture_size[1]
+        center_x: root.center_x
+        top: root.y + root.size[1]
+        text: root.act_text
+        font_name: './fonts/DevinneSwash.ttf'
+        font_size: 20
+        font_color: root.text_colour
+        text_size: root.size
+        padding_x: 15
+        padding_y: 15
+        markup: True
+        valign: "top"
+        on_ref_press: root.parent.text_clicked(args)

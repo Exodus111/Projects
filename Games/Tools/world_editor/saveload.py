@@ -4,7 +4,7 @@ from path import Path
 import json
 
 class SaveMap():
-    def __init__(self, empty):
+    def __init__(self, empty="Empty_tile"):
         self.maps = defaultdict(dict)
         self.empty = empty
         self.savefolder = Path("./save")
