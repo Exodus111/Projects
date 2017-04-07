@@ -16,7 +16,7 @@ class Dialogue(Widget):
     answer_only = BooleanProperty(False)
 
     def dialoguesetup(self):
-        d_dict = import_json("./data/Dialogue_file_x4")
+        d_dict = import_json("./data/dialogue/Dialogue_file")
         for name in d_dict["names"]:
             for n in d_dict["nodes"][name]:
                 node = Node()

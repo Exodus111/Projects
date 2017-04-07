@@ -29,7 +29,6 @@ class Game(Widget):
     temp_text = StringProperty("")
     temp_textlist = ListProperty(["", "", "", ""])
 
-
     def gamesetup(self):
         # Setting up the Event Handler.
         self.events = EventHandler()

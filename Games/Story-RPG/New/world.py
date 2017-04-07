@@ -4,7 +4,10 @@ from kivy.vector import Vector
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.widget import Widget
 from kivy.uix.image import Image
+from kivy.graphics import Line, Color
 from kivy.properties import ObjectProperty, ListProperty, StringProperty, NumericProperty, DictProperty, BooleanProperty
+from path import Path
+import json
 
 from tools import circle_collide
 
@@ -17,22 +20,35 @@ class World(RelativeLayout):
     worldspeed = NumericProperty(5)
     in_world = ListProperty([])
     poi = ListProperty([])
+    dots = ListProperty([])
     once = BooleanProperty(True)
+    walls = DictProperty({})
+    act_walls = ListProperty([])
     worlddict = DictProperty({
     "church":{"main":{"bg":"images/world/CI Main Back.png",
-                      "clutter":"images/world/CI Main Obj.png"},
+                      "clutter":"images/world/CI Main Obj.png",
+                      "bg_walls":"data/collision/church/Main_wall.json",
+                      "clutter_collision":"data/collision/church/Main_clutter.json"},
 
               "basement":{"bg":"images/world/CI Basement Back.png",
-                          "clutter":"images/world/CI Basement Obj.png"},
+                          "clutter":"images/world/CI Basement Obj.png",
+                          "bg_walls":"data/collision/church/Basement_wall.json",
+                          "clutter_collision":"data/collision/church/Basement_clutter.json"},
 
               "thack_room":{"bg":"images/world/CI Player Room Back.png",
-                            "clutter":"images/world/CI Player Room Obj.png"},
+                            "clutter":"images/world/CI Player Room Obj.png",
+                            "bg_walls":"data/collision/church/Player Room_wall.json",
+                            "clutter_collision":"data/collision/church/Player Room_clutter.json"},
 
               "priest_room":{"bg":"images/world/CI Priest Room Back.png",
-                             "clutter":"images/world/CI Priest Room Obj.png"},
+                             "clutter":"images/world/CI Priest Room Obj.png",
+                             "bg_walls":"data/collision/church/Priest Room_wall.json",
+                             "clutter_collision":"data/collision/church/Priest Room_clutter.json"},
 
               "tower":{"bg":"images/world/CI Tower Top Back.png",
-                       "clutter":"images/world/CI Tower Top Obj.png"}}})
+                       "clutter":"images/world/CI Tower Top Obj.png",
+                      "bg_walls":"data/collision/church/Tower_wall.json",
+                      "clutter_collision":"data/collision/church/Tower_clutter.json"}}})
 
     doors = DictProperty({"church":{
                           "main":{
@@ -57,8 +73,10 @@ class World(RelativeLayout):
     def setupworld(self, size):
         self.size = size
         self.bg = WorldElement(source=self.worlddict["church"]["main"]["bg"])
+        self.load_walls("church")
+        for point in self.walls["church"]["main"]:
+            self.act_walls.append(point)
         self.bg_clutter = WorldElement(source=self.worlddict["church"]["main"]["clutter"])
-
         self.add_widget(self.bg)
         self.add_widget(self.bg_clutter)
         for i, v in self.doors["church"]["main"].items():
@@ -79,6 +97,23 @@ class World(RelativeLayout):
         self.home = scene + " " + part
         self.add_npcs(self.parent.npcs.npcgroup)
 
+    def load_walls(self, scene):
+        for part in Path("./data/collision/{}".format(scene)).files("*.json"):
+            with open(part) as f:
+                walldict = json.load(f)
+                if scene not in self.walls.keys():
+                    self.walls[scene] = {}
+                points = [point for point in walldict.values()][0]
+                points = self.turn_points(points)
+                self.walls[scene][[i for i in walldict.keys()][0]] = points
+
+    def turn_points(self, points, height):
+        newlist = []
+        for p in points:
+            point = ((p[0]/2)*3, ((height - p[1])/2)*3)
+            newlist.append(point)
+        return newlist
+
     def add_npcs(self, npcs):
         self.in_world = []
         for child in self.children:
@@ -89,8 +124,6 @@ class World(RelativeLayout):
             if npc.home == self.home:
                 self.in_world.append(npc.name)
                 self.add_widget(npc)
-
-
 
     def move_world(self, direction):
         if direction == "left":
@@ -172,3 +205,23 @@ class World(RelativeLayout):
                         break
         else:
             self.once = True
+
+    def collide_walls(self, pos, direction, dist=15):
+        collided = False
+        ahead = Vector(pos) + Vector(direction)
+        ahead = (ahead.x, ahead.y)
+        for num, point2 in enumerate(self.act_walls):
+            if num % 2 == 0:
+                point1 = self.act_walls[num-1]
+                inter = Vector.line_intersection(pos, ahead, point1, point2)
+                if inter != None:
+                    if Vector(pos).distance(inter) < dist:
+                        collided = True
+                        """
+                        wall = Vector(point1) - Vector(point2)
+                        dot = Vector(wall).dot(direction)
+                        x = (dot/(wall.x*wall.x  + wall.y*wall.y))*wall.x
+                        y = (dot/(wall.x*wall.x  + wall.y*wall.y))*wall.y
+                        direction = (x,y)
+                        """
+        return collided

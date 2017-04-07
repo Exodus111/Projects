@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+i#!/usr/bin/python3
 from kivy.vector import Vector
 from kivy.animation import Animation
 from kivy.uix.widget import Widget
@@ -17,61 +17,6 @@ class SpeechBubble(Widget):
     colour = ListProperty([.1, .1, .1, 0.])
     text_colour = ListProperty([.9, .9, .9, 0.])
     current_text = StringProperty("")
-
-class NPC(Widget):
-    """
-     Class for each individual NPC.
-    """
-    frame = StringProperty(None)
-    talking = BooleanProperty(False)
-
-    def get_text_size(self, text):
-        """
-         Helper method, weighs the size of the text.
-        """
-        lab = Label(text=text, font_size=30, padding_x=5)
-        lab.texture_update()
-        return lab.texture_size
-
-    def update_speech(self, text):
-        """
-         Used to change speech in dialogue.
-        """
-        if self.talking:
-            tsize = self.get_text_size(text)
-            anim = Animation(text_colour=[1., 1., 1., 0.], duration=.2)
-            anim += Animation(size=tsize, duration=.5)
-            anim.bind(on_complete=lambda x,y: self._upd_speech(text))
-            anim.start(self.speech)
-
-    def _upd_speech(self, txt):
-        """
-         Private helper class to update speech.
-         Needed to wait for a delay after an animation.
-        """
-        self.speech.current_text = txt
-        anim2 = Animation(text_colour=[.9, .9, .9, 1.], duration=.2)
-        anim2.start(self.speech)
-
-    def animate_speech(self, text=""):
-        """
-         Toggle method that will start or end a comment.
-        """
-        if self.speech.size[0] == 0:
-            t_size = self.get_text_size(text)
-            anim = Animation(colour=[.1, .1, .1, .9], duration=.2)
-            anim += Animation(size=t_size, duration=.5, t='out_bounce')
-            anim += Animation(text_colour=[.9, .9, .9, 1.], duration=1.)
-            anim.start(self.speech)
-            self.speech.current_text = text
-            self.talking  = True
-        else:
-            anim = Animation(size=(0, 50), duration=.5, t='out_bounce')
-            anim += Animation(colour=[.1, .1, .1, 0.], duration=.2)
-            anim &= Animation(text_colour=[.9, .9, .9, 0.])
-            anim.start(self.speech)
-            self.speech.current_text = ""
-            self.talking = False
 
 class NPCController(Widget):
     """
@@ -158,6 +103,61 @@ class NPCController(Widget):
 
     def coll_childs(self, w):
         return [child for child in self.children if child.collide_widget(w)]
+
+class NPC(Widget):
+    """
+     Class for each individual NPC.
+    """
+    frame = StringProperty(None)
+    talking = BooleanProperty(False)
+
+    def get_text_size(self, text):
+        """
+         Helper method, weighs the size of the text.
+        """
+        lab = Label(text=text, font_size=30, padding_x=5)
+        lab.texture_update()
+        return lab.texture_size
+
+    def update_speech(self, text):
+        """
+         Used to change speech in dialogue.
+        """
+        if self.talking:
+            tsize = self.get_text_size(text)
+            anim = Animation(text_colour=[1., 1., 1., 0.], duration=.2)
+            anim += Animation(size=tsize, duration=.5)
+            anim.bind(on_complete=lambda x,y: self._upd_speech(text))
+            anim.start(self.speech)
+
+    def _upd_speech(self, txt):
+        """
+         Private helper class to update speech.
+         Needed to wait for a delay after an animation.
+        """
+        self.speech.current_text = txt
+        anim2 = Animation(text_colour=[.9, .9, .9, 1.], duration=.2)
+        anim2.start(self.speech)
+
+    def animate_speech(self, text=""):
+        """
+         Toggle method that will start or end a comment.
+        """
+        if self.speech.size[0] == 0:
+            t_size = self.get_text_size(text)
+            anim = Animation(colour=[.1, .1, .1, .9], duration=.2)
+            anim += Animation(size=t_size, duration=.5, t='out_bounce')
+            anim += Animation(text_colour=[.9, .9, .9, 1.], duration=1.)
+            anim.start(self.speech)
+            self.speech.current_text = text
+            self.talking  = True
+        else:
+            anim = Animation(size=(0, 50), duration=.5, t='out_bounce')
+            anim += Animation(colour=[.1, .1, .1, 0.], duration=.2)
+            anim &= Animation(text_colour=[.9, .9, .9, 0.])
+            anim.start(self.speech)
+            self.speech.current_text = ""
+            self.talking = False
 
 class Player(Widget):
     """

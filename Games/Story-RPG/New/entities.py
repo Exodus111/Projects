@@ -46,7 +46,11 @@ class Entity(Widget):
         for mov in self.moving:
             if self.moving[mov]:
                 # Movement Code.
-                self.pos = Vector(self.pos) + Vector(self.dirs[mov])
+                collided = self.parent.collide_walls(self.pos, self.dirs[mov])
+                if collided:
+                    self.reverse_movement(mov)
+                else:
+                    self.pos = Vector(self.pos) + Vector(self.dirs[mov])
 
                 # Collision Code.
                 self.collide_npcs(mov)
@@ -82,14 +86,17 @@ class Entity(Widget):
         if collidelist != []:
             if collidelist[0].name in self.parent.in_world:
                 self.collided_with = collidelist[0].name
-            if mov == "up":
-                self.pos = Vector(self.pos) + Vector(self.dirs["down"])
-            elif mov == "down":
-                self.pos = Vector(self.pos) + Vector(self.dirs["up"])
-            elif mov == "left":
-                self.pos = Vector(self.pos) + Vector(self.dirs["right"])
-            elif mov == "right":
-                self.pos = Vector(self.pos) + Vector(self.dirs["left"])
+                self.reverse_movement(mov)
+
+    def reverse_movement(self, mov):
+        if mov == "up":
+            self.pos = Vector(self.pos) + Vector(self.dirs["down"])
+        elif mov == "down":
+            self.pos = Vector(self.pos) + Vector(self.dirs["up"])
+        elif mov == "left":
+            self.pos = Vector(self.pos) + Vector(self.dirs["right"])
+        elif mov == "right":
+            self.pos = Vector(self.pos) + Vector(self.dirs["left"])
 
 class Player(Entity):
     screen_size = ListProperty([0,0])

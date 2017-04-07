@@ -12,54 +12,6 @@ def import_json(filename):
     with open(filename, "r+") as f:
         return json.load(f)
 
-# Playthrough class, records playthough.
-# Comment system.
-# Need to fix Text management.
-
-class PlayThrough(Widget):
-    """
-      Class to record the players progress.
-    """
-    visited_nodes = ListProperty()
-
-    def check_list(self, w):
-        """
-          Method to check if a Node has been previously visited.
-        """
-        if w in self.visited_nodes:
-            return True
-        else:
-            return False
-
-class Node(Widget):
-    """
-      Class to store the games nodes.
-    """
-    npcname = StringProperty("")
-    name = StringProperty("")
-    text = StringProperty("")
-    tags = ListProperty([])
-    commentstate = ListProperty([])
-    links = ListProperty([])
-    question_nodes = ListProperty([])
-    answer_node = StringProperty("")
-
-    def fix_tags(self):
-        """
-          The strings for tags needs to be fixed in case of typos.
-          It also sorts out comments and appends their state.
-        """
-        templist = []
-        for tag in self.tags:
-            for t in tag.split(","):
-                t = t.strip()
-                t = t.lower()
-                t = t.rstrip(".")
-                templist.append(t)
-        self.tags = templist
-        if "comment" in self.tags:
-            self.commentstate.append(self.tags[1:2])
-
 class Dialogue(Widget):
     """
       This class runs all the dialogue, and the comments.
@@ -269,3 +221,47 @@ class Dialogue(Widget):
             if self.dialogue_dict["coords"][link][0] > current_x:
                 question_nodes.append(link)
         return question_nodes
+
+class Node(Widget):
+    """
+      Class to store the games nodes.
+    """
+    npcname = StringProperty("")
+    name = StringProperty("")
+    text = StringProperty("")
+    tags = ListProperty([])
+    commentstate = ListProperty([])
+    links = ListProperty([])
+    question_nodes = ListProperty([])
+    answer_node = StringProperty("")
+
+    def fix_tags(self):
+        """
+          The strings for tags needs to be fixed in case of typos.
+          It also sorts out comments and appends their state.
+        """
+        templist = []
+        for tag in self.tags:
+            for t in tag.split(","):
+                t = t.strip()
+                t = t.lower()
+                t = t.rstrip(".")
+                templist.append(t)
+        self.tags = templist
+        if "comment" in self.tags:
+            self.commentstate.append(self.tags[1:2])
+
+class PlayThrough(Widget):
+    """
+    Class to record the players progress.
+    """
+    visited_nodes = ListProperty()
+
+    def check_list(self, w):
+        """
+        Method to check if a Node has been previously visited.
+        """
+        if w in self.visited_nodes:
+            return True
+        else:
+            return False
