@@ -57,7 +57,7 @@ class Game(Widget):
         # Setting up the world.
         self.world = World()
         self.world.worldcenter = self.center
-        self.world.setupworld((768*3, 608*3))
+        self.world.setupworld()
 
         # Adding everything to the Widget stack
         self.add_widget(self.events)

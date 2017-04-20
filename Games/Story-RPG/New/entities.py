@@ -10,10 +10,10 @@ class Entity(Widget):
     etype = StringProperty("entity")
     home = StringProperty("")
     frame = ObjectProperty(None)
-    dirs = DictProperty({"up":(0, 3),
-            "down":(0, -3),
-            "left":(-3, 0),
-            "right":(3, 0)})
+    dirs = DictProperty({"up":[0,1],
+            "down":[0,-1],
+            "left":[-1,0],
+            "right":[1,0]})
     moving = DictProperty({"up":False,
                            "down":False,
                            "left":False,
@@ -23,7 +23,6 @@ class Entity(Widget):
     counter = NumericProperty(0)
     name = StringProperty("")
     collided_with = StringProperty("")
-    esize = ListProperty([48, 110])
 
     def place(self, x, y):
         self.pos = self.to_widget(x, y)
@@ -32,6 +31,9 @@ class Entity(Widget):
         self.atlas = Atlas(atlasfile)
         self.set_frame("idle", 1)
         self.gen = self._num()
+        for child in self.children:
+            print(child)
+            print(child.size)
 
     def update(self, dt):
         if self.counter > 8: # <--Animation speed.
@@ -46,14 +48,10 @@ class Entity(Widget):
         for mov in self.moving:
             if self.moving[mov]:
                 # Movement Code.
-                collided = self.parent.collide_walls(self.pos, self.dirs[mov])
-                if collided:
-                    self.reverse_movement(mov)
-                else:
-                    self.pos = Vector(self.pos) + Vector(self.dirs[mov])
+                self.pos = self.parent.collide_walls(self.pos, self.dirs[mov], mov)
 
                 # Collision Code.
-                self.collide_npcs(mov)
+                #self.collide_npcs(mov)
 
                 # Animation Code.
                 if self.moving["right"] or self.moving["left"]:

@@ -23,32 +23,38 @@ class World(RelativeLayout):
     dots = ListProperty([])
     once = BooleanProperty(True)
     walls = DictProperty({})
+    player_line = ListProperty([])
     act_walls = ListProperty([])
     worlddict = DictProperty({
     "church":{"main":{"bg":"images/world/CI Main Back.png",
                       "clutter":"images/world/CI Main Obj.png",
-                      "bg_walls":"data/collision/church/Main_wall.json",
-                      "clutter_collision":"data/collision/church/Main_clutter.json"},
+                      "bg_walls":"data/collision/church/main_wall.json",
+                      "clutter_collision":"data/collision/church/main_clutter.json",
+                      "adjust":1215},
 
               "basement":{"bg":"images/world/CI Basement Back.png",
                           "clutter":"images/world/CI Basement Obj.png",
-                          "bg_walls":"data/collision/church/Basement_wall.json",
-                          "clutter_collision":"data/collision/church/Basement_clutter.json"},
+                          "bg_walls":"data/collision/church/basement_wall.json",
+                          "clutter_collision":"data/collision/church/basement_clutter.json",
+                          "adjust":828},
 
               "thack_room":{"bg":"images/world/CI Player Room Back.png",
                             "clutter":"images/world/CI Player Room Obj.png",
-                            "bg_walls":"data/collision/church/Player Room_wall.json",
-                            "clutter_collision":"data/collision/church/Player Room_clutter.json"},
+                            "bg_walls":"data/collision/church/thack_room_wall.json",
+                            "clutter_collision":"data/collision/church/thack_room_clutter.json",
+                            "adjust":510},
 
               "priest_room":{"bg":"images/world/CI Priest Room Back.png",
                              "clutter":"images/world/CI Priest Room Obj.png",
-                             "bg_walls":"data/collision/church/Priest Room_wall.json",
-                             "clutter_collision":"data/collision/church/Priest Room_clutter.json"},
+                             "bg_walls":"data/collision/church/priest_room_wall.json",
+                             "clutter_collision":"data/collision/church/priest_room_clutter.json",
+                             "adjust":510},
 
               "tower":{"bg":"images/world/CI Tower Top Back.png",
                        "clutter":"images/world/CI Tower Top Obj.png",
-                      "bg_walls":"data/collision/church/Tower_wall.json",
-                      "clutter_collision":"data/collision/church/Tower_clutter.json"}}})
+                      "bg_walls":"data/collision/church/tower_wall.json",
+                      "clutter_collision":"data/collision/church/tower_clutter.json",
+                      "tower":510}}})
 
     doors = DictProperty({"church":{
                           "main":{
@@ -59,10 +65,10 @@ class World(RelativeLayout):
                           "out":(830, 72)},
 
                           "basement":{
-                          "from_basement":(1583, 192)},
+                          "from_basement":(1590, 192)},
 
                           "priest_room":{
-                          "from_priest_room":(248, 84)},
+                          "from_priest_room":(248, 95)},
 
                           "tower":{
                           "from_tower":(0,0)},
@@ -70,49 +76,126 @@ class World(RelativeLayout):
                           "thack_room":{
                           "from_thack_room":(248, 93)}}})
 
-    def setupworld(self, size):
-        self.size = size
-        self.bg = WorldElement(source=self.worlddict["church"]["main"]["bg"])
-        self.load_walls("church")
-        for point in self.walls["church"]["main"]:
-            self.act_walls.append(point)
-        self.bg_clutter = WorldElement(source=self.worlddict["church"]["main"]["clutter"])
-        self.add_widget(self.bg)
-        self.add_widget(self.bg_clutter)
-        for i, v in self.doors["church"]["main"].items():
+    def setupworld(self):
+        self.load_scene("church", "priest_room", True)
+        #self.draw_line([item for sublist in self.act_walls for item in sublist]) #<--- Used to test the walls.
+
+    def draw_line(self, points):
+        """For testing collision."""
+        with self.canvas:
+            Line(points=points, width=1.0)
+
+    def load_scene(self, scene, part, first=False):
+        if first:
+            self.load_walls(scene)
+            self.bg = WorldElement(source=self.worlddict[scene][part]["bg"])
+            self.bg_clutter = WorldElement(source=self.worlddict[scene][part]["clutter"])
+            self.add_widget(self.bg)
+            self.add_widget(self.bg_clutter)
+        else:
+            self.bg.source = self.worlddict[scene][part]["bg"]
+            self.bg_clutter.source = self.worlddict[scene][part]["clutter"]
+            self.add_npcs(self.parent.npcs.npcgroup)
+
+        adjust = self.worlddict[scene][part]["adjust"]
+        p = self.walls[scene][part]["bg"]["points"]
+        w, h = self.walls[scene][part]["bg"]["size"]
+        self.size = [w*3, h*3]
+        self.act_walls = self.turn_points(p, h, adjust)
+        self.linelist = self._make_linelist(self.act_walls)
+
+        for i, v in self.doors[scene][part].items():
             w = Widget(pos=v, size=(64, 64))
             w.name = i
             self.poi.append(w)
-        self.home = "church main"
-
-    def load_scene(self, scene, part):
-        self.bg.source = self.worlddict[scene][part]["bg"]
-        self.bg_clutter.source = self.worlddict[scene][part]["clutter"]
-        doorlist = []
-        for door in self.doors[scene][part]:
-            w = Widget(pos=self.doors[scene][part][door], size=(64,64))
-            w.name = door
-            doorlist.append(w)
-        self.poi = doorlist
         self.home = scene + " " + part
-        self.add_npcs(self.parent.npcs.npcgroup)
+
+    def _make_linelist(self, pointlist):
+        linelist = []
+        for n in range(len(pointlist)-1):
+            linelist.append([pointlist[n][0], pointlist[n][1] , pointlist[n+1][0], pointlist[n+1][1]])
+        return linelist
 
     def load_walls(self, scene):
-        for part in Path("./data/collision/{}".format(scene)).files("*.json"):
-            with open(part) as f:
-                walldict = json.load(f)
-                if scene not in self.walls.keys():
-                    self.walls[scene] = {}
-                points = [point for point in walldict.values()][0]
-                points = self.turn_points(points)
-                self.walls[scene][[i for i in walldict.keys()][0]] = points
+        walldict = {}
+        for i in self.worlddict[scene]:
+            bg = self.worlddict[scene][i]["bg_walls"]
+            clutter = self.worlddict[scene][i]["clutter_collision"]
+            walldict[i] = {}
+            for num, n in enumerate((bg, clutter)):
+                with open(n, "r+") as f:
+                    wall_info = json.load(f)
+                    if num == 0:
+                        walldict[i]["bg"] = {"size":wall_info["size"],
+                                              "growth":wall_info["growth"],
+                                              "points":wall_info[i]}
+                    else:
+                        walldict[i]["clutter"] = {"rects":wall_info[i]}
+        self.walls[scene] = walldict
 
-    def turn_points(self, points, height):
+    def turn_points(self, points, height, adjust):
+        """
+         main: 1215
+         basement: 828
+         tower: 510
+        """
         newlist = []
         for p in points:
-            point = ((p[0]/2)*3, ((height - p[1])/2)*3)
+            point = (int(p[0]), int(height - p[1]+adjust))
             newlist.append(point)
+        newlist.append(newlist[0])
         return newlist
+
+    def collide_walls(self, pos, direction, mov, dist=50):
+        pos2 = Vector(pos) + Vector(direction)*3
+        for line in self.linelist:
+            pos2 = self.line_collision_projection(pos, pos2, line, direction, mov, dist)
+        return Vector(int(round(pos2[0])), int(round(pos2[1])))
+
+    def line_collision_projection(self, pos1, pos2, line, direction, mov, dist):
+        collided = False
+        p_line = [pos1[0], pos1[1], pos2[0], pos2[1]]
+        inter = self.does_it_intersect(p_line, line)
+        if inter != None:
+            if Vector(pos1).distance(inter) < dist:
+                collided = True
+        if collided:
+            wall = Vector((line[0], line[1])) - Vector((line[2], line[3]))
+            wall = Vector(wall)/Vector(wall).length()
+            dot = Vector(wall).dot(direction)
+            x = (dot/(wall.x*wall.x  + wall.y*wall.y))*wall.x
+            y = (dot/(wall.x*wall.x  + wall.y*wall.y))*wall.y
+            direction = (x,y)
+            pos2 = Vector(pos1) + Vector(direction)
+        return pos2
+
+    def h_l(self, n1, n2):
+        """
+        higher_lower. Returns the higher number first.
+        """
+        if n1 > n2:
+            return n1, n2
+        else:
+            return n2, n1
+
+    def does_it_intersect(self, line1, line2):
+        a1 = (line1[0], line1[1])
+        a2 = (line1[2], line1[3])
+        b1 = (line2[0], line2[1])
+        b2 = (line2[2], line2[3])
+        inter = Vector.line_intersection(a1, a2, b1, b2)
+        if inter != None:
+            inter = (int(round(inter[0])), int(round(inter[1])))
+            x,y = inter
+            a_xh, a_xl = self.h_l(a1[0], a2[0])
+            a_yh, a_yl = self.h_l(a1[1], a2[1])
+            b_xh, b_xl = self.h_l(b1[0], b2[0])
+            b_yh, b_yl = self.h_l(b1[1], b2[1])
+            if x <= b_xh and x >= b_xl and y <= b_yh and y >= b_yl:
+                if x <= a_xh and x >= a_xl and y >= a_yl and y <= a_yh:
+                    return (x,y)
+        return None
+
 
     def add_npcs(self, npcs):
         self.in_world = []
@@ -205,23 +288,3 @@ class World(RelativeLayout):
                         break
         else:
             self.once = True
-
-    def collide_walls(self, pos, direction, dist=15):
-        collided = False
-        ahead = Vector(pos) + Vector(direction)
-        ahead = (ahead.x, ahead.y)
-        for num, point2 in enumerate(self.act_walls):
-            if num % 2 == 0:
-                point1 = self.act_walls[num-1]
-                inter = Vector.line_intersection(pos, ahead, point1, point2)
-                if inter != None:
-                    if Vector(pos).distance(inter) < dist:
-                        collided = True
-                        """
-                        wall = Vector(point1) - Vector(point2)
-                        dot = Vector(wall).dot(direction)
-                        x = (dot/(wall.x*wall.x  + wall.y*wall.y))*wall.x
-                        y = (dot/(wall.x*wall.x  + wall.y*wall.y))*wall.y
-                        direction = (x,y)
-                        """
-        return collided

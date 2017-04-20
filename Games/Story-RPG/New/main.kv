@@ -18,16 +18,15 @@
     size_hint_y: 1.0
 
 <Entity>
-    pos: self.pos
-    size: self.esize
+    size: 48, 110
     canvas:
         Color:
-            rgba: 1.0, 1.0, 1.0, .5
+            rgba: 1, 1, 1, 0.
         Rectangle:
-            pos: root.center_x - root.width/2, root.y
-            size: root.esize
+            pos: root.pos
+            size: 48, 110
     Image:
-        pos: root.pos
+        pos: self.parent.pos[0]-24, self.parent.pos[1]
         texture: root.frame
         allow_stretch: True
 

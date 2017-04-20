@@ -42,6 +42,7 @@ class Main(Widget):
             self.move["right"] = True
         if keycode[1] == "a":
             self.move["left"] = True
+
     def key_up(self, k, keycode):
         if keycode[1] == "w":
             self.move["up"] = False
@@ -51,6 +52,7 @@ class Main(Widget):
             self.move["right"] = False
         if keycode[1] == "a":
             self.move["left"] = False
+
     def on_touch_down(self, touch):
         pass
 
@@ -62,7 +64,7 @@ class Main(Widget):
         js_file = Path("./data/collision/church/{}".format(filename))
         with open(js_file, "r+") as f:
             js_dict = json.load(f)
-        self.line1 = [[int(i[0]), int((height-i[1]+500))] for i in js_dict["Main"]]
+        self.line1 = [[int(i[0]), int((height-i[1]+500))] for i in js_dict["main"]]
 
     def draw_poly(self):
         with self.canvas:
