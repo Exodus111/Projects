@@ -2,9 +2,11 @@
 from kivy.uix.widget import Widget
 from kivy.vector import Vector
 from kivy.atlas import Atlas
-from kivy.properties import ListProperty, ObjectProperty, DictProperty, StringProperty, NumericProperty
+from kivy.properties import ListProperty, BooleanProperty, ObjectProperty, DictProperty, StringProperty, NumericProperty
 
 from tools import *
+
+class CollisionWidget(Widget): pass
 
 class Entity(Widget):
     etype = StringProperty("entity")
@@ -18,11 +20,14 @@ class Entity(Widget):
                            "down":False,
                            "left":False,
                            "right":False})
+    last_known_good =  ListProperty([0,0])
     current = StringProperty("idle")
     framenum = NumericProperty(1)
     counter = NumericProperty(0)
     name = StringProperty("")
     collided_with = StringProperty("")
+    movement_reversed = BooleanProperty(False)
+    collide_rect = ObjectProperty(None)
 
     def place(self, x, y):
         self.pos = self.to_widget(x, y)
@@ -31,9 +36,6 @@ class Entity(Widget):
         self.atlas = Atlas(atlasfile)
         self.set_frame("idle", 1)
         self.gen = self._num()
-        for child in self.children:
-            print(child)
-            print(child.size)
 
     def update(self, dt):
         if self.counter > 8: # <--Animation speed.
@@ -44,24 +46,7 @@ class Entity(Widget):
         self.collide_world()
 
     def move(self):
-        self.current = "idle"
-        for mov in self.moving:
-            if self.moving[mov]:
-                # Movement Code.
-                self.pos = self.parent.collide_walls(self.pos, self.dirs[mov], mov)
-
-                # Collision Code.
-                #self.collide_npcs(mov)
-
-                # Animation Code.
-                if self.moving["right"] or self.moving["left"]:
-                    if mov == "up" or mov == "down":
-                        pass
-                    else:
-                        self.current = "walk{}".format(mov)
-                else:
-                    self.current = "walk{}".format(mov)
-        self.set_frame(self.current, self.framenum)
+        pass
 
     def set_frame(self, pose, num):
         if pose == "idle":
@@ -86,18 +71,25 @@ class Entity(Widget):
                 self.collided_with = collidelist[0].name
                 self.reverse_movement(mov)
 
-    def reverse_movement(self, mov):
+    def reverse_movement(self, mov, w=None):
+        if w == None:
+            w = self.pos
         if mov == "up":
-            self.pos = Vector(self.pos) + Vector(self.dirs["down"])
+            return Vector(w) + Vector(self.dirs["down"])*3
         elif mov == "down":
-            self.pos = Vector(self.pos) + Vector(self.dirs["up"])
+            return Vector(w) + Vector(self.dirs["up"])*3
         elif mov == "left":
-            self.pos = Vector(self.pos) + Vector(self.dirs["right"])
+            return Vector(w) + Vector(self.dirs["right"])*3
         elif mov == "right":
-            self.pos = Vector(self.pos) + Vector(self.dirs["left"])
+            return Vector(w) + Vector(self.dirs["left"])*3
 
 class Player(Entity):
     screen_size = ListProperty([0,0])
+    right_pos = ListProperty([0,0])
+    left_pos = ListProperty([0,0])
+    top_pos = ListProperty([0,0])
+    bot_pos = ListProperty([0,0])
+
     def playersetup(self, screen_size):
         self.screen_size = screen_size
         self.entitysetup("images/player_sheet.atlas")
@@ -137,6 +129,92 @@ class Player(Entity):
         if key in ("right", "d"):
             self.moving["right"] = False
 
+    def move(self):
+        move_str = ""
+        moving = False
+
+        # Movement Code.
+        for mov in self.moving:
+            if self.moving[mov]:
+                moving = True
+
+                # Animation Code.
+                if self.moving["right"] or self.moving["left"]:
+                    if mov == "up" or mov == "down":
+                        pass
+                    else:
+                        self.current = "walk{}".format(mov)
+                else:
+                    self.current = "walk{}".format(mov)
+
+                # Clutter Collision Code.
+                for w in self.parent.cluttergroup.children:
+                    if self.collide_rect.collide_widget(w):
+                        self.moving[mov] = False
+                if self.moving[mov]:
+                    move_str += mov
+
+        # Wall Collision Code.
+        if move_str in ("up", "down", "left", "right"):
+            direction = self.dirs[move_str]
+        elif move_str in ("upleft", "leftup"):
+            direction = [-1,1]
+        elif move_str in ("upright", "rightup"):
+            direction = [1,1]
+        elif move_str in ("downleft", "leftdown"):
+            direction = [-1,-1]
+        elif move_str in ("downright", "rightdown"):
+            direction = [1,-1]
+        else:
+            direction = [0,0]
+        if moving:
+            self.pos = Vector(self.pos) + Vector(direction)*5
+
+        # Set Animation Frame.
+        self.set_frame(self.current, self.framenum)
+
+    def move_old(self):
+        self.current = "idle"
+        for mov in self.moving:
+            if self.moving[mov]:
+            # Movement Code.
+                # Collision Code.
+                # NPCs
+                self.collide_npcs(mov)
+
+                # Walls
+                if mov == "right":
+                    pos1 = self.right_pos
+                elif mov == "left":
+                    pos1 = self.left_pos
+                elif mov == "up":
+                    pos1 = self.top_pos
+                elif mov == "down":
+                    pos1 = self.bot_pos
+                pos2 = self.parent.collide_walls(pos1, self.dirs[mov], mov)
+                if pos2 != False:
+                    self.pos = Vector(self.pos) + Vector(pos2)
+                else:
+                    self.last_known_good = self.pos.copy()
+                    self.pos = Vector(self.pos) + Vector(self.dirs[mov])*3
+
+                # Clutter
+                for w in self.parent.cluttergroup.children:
+                    if self.collide_rect.collide_widget(w):
+                        self.pos = self.last_known_good
+                        break
+
+
+                # Animation Code.
+                if self.moving["right"] or self.moving["left"]:
+                    if mov == "up" or mov == "down":
+                        pass
+                    else:
+                        self.current = "walk{}".format(mov)
+                else:
+                    self.current = "walk{}".format(mov)
+        self.set_frame(self.current, self.framenum)
+
 class NPC(Entity):
     def npcsetup(self, atlasfile):
         self.entitysetup(atlasfile)
@@ -152,7 +230,7 @@ class NPCController(Widget):
 
     def controllersetup(self):
         for name in self.npcs:
-            npc = NPC()
+            npc = NPC(size=(48,110))
             npc.name = name
             npc.home = self.npcs[name]["home"]
             npc.npcsetup("images/{}.atlas".format(name))

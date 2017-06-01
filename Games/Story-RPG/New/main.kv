@@ -1,6 +1,6 @@
 #: kivy 1.9.1
 
-<Game>
+<Game>:
     canvas:
         Color:
             rgba: 1., 1., 1., .0
@@ -8,28 +8,48 @@
             pos: self.pos
             size: self.size
 
-<World>
+<World>:
     center: self.worldcenter
 
-<WorldElement>
+<ClutterElement>:
+    size_hint: None, None
+    pos: self.rect[0], self.rect[1]
+    size: self.rect[2], self.rect[3]
+
+<WorldElement>:
+    size_hint: None, None
     allow_stretch: True
     keep_ratio: True
     size_hint_x: 1.0
     size_hint_y: 1.0
 
-<Entity>
-    size: 48, 110
+<CollisionWidget>:
+    size: 48, 48
+
+<Entity>:
+    size_hint: None, None
     canvas:
         Color:
-            rgba: 1, 1, 1, 0.
+            rgba: 1, 1, 1, 1.
         Rectangle:
-            pos: root.pos
-            size: 48, 110
-    Image:
-        pos: self.parent.pos[0]-24, self.parent.pos[1]
-        texture: root.frame
-        allow_stretch: True
+            texture: root.frame
+            pos: self.pos
 
+<Player>:
+    collide_rect: cr
+    right_pos: cr.right, cr.center_y
+    left_pos: cr.pos[0], cr.center_y
+    top_pos: cr.center_x, cr.top
+    bot_pos:  cr.center_x, cr.pos[1]
+    CollisionWidget:
+        id: cr
+        pos: self.parent.pos[0]+25, self.parent.pos[1]
+        canvas:
+            Color:
+                rgba: 1,1,1,.5
+            Rectangle:
+                size: self.size
+                pos: self.pos
 <Menus>:
     topmenu: top
     bottommenu: bot

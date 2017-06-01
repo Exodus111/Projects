@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 from kivy.config import Config
-Config.set("graphics", "fullscreen", "auto")
+Config.set("graphics", "fullscreen", "fake")
 
 from kivy.core.window import Window
 from kivy.app import App
@@ -41,28 +41,30 @@ class Game(Widget):
         self.menus = Menus(size=self.size)
         self.menus.menusetup()
 
-        # Setting up the NPCs.
-        self.npcs = NPCController()
-        self.npcs.controllersetup()
-
-        # Setting up the Player.
-        self.player = Player()
-        self.player.playersetup(Window.size)
-        self.player.place(Window.center[0], Window.center[1])
-
-        # Setting up the Dialogue controller.
-        self.dialogue = Dialogue()
-        self.dialogue.dialoguesetup()
-
         # Setting up the world.
         self.world = World()
         self.world.worldcenter = self.center
         self.world.setupworld()
 
+        # Setting up the NPCs.
+        self.npcs = NPCController()
+        self.npcs.controllersetup()
+
+        # Setting up the Player.
+        self.player = Player(size=(48,110))
+        self.player.playersetup(Window.size)
+        self.player.place(Window.center[0], Window.center[1])
+        self.player.pos = [900, 500]
+
+        # Setting up the Dialogue controller.
+        self.dialogue = Dialogue()
+        self.dialogue.dialoguesetup()
+
         # Adding everything to the Widget stack
         self.add_widget(self.events)
         self.world.add_npcs(self.npcs.npcgroup)
         self.world.add_widget(self.player)
+        self.world.add_fg()
         self.add_widget(self.world)
         self.add_widget(self.menus)
         self.add_widget(self.dialogue)

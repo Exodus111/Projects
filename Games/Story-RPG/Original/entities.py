@@ -1,4 +1,4 @@
-i#!/usr/bin/python3
+#!/usr/bin/python3
 from kivy.vector import Vector
 from kivy.animation import Animation
 from kivy.uix.widget import Widget

@@ -7,17 +7,22 @@ from kivy.core.window import Window
 from kivy.uix.widget import Widget
 from kivy.vector import Vector
 from kivy.clock import Clock
-from kivy.properties import ListProperty, DictProperty
+from kivy.properties import ListProperty, DictProperty, ObjectProperty
 from kivy.graphics import Line
 
 from path import Path
 import json
+from random import randint
 
 # Line collison Projection ALMOST works.
 # Corners and some lines no not work.
 
+DIAGONAL_LINE = [[100, 100], [110, 100], [400, 800]]
+HOUSE = [[100, 100], [100, 600], [500, 600], [500, 100], [900, 800]]
+
+
 class Main(Widget):
-    line1= ListProperty([[100, 100], [100, 500], [200, 600], [500, 600], [600, 500], [600, 100]])
+    line1 = ListProperty(HOUSE)
     linelist = ListProperty([])
     pos1 = ListProperty([200, 400])
     move = DictProperty({"up":False, "down":False, "right":False, "left":False})
@@ -27,12 +32,28 @@ class Main(Widget):
         self.keyboard = Window.request_keyboard(self.key_off, self)
         self.keyboard.bind(on_key_down=self.key_down)
         self.keyboard.bind(on_key_up=self.key_up)
-        self.import_json("Main_wall.json")
+        #self.import_json("main_wall.json")
+        #self.random_points()
         self.make_linelist()
         self.draw_poly()
 
+    def random_points(self):
+        x, y = (100, 100)
+        self.line1 = []
+        for line in range(12):
+            x += randint(0, 100)
+            y += randint(0, 100)
+            line = [x, y]
+            self.line1.append(line)
+
+    def make_linelist(self):
+        for n in range(len(self.line1)-1):
+            self.linelist.append([self.line1[n][0], self.line1[n][1] , self.line1[n+1][0], self.line1[n+1][1]])
+
+
     def key_off(self):
         pass
+
     def key_down(self, keyboard, keycode, text, mod):
         if keycode[1] == "w":
             self.move["up"] = True
@@ -55,10 +76,6 @@ class Main(Widget):
 
     def on_touch_down(self, touch):
         pass
-
-    def make_linelist(self):
-        for n in range(len(self.line1)-1):
-            self.linelist.append([self.line1[n][0], self.line1[n][1] , self.line1[n+1][0], self.line1[n+1][1]])
 
     def import_json(self, filename, height=608):
         js_file = Path("./data/collision/church/{}".format(filename))
@@ -97,29 +114,50 @@ class Main(Widget):
                     return (x,y)
         return None
 
+    def placeholder(self):
+        return True
+
     def moving(self):
+        move_str = ""
+        moving = False
         for mov in self.move:
             if self.move[mov]:
-                pos2 = Vector(self.pos1) + Vector(self.direction[mov])*5
-                for line in self.linelist:
-                        pos2 = self.line_collision_projection(pos2, line, mov)
-                self.pos1 = Vector(int(round(pos2[0])), int(round(pos2[1])))
+                moving = True
+                self.move[mov] = self.placeholder()
+                if self.move[mov]:
+                    move_str += mov
+        if move_str in ("up", "down", "left", "right"):
+            direction = self.direction[move_str]
+        elif move_str in ("upleft", "leftup"):
+            direction = [-1,1]
+        elif move_str in ("upright", "rightup"):
+            direction = [1,1]
+        elif move_str in ("downleft", "leftdown"):
+            direction = [-1,-1]
+        elif move_str in ("downright", "rightdown"):
+            direction = [1,-1]
+        else:
+            direction = [0,0]
+        if moving:
+            for line in self.linelist:
+                    direction = self.line_collision_projection(direction, line)
+            self.pos1 = Vector(self.pos1) + Vector(direction)*5
 
-    def line_collision_projection(self, pos2, line, mov):
+    def line_collision_projection(self, direction, line):
         collided = False
-        inter = self.does_it_intersect([self.pos1[0], self.pos1[1], pos2[0], pos2[1]], line)
+        pos2 = Vector(self.pos1) + Vector(direction)*6
+        inter = Vector.segment_intersection(self.pos1, pos2, (line[0], line[1]), (line[2], line[3]))
         if inter != None:
-            if Vector(self.pos1).distance(inter) < 30:
+            if Vector(self.pos1).distance(inter) < 15:
                 collided = True
         if collided:
             wall = Vector((line[0], line[1])) - Vector((line[2], line[3]))
-            wall = Vector(wall)/Vector(wall).length()
-            dot = Vector(wall).dot(self.direction[mov])
+            #wall = Vector(wall)/Vector(wall).length()
+            dot = Vector(wall).dot(direction)
             x = (dot/(wall.x*wall.x  + wall.y*wall.y))*wall.x
             y = (dot/(wall.x*wall.x  + wall.y*wall.y))*wall.y
-            direction = (x,y)
-            pos2 = Vector(self.pos1) + Vector(direction)*5
-        return pos2
+            direction = (int(x),int(y))
+        return Vector(direction)
 
     def update(self, dt):
         self.moving()

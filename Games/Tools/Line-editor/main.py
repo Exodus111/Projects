@@ -7,7 +7,7 @@ from gui import Menu
 
 BLACK = (0,0,0)
 WHITE = (255,255,255)
-MAP = "tower"
+MAP = "main"
 
 class Main(Template):
     def __init__(self, size):
@@ -31,10 +31,10 @@ class Main(Template):
         self.groups = {}
         for key in self.filenames:
             back = self.create_map(key, "bg")
-            #obj = self.create_map(key, "obj")
+            obj = self.create_map(key, "obj")
             self.groups[key] = []
             self.groups[key].append(back)
-            #self.groups[key].append(obj)
+            self.groups[key].append(obj)
         self.bg = self.add_map()
         self.rect_started = False
         self.new_rect = None

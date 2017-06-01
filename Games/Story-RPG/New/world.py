@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-from kivy.uix.relativelayout import RelativeLayout
+from kivy.uix.relativelayout import RelativeLayout, FloatLayout
 from kivy.vector import Vector
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.widget import Widget
 from kivy.uix.image import Image
-from kivy.graphics import Line, Color
+from kivy.graphics import Line, Color, Rectangle
 from kivy.properties import ObjectProperty, ListProperty, StringProperty, NumericProperty, DictProperty, BooleanProperty
 from path import Path
 import json
@@ -13,6 +13,12 @@ from tools import circle_collide
 
 class WorldElement(Image):
     name = StringProperty("")
+
+class ClutterGroup(Widget):
+    pass
+
+class ClutterElement(Widget):
+    rect = ListProperty([0,0,0,0])
 
 class World(RelativeLayout):
     home = StringProperty("")
@@ -27,6 +33,7 @@ class World(RelativeLayout):
     act_walls = ListProperty([])
     worlddict = DictProperty({
     "church":{"main":{"bg":"images/world/CI Main Back.png",
+                      "fg":"images/world/CI Main FG.png",
                       "clutter":"images/world/CI Main Obj.png",
                       "bg_walls":"data/collision/church/main_wall.json",
                       "clutter_collision":"data/collision/church/main_clutter.json",
@@ -68,16 +75,17 @@ class World(RelativeLayout):
                           "from_basement":(1590, 192)},
 
                           "priest_room":{
-                          "from_priest_room":(248, 95)},
+                          "from_priest_room":(248, 115)},
 
                           "tower":{
                           "from_tower":(0,0)},
 
                           "thack_room":{
-                          "from_thack_room":(248, 93)}}})
+                          "from_thack_room":(248, 115)}}})
 
     def setupworld(self):
-        self.load_scene("church", "priest_room", True)
+        self.cluttergroup = ClutterGroup()
+        self.load_scene("church", "main", True)
         #self.draw_line([item for sublist in self.act_walls for item in sublist]) #<--- Used to test the walls.
 
     def draw_line(self, points):
@@ -89,6 +97,7 @@ class World(RelativeLayout):
         if first:
             self.load_walls(scene)
             self.bg = WorldElement(source=self.worlddict[scene][part]["bg"])
+            self.fg = WorldElement(source=self.worlddict[scene][part]["fg"])
             self.bg_clutter = WorldElement(source=self.worlddict[scene][part]["clutter"])
             self.add_widget(self.bg)
             self.add_widget(self.bg_clutter)
@@ -104,11 +113,27 @@ class World(RelativeLayout):
         self.act_walls = self.turn_points(p, h, adjust)
         self.linelist = self._make_linelist(self.act_walls)
 
+        self.make_clutter_collision(scene, part)
+
         for i, v in self.doors[scene][part].items():
             w = Widget(pos=v, size=(64, 64))
             w.name = i
             self.poi.append(w)
         self.home = scene + " " + part
+
+    def make_clutter_collision(self, scene, part):
+        rects = self.walls[scene][part]["clutter"]["rects"]
+        for r in rects.values():
+            clutter = ClutterElement()
+            w, h = self.walls[scene][part]["bg"]["size"]
+            r[1] = ((h*3) - r[1]) - 50
+            clutter.rect = r
+            self.cluttergroup.add_widget(clutter)
+        self.add_widget(self.cluttergroup)
+
+    def add_fg(self):
+        self.add_widget(self.fg)
+        pass
 
     def _make_linelist(self, pointlist):
         linelist = []
@@ -133,7 +158,7 @@ class World(RelativeLayout):
                         walldict[i]["clutter"] = {"rects":wall_info[i]}
         self.walls[scene] = walldict
 
-    def turn_points(self, points, height, adjust):
+    def turn_points(self, points, height, adjust=0):
         """
          main: 1215
          basement: 828
@@ -147,10 +172,13 @@ class World(RelativeLayout):
         return newlist
 
     def collide_walls(self, pos, direction, mov, dist=50):
-        pos2 = Vector(pos) + Vector(direction)*3
+        pos2 = Vector(pos) + Vector(direction)
+        new_pos = False
         for line in self.linelist:
-            pos2 = self.line_collision_projection(pos, pos2, line, direction, mov, dist)
-        return Vector(int(round(pos2[0])), int(round(pos2[1])))
+            new_pos = self.line_collision_projection(pos, pos2, line, direction, mov, dist)
+            if new_pos != False:
+                return Vector(int(round(new_pos[0])), int(round(new_pos[1])))
+        return False
 
     def line_collision_projection(self, pos1, pos2, line, direction, mov, dist):
         collided = False
@@ -166,8 +194,9 @@ class World(RelativeLayout):
             x = (dot/(wall.x*wall.x  + wall.y*wall.y))*wall.x
             y = (dot/(wall.x*wall.x  + wall.y*wall.y))*wall.y
             direction = (x,y)
-            pos2 = Vector(pos1) + Vector(direction)
-        return pos2
+            return direction
+        else:
+            return False
 
     def h_l(self, n1, n2):
         """
@@ -195,7 +224,6 @@ class World(RelativeLayout):
                 if x <= a_xh and x >= a_xl and y >= a_yl and y <= a_yh:
                     return (x,y)
         return None
-
 
     def add_npcs(self, npcs):
         self.in_world = []
