@@ -171,32 +171,25 @@ class World(RelativeLayout):
         newlist.append(newlist[0])
         return newlist
 
-    def collide_walls(self, pos, direction, mov, dist=50):
-        pos2 = Vector(pos) + Vector(direction)
-        new_pos = False
+    def collide_walls(self, pos, direction, dist=15):
         for line in self.linelist:
-            new_pos = self.line_collision_projection(pos, pos2, line, direction, mov, dist)
-            if new_pos != False:
-                return Vector(int(round(new_pos[0])), int(round(new_pos[1])))
-        return False
+            new_dir = self.line_collision_projection(pos, line, direction, dist)
+        return new_dir
 
-    def line_collision_projection(self, pos1, pos2, line, direction, mov, dist):
+    def line_collision_projection(self, pos, line, direction, dist):
         collided = False
-        p_line = [pos1[0], pos1[1], pos2[0], pos2[1]]
-        inter = self.does_it_intersect(p_line, line)
+        pos2 = Vector(pos) + Vector(direction)*3
+        inter = Vector.segment_intersection(pos, pos2, (line[0], line[1]), (line[2], line[3]))
         if inter != None:
-            if Vector(pos1).distance(inter) < dist:
-                collided = True
+            #if Vector(pos).distance(inter) < dist:
+            collided = True
         if collided:
             wall = Vector((line[0], line[1])) - Vector((line[2], line[3]))
-            wall = Vector(wall)/Vector(wall).length()
             dot = Vector(wall).dot(direction)
             x = (dot/(wall.x*wall.x  + wall.y*wall.y))*wall.x
             y = (dot/(wall.x*wall.x  + wall.y*wall.y))*wall.y
-            direction = (x,y)
-            return direction
-        else:
-            return False
+            direction = (int(x),int(y))
+        return Vector(direction)
 
     def h_l(self, n1, n2):
         """

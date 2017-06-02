@@ -27,7 +27,7 @@ class Entity(Widget):
     name = StringProperty("")
     collided_with = StringProperty("")
     movement_reversed = BooleanProperty(False)
-    collide_rect = ObjectProperty(None)
+    collide_widget = ObjectProperty(None)
 
     def place(self, x, y):
         self.pos = self.to_widget(x, y)
@@ -73,15 +73,15 @@ class Entity(Widget):
 
     def reverse_movement(self, mov, w=None):
         if w == None:
-            w = self.pos
+            w = self
         if mov == "up":
-            return Vector(w) + Vector(self.dirs["down"])*3
+            return Vector(w.pos) + Vector(self.dirs["down"])*3
         elif mov == "down":
-            return Vector(w) + Vector(self.dirs["up"])*3
+            return Vector(w.pos) + Vector(self.dirs["up"])*3
         elif mov == "left":
-            return Vector(w) + Vector(self.dirs["right"])*3
+            return Vector(w.pos) + Vector(self.dirs["right"])*3
         elif mov == "right":
-            return Vector(w) + Vector(self.dirs["left"])*3
+            return Vector(w.pos) + Vector(self.dirs["left"])*3
 
 class Player(Entity):
     screen_size = ListProperty([0,0])
@@ -95,6 +95,8 @@ class Player(Entity):
         self.entitysetup("images/player_sheet.atlas")
         self.name = "Thack"
         self.bind(collided_with=lambda x, y: self.parent.parent.begin_conv(y))
+        #self.collide_widget.pos = [self.pos[0]+25, self.pos[1]]
+
 
     def collide_world(self):
         ws = 500
@@ -132,11 +134,21 @@ class Player(Entity):
     def move(self):
         move_str = ""
         moving = False
+        self.current = "idle"
 
         # Movement Code.
         for mov in self.moving:
             if self.moving[mov]:
                 moving = True
+
+                # Clutter Collision Code.
+                self.collide_widget.pos = Vector(self.collide_widget.pos) + Vector(self.dirs[mov])
+                for w in self.parent.cluttergroup.children:
+                    if self.collide_widget.collide_widget(w):
+                        self.moving[mov] = False
+                        self.collide_widget.pos = [self.pos[0]+25, self.pos[1]]
+                if self.moving[mov]:
+                    move_str += mov
 
                 # Animation Code.
                 if self.moving["right"] or self.moving["left"]:
@@ -146,13 +158,6 @@ class Player(Entity):
                         self.current = "walk{}".format(mov)
                 else:
                     self.current = "walk{}".format(mov)
-
-                # Clutter Collision Code.
-                for w in self.parent.cluttergroup.children:
-                    if self.collide_rect.collide_widget(w):
-                        self.moving[mov] = False
-                if self.moving[mov]:
-                    move_str += mov
 
         # Wall Collision Code.
         if move_str in ("up", "down", "left", "right"):
@@ -168,7 +173,8 @@ class Player(Entity):
         else:
             direction = [0,0]
         if moving:
-            self.pos = Vector(self.pos) + Vector(direction)*5
+            direction = self.parent.collide_walls(self.pos, direction)
+            self.pos = Vector(self.pos) + Vector(direction)*3
 
         # Set Animation Frame.
         self.set_frame(self.current, self.framenum)
@@ -200,7 +206,7 @@ class Player(Entity):
 
                 # Clutter
                 for w in self.parent.cluttergroup.children:
-                    if self.collide_rect.collide_widget(w):
+                    if self.collide_widget.collide_widget(w):
                         self.pos = self.last_known_good
                         break
 

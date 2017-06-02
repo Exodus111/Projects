@@ -152,12 +152,11 @@ class Main(Widget):
                 collided = True
         if collided:
             wall = Vector((line[0], line[1])) - Vector((line[2], line[3]))
-            #wall = Vector(wall)/Vector(wall).length()
             dot = Vector(wall).dot(direction)
             x = (dot/(wall.x*wall.x  + wall.y*wall.y))*wall.x
             y = (dot/(wall.x*wall.x  + wall.y*wall.y))*wall.y
             direction = (int(x),int(y))
-        return Vector(direction)
+        return direction
 
     def update(self, dt):
         self.moving()
