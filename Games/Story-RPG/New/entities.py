@@ -95,7 +95,7 @@ class Player(Entity):
         self.entitysetup("images/player_sheet.atlas")
         self.name = "Thack"
         self.bind(collided_with=lambda x, y: self.parent.parent.begin_conv(y))
-        #self.collide_widget.pos = [self.pos[0]+25, self.pos[1]]
+        self.collide_widget.pos = [self.pos[0]+25, self.pos[1]]
 
 
     def collide_world(self):
@@ -142,12 +142,13 @@ class Player(Entity):
                 moving = True
 
                 # Clutter Collision Code.
-                self.collide_widget.pos = Vector(self.collide_widget.pos) + Vector(self.dirs[mov])
+                old_pos = self.collide_widget.pos.copy()
+                self.collide_widget.pos = Vector(self.collide_widget.pos) + Vector(self.dirs[mov])*3
                 for w in self.parent.cluttergroup.children:
                     if self.collide_widget.collide_widget(w):
-                        self.moving[mov] = False
-                        self.collide_widget.pos = [self.pos[0]+25, self.pos[1]]
-                if self.moving[mov]:
+                        moving = False
+                        self.collide_widget.pos = old_pos
+                if moving:
                     move_str += mov
 
                 # Animation Code.
@@ -172,9 +173,11 @@ class Player(Entity):
             direction = [1,-1]
         else:
             direction = [0,0]
-        if moving:
+
+        if move_str != "":
             direction = self.parent.collide_walls(self.pos, direction)
             self.pos = Vector(self.pos) + Vector(direction)*3
+            self.collide_widget.pos = [self.pos[0]+25, self.pos[1]]
 
         # Set Animation Frame.
         self.set_frame(self.current, self.framenum)

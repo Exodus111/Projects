@@ -155,6 +155,7 @@ class Main(Widget):
             dot = Vector(wall).dot(direction)
             x = (dot/(wall.x*wall.x  + wall.y*wall.y))*wall.x
             y = (dot/(wall.x*wall.x  + wall.y*wall.y))*wall.y
+            print(x,y)
             direction = (int(x),int(y))
         return direction
 

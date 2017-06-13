@@ -20,6 +20,12 @@ class ClutterGroup(Widget):
 class ClutterElement(Widget):
     rect = ListProperty([0,0,0,0])
 
+    def show(self):
+        with self.canvas:
+            Color(rgba=[1.,1.,1.,.5])
+            Rectangle(pos=self.pos, size=self.size)
+
+
 class World(RelativeLayout):
     home = StringProperty("")
     worldcenter = ListProperty([0,0])
@@ -86,7 +92,7 @@ class World(RelativeLayout):
     def setupworld(self):
         self.cluttergroup = ClutterGroup()
         self.load_scene("church", "main", True)
-        #self.draw_line([item for sublist in self.act_walls for item in sublist]) #<--- Used to test the walls.
+        self.draw_line([item for sublist in self.act_walls for item in sublist]) #<--- Used to test the walls.
 
     def draw_line(self, points):
         """For testing collision."""
@@ -128,6 +134,7 @@ class World(RelativeLayout):
             w, h = self.walls[scene][part]["bg"]["size"]
             r[1] = ((h*3) - r[1]) - 50
             clutter.rect = r
+            #clutter.show()  #<-- For testing.
             self.cluttergroup.add_widget(clutter)
         self.add_widget(self.cluttergroup)
 
@@ -173,23 +180,23 @@ class World(RelativeLayout):
 
     def collide_walls(self, pos, direction, dist=15):
         for line in self.linelist:
-            new_dir = self.line_collision_projection(pos, line, direction, dist)
-        return new_dir
+            direction = self.line_collision_projection(pos, line, direction, dist)
+        return direction
 
     def line_collision_projection(self, pos, line, direction, dist):
         collided = False
-        pos2 = Vector(pos) + Vector(direction)*3
+        pos2 = Vector(pos) + Vector(direction)*6
         inter = Vector.segment_intersection(pos, pos2, (line[0], line[1]), (line[2], line[3]))
         if inter != None:
-            #if Vector(pos).distance(inter) < dist:
-            collided = True
+            if Vector(pos).distance(inter) < dist:
+                collided = True
         if collided:
             wall = Vector((line[0], line[1])) - Vector((line[2], line[3]))
             dot = Vector(wall).dot(direction)
             x = (dot/(wall.x*wall.x  + wall.y*wall.y))*wall.x
             y = (dot/(wall.x*wall.x  + wall.y*wall.y))*wall.y
             direction = (int(x),int(y))
-        return Vector(direction)
+        return direction
 
     def h_l(self, n1, n2):
         """
