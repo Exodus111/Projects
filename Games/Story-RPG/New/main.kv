@@ -37,15 +37,12 @@
 
 <Player>:
     collide_widget: cw
-    right_pos: cw.right, cw.center_y
-    left_pos: cw.pos[0], cw.center_y
-    top_pos: cw.center_x, cw.top
-    bot_pos:  cw.center_x, cw.pos[1]
+    mid_pos: cw.center_x, cw.center_y
     CollisionWidget:
         id: cw
         canvas:
             Color:
-                rgba: 1,1,1,.0            
+                rgba: 1,1,1,.0
             Rectangle:
                 size: self.size
                 pos: self.pos

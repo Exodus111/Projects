@@ -1,0 +1,16 @@
+#: kivy 1.9.1
+
+<Main>:
+    foreground: fg
+    background: bg
+    IMG:
+        id: fg
+        source: "imgs/background.png"
+    IMG:
+        id: bg
+        source: "imgs/foreground.png"
+
+<IMG@Image>:
+    allow_stretch: True
+    keep_ratio: True
+    size_hint: None, None

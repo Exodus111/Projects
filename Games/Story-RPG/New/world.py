@@ -92,7 +92,7 @@ class World(RelativeLayout):
     def setupworld(self):
         self.cluttergroup = ClutterGroup()
         self.load_scene("church", "main", True)
-        self.draw_line([item for sublist in self.act_walls for item in sublist]) #<--- Used to test the walls.
+        #self.draw_line([item for sublist in self.act_walls for item in sublist]) #<--- Used to test the walls.
 
     def draw_line(self, points):
         """For testing collision."""
@@ -178,14 +178,14 @@ class World(RelativeLayout):
         newlist.append(newlist[0])
         return newlist
 
-    def collide_walls(self, pos, direction, dist=15):
+    def collide_walls(self, pos, direction, dist=20):
         for line in self.linelist:
             direction = self.line_collision_projection(pos, line, direction, dist)
         return direction
 
     def line_collision_projection(self, pos, line, direction, dist):
         collided = False
-        pos2 = Vector(pos) + Vector(direction)*6
+        pos2 = Vector(pos) + Vector(direction)*20
         inter = Vector.segment_intersection(pos, pos2, (line[0], line[1]), (line[2], line[3]))
         if inter != None:
             if Vector(pos).distance(inter) < dist:

@@ -85,10 +85,8 @@ class Entity(Widget):
 
 class Player(Entity):
     screen_size = ListProperty([0,0])
-    right_pos = ListProperty([0,0])
-    left_pos = ListProperty([0,0])
-    top_pos = ListProperty([0,0])
-    bot_pos = ListProperty([0,0])
+    mid_pos = ListProperty([0,0])
+
 
     def playersetup(self, screen_size):
         self.screen_size = screen_size
@@ -175,53 +173,11 @@ class Player(Entity):
             direction = [0,0]
 
         if move_str != "":
-            direction = self.parent.collide_walls(self.pos, direction)
+            direction = self.parent.collide_walls(self.mid_pos, direction)
             self.pos = Vector(self.pos) + Vector(direction)*3
             self.collide_widget.pos = [self.pos[0]+25, self.pos[1]]
 
         # Set Animation Frame.
-        self.set_frame(self.current, self.framenum)
-
-    def move_old(self):
-        self.current = "idle"
-        for mov in self.moving:
-            if self.moving[mov]:
-            # Movement Code.
-                # Collision Code.
-                # NPCs
-                self.collide_npcs(mov)
-
-                # Walls
-                if mov == "right":
-                    pos1 = self.right_pos
-                elif mov == "left":
-                    pos1 = self.left_pos
-                elif mov == "up":
-                    pos1 = self.top_pos
-                elif mov == "down":
-                    pos1 = self.bot_pos
-                pos2 = self.parent.collide_walls(pos1, self.dirs[mov], mov)
-                if pos2 != False:
-                    self.pos = Vector(self.pos) + Vector(pos2)
-                else:
-                    self.last_known_good = self.pos.copy()
-                    self.pos = Vector(self.pos) + Vector(self.dirs[mov])*3
-
-                # Clutter
-                for w in self.parent.cluttergroup.children:
-                    if self.collide_widget.collide_widget(w):
-                        self.pos = self.last_known_good
-                        break
-
-
-                # Animation Code.
-                if self.moving["right"] or self.moving["left"]:
-                    if mov == "up" or mov == "down":
-                        pass
-                    else:
-                        self.current = "walk{}".format(mov)
-                else:
-                    self.current = "walk{}".format(mov)
         self.set_frame(self.current, self.framenum)
 
 class NPC(Entity):
