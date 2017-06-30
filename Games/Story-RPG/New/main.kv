@@ -20,8 +20,6 @@
     size_hint: None, None
     allow_stretch: True
     keep_ratio: True
-    size_hint_x: 1.0
-    size_hint_y: 1.0
 
 <CollisionWidget>:
     size: 48, 48
@@ -33,6 +31,7 @@
             rgba: 1, 1, 1, 1.
         Rectangle:
             texture: root.frame
+            size: root.entsize
             pos: self.pos
 
 <Player>:

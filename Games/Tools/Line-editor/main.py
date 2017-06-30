@@ -7,7 +7,7 @@ from gui import Menu
 
 BLACK = (0,0,0)
 WHITE = (255,255,255)
-MAP = "main"
+MAP = "basement"
 
 class Main(Template):
     def __init__(self, size):
@@ -142,6 +142,12 @@ class Main(Template):
         self.new_rect = None
         self.rect_started = False
 
+    def erase_rects(self, arg):
+        if arg == "last":
+            self.rect_list.pop()
+        elif arg == "all":
+            self.rect_list = []
+
     def save_rects(self):
         print("Saving rects to ", "./saves/{}_clutter.json".format(self.current_map))
         rects = {self.current_map:{}}
@@ -180,7 +186,6 @@ class Main(Template):
         for lines in self.linelist:
             pg.draw.lines(self.surface, WHITE, True, [(point.x, point.y) for point in lines])
 
-
         # Blitting to Screen.
         self.screen.blit(self.surface, self.xy)
 
@@ -200,6 +205,11 @@ class Main(Template):
             self.move["right"] = True
         if key in (K_LEFT, K_a):
             self.move["left"] = True
+        if key == K_BACKSPACE:
+            self.erase_rects("last")
+        if key == K_RETURN:
+            self.erase_rects("all")
+
 
     def key_up(self, key):
         if key in (K_UP, K_w):

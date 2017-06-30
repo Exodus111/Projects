@@ -4,25 +4,44 @@ kivy.require("1.9.0")
 
 from kivy.app import App
 from kivy.uix.widget import Widget
-from kivy.uix.image import Image
+from kivy.uix.image import Image as KImage
 from kivy.graphics import Rectangle
+from kivy.graphics.texture import Texture
 from kivy.clock import Clock
-from kivy.properties import ObjectProperty
 
-# Need to bring in Game Files now.
+from PIL import Image
+import numpy as np
 
 class Main(Widget):
-    foreground = ObjectProperty(None)
-    background = ObjectProperty(None)
 
     def setup(self):
-        mn = Image(source="imgs/main.png").texture
-        #fg = Image(source="imgs/foreground_.png").texture
-        bg = Image(source="imgs/background_.png").texture
+        fg_image = Image.open("imgs/foreground.png")
+        fg_size = fg_image.size
+        fg_size = (fg_size[0]*3, fg_size[1]*3)
+        fg_image = fg_image.resize(fg_size)
+
+        #arr1 = np.fromstring(fg_image.tobytes(), np.uint8)
+        fg = Texture.create(size=fg_size)
+        fg.blit_buffer(fg_image.tobytes(), colorfmt="rgba", bufferfmt="ubyte")
+
+        #fg_image.save("imgs/fg.png")
+        #fg = KImage(source="imgs/fg.png").texture
+
+        bg_image = Image.open("imgs/background.png")
+        bg_size = bg_image.size
+        bg_size = (bg_size[0]*3, bg_size[1]*3)
+        bg_image = bg_image.resize(bg_size)
+
+        #arr2 = np.fromstring(bg_image.tobytes(), np.uint8)
+        bg = Texture.create(size=bg_size)
+        bg.blit_buffer(bg_image.tobytes(), colorfmt="rgba", bufferfmt="ubyte")
+
+        #bg_image.save("imgs/bg.png")
+        #bg = KImage(source="imgs/bg.png").texture
+
         with self.canvas:
-            Rectangle(texture=mn, pos=[0,200], size=mn.size)
-            Rectangle(texture=bg, pos=[0,200], size=bg.size)
-        #    Rectangle(texture=fg, pos=[0,200], size=fg.size)
+            Rectangle(texture=bg, pos=[-200, -400], size=bg.size)
+            Rectangle(texture=fg, pos=[-200, -400], size=fg.size)
 
     def update(self, dt):
         pass

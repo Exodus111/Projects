@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 # python -m kivy.atlas myatlas 160x256 *.png
-from PIL import Image
+from PIL import Image as Img
 from path import Path
 from kivy.atlas import Atlas
 from kivy.vector import Vector
+from kivy.graphics.texture import Texture
 
 
 def circle_collide(w1, w2):
@@ -59,8 +60,19 @@ def make_atlas(folder):
         Atlas.create("images/{}".format(dirc.basename()), dirc.files("*.png"), [160,256])
 
 
+def scale_image(filename, multiplier=3):
 
+    img = Img.open(filename)
+    img = img.transpose(Img.FLIP_TOP_BOTTOM)
+    size = img.size
+    new_size = (size[0]*multiplier, size[1]*multiplier)
+    img = img.resize(new_size)
+    image = Texture.create(size=new_size)
+    image.blit_buffer(img.tobytes(), colorfmt="rgba", bufferfmt="ubyte")
+    return image
 
 if __name__ == "__main__":
     #divide_all("images/stored")
-    make_atlas("images/crops")
+    #make_atlas("images/crops")
+    #clear_temp()
+    pass

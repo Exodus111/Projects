@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 from kivy.uix.widget import Widget
+from kivy.uix.image import Image
 from kivy.vector import Vector
 from kivy.atlas import Atlas
 from kivy.properties import ListProperty, BooleanProperty, ObjectProperty, DictProperty, StringProperty, NumericProperty
@@ -28,6 +29,8 @@ class Entity(Widget):
     collided_with = StringProperty("")
     movement_reversed = BooleanProperty(False)
     collide_widget = ObjectProperty(None)
+    entsize = ListProperty([0,0])
+    multiplier = NumericProperty(3)
 
     def place(self, x, y):
         self.pos = self.to_widget(x, y)
@@ -52,6 +55,7 @@ class Entity(Widget):
         if pose == "idle":
             num = 1
         self.frame = self.atlas["{}{}".format(pose, num)]
+        self.entsize = [self.frame.size[0]*self.multiplier, self.frame.size[1]*self.multiplier]
 
     def _num(self):
         while True:

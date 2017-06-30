@@ -10,7 +10,7 @@ class Aligned(Factory.Widget):
         fg_size = (fg.size[0]*2, fg.size[1]*2)
         bg_size = (bg.size[0]*2, bg.size[1]*2)
         with self.canvas:
-            Factory.Rectangle(size=fg_size, texture=fg, pos=(0, 0))
-            Factory.Rectangle(size=bg_size, texture=bg, pos=(0, 1))
+            Factory.Rectangle(size=fg.size, texture=fg, pos=(0, 0))
+            Factory.Rectangle(size=bg.size, texture=bg, pos=(0, 0))
 
 runTouchApp(Aligned())

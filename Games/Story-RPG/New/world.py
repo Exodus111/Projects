@@ -9,7 +9,7 @@ from kivy.properties import ObjectProperty, ListProperty, StringProperty, Numeri
 from path import Path
 import json
 
-from tools import circle_collide
+from tools import circle_collide, scale_image
 
 class WorldElement(Image):
     name = StringProperty("")
@@ -102,20 +102,27 @@ class World(RelativeLayout):
     def load_scene(self, scene, part, first=False):
         if first:
             self.load_walls(scene)
-            self.bg = WorldElement(source=self.worlddict[scene][part]["bg"])
-            self.fg = WorldElement(source=self.worlddict[scene][part]["fg"])
-            self.bg_clutter = WorldElement(source=self.worlddict[scene][part]["clutter"])
+            self.bg = WorldElement(texture=scale_image(self.worlddict[scene][part]["bg"]))
+            self.fg = WorldElement(texture=scale_image(self.worlddict[scene][part]["fg"]))
+            self.bg_clutter = WorldElement(texture=scale_image(self.worlddict[scene][part]["clutter"]))
+            self.bg.size = self.bg.texture.size
+            self.fg.size = self.fg.texture.size
+            self.bg_clutter.size = self.bg_clutter.texture.size
             self.add_widget(self.bg)
             self.add_widget(self.bg_clutter)
         else:
-            self.bg.source = self.worlddict[scene][part]["bg"]
-            self.bg_clutter.source = self.worlddict[scene][part]["clutter"]
+            self.bg.texture = scale_image(self.worlddict[scene][part]["bg"])
+            self.fg = WorldElement(texture=scale_image(self.worlddict[scene][part]["fg"]))
+            self.bg_clutter.texture = scale_image(self.worlddict[scene][part]["clutter"])
+            self.bg.size = self.bg.texture.size
+            self.fg.size = self.fg.texture.size
+            self.bg_clutter.size = self.bg_clutter.texture.size
             self.add_npcs(self.parent.npcs.npcgroup)
 
         adjust = self.worlddict[scene][part]["adjust"]
         p = self.walls[scene][part]["bg"]["points"]
         w, h = self.walls[scene][part]["bg"]["size"]
-        self.size = [w*3, h*3]
+        #self.size = [w*3, h*3]
         self.act_walls = self.turn_points(p, h, adjust)
         self.linelist = self._make_linelist(self.act_walls)
 
