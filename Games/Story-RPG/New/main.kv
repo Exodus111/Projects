@@ -8,6 +8,37 @@
             pos: self.pos
             size: self.size
 
+<StartMenu>:
+    button_new: ne
+    button_load: lo
+    button_credits: cr
+    button_about: ab
+    button_options: op
+    button_quit: qu
+    orientation: "vertical"
+    size: 400, 500
+    pos: 300, 300
+    spacing: 1
+    padding: 1
+    Button:
+        id: ne
+        background_normal: "images/gui/newgame.png"
+    Button:
+        id: lo
+        background_normal: "images/gui/loadgame.png"
+    Button:
+        id: cr
+        background_normal: "images/gui/credits.png"
+    Button:
+        id: ab
+        background_normal: "images/gui/about.png"
+    Button:
+        id: op
+        background_normal: "images/gui/options.png"
+    Button:
+        id: qu
+        background_normal: "images/gui/quit.png"
+
 <World>:
     center: self.worldcenter
 

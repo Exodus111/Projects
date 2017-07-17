@@ -61,7 +61,6 @@ def make_atlas(folder):
 
 
 def scale_image(filename, multiplier=3):
-
     img = Img.open(filename)
     img = img.transpose(Img.FLIP_TOP_BOTTOM)
     size = img.size

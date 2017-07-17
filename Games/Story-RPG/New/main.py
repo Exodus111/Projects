@@ -8,11 +8,12 @@ from kivy.clock import Clock
 from kivy.uix.widget import Widget
 from kivy.vector import Vector
 from kivy.uix.floatlayout import FloatLayout
-from kivy.properties import DictProperty, ListProperty, StringProperty
+from kivy.properties import DictProperty, ListProperty, StringProperty, BooleanProperty
 
 from entities import Player, NPCController
 from dialogue import Dialogue
 from gui import Menus
+from startmenu import StartMenu
 from world import World
 
 from random import choice
@@ -28,6 +29,7 @@ class EventHandler(Widget):
 class Game(Widget):
     temp_text = StringProperty("")
     temp_textlist = ListProperty(["", "", "", ""])
+    menu_on = BooleanProperty(True)
 
     def gamesetup(self):
         # Setting up the Event Handler.
@@ -60,17 +62,29 @@ class Game(Widget):
         self.dialogue = Dialogue()
         self.dialogue.dialoguesetup()
 
+        # Start Menu
+        self.startmenu = StartMenu()
+
         # Adding everything to the Widget stack
         self.add_widget(self.events)
         self.world.add_npcs(self.npcs.npcgroup)
-        self.world.add_widget(self.player)
-        self.world.add_fg()
+        self.world.add_widget(self.player, index=3)
         self.add_widget(self.world)
         self.add_widget(self.menus)
         self.add_widget(self.dialogue)
+        self.add_widget(self.startmenu)
+
+        self.startmenu.setup()
 
         # Centering Screen on the player
         self.center_screen(0.2)
+
+    def menu_on_off(self):
+        self.menu_on = not self.menu_on
+        if self.menu_on:
+            self.add_widget(self.startmenu)
+        else:
+            self.remove_widget(self.startmenu)
 
     def center_screen(self, delay=0.1):
         Clock.schedule_once(self.world.center_screen, delay)
@@ -84,14 +98,16 @@ class Game(Widget):
         pass
 
     def key_down(self, key, mod):
-        if key[1] in ("w", "a", "s", "d", "up", "down", "left", "right"):
-            self.player.keydown(key[1])
-        elif key[1] == "spacebar":
-            print(self.player.pos, self.player.center)
+        if not self.menu_on:
+            if key[1] in ("w", "a", "s", "d", "up", "down", "left", "right"):
+                self.player.keydown(key[1])
+            elif key[1] == "spacebar":
+                print(self.player.pos, self.player.center)
 
     def key_up(self, key):
-        if key[1] in ("w", "a", "s", "d", "up", "down", "left", "right"):
-            self.player.keyup(key[1])
+        if not self.menu_on:
+            if key[1] in ("w", "a", "s", "d", "up", "down", "left", "right"):
+                self.player.keyup(key[1])
 
     def begin_conv(self, npc):
         self.dialogue.npc = npc

@@ -4,12 +4,13 @@ from kivy.vector import Vector
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.widget import Widget
 from kivy.uix.image import Image
+from kivy.uix.label import Label
 from kivy.graphics import Line, Color, Rectangle
 from kivy.properties import ObjectProperty, ListProperty, StringProperty, NumericProperty, DictProperty, BooleanProperty
 from path import Path
 import json
 
-from tools import circle_collide, scale_image
+from tools.tools import circle_collide, scale_image
 
 class WorldElement(Image):
     name = StringProperty("")
@@ -21,7 +22,9 @@ class ClutterElement(Widget):
     rect = ListProperty([0,0,0,0])
 
     def show(self):
-        with self.canvas:
+        mylabel = Label(pos=(self.rect[0], self.rect[1]), text=str(self.pos), halign="center", valign="middle", font_size=15, color=[0,0,0,1.])
+        self.add_widget(mylabel)
+        with mylabel.canvas:
             Color(rgba=[1.,1.,1.,.5])
             Rectangle(pos=self.pos, size=self.size)
 
@@ -31,6 +34,10 @@ class World(RelativeLayout):
     worldcenter = ListProperty([0,0])
     worldspeed = NumericProperty(5)
     in_world = ListProperty([])
+    bg = ObjectProperty(None)
+    fg = ObjectProperty(None)
+    clutter = ObjectProperty(None)
+    cluttergroup = ObjectProperty(None)
     poi = ListProperty([])
     dots = ListProperty([])
     once = BooleanProperty(True)
@@ -43,36 +50,40 @@ class World(RelativeLayout):
                       "clutter":"images/world/CI Main Obj.png",
                       "bg_walls":"data/collision/church/main_wall.json",
                       "clutter_collision":"data/collision/church/main_clutter.json",
-                      "adjust":1215},
+                      "adjust":50},
 
               "basement":{"bg":"images/world/CI Basement Back.png",
                           "clutter":"images/world/CI Basement Obj.png",
+                          "fg":"images/world/CI Basement FG.png",
                           "bg_walls":"data/collision/church/basement_wall.json",
                           "clutter_collision":"data/collision/church/basement_clutter.json",
                           "adjust":828},
 
               "thack_room":{"bg":"images/world/CI Player Room Back.png",
                             "clutter":"images/world/CI Player Room Obj.png",
+                            "fg":"images/world/CI Player Room FG.png",
                             "bg_walls":"data/collision/church/thack_room_wall.json",
                             "clutter_collision":"data/collision/church/thack_room_clutter.json",
                             "adjust":510},
 
               "priest_room":{"bg":"images/world/CI Priest Room Back.png",
                              "clutter":"images/world/CI Priest Room Obj.png",
+                             "fg":"images/world/CI Priest Room FG.png",
                              "bg_walls":"data/collision/church/priest_room_wall.json",
                              "clutter_collision":"data/collision/church/priest_room_clutter.json",
                              "adjust":510},
 
               "tower":{"bg":"images/world/CI Tower Top Back.png",
                        "clutter":"images/world/CI Tower Top Obj.png",
+                       "fg":"images/world/CI Tower Top FG.png",
                       "bg_walls":"data/collision/church/tower_wall.json",
                       "clutter_collision":"data/collision/church/tower_clutter.json",
-                      "tower":510}}})
+                      "adjust":510}}})
 
     doors = DictProperty({"church":{
                           "main":{
                           "to_basement":(1883, 327),
-                          "to_thack_room":(146, 858),
+                          "to_thack_room":(146, 808),
                           "to_priest_room":(1496, 855),
                           "to_tower":(0,0),
                           "out":(830, 72)},
@@ -91,8 +102,18 @@ class World(RelativeLayout):
 
     def setupworld(self):
         self.cluttergroup = ClutterGroup()
-        self.load_scene("church", "main", True)
+        self.load_walls("church")
+        self.start_scene("church", "main")
+        self.add_widget(self.bg, index=1)
+        self.add_widget(self.clutter, index=1)
+        self.add_widget(self.fg, index=1)
         #self.draw_line([item for sublist in self.act_walls for item in sublist]) #<--- Used to test the walls.
+
+    def start_scene(self, scene, part):
+        self.bg = WorldElement(texture=scale_image(self.worlddict[scene][part]["bg"]))
+        self.fg = WorldElement(texture=scale_image(self.worlddict[scene][part]["fg"]))
+        self.clutter = WorldElement(texture=scale_image(self.worlddict[scene][part]["clutter"]))
+        self.load_scene(scene, part, True)
 
     def draw_line(self, points):
         """For testing collision."""
@@ -100,30 +121,17 @@ class World(RelativeLayout):
             Line(points=points, width=1.0)
 
     def load_scene(self, scene, part, first=False):
-        if first:
-            self.load_walls(scene)
-            self.bg = WorldElement(texture=scale_image(self.worlddict[scene][part]["bg"]))
-            self.fg = WorldElement(texture=scale_image(self.worlddict[scene][part]["fg"]))
-            self.bg_clutter = WorldElement(texture=scale_image(self.worlddict[scene][part]["clutter"]))
-            self.bg.size = self.bg.texture.size
-            self.fg.size = self.fg.texture.size
-            self.bg_clutter.size = self.bg_clutter.texture.size
-            self.add_widget(self.bg)
-            self.add_widget(self.bg_clutter)
-        else:
+        if not first:
             self.bg.texture = scale_image(self.worlddict[scene][part]["bg"])
-            self.fg = WorldElement(texture=scale_image(self.worlddict[scene][part]["fg"]))
-            self.bg_clutter.texture = scale_image(self.worlddict[scene][part]["clutter"])
-            self.bg.size = self.bg.texture.size
-            self.fg.size = self.fg.texture.size
-            self.bg_clutter.size = self.bg_clutter.texture.size
+            self.fg.texture = scale_image(self.worlddict[scene][part]["fg"])
+            self.clutter.texture = scale_image(self.worlddict[scene][part]["clutter"])
+        self.bg.size = self.bg.texture.size
+        self.fg.size = self.fg.texture.size
+        self.clutter.size = self.clutter.texture.size
+        if self.parent != None:
             self.add_npcs(self.parent.npcs.npcgroup)
 
-        adjust = self.worlddict[scene][part]["adjust"]
-        p = self.walls[scene][part]["bg"]["points"]
-        w, h = self.walls[scene][part]["bg"]["size"]
-        #self.size = [w*3, h*3]
-        self.act_walls = self.turn_points(p, h, adjust)
+        self.act_walls = self.walls[scene][part]["bg"]["points"]
         self.linelist = self._make_linelist(self.act_walls)
 
         self.make_clutter_collision(scene, part)
@@ -135,19 +143,17 @@ class World(RelativeLayout):
         self.home = scene + " " + part
 
     def make_clutter_collision(self, scene, part):
+        if len(self.cluttergroup.children) == 0:
+            self.add_widget(self.cluttergroup, index=0)
+        else:
+            self.cluttergroup.clear_widgets()
         rects = self.walls[scene][part]["clutter"]["rects"]
         for r in rects.values():
             clutter = ClutterElement()
             w, h = self.walls[scene][part]["bg"]["size"]
-            r[1] = ((h*3) - r[1]) - 50
-            clutter.rect = r
-            #clutter.show()  #<-- For testing.
+            clutter.rect = r.copy()
+            clutter.show()  #<-- For testing.
             self.cluttergroup.add_widget(clutter)
-        self.add_widget(self.cluttergroup)
-
-    def add_fg(self):
-        self.add_widget(self.fg)
-        pass
 
     def _make_linelist(self, pointlist):
         linelist = []
@@ -156,34 +162,22 @@ class World(RelativeLayout):
         return linelist
 
     def load_walls(self, scene):
-        walldict = {}
-        for i in self.worlddict[scene]:
-            bg = self.worlddict[scene][i]["bg_walls"]
-            clutter = self.worlddict[scene][i]["clutter_collision"]
-            walldict[i] = {}
-            for num, n in enumerate((bg, clutter)):
-                with open(n, "r+") as f:
-                    wall_info = json.load(f)
-                    if num == 0:
-                        walldict[i]["bg"] = {"size":wall_info["size"],
-                                              "growth":wall_info["growth"],
-                                              "points":wall_info[i]}
-                    else:
-                        walldict[i]["clutter"] = {"rects":wall_info[i]}
-        self.walls[scene] = walldict
-
-    def turn_points(self, points, height, adjust=0):
-        """
-         main: 1215
-         basement: 828
-         tower: 510
-        """
-        newlist = []
-        for p in points:
-            point = (int(p[0]), int(height - p[1]+adjust))
-            newlist.append(point)
-        newlist.append(newlist[0])
-        return newlist
+        if scene not in self.walls.keys():
+            walldict = {}
+            for i in self.worlddict[scene]:
+                bg = self.worlddict[scene][i]["bg_walls"]
+                clutter = self.worlddict[scene][i]["clutter_collision"]
+                walldict[i] = {}
+                for num, n in enumerate((bg, clutter)):
+                    with open(n, "r+") as f:
+                        wall_info = json.load(f)
+                        if num == 0:
+                            walldict[i]["bg"] = {"size":wall_info["size"],
+                                                  "growth":wall_info["growth"],
+                                                  "points":wall_info[i]}
+                        else:
+                            walldict[i]["clutter"] = {"rects":wall_info[i]}
+            self.walls[scene] = walldict
 
     def collide_walls(self, pos, direction, dist=20):
         for line in self.linelist:
@@ -241,7 +235,7 @@ class World(RelativeLayout):
         for npc in npcs:
             if npc.home == self.home:
                 self.in_world.append(npc.name)
-                self.add_widget(npc)
+                self.add_widget(npc, index=1)
 
     def move_world(self, direction):
         if direction == "left":
