@@ -44,12 +44,17 @@ class Rect(Widget):
         self.rect_pos = p
 
 class Editor(RelativeLayout):
-
+    growth = NumericProperty(3)
+    line_points = ListProperty()
     mouse_pos = ListProperty([0,0])
     mouse_pressed = StringProperty("")
     imgpos = ListProperty([0,0])
-    images = DictProperty({"main":
-        {"BG":"images/CI Main Back.png", "FG":"images/CI Main Obj.png"}})
+    images = DictProperty({
+        "main":{"BG":"images/CI Main Back.png", "FG":"images/CI Main Obj.png"},
+        "basement":{"BG":"images/CI Basement Back.png","FG":"images/CI Basement Obj.png"},
+        "tower":{"BG":"images/CI Tower Top Back.png","FG":"images/CI Tower Top Obj.png"},
+        "priest_room":{"BG":"images/CI Priest Room Back.png","FG":"images/CI Priest Room Obj.png"},
+        "thack_room":{"BG":"images/CI Player Room Back.png","FG":"images/CI Player Room Obj.png"}})
     imgtexture = ObjectProperty(None)
     fgtexture = ObjectProperty(None)
     imgsize = ListProperty([0,0])
@@ -71,7 +76,7 @@ class Editor(RelativeLayout):
 
         self.imgtexture = Image(source=self.images[self.parent.scene]["BG"]).texture
         self.fgtexture = Image(source=self.images[self.parent.scene]["FG"]).texture
-        self.imgsize = [self.imgtexture.size[0]*3, self.imgtexture.size[1]*3]
+        self.imgsize = [self.imgtexture.size[0]*self.growth, self.imgtexture.size[1]*self.growth]
 
 
     def update(self, dt):
@@ -86,6 +91,46 @@ class Editor(RelativeLayout):
         if self.parent.sav_rects:
             self.save_rects()
             self.parent.sav_rects = False
+        if self.parent.sav_lines:
+            self.save_lines()
+            self.parent.sav_lines = False
+
+    def straighten_line(self, pos1, pos2):
+        (x, y) = pos1
+        a = x - pos2[0]
+        b = y - pos2[1]
+        if a > 0 and b > 0 or a < 0 and b < 0:
+            diff = a - b
+        else:
+            diff = a + b
+        if abs(diff) < 50:
+            if a < 0:
+                x = pos2[0] - (abs(a) + abs(b))/2
+            else:
+                x = pos2[0] + (abs(a) + abs(b))/2
+            if b < 0:
+                y  = pos2[1] - (abs(a) + abs(b))/2
+            else:
+                y = pos2[1] + (abs(a) + abs(b))/2
+        elif abs(a) > abs(b):
+            y = pos2[1]
+        else:
+            x = pos2[0]
+        return (x,y)
+
+    def check_for_endpoint(self, pos):
+        p1 = self.line_points[0]
+        p2 = pos
+        if abs(p1[0] - p2[0]) < 25 and  abs(p1[1] - p2[1]) < 25:
+            self.line_points[-1] = p1
+            self.line_points[-2] = self.straighten_line(self.line_points[-2], p1)
+
+    def make_line(self, pos):
+        pos = (pos[0]-self.pos[0], pos[1]-self.pos[1])
+        self.line_points.append(pos)
+        if len(self.line_points) > 1:
+            self.line_points[-1] = self.straighten_line(pos, self.line_points[-2])
+            self.check_for_endpoint(pos)
 
 
     def make_rect(self, pos):
@@ -103,25 +148,39 @@ class Editor(RelativeLayout):
             savedict = {}
             for num, rect in enumerate(self.rectlist):
                 savedict["rect" + str(num)] = neg(rect.rect_pos, rect.rect_size)
-            filename = "{}{}{}".format(self.parent.scene, "_clutter", ".json")
+            filename = "{}{}".format(self.parent.scene, "_clutter.json")
             with open("./saves/{}".format(filename), "w+") as f:
                 json.dump({self.parent.scene:savedict}, f, indent=4, sort_keys=True)
         else:
             print("No rectangles to save.")
 
-
-            print(rect.rect_pos, rect.rect_size)
+    def save_lines(self):
+        if self.line_points != []:
+            savedict = {self.parent.scene:[int(item) for sublist in self.line_points for item in sublist]}
+            savedict["growth"] = self.growth
+            savedict["size"] = self.imgsize
+            filename = "{}{}".format(self.parent.scene, "_wall.json")
+            with open("./saves/{}".format(filename), "w+") as f:
+                json.dump(savedict, f, indent=4, sort_keys=True)
+        else:
+            print("No points to save.")
 
     def touched(self, e):
         if e.button == "right":
-            self.make_rect((e.x, e.y))
+            if self.parent.rect_mode:
+                self.make_rect((e.x, e.y))
+            else:
+                self.make_line((e.x, e.y))
 
     def mouseover(self, x):
         self.mouse_pos = (x[1][0]-self.pos[0], x[1][1]-self.pos[1])
-        if self.active_rect:
-            rect_pos = self.rectlist[-1].rect_pos
-            new_size = [self.mouse_pos[0] - rect_pos[0], self.mouse_pos[1] - rect_pos[1]]
-            self.rectlist[-1].rect_size = new_size
+        if self.parent.rect_mode:
+            if self.active_rect:
+                rect_pos = self.rectlist[-1].rect_pos
+                new_size = [self.mouse_pos[0] - rect_pos[0], self.mouse_pos[1] - rect_pos[1]]
+                self.rectlist[-1].rect_size = new_size
+        else:
+            pass
 
     def keydown(self, key, mod):
         if key[1] in ("w", "up"):
@@ -143,7 +202,8 @@ class Editor(RelativeLayout):
         if key[1] in ("d", "right"):
             self.move["right"] = False
 
-class HUD(FloatLayout):
+class HUD(BoxLayout):
+    mode = StringProperty("Rectangle Mode")
 
     def setup(self):
         pass
@@ -151,13 +211,25 @@ class HUD(FloatLayout):
     def update(self, dt):
         pass
 
+    def switch_mode(self):
+        if self.mode == "Rectangle Mode":
+            self.mode = "Line Mode"
+        else:
+            self.mode = "Rectangle Mode"
+        self.parent.rect_mode = not self.parent.rect_mode
+
+    def save_lines(self):
+        self.parent.sav_lines = True
+
     def save_rects(self):
         self.parent.sav_rects = True
 
 class Main(Widget):
     w_size = Window.size
     sav_rects = BooleanProperty(False)
-    scene = StringProperty("main")
+    sav_lines = BooleanProperty(False)
+    rect_mode = BooleanProperty(True)
+    scene = StringProperty("thack_room")
 
     def setup(self):
         for child in self.children:

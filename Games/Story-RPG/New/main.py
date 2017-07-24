@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 from kivy.config import Config
-Config.set("graphics", "fullscreen", "fake")
+Config.set("graphics", "borderless", "1")
+Config.set("graphics", "window_state", "maximized")
+Config.set("graphics", "width", 1366)
+Config.set("graphics", "height", 768 )
 
 from kivy.core.window import Window
 from kivy.app import App

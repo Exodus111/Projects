@@ -6,9 +6,27 @@ from kivy.atlas import Atlas
 from kivy.vector import Vector
 from kivy.graphics.texture import Texture
 
+def pairwise(iterable):
+    a = iter(iterable)
+    return zip(a, a)
 
-def circle_collide(w1, w2):
-    if Vector(w1.pos).distance(w2.pos) < 50:
+def quadwise(iterable):
+    a = iter(iterable)
+    return zip(a, a, a, a)
+
+def quad_overlap(iterable):
+    itr1 = iter(iterable[::2])
+    itr2 = iter(iterable[1::2])
+    a,b,c,d = next(itr1), next(itr2), next(itr1), next(itr2)
+    yield a,b,c,d
+    for _ in iterable:
+        a,b = next(itr1), next(itr2)
+        yield c,d,a,b
+        c,d = next(itr1), next(itr2)
+        yield  a,b,c,d
+
+def circle_collide(w1, w2, dist=50):
+    if Vector(w1.pos).distance(w2.pos) < dist:
         return True
     else:
         return False
