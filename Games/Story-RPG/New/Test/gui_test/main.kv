@@ -1,0 +1,14 @@
+#: kivy 1.9.1
+
+<Element>:
+    canvas:
+        Color:
+            rgba: .12,.12,.12, 1.
+        Rectangle:
+            size: root.e_size[0]+root.bordersize, root.e_size[1]+root.bordersize
+            pos: root.e_pos[0]-(root.bordersize/2), root.e_pos[1]-(root.bordersize/2)
+        Color:
+            rgba: root.e_color
+        Rectangle:
+            size: root.e_size
+            pos: root.e_pos
