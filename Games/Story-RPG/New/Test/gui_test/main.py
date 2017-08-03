@@ -28,10 +28,7 @@ class MyGame(Widget):
 
     def keydown(self, *e):
         if e[1][1] == "spacebar":
-            if self.gui.top_panel.e_pos[1] == self.wsize[1]:
-                self.gui.top_panel.move([None, self.wsize[1]-self.gui.top_panel.e_size[1]])
-            else:
-                self.gui.top_panel.move([None, self.wsize[1]])
+            self.gui.notes.fade_in_out()
         if e[1][1] == "c":
             pass
 

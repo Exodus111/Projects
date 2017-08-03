@@ -7,34 +7,63 @@ from kivy.uix.label import Label
 from kivy.animation import Animation
 from kivy.properties import *
 
+from tools.tools import scale_image
+
 MAIN_COLOR = (0.435, 0.325, 0.239, 1.) # Light Brown.
 SECONDARY_COLOR = (.12,.12,.12, 1.) # Dark.
 WHITE = (1.,1.,1.,1.)
 
-class Element(Widget):
+class Notes(Widget):
     name = StringProperty()
-    e_color = ListProperty([0,0,0,0])
+    main_color = ListProperty(MAIN_COLOR)
+    second_color = ListProperty(SECONDARY_COLOR)
     bordersize = NumericProperty(10)
-    text_area = ListProperty()
+    text_area = StringProperty("Test")
+    text_storage = StringProperty()
+    original_pos = ListProperty()
+    visible = BooleanProperty(False)
+    fade_float = NumericProperty(1.)
+    mid_label = ObjectProperty()
+    img_pos = ListProperty([0,0])
 
-    def move(self, pos):
-        if pos[0] == None:
-            pos[0] = self.e_pos[0]
-        if pos[1] == None:
-            pos[1] = self.e_pos[1]
-        anim = Animation(e_pos=pos, t="out_cubic", duration=.5)
-        anim.start(self)
+    def setup(self, text=""):
+        self.bind(fade_float=self._fader)
+        self.fade_float = 0.
+        self.text_area = ""
+        self.text_storage = text
 
-    def create_labels(self, labels):
-        self.area = RelativeLayout(size=self.size, pos=self.pos)
-        self.add_widget(self.area)
-        for l in labels:
-            text = Text(**l) # Fix this order. pos_hint must come after add_widget.
-            self.area.add_widget(text)
+    def _fader(self, *_):
+        self.main_color[-1] = self.fade_float
+        self.second_color[-1] = self.fade_float
 
-class Text(Label):
-    e_pos = DictProperty()
+    def toggle_label(self):
+        if self.visible:
+            self.text_area = self.text_storage
+        else:
+            self.text_area = ""
 
+    def fade_in_out(self):
+        if self.visible:
+            anim = Animation(fade_float=0., t="in_circ", duration=.5)
+            anim.bind(on_complete=lambda *x: self.toggle_label())
+            anim.start(self)
+        else:
+            anim = Animation(fade_float=1., t="in_circ", duration=.5)
+            anim.bind(on_complete=lambda *x: self.toggle_label())
+            anim.start(self)
+        self.toggle_label()
+        self.visible = not self.visible
+
+class TopBar(Widget):
+    text_one = StringProperty()
+    text_two = StringProperty()
+    text_three = StringProperty()
+    main_color = ListProperty(MAIN_COLOR)
+    rela = ObjectProperty()
+    text1 = ObjectProperty()
+
+    def add_text(self, text):
+        self.text_one, self.text_two, self.text_three = text
 
 class GUI(FloatLayout):
     w_size = ListProperty([0,0])
@@ -43,44 +72,17 @@ class GUI(FloatLayout):
                                    "Third Text Area"])
     right_panel_text = StringProperty("Right Bar")
     left_panel_text = StringProperty("Left Bar")
+    top_bar = ObjectProperty()
+    notes = ObjectProperty()
 
     def setup(self):
 
-        # Create the Top Bar.
-        tb_size, tb_pos = self.placement_and_size("top bar")
-        bar_text = [{"text":self.top_bar_texts[0], "color":WHITE, "e_pos":{"x":.1, "y":1.}},
-                    {"text":self.top_bar_texts[1], "color":WHITE, "e_pos":{"x":.5, "y":1.}},
-                    {"text":self.top_bar_texts[2], "color":WHITE, "e_pos":{"x":.8, "y":1.}}]
-        self.top_bar = self.add_element("Top Bar", tb_size, tb_pos, MAIN_COLOR, bar_text)
+        # Setting up the Top Bar.
+        self.top_bar.add_text(self.top_bar_texts)
 
-        # Create the Top Panel.
-        tp_size, tp_pos = self.placement_and_size("top panel")
-        self.top_panel = self.add_element("Top Panel", tp_size, tp_pos, MAIN_COLOR)
+        # Setting up Notes Menu.
+        self.notes.setup("Testing the Text Area!")
 
-
-        # Adding widgets to widget stack.
-        #self.add_widget(self.top_panel)
-        self.add_widget(self.top_bar)
-
-    def placement_and_size(self, location):
-        if location == "top panel":
-            s = (.8, .5)
-            p = {"x":.2, "top":1.}
-            return s, p
-        elif location == "bottom panel":
-            pass
-        elif location == "top bar":
-            s = (1., .025)
-            p = {"x":0., "top":1.}
-            return s, p
-
-
-    def add_element(self, name, size, pos, color=(WHITE), texts=[]):
-        el = Element(size_hint=size, pos_hint=pos)
-        el.name = name
-        el.e_color = color
-        el.create_labels(texts)
-        return el
 
     def update(self, dt):
         pass

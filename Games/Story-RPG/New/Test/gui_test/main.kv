@@ -1,12 +1,70 @@
 #: kivy 1.9.1
 
-<Element>:
+<GUI>:
+    top_bar: top_bar
+    notes: notes
+    TopBar:
+        id: top_bar
+        size_hint: 1., .025
+        pos_hint: {"x":0., "top":1.}
+
+    Notes:
+        id: notes
+        size_hint: .9, .7
+        pos_hint: {"center_x":.5, "top":.8}
+
+<Notes>:
+    mid_label: mid
+    size: self.size
+    pos: self.pos
     canvas:
         Color:
-            rgba: root.e_color
+            rgba: root.second_color
+        Rectangle:
+            size: root.size[0]+10, root.size[1]+10
+            pos: root.pos[0]-5, root.pos[1]-5
+        Color:
+            rgba: root.main_color
         Rectangle:
             size: root.size
             pos: root.pos
+    RelativeLayout:
+        size: root.size
+        pos: root.pos
+        Label:
+            id: mid
+            text: root.text_area
+            color: root.second_color
+            size_hint_x: None
+            pos_hint: {"center_x":.5, "center_y":.5}
+        Image:
+            source: "empty_profile.png"
+            allow_stretch: True
+            keep_ratio: True
+            size_hint: .4, .4
+            pos_hint: {"x":.001, "top":.9}
 
-<Text>:
-    pos_hint: self.e_pos
+<TopBar>:
+    size: self.size
+    pos: self.pos
+    canvas:
+        Color:
+            rgba: root.main_color
+        Rectangle:
+            size: root.size
+            pos: root.pos
+    RelativeLayout:
+        size: root.size
+        pos: root.pos
+        Label:
+            text: root.text_one
+            size_hint_x: None
+            pos_hint: {"x":0.01,"y":0}
+        Label:
+            text: root.text_two
+            size_hint_x: None
+            pos_hint: {"x":0.4, "y":0}
+        Label:
+            text: root.text_three
+            size_hint_x: None
+            pos_hint: {"x":0.8, "y":0}

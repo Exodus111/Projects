@@ -1,0 +1,52 @@
+#: kivy 1.9.1
+
+
+<Main>:
+    size: self.w_size
+    Editor:
+        pos: 0,0
+        size: root.size
+    HUD:
+        pos: 0,0
+        size: root.size
+
+<HUD>:
+    spacing: 5
+    Button:
+        text: "Save Rects"
+        pos_hint: {"x": 0, "top": 1}
+        size_hint: .1, .05
+        on_press: root.save_rects()
+    Button:
+        text: "Save Lines"
+        pos_hint: {"x": 0, "top": 1}
+        size_hint: .1, .05
+        on_press: root.save_lines()
+    Button:
+        text: root.mode
+        pos_hint: {"x": 0, "top": 1}
+        size_hint: .1, .05
+        on_press: root.switch_mode()
+
+
+<Editor>:
+    canvas:
+        Rectangle:
+            size: root.imgsize
+            pos: root.imgpos
+            texture: root.imgtexture
+        Rectangle:
+            size: root.imgsize
+            pos: root.imgpos
+            texture: root.fgtexture
+        Line:
+            width: 1.0
+            points: root.line_points
+
+<Rect>:
+    canvas:
+        Color:
+            rgba: 1.,1.,1.,.5
+        Rectangle:
+            size: root.rect_size
+            pos: root.rect_pos
