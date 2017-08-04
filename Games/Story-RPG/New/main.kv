@@ -1,4 +1,104 @@
 #: kivy 1.9.1
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+<GUI>:
+    top_bar: top_bar
+    manager: manager
+    notes: notes
+    card: card
+    select: select
+    TopBar:
+        id: top_bar
+        size_hint: 1., .025
+        pos_hint: {"x":0., "top":1.}
+    ScreenManager:
+        id: manager
+        transition: FadeTransition()
+        Screen:
+            name: "None"
+            size_hint: .9, .7
+            pos_hint: {"x":.05, "top":.85}
+        Menu:
+            name: "Selection"
+            size_hint: .9, .7
+            pos_hint: {"x":.05, "top":.85}
+            Select:
+                id: select
+        Menu:
+            id: notes
+            name: "Card1"
+            size_hint: .9, .7
+            pos_hint: {"x":.05, "top":.85}
+            Card:
+                id: card
+
+<Select>:
+    buttons: buttons
+    GridLayout:
+        id: buttons
+        cols: root.cols
+        rows: root.rows
+        spacing: 10
+        padding: 15
+
+<Card>
+    Label:
+        text: root.title_text
+        font_size: 50
+        pos_hint: {"x":.05, "y":.35}
+    Label:
+        text: root.main_text
+        font_size: 35
+        pos_hint: {"x":.05, "y":.1}
+    Widget:
+        pos_hint: {"x":.05, "y":.4}
+        canvas:
+            Rectangle:
+                texture: root.img_tex
+                size: self.width/4, self.height/2
+                pos: self.pos
+
+<Menu>:
+    canvas:
+        Color:
+            rgba: .12,.12,.12, 1.
+        Rectangle:
+            size: self.size
+            pos: 0,0
+        Color:
+            rgba: 0.435, 0.325, 0.239, 1.
+        Rectangle:
+            size: self.size[0]-20, self.size[1]-20
+            pos: 10, 10
+
+<TopBar>:
+    size: self.size
+    pos: self.pos
+    canvas:
+        Color:
+            rgba: root.main_color
+        Rectangle:
+            size: root.size
+            pos: root.pos
+    RelativeLayout:
+        size: root.size
+        pos: root.pos
+        Label:
+            text: root.text_one
+            color: root.second_color
+            size_hint_x: None
+            pos_hint: {"x":0.01,"y":0}
+        Label:
+            text: root.text_two
+            color: root.second_color
+            size_hint_x: None
+            pos_hint: {"x":0.4, "y":0}
+        Label:
+            text: root.text_three
+            color: root.second_color
+            size_hint_x: None
+            pos_hint: {"x":0.8, "y":0}
+
 
 <Game>:
     canvas:
@@ -17,27 +117,33 @@
     button_quit: qu
     orientation: "vertical"
     size: 400, 500
-    pos: 1366/4, 768/4
+    center: 1366/2, 768/2
     spacing: 1
     padding: 1
-    Button:
+    GUIButton:
         id: ne
-        background_normal: "images/gui/newgame.png"
-    Button:
+        text: "New"
+    GUIButton:
         id: lo
-        background_normal: "images/gui/loadgame.png"
-    Button:
+        text: "Load"
+    GUIButton:
         id: cr
-        background_normal: "images/gui/credits.png"
-    Button:
+        text: "Credits"
+    GUIButton:
         id: ab
-        background_normal: "images/gui/about.png"
-    Button:
+        text: "About"
+    GUIButton:
         id: op
-        background_normal: "images/gui/options.png"
-    Button:
+        text: "Options"
+    GUIButton:
         id: qu
-        background_normal: "images/gui/quit.png"
+        text: "Quit"
+
+<GUIButton@Button>:
+    background_normal: "images/gui/guibutton.png"
+    font_name: "vcrmono"
+    text_size: None, None
+    font_size: 32
 
 <World>:
     center: self.worldcenter

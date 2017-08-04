@@ -1,48 +1,75 @@
 #: kivy 1.9.1
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
 
 <GUI>:
     top_bar: top_bar
+    manager: manager
     notes: notes
+    card: card
+    select: select
     TopBar:
         id: top_bar
         size_hint: 1., .025
         pos_hint: {"x":0., "top":1.}
+    ScreenManager:
+        id: manager
+        transition: FadeTransition()
+        Screen:
+            name: "None"
+            size_hint: .9, .7
+            pos_hint: {"x":.05, "top":.85}
+        Menu:
+            name: "Selection"
+            size_hint: .9, .7
+            pos_hint: {"x":.05, "top":.85}
+            Select:
+                id: select
+        Menu:
+            id: notes
+            name: "Card1"
+            size_hint: .9, .7
+            pos_hint: {"x":.05, "top":.85}
+            Card:
+                id: card
 
-    Notes:
-        id: notes
-        size_hint: .9, .7
-        pos_hint: {"center_x":.5, "top":.8}
+<Select>:
+    buttons: buttons
+    GridLayout:
+        id: buttons
+        cols: root.cols
+        rows: root.rows
+        spacing: 10
+        padding: 15
 
-<Notes>:
-    mid_label: mid
-    size: self.size
-    pos: self.pos
+<Card>
+    Label:
+        text: root.title_text
+        font_size: 50
+        pos_hint: {"x":.05, "y":.35}
+    Label:
+        text: root.main_text
+        font_size: 35
+        pos_hint: {"x":.05, "y":.1}
+    Widget:
+        pos_hint: {"x":.05, "y":.4}
+        canvas:
+            Rectangle:
+                texture: root.img_tex
+                size: self.width/4, self.height/2
+                pos: self.pos
+
+<Menu>:
     canvas:
         Color:
-            rgba: root.second_color
+            rgba: .12,.12,.12, 1.
         Rectangle:
-            size: root.size[0]+10, root.size[1]+10
-            pos: root.pos[0]-5, root.pos[1]-5
+            size: self.size
+            pos: 0,0
         Color:
-            rgba: root.main_color
+            rgba: 0.435, 0.325, 0.239, 1.
         Rectangle:
-            size: root.size
-            pos: root.pos
-    RelativeLayout:
-        size: root.size
-        pos: root.pos
-        Label:
-            id: mid
-            text: root.text_area
-            color: root.second_color
-            size_hint_x: None
-            pos_hint: {"center_x":.5, "center_y":.5}
-        Image:
-            source: "empty_profile.png"
-            allow_stretch: True
-            keep_ratio: True
-            size_hint: .4, .4
-            pos_hint: {"x":.001, "top":.9}
+            size: self.size[0]-20, self.size[1]-20
+            pos: 10, 10
 
 <TopBar>:
     size: self.size
@@ -58,13 +85,16 @@
         pos: root.pos
         Label:
             text: root.text_one
+            color: root.second_color
             size_hint_x: None
             pos_hint: {"x":0.01,"y":0}
         Label:
             text: root.text_two
+            color: root.second_color
             size_hint_x: None
             pos_hint: {"x":0.4, "y":0}
         Label:
             text: root.text_three
+            color: root.second_color
             size_hint_x: None
             pos_hint: {"x":0.8, "y":0}

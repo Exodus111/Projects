@@ -6,7 +6,7 @@ from kivy.uix.widget import Widget
 from kivy.uix.image import Image
 from kivy.uix.label import Label
 from kivy.graphics import Line, Color, Rectangle
-from kivy.properties import ObjectProperty, ListProperty, StringProperty, NumericProperty, DictProperty, BooleanProperty
+from kivy.properties import *
 from path import Path
 import json
 
@@ -22,12 +22,14 @@ class ClutterElement(Widget):
     rect = ListProperty([0,0,0,0])
 
     def show(self):
-        mylabel = Label(pos=(self.rect[0], self.rect[1]), text=str(self.pos), halign="center", valign="middle", font_size=15, color=[0,0,0,1.])
+        mylabel = Label(pos=(self.rect[0], self.rect[1]),
+          text=str(self.pos), halign="center", valign="middle",
+          font_size=15, color=[0,0,0,1.])
+
         self.add_widget(mylabel)
         with mylabel.canvas:
             Color(rgba=[1.,1.,1.,.5])
             Rectangle(pos=self.pos, size=self.size)
-
 
 class World(RelativeLayout):
     home = StringProperty("")
@@ -140,6 +142,7 @@ class World(RelativeLayout):
         self.clutter.size = self.clutter.texture.size
 
         # Adding NPCs. (Not on first load.)
+        self.home = scene + " " + part
         if self.parent != None:
             self.add_npcs(self.parent.npcs.npcgroup)
 
@@ -156,7 +159,6 @@ class World(RelativeLayout):
             w = Widget(pos=v, size=(64, 64))
             w.name = i
             self.poi.append(w)
-        self.home = scene + " " + part
 
 ## <-------- Loading Methods, loaded from load_scene. ---------->
 
@@ -165,10 +167,12 @@ class World(RelativeLayout):
         for child in self.children:
             if hasattr(child, "etype"):
                 if child.name != "Thack":
+                    print("Removing-->", child.name)
                     self.remove_widget(child)
         for npc in npcs:
             if npc.home == self.home:
                 self.in_world.append(npc.name)
+                print("Adding --->", npc.name)
                 self.add_widget(npc, index=1)
 
     def draw_line(self, points):

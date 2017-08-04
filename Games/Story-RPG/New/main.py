@@ -1,9 +1,14 @@
 #!/usr/bin/python3
+
+SIZE = (1366,768)
 from kivy.config import Config
 Config.set("graphics", "borderless", "1")
 Config.set("graphics", "window_state", "maximized")
-Config.set("graphics", "width", 1366)
-Config.set("graphics", "height", 768 )
+Config.set("graphics", "width", SIZE[0])
+Config.set("graphics", "height", SIZE[1])
+
+from kivy.core.text import LabelBase
+LabelBase.register(name="vcrmono", fn_regular="fonts/VCR_OSD_MONO_1.001.ttf")
 
 from kivy.core.window import Window
 from kivy.app import App
@@ -11,11 +16,11 @@ from kivy.clock import Clock
 from kivy.uix.widget import Widget
 from kivy.vector import Vector
 from kivy.uix.floatlayout import FloatLayout
-from kivy.properties import DictProperty, ListProperty, StringProperty, BooleanProperty
+from kivy.properties import *
 
 from entities import Player, NPCController
 from dialogue import Dialogue
-from gui import Menus
+from gui import GUI
 from startmenu import StartMenu
 from world import World
 
@@ -43,8 +48,8 @@ class Game(Widget):
         self.events.eventsetup()
 
         # Setting up the Menu controller.
-        self.menus = Menus(size=self.size)
-        self.menus.menusetup()
+        self.menus = GUI(size=self.size)
+        self.menus.setup()
 
         # Setting up the world.
         self.world = World()
@@ -105,7 +110,7 @@ class Game(Widget):
             if key[1] in ("w", "a", "s", "d", "up", "down", "left", "right"):
                 self.player.keydown(key[1])
             elif key[1] == "spacebar":
-                print(self.player.pos, self.player.center)
+                self.menus.toggle_menu()
 
     def key_up(self, key):
         if not self.menu_on:
@@ -137,7 +142,7 @@ class Game(Widget):
 
 class MainApp(App):
     def build(self):
-        game = Game(size=Window.size)
+        game = Game(size=SIZE)
         game.gamesetup()
         Clock.schedule_interval(game.update, 1./60.)
         return game

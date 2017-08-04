@@ -28,7 +28,7 @@ class MyGame(Widget):
 
     def keydown(self, *e):
         if e[1][1] == "spacebar":
-            self.gui.notes.fade_in_out()
+            self.gui.toggle_menu()
         if e[1][1] == "c":
             pass
 

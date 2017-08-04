@@ -26,7 +26,7 @@ def quad_overlap(iterable):
         yield  a,b,c,d
 
 def circle_collide(w1, w2, dist=50):
-    if Vector(w1.pos).distance(w2.pos) < dist:
+    if Vector(w1.center).distance(w2.center) < dist:
         return True
     else:
         return False
@@ -79,6 +79,7 @@ def make_atlas(folder):
 
 
 def scale_image(filename, multiplier=3):
+    """ Returns Kivy Texture Object"""
     img = Img.open(filename)
     img = img.transpose(Img.FLIP_TOP_BOTTOM)
     size = img.size

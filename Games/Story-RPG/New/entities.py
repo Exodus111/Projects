@@ -3,7 +3,7 @@ from kivy.uix.widget import Widget
 from kivy.uix.image import Image
 from kivy.vector import Vector
 from kivy.atlas import Atlas
-from kivy.properties import ListProperty, BooleanProperty, ObjectProperty, DictProperty, StringProperty, NumericProperty
+from kivy.properties import *
 
 from tools import *
 
@@ -190,9 +190,9 @@ class NPC(Entity):
 
 class NPCController(Widget):
     npcs = DictProperty({"Djonsiscus":{"home":"church main", "place":(1955, 733)},
-                         "Jarod":{"home":"church basement", "place":(1955, 733)},
+                         "Jarod":{"home":"church basement", "place":(1602, 694)},
                          "Tylda Travisteene":{"home":"outside", "place":(1955, 733)},
-                         "Sheila Travisteene":{"home":"outside", "place":(1955, 733)},
+                         "Sheila Travisteene":{"home":"church thack_room", "place":(278, 317)},
                          "Mr Johes":{"home":"outside", "place":(1955, 733)},
                          "Riff Danner":{"home":"outside", "place":(1955, 733)}})
     npcgroup = ListProperty([])
