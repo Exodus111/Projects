@@ -1,9 +1,11 @@
 #: kivy 1.9.1
 #: import FadeTransition kivy.uix.screenmanager.FadeTransition
+#: import SlideTransition kivy.uix.screenmanager.SlideTransition
 
 <GUI>:
     top_bar: top_bar
     manager: manager
+    info_manager: info_manager
     notes: notes
     card: card
     select: select
@@ -31,25 +33,107 @@
             pos_hint: {"x":.05, "top":.85}
             Card:
                 id: card
+    ScreenManager:
+        id: info_manager
+        transition: FadeTransition()
+        Screen:
+            name: "None"
+            size_hint: .4, .14
+            pos_hint: {"right":1., "y":.75}
+        Screen:
+            name: "info"
+            size_hint: .4, .14
+            pos_hint: {"right":1., "y":.75}
+            Button:
+                text: root.info_text
 
 <Select>:
     buttons: buttons
-    GridLayout:
-        id: buttons
-        cols: root.cols
-        rows: root.rows
-        spacing: 10
-        padding: 15
+    next_button: next_button
+    prev_button: prev_button
+    retired_button: retired_button
+    button_manager: button_manager
+    BoxLayout:
+        orientation: "vertical"
+        padding: 0,0,0,20
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint: 1., .2
+            padding: 0,0,30,0
+            spacing: 5
+            Label:
+                text: "           Current Cards"
+                font_size: 56
+                pos_hint: {"center_x":.5, "center_y":.5}
+            Button:
+                id: retired_button
+                text: "Retired Cards"
+                size_hint: None, None
+                size: 102, 56
+                on_release: root.toggle_retired_cards()
+        ScreenManager:
+            id: button_manager
+            transition: SlideTransition()
+            Screen:
+                name: "page0"
+                ButtonLayout:
+                    id: buttons
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint: None, None
+            size: 244, 42
+            padding: 10, 5, 10, 5
+            pos_hint: {"x":.71}
+            Button:
+                id: prev_button
+                text: "<< Previous"
+                size_hint: None, None
+                size: 112, 32
+                pos_hint: {"right":.98, "y":.0}
+                on_release: root.cycle_inventory("prev")
+            Button:
+                id: next_button
+                text: "Next >>"
+                size_hint: None, None
+                size: 112, 32
+                pos_hint: {"right":.98, "y":.0}
+                on_release: root.cycle_inventory("next")
+
+<ButtonLayout>:
+    size_hint: 1., .8
+    spacing: 10
+    padding: 15
 
 <Card>
     Label:
         text: root.title_text
-        font_size: 50
-        pos_hint: {"x":.05, "y":.35}
+        font_size: 45
+        size_hint: 0.68, 0.2
+        pos_hint: {"x":.31, "y":.8}
+        text_size: self.size
+        halign: "left"
+        padding_x: 10
+
     Label:
         text: root.main_text
-        font_size: 35
-        pos_hint: {"x":.05, "y":.1}
+        font_size: 25
+        pos_hint: {"x":0.3, "y":0.1}
+        size_hint: .68, .6
+        text_size: self.size
+        halign: "left"
+        valign: "top"
+        padding_y: 10
+        padding_x: 15
+        split_str: " "
+    Label:
+        text: root.tags_text
+        font_size: 15
+        size_hint: .9, .1
+        pos_hint: {"center_x":0.5, "y":0.02}
+        halign: "left"
+        valign: "center"
+        text_size: self.size
+
     Widget:
         pos_hint: {"x":.05, "y":.4}
         canvas:
