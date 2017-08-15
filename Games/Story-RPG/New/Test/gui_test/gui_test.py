@@ -3,6 +3,7 @@
 from kivy.clock import Clock
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.relativelayout import RelativeLayout
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.widget import Widget
 from kivy.uix.button import Button
@@ -56,33 +57,39 @@ class Select(RelativeLayout):
         self.retired_cards = retired
         self.setup_cards(titles)
 
+    def add_card(self, card):
+
+
     def setup_cards(self, titles):
         c,r = self.array_size
         amount = c*r
         amount_left = 0
         pages = []
-        for num, title in enumerate(titles):
-            if num % amount == 0:
-                pages.append([])
-            pages[-1].append(title)
-        if len(pages[-1]) < amount:
-            amount_left = amount - len(pages[-1])
-        for n, page in enumerate(pages):
-            if page == pages[0] and page == pages[-1]: # Only one page.
-                [self.buttons.add_widget(b) for b in self.create_buttons(page, amount_left)]
-                self.next_button.disabled = True
-            elif page == pages[0]: # First page of many.
-                [self.buttons.add_widget(b) for b in self.create_buttons(page)]
-                self.next_button.disabled = False
-            else:
-                screen = Screen(name="page"+str(n))
-                buttons = ButtonLayout(cols=c, rows=r)
-                screen.add_widget(buttons)
-                self.button_manager.add_widget(screen)
-            if page != pages[0] and page == pages[-1]: # Last page.
-                [buttons.add_widget(b) for b in self.create_buttons(page, amount_left)]
-            elif page != pages[0] and pages != pages[-1]: # All the other pages.
-                [buttons.add_widget(b) for b in self.create_buttons(page)]
+        if titles == []:
+            self.next_button.disabled = True
+        else:
+            for num, title in enumerate(titles):
+                if num % amount == 0:
+                    pages.append([])
+                pages[-1].append(title)
+            if len(pages[-1]) < amount:
+                amount_left = amount - len(pages[-1])
+            for n, page in enumerate(pages):
+                if page == pages[0] and page == pages[-1]: # Only one page.
+                    [self.buttons.add_widget(b) for b in self.create_buttons(page, amount_left)]
+                    self.next_button.disabled = True
+                elif page == pages[0]: # First page of many.
+                    [self.buttons.add_widget(b) for b in self.create_buttons(page)]
+                    self.next_button.disabled = False
+                else:
+                    screen = Screen(name="page"+str(n))
+                    buttons = ButtonLayout(cols=c, rows=r)
+                    screen.add_widget(buttons)
+                    self.button_manager.add_widget(screen)
+                if page != pages[0] and page == pages[-1]: # Last page.
+                    [buttons.add_widget(b) for b in self.create_buttons(page, amount_left)]
+                elif page != pages[0] and pages != pages[-1]: # All the other pages.
+                    [buttons.add_widget(b) for b in self.create_buttons(page)]
         self.prev_button.disabled = True
 
     def create_buttons(self, titles, amount_left=0):
@@ -118,9 +125,13 @@ class Select(RelativeLayout):
         elif num < len(self.button_manager.screen_names) and num > 0:
             self.button_manager.current = page
             self.next_button.disabled = True
+            if self.prev_button.disabled:
+                self.prev_button.disabled = False
         elif num == 0:
             self.button_manager.current = page
             self.prev_button.disabled = True
+            if direction != "next":
+                self.next_button.disabled = False
 
     def toggle_retired_cards(self):
         for screen in self.button_manager.screen_names:
@@ -137,12 +148,17 @@ class Select(RelativeLayout):
         self.button_manager.current = "page0"
         self.prev_button.disabled = True
 
-
 class Card(RelativeLayout):
     img_tex = ObjectProperty()
     title_text = StringProperty()
     main_text = StringProperty()
     tags_text = StringProperty()
+
+    def button_one(self):
+        self.parent.manager.current = "Selection"
+
+    def button_two(self):
+        self.parent.manager.current = "None"
 
 class GUI(FloatLayout):
     w_size = ListProperty([0,0])
@@ -160,13 +176,9 @@ class GUI(FloatLayout):
     select = ObjectProperty()
     card_text = DictProperty()
 
-    def setup(self):
+    def setup(self, titles=[], retired=[]):
         # Setting up the Top Bar.
         self.top_bar.add_text(self.top_bar_texts)
-
-        # Setting up the Selection and Cards.
-        titles = ["Title number "+ str(i+1) for i in range(100)]
-        retired = ["Retired Card number "+ str(i+1) for i in range(14)]
         self.select.setup((4, 4), titles, retired)
         self.card.img_tex = Image(source="empty_profile.png").texture
 
@@ -190,7 +202,6 @@ class GUI(FloatLayout):
     def hide_info(self, *_):
         self.info_manager.current="None"
         self.info_text = ""
-
 
     def update(self, dt):
         pass

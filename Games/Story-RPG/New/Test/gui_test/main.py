@@ -30,7 +30,7 @@ class MyGame(Widget):
         if e[1][1] == "spacebar":
             self.gui.toggle_menu()
         if e[1][1] == "c":
-            self.gui.show_info("Testing Info")
+            self.gui.show_info("New Card!")
 
 class MainApp(App):
     def build(self):

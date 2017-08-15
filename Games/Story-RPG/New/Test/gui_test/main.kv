@@ -38,14 +38,15 @@
         transition: FadeTransition()
         Screen:
             name: "None"
-            size_hint: .4, .14
-            pos_hint: {"right":1., "y":.75}
-        Screen:
+            size_hint: .5, .24
+            pos_hint: {"right":1., "y":.5}
+        Menu:
             name: "info"
-            size_hint: .4, .14
-            pos_hint: {"right":1., "y":.75}
-            Button:
+            size_hint: .5, .24
+            pos_hint: {"right":1., "y":.5}
+            Label:
                 text: root.info_text
+                font_size: 54
 
 <Select>:
     buttons: buttons
@@ -59,10 +60,10 @@
         BoxLayout:
             orientation: "horizontal"
             size_hint: 1., .2
-            padding: 0,0,30,0
+            padding: 100,30,30,0
             spacing: 5
             Label:
-                text: "           Current Cards"
+                text: "Current Cards"
                 font_size: 56
                 pos_hint: {"center_x":.5, "center_y":.5}
             Button:
@@ -78,33 +79,36 @@
                 name: "page0"
                 ButtonLayout:
                     id: buttons
-        BoxLayout:
-            orientation: "horizontal"
-            size_hint: None, None
-            size: 244, 42
-            padding: 10, 5, 10, 5
-            pos_hint: {"x":.71}
-            Button:
+        RelativeLayout:
+            size_hint: 1., .1
+            pos_hint: {"center_x":.5}
+            CycleBut:
                 id: prev_button
                 text: "<< Previous"
-                size_hint: None, None
-                size: 112, 32
-                pos_hint: {"right":.98, "y":.0}
                 on_release: root.cycle_inventory("prev")
-            Button:
+                pos_hint: {"center_x":.44, "center_y":.5}
+            CycleBut:
                 id: next_button
                 text: "Next >>"
-                size_hint: None, None
-                size: 112, 32
-                pos_hint: {"right":.98, "y":.0}
                 on_release: root.cycle_inventory("next")
+                pos_hint: {"center_x":.56, "center_y":.5}
+            Button:
+                text: "close"
+                size_hint: None, None
+                size: 100, 40
+                pos_hint: {"x":.875}
+                on_release: root.parent.parent.parent.toggle_menu()
+
+<CycleBut@Button>:
+    size_hint: None, None
+    size: 112, 32
 
 <ButtonLayout>:
     size_hint: 1., .8
     spacing: 10
     padding: 15
 
-<Card>
+<Card>:
     Label:
         text: root.title_text
         font_size: 45
@@ -128,10 +132,10 @@
     Label:
         text: root.tags_text
         font_size: 15
-        size_hint: .9, .1
-        pos_hint: {"center_x":0.5, "y":0.02}
+        size_hint: .25, .35
+        pos_hint: {"center_x":0.175, "y":0.02}
         halign: "left"
-        valign: "center"
+        valign: "top"
         text_size: self.size
 
     Widget:
@@ -141,6 +145,21 @@
                 texture: root.img_tex
                 size: self.width/4, self.height/2
                 pos: self.pos
+    BoxLayout:
+        orientation: "horizontal"
+        size_hint: .2, .1
+        pos_hint: {"x":.76, "y":.025}
+        CardBut:
+            text: "Selection"
+            on_release: root.button_one()
+        CardBut:
+            text: "Close"
+            on_release: root.button_two()
+
+<CardBut@Button>:
+    size_hint: None, None
+    size: 100, 40
+    pos_hint: {"center_x":.5, "center_y":.5}
 
 <Menu>:
     canvas:

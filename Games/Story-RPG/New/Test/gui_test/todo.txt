@@ -1,53 +1,7 @@
 
 Todo list for the Card system  of the Story Game.
 
-- Cards (Person/Event).
+I need a system for adding and storing cards,
+ as well as moving them to the Retired section once they are done.
 
-Cards should have several text areas and one image areas.
-
---The Image are of the card.
-    The image area of the card should
-    be on the top left side.
-    -Person cards should have the image
-     of the person the card is about.
-    -Event cards should have a general image
-     about the TYPE of event.
-     -Even Types:
-        * The War
-        * Village Shenanigans
-        * Relevant History
-
---The Text Areas.
-    -Title
-     The title of the card must be at the top of the card.
-     centered, but on the right side.
-     Title of the card must be unique.
-    -Main Text area.
-     The main text area is in the middle of the
-     card, but right of the image.
-     This area needs to be able to scroll.
-    -Tags area.
-     Tags go at the bottom of the card, centered.
-     Tags are the name of the NPC the player can
-     ask about this card.
-
-     Once every NPC possible has been asked about a card,
-     that card is retired, and placed in the retired cards section.
-
- - Card Inventory.
-
- The Card Inventory page should be a
-  grid displaying cards based on time acquired,
-  placing the newer cards at the top.
-  It should also be possible to display the cards
-  based on other criteria, like type or person.
-
- The Inventory also needs to paginate sideways,
-  once there are too many cards for one page.
-
- There also needs to be a retired cards section.
-
- - New Card message.
-
- We need a message area, that will display to
-  the player when he has acquired a new card.
+The Select class functions as the characters Card Inventory, maybe I should rename?
