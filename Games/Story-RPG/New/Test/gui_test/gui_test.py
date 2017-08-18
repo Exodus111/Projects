@@ -57,9 +57,6 @@ class Select(RelativeLayout):
         self.retired_cards = retired
         self.setup_cards(titles)
 
-    def add_card(self, card):
-
-
     def setup_cards(self, titles):
         c,r = self.array_size
         amount = c*r
@@ -175,16 +172,24 @@ class GUI(FloatLayout):
     card = ObjectProperty()
     select = ObjectProperty()
     card_text = DictProperty()
+    card_db = DictProperty()
+    id_counter = NumericProperty(0)
 
-    def setup(self, titles=[], retired=[]):
-        # Setting up the Top Bar.
+    def setup(self):
         self.top_bar.add_text(self.top_bar_texts)
-        self.select.setup((4, 4), titles, retired)
+        self.select.setup((4, 4), [], [])
         self.card.img_tex = Image(source="empty_profile.png").texture
 
+    def add_card(self, card):
+        self.id_counter += 1
+        self.card_db[self.id_counter] = card
+        self.select.setup_cards([card["title"]])
+
+
     def add_text_to_card(self, card):
-        self.card.title_text = "Title for card " + card
         lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec lectus sit amet sapien imperdiet lobortis. Nunc congue arcu dictum dui egestas, vel semper ipsum pharetra. Etiam interdum neque malesuada tellus rhoncus bibendum. Aenean lobortis interdum purus vel gravida. Maecenas ut nisi at lacus consequat venenatis. Curabitur nec pulvinar massa, sit amet egestas mauris. Fusce eu sagittis arcu, vel cursus quam. Suspendisse bibendum consequat aliquet. In eu tempor elit, in pulvinar nisl. Nam tincidunt vulputate efficitur. Etiam feugiat lacus id mi tristique ultrices. Nullam eget nulla ante. Morbi eget ultrices neque."
+
+        self.card.title_text = "Title for card " + card
         self.card.main_text = "Main Text for card " + card + " " + lorem
         self.card.tags_text = "Name of character(s) you can ask about card " + card + " or All."
 
