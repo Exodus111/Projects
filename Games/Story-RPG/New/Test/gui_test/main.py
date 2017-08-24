@@ -43,8 +43,12 @@ class MyGame(Widget):
     def keydown(self, *e):
         if e[1][1] == "spacebar":
             self.gui.toggle_menu()
-        if e[1][1] == "c":
+        elif e[1][1] == "c":
             self.add_card()
+        elif e[1][1] == "x":
+            self.gui.retire_card(self.gui.card.title_text)
+        elif e[1][1] == "e":
+            self.gui.conv.drop_panels()
 
 class MainApp(App):
     def build(self):

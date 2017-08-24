@@ -13,6 +13,7 @@ from kivy.animation import Animation
 from kivy.uix.screenmanager import Screen, ScreenManager, FadeTransition
 from kivy.properties import *
 
+from conversation import Conversation
 from tools.tools import scale_image
 
 MAIN_COLOR = (0.435, 0.325, 0.239, 1.) # Light Brown.
@@ -57,6 +58,12 @@ class Select(RelativeLayout):
         self.retired_cards = retired
         self.setup_cards(titles)
 
+    def retire_card(self, card):
+        print(self.active_cards)
+        if card in self.active_cards:
+            self.active_cards.remove(card)
+            self.retired_cards.append(card)
+
     def setup_cards(self, titles):
         c,r = self.array_size
         amount = c*r
@@ -82,6 +89,9 @@ class Select(RelativeLayout):
                     screen = Screen(name="page"+str(n))
                     buttons = ButtonLayout(cols=c, rows=r)
                     screen.add_widget(buttons)
+                    if self.button_manager.has_screen("page"+str(n)):
+                        delscreen = self.button_manager.get_screen("page"+str(n))
+                        self.button_manager.remove_widget(delscreen)
                     self.button_manager.add_widget(screen)
                 if page != pages[0] and page == pages[-1]: # Last page.
                     [buttons.add_widget(b) for b in self.create_buttons(page, amount_left)]
@@ -174,24 +184,36 @@ class GUI(FloatLayout):
     card_text = DictProperty()
     card_db = DictProperty()
     id_counter = NumericProperty(0)
+    card_lookup = DictProperty()
 
     def setup(self):
         self.top_bar.add_text(self.top_bar_texts)
         self.select.setup((4, 4), [], [])
         self.card.img_tex = Image(source="empty_profile.png").texture
+        self.conv = Conversation()
+        self.conv.setup()
+        self.add_widget(self.conv)
 
     def add_card(self, card):
         self.id_counter += 1
         self.card_db[self.id_counter] = card
-        self.select.setup_cards([card["title"]])
+        self.card_lookup[card["title"]] = self.id_counter
+        self.select.active_cards.append(card["title"])
+        self.select.buttons.clear_widgets()
+        self.select.setup_cards(self.select.active_cards)
 
+    def retire_card(self, card_title):
+        if self.manager.current == "Card1":
+            self.manager.current = "Selection"
+        self.select.retire_card(card_title)
+        self.select.buttons.clear_widgets()
+        self.select.setup_cards(self.select.active_cards)
 
-    def add_text_to_card(self, card):
-        lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec lectus sit amet sapien imperdiet lobortis. Nunc congue arcu dictum dui egestas, vel semper ipsum pharetra. Etiam interdum neque malesuada tellus rhoncus bibendum. Aenean lobortis interdum purus vel gravida. Maecenas ut nisi at lacus consequat venenatis. Curabitur nec pulvinar massa, sit amet egestas mauris. Fusce eu sagittis arcu, vel cursus quam. Suspendisse bibendum consequat aliquet. In eu tempor elit, in pulvinar nisl. Nam tincidunt vulputate efficitur. Etiam feugiat lacus id mi tristique ultrices. Nullam eget nulla ante. Morbi eget ultrices neque."
-
-        self.card.title_text = "Title for card " + card
-        self.card.main_text = "Main Text for card " + card + " " + lorem
-        self.card.tags_text = "Name of character(s) you can ask about card " + card + " or All."
+    def add_text_to_card(self, title):
+        num = self.card_lookup[title]
+        self.card.title_text = self.card_db[num]["title"]
+        self.card.main_text = self.card_db[num]["maintext"]
+        self.card.tags_text = ", ".join(self.card_db[num]["tags"])
 
     def toggle_menu(self):
         if self.manager.current_screen.name == "None":

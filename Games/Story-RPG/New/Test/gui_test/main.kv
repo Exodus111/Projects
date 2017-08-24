@@ -48,6 +48,39 @@
                 text: root.info_text
                 font_size: 54
 
+<Conversation>:
+    top_manager: top_manager
+    bottom_manager: bottom_manager
+    top_panel: top_panel
+    bottom_panel: bottom_panel
+    size_hint: 1., 1.
+    ScreenManager:
+        transition: FadeTransition()
+        id: top_manager
+        size: self.size
+        Screen:
+            name: "None"
+            size_hint: 1., .25
+            pos_hint: {"x":0., "top":.975}
+        Menu:
+            id: top_panel
+            name: "top_panel"
+            size_hint: 1., .25
+            pos_hint: {"x":0., "top":.975}
+    ScreenManager:
+        transition: FadeTransition()
+        id: bottom_manager
+        size: self.size
+        Screen:
+            name: "None"
+            size_hint: 1., .35
+            pos_hint: {"x":0., "y":0.067}
+        Menu:
+            id: bottom_panel
+            name: "bottom_panel"
+            size_hint: 1., .35
+            pos_hint: {"x":0., "y":0.067}
+
 <Select>:
     buttons: buttons
     next_button: next_button
