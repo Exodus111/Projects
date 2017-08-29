@@ -22,13 +22,20 @@ def lor():
 class MyGame(Widget):
     adder = NumericProperty(0)
     ordinal = lambda c, n: "%d%s" % (n,"tsnrhtdd"[(n/10%10!=1)*(n%10<4)*n%10::4])
+    panel_toggle = BooleanProperty(False)
+    panel_text = DictProperty({"top_text":str(lor()),
+                               "question_list":["Question Goes Here ...."]*4})
 
     def setup(self):
+        Window.bind(size=self.size_changed)
         self.keyboard = Window.request_keyboard(lambda : None, self)
         self.keyboard.bind(on_key_down=self.keydown)
         self.gui = GUI(size=(xwidth, xheight))
         self.gui.setup()
         self.add_widget(self.gui)
+
+    def size_changed(self, inst, value):
+        self.gui.size = value
 
     def add_card(self):
         self.adder += 1
@@ -48,9 +55,14 @@ class MyGame(Widget):
         elif e[1][1] == "x":
             self.gui.retire_card(self.gui.card.title_text)
         elif e[1][1] == "e":
-            self.gui.conv.drop_panels()
+            self.panel_toggle = not self.panel_toggle
+            if self.panel_toggle:
+                self.gui.activate_panels(self.panel_text)
+            else:
+                self.gui.close_panels()
 
 class MainApp(App):
+
     def build(self):
         game = MyGame()
         game.setup()

@@ -1,4 +1,4 @@
-#: kivy 1.9.1
+#: kivy 1.10.0
 #: import FadeTransition kivy.uix.screenmanager.FadeTransition
 #: import SlideTransition kivy.uix.screenmanager.SlideTransition
 
@@ -40,7 +40,7 @@
             name: "None"
             size_hint: .5, .24
             pos_hint: {"right":1., "y":.5}
-        Menu:
+        InfoBox:
             name: "info"
             size_hint: .5, .24
             pos_hint: {"right":1., "y":.5}
@@ -48,15 +48,23 @@
                 text: root.info_text
                 font_size: 54
 
+<InfoBox@Screen>:
+    canvas:
+        Rectangle:
+            source: "images/gui/menu_long_bg.png"
+            size: self.size
+            pos: 0,0
+
 <Conversation>:
     top_manager: top_manager
     bottom_manager: bottom_manager
     top_panel: top_panel
     bottom_panel: bottom_panel
+    question_big: question_big
     size_hint: 1., 1.
     ScreenManager:
-        transition: FadeTransition()
         id: top_manager
+        transition: FadeTransition()
         size: self.size
         Screen:
             name: "None"
@@ -67,19 +75,64 @@
             name: "top_panel"
             size_hint: 1., .25
             pos_hint: {"x":0., "top":.975}
+            Label:
+                text: root.top_text
+                size_hint: 1., 1.
+                pos_hint: {"x":.0, "y":.0}
+                text_size: self.size
+                padding: 20, 20
+                valign: "top"
+                split_str: " "
+
     ScreenManager:
-        transition: FadeTransition()
         id: bottom_manager
+        transition: FadeTransition()
         size: self.size
         Screen:
             name: "None"
             size_hint: 1., .35
             pos_hint: {"x":0., "y":0.067}
         Menu:
-            id: bottom_panel
             name: "bottom_panel"
             size_hint: 1., .35
             pos_hint: {"x":0., "y":0.067}
+            BoxLayout:
+                id: bottom_panel
+                orientation: "vertical"
+                size_hint: .99, .9
+                pos_hint: {"y":.05}
+        Menu:
+            name: "question_big"
+            size_hint: 1., .35
+            pos_hint: {"x":0., "y":0.067}
+            Label:
+                id: question_big
+                text_size: self.parent.size
+                padding: 20, 20
+                valign: "top"
+            Button:
+                text: "Ask this"
+                size_hint: .1, .1
+                pos_hint: {"x":.88, "y":.1}
+                on_release: root.question_selected()
+            Button:
+                text: "Go Back"
+                size_hint: .1, .1
+                pos_hint: {"x":.78, "y":.1}
+                on_release: self.parent.parent.current = "bottom_panel"
+
+<Question>:
+    text: self.question_text
+    size: self.size
+    pos: self.pos
+    background_normal: "images/gui/blank_box.png"
+    background_down: "images/gui/seethrough_box.png"
+    text_size: self.size
+    halign: "left"
+    valign: "center"
+    shorten: True
+    shorten_from: "right"
+    padding_x: 20
 
 <Select>:
     buttons: buttons

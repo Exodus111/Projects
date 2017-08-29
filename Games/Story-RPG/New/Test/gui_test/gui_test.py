@@ -59,7 +59,6 @@ class Select(RelativeLayout):
         self.setup_cards(titles)
 
     def retire_card(self, card):
-        print(self.active_cards)
         if card in self.active_cards:
             self.active_cards.remove(card)
             self.retired_cards.append(card)
@@ -189,10 +188,19 @@ class GUI(FloatLayout):
     def setup(self):
         self.top_bar.add_text(self.top_bar_texts)
         self.select.setup((4, 4), [], [])
-        self.card.img_tex = Image(source="empty_profile.png").texture
+        self.card.img_tex = Image(source="images/gui/empty_profile.png").texture
         self.conv = Conversation()
-        self.conv.setup()
         self.add_widget(self.conv)
+
+    def set_size(self, size):
+        self.size = size
+
+    def activate_panels(self, text_dict):
+        self.conv.add_text_to_panels(text_dict["top_text"], text_dict["question_list"])
+        self.conv.drop_panels()
+
+    def close_panels(self):
+        self.conv.drop_panels()
 
     def add_card(self, card):
         self.id_counter += 1
