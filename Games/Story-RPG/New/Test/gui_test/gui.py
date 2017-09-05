@@ -20,17 +20,64 @@ MAIN_COLOR = (0.435, 0.325, 0.239, 1.) # Light Brown.
 SECONDARY_COLOR = (.12,.12,.12, 1.) # Dark.
 WHITE = (1.,1.,1.,1.)
 
-class TopBar(Widget):
-    text_one = StringProperty()
-    text_two = StringProperty()
-    text_three = StringProperty()
-    main_color = ListProperty(MAIN_COLOR)
-    second_color = ListProperty(SECONDARY_COLOR)
-    rela = ObjectProperty()
-    text1 = ObjectProperty()
+class GUI(Widget):
+    panel_toggle = BooleanProperty(False)
 
-    def add_text(self, text):
-        self.text_one, self.text_two, self.text_three = text
+    def setup(self):
+        self.menus = Menus(size=size)
+        self.menus.setup()
+
+        self.hud = HUD(size=size)
+
+        self.conv = Conversation(size=size)
+
+        self.add_widget(self.conv)
+        self.add_widget(self.menus)
+        self.add_widget(self.hud)
+
+    def size_changed(self, inst, value):
+        """
+            This method must be linked to size property of the Window Object.
+        """
+        self.hud.set_size(value)
+        self.menus.set_size(value)
+        self.conv.set_size(value)
+
+    def add_card(self, card):
+        """
+            card: Dict.
+            Contains the keys 'title', 'maintext' and 'tags'
+        """
+        self.menus.add_card(card)
+        self.hud.show_info(card["title"])
+
+    def open_card_menu(self):
+        """
+            This method is a toggle.
+        """
+        self.menus.toggle_menu()
+
+    def retire_card(self, card_title):
+        self.menus.retire_card(card_title)
+
+    def conv_panels_toggle(self, text):
+        """
+            text: Dict.
+             Contains two keys: 'top_text' and 'question_list'.
+        """
+        self.panel_toggle = not self.panel_toggle
+        if self.panel_toggle:
+            self.conv.drop_panels()
+        else:
+            self.conv.drop_panels()
+
+    def add_text_to_conv_panels(self, text):
+        """
+            text: Dict.
+             Contains two keys: 'top_text' and 'question_list'.
+        """
+        self.conv.add_text_to_panels(**text)
+
 
 class Menu(Screen):
     pass
@@ -166,17 +213,8 @@ class Card(RelativeLayout):
     def button_two(self):
         self.parent.manager.current = "None"
 
-class GUI(FloatLayout):
-    w_size = ListProperty([0,0])
-    top_bar_texts =  ListProperty(["First Text Area",
-                                   "Second Text Area",
-                                   "Third Text Area"])
-    right_panel_text = StringProperty("Right Bar")
-    left_panel_text = StringProperty("Left Bar")
-    top_bar = ObjectProperty()
+class Menus(FloatLayout):
     manager = ObjectProperty()
-    info_manager = ObjectProperty()
-    info_text = StringProperty()
     notes = ObjectProperty()
     card = ObjectProperty()
     select = ObjectProperty()
@@ -186,21 +224,11 @@ class GUI(FloatLayout):
     card_lookup = DictProperty()
 
     def setup(self):
-        self.top_bar.add_text(self.top_bar_texts)
         self.select.setup((4, 4), [], [])
         self.card.img_tex = Image(source="images/gui/empty_profile.png").texture
-        self.conv = Conversation()
-        self.add_widget(self.conv)
 
     def set_size(self, size):
         self.size = size
-
-    def activate_panels(self, text_dict):
-        self.conv.add_text_to_panels(text_dict["top_text"], text_dict["question_list"])
-        self.conv.drop_panels()
-
-    def close_panels(self):
-        self.conv.drop_panels()
 
     def add_card(self, card):
         self.id_counter += 1
@@ -228,15 +256,6 @@ class GUI(FloatLayout):
             self.manager.current = "Selection"
         else:
             self.manager.current = "None"
-
-    def show_info(self, text):
-        self.info_text = text
-        self.info_manager.current = "info"
-        Clock.schedule_once(self.hide_info, 2.)
-
-    def hide_info(self, *_):
-        self.info_manager.current="None"
-        self.info_text = ""
 
     def update(self, dt):
         pass

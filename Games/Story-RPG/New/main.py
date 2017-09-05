@@ -20,8 +20,7 @@ from kivy.properties import *
 
 from entities import Player, NPCController
 from dialogue import Dialogue
-from gui import GUI
-from startmenu import StartMenu
+from gui import GUI, StartMenu
 from world import World
 
 from random import choice

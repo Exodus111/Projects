@@ -5,7 +5,7 @@ from kivy.vector import Vector
 from kivy.atlas import Atlas
 from kivy.properties import *
 
-from tools import *
+from tools.tools import *
 
 class CollisionWidget(Widget): pass
 
@@ -13,6 +13,7 @@ class Entity(Widget):
     etype = StringProperty("entity")
     home = StringProperty("")
     frame = ObjectProperty(None)
+    frames = DictProperty()
     dirs = DictProperty({"up":[0,1],
             "down":[0,-1],
             "left":[-1,0],
@@ -31,12 +32,18 @@ class Entity(Widget):
     collide_widget = ObjectProperty(None)
     entsize = ListProperty([0,0])
     multiplier = NumericProperty(3)
+    poses = DictProperty(["walkup",
+                          "",])
 
     def place(self, x, y):
         self.pos = self.to_widget(x, y)
 
     def entitysetup(self, atlasfile):
         self.atlas = Atlas(atlasfile)
+        if len(self.atlas) > 1:
+            for pose in self.atlas:
+                print(pose)
+                self.frames[pose] = scale_image(self.atlas[pose], self.multiplier, True)
         self.set_frame("idle", 1)
         self.gen = self._num()
 
@@ -54,8 +61,8 @@ class Entity(Widget):
     def set_frame(self, pose, num):
         if pose == "idle":
             num = 1
-        self.frame = self.atlas["{}{}".format(pose, num)]
-        self.entsize = [self.frame.size[0]*self.multiplier, self.frame.size[1]*self.multiplier]
+        self.frame = self.frames["{}{}".format(pose, num)]
+        self.entsize = self.frame.size
 
     def _num(self):
         while True:

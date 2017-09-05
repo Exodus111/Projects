@@ -2,20 +2,37 @@
 #: import FadeTransition kivy.uix.screenmanager.FadeTransition
 #: import SlideTransition kivy.uix.screenmanager.SlideTransition
 
-<GUI>:
+<HUD>:
     top_bar: top_bar
-    manager: manager
     info_manager: info_manager
-    notes: notes
-    card: card
-    select: select
     TopBar:
         id: top_bar
         size_hint: 1., .025
         pos_hint: {"x":0., "top":1.}
     ScreenManager:
+        id: info_manager
+        transition: FadeTransition()
+        Screen:
+            name: "None"
+            size_hint: .5, .24
+            pos_hint: {"right":1., "y":.5}
+        InfoBox:
+            name: "info"
+            size_hint: .5, .24
+            pos_hint: {"right":1., "y":.5}
+            Label:
+                text: root.info_text
+                font_size: 54
+
+<Menus>:
+    manager: manager
+    notes: notes
+    card: card
+    select: select
+    ScreenManager:
         id: manager
         transition: FadeTransition()
+        size: root.size
         Screen:
             name: "None"
             size_hint: .9, .7
@@ -33,20 +50,6 @@
             pos_hint: {"x":.05, "top":.85}
             Card:
                 id: card
-    ScreenManager:
-        id: info_manager
-        transition: FadeTransition()
-        Screen:
-            name: "None"
-            size_hint: .5, .24
-            pos_hint: {"right":1., "y":.5}
-        InfoBox:
-            name: "info"
-            size_hint: .5, .24
-            pos_hint: {"right":1., "y":.5}
-            Label:
-                text: root.info_text
-                font_size: 54
 
 <InfoBox@Screen>:
     canvas:
@@ -61,11 +64,10 @@
     top_panel: top_panel
     bottom_panel: bottom_panel
     question_big: question_big
-    size_hint: 1., 1.
     ScreenManager:
         id: top_manager
         transition: FadeTransition()
-        size: self.size
+        size: root.size
         Screen:
             name: "None"
             size_hint: 1., .25
@@ -87,7 +89,7 @@
     ScreenManager:
         id: bottom_manager
         transition: FadeTransition()
-        size: self.size
+        size: root.size
         Screen:
             name: "None"
             size_hint: 1., .35

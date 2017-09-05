@@ -46,36 +46,7 @@ class World(RelativeLayout):
     walls = DictProperty({})
     player_line = ListProperty([])
     act_walls = ListProperty([])
-    worlddict = DictProperty({
-    "church":{"main":{"bg":"images/world/CI Main Back.png",
-                      "fg":"images/world/CI Main FG.png",
-                      "clutter":"images/world/CI Main Obj.png",
-                      "bg_walls":"data/collision/church/main_wall.json",
-                      "clutter_collision":"data/collision/church/main_clutter.json"},
-
-              "basement":{"bg":"images/world/CI Basement Back.png",
-                          "clutter":"images/world/CI Basement Obj.png",
-                          "fg":"images/world/CI Basement FG.png",
-                          "bg_walls":"data/collision/church/basement_wall.json",
-                          "clutter_collision":"data/collision/church/basement_clutter.json"},
-
-              "thack_room":{"bg":"images/world/CI Player Room Back.png",
-                            "clutter":"images/world/CI Player Room Obj.png",
-                            "fg":"images/world/CI Player Room FG.png",
-                            "bg_walls":"data/collision/church/thack_room_wall.json",
-                            "clutter_collision":"data/collision/church/thack_room_clutter.json"},
-
-              "priest_room":{"bg":"images/world/CI Priest Room Back.png",
-                             "clutter":"images/world/CI Priest Room Obj.png",
-                             "fg":"images/world/CI Priest Room FG.png",
-                             "bg_walls":"data/collision/church/priest_room_wall.json",
-                             "clutter_collision":"data/collision/church/priest_room_clutter.json"},
-
-              "tower":{"bg":"images/world/CI Tower Top Back.png",
-                       "clutter":"images/world/CI Tower Top Obj.png",
-                       "fg":"images/world/CI Tower Top FG.png",
-                      "bg_walls":"data/collision/church/tower_wall.json",
-                      "clutter_collision":"data/collision/church/tower_clutter.json"}}})
+    worlddict = DictProperty()
 
     doors = DictProperty({"church":{
                           "main":{
@@ -98,6 +69,8 @@ class World(RelativeLayout):
                           "from_thack_room":(248, 115)}}})
 
     def setupworld(self):
+        with open("world.json", "r+") as f:
+            self.worlddict = json.load(f)
         self.cluttergroup = ClutterGroup()
         self.load_walls("church")
         self.start_scene("church", "main")

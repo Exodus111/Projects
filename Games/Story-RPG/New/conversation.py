@@ -13,29 +13,18 @@ class Conversation(FloatLayout):
     open_close = BooleanProperty(False)
     question_big = ObjectProperty()
 
-    def set_size(self, size):
-        self.size = size
-
-    def add_text_to_panels(self, top_text, question_list=[]):
-        self.top_text = top_text
-        for n, q in enumerate(question_list):
+    def add_text_to_panels(self, top, bottom=[]):
+        self.top_text = top
+        for n, q in enumerate(bottom):
             question = Question(question_text="{}. {}".format(n+1, q), on_release=lambda x: self.question_picked(x))
             self.bottom_panel.add_widget(question)
-
-    def clear_text(self):
-        self.top_text = ""
-        self.bottom_panel.clear_widgets()
 
     def question_picked(self, button):
         self.question_big.text = button.question_text
         self.bottom_manager.current = "question_big"
 
     def question_selected(self):
-        """
-            This method is called when the player selects a question.
-            This needs to call something in a parent widget.
-        """
-        pass
+        print(self.question_big.text)
 
     def drop_panels(self):
         self.open_close = not self.open_close

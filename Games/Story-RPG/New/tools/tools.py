@@ -78,8 +78,11 @@ def make_atlas(folder):
         Atlas.create("images/{}".format(dirc.basename()), dirc.files("*.png"), [160,256])
 
 
-def scale_image(filename, multiplier=3):
+def scale_image(filename, multiplier=3, fil=False):
     """ Returns Kivy Texture Object"""
+    if fil:
+        filename.save("temp")
+        filename = "temp"
     img = Img.open(filename)
     img = img.transpose(Img.FLIP_TOP_BOTTOM)
     size = img.size

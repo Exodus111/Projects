@@ -1,9 +1,11 @@
-#: kivy 1.9.1
+#: kivy 1.10.0
 #: import FadeTransition kivy.uix.screenmanager.FadeTransition
+#: import SlideTransition kivy.uix.screenmanager.SlideTransition
 
 <GUI>:
     top_bar: top_bar
     manager: manager
+    info_manager: info_manager
     notes: notes
     card: card
     select: select
@@ -31,25 +33,198 @@
             pos_hint: {"x":.05, "top":.85}
             Card:
                 id: card
+    ScreenManager:
+        id: info_manager
+        transition: FadeTransition()
+        Screen:
+            name: "None"
+            size_hint: .5, .24
+            pos_hint: {"right":1., "y":.5}
+        InfoBox:
+            name: "info"
+            size_hint: .5, .24
+            pos_hint: {"right":1., "y":.5}
+            Label:
+                text: root.info_text
+                font_size: 54
+
+<InfoBox@Screen>:
+    canvas:
+        Rectangle:
+            source: "images/gui/menu_long_bg.png"
+            size: self.size
+            pos: 0,0
+
+<Conversation>:
+    top_manager: top_manager
+    bottom_manager: bottom_manager
+    top_panel: top_panel
+    bottom_panel: bottom_panel
+    question_big: question_big
+    size_hint: 1., 1.
+    ScreenManager:
+        id: top_manager
+        transition: FadeTransition()
+        size: self.size
+        Screen:
+            name: "None"
+            size_hint: 1., .25
+            pos_hint: {"x":0., "top":.975}
+        Menu:
+            id: top_panel
+            name: "top_panel"
+            size_hint: 1., .25
+            pos_hint: {"x":0., "top":.975}
+            Label:
+                text: root.top_text
+                size_hint: 1., 1.
+                pos_hint: {"x":.0, "y":.0}
+                text_size: self.size
+                padding: 20, 20
+                valign: "top"
+                split_str: " "
+
+    ScreenManager:
+        id: bottom_manager
+        transition: FadeTransition()
+        size: self.size
+        Screen:
+            name: "None"
+            size_hint: 1., .35
+            pos_hint: {"x":0., "y":0.067}
+        Menu:
+            name: "bottom_panel"
+            size_hint: 1., .35
+            pos_hint: {"x":0., "y":0.067}
+            BoxLayout:
+                id: bottom_panel
+                orientation: "vertical"
+                size_hint: .99, .9
+                pos_hint: {"y":.05}
+        Menu:
+            name: "question_big"
+            size_hint: 1., .35
+            pos_hint: {"x":0., "y":0.067}
+            Label:
+                id: question_big
+                text_size: self.parent.size
+                padding: 20, 20
+                valign: "top"
+            Button:
+                text: "Ask this"
+                size_hint: .1, .1
+                pos_hint: {"x":.88, "y":.1}
+                on_release: root.question_selected()
+            Button:
+                text: "Go Back"
+                size_hint: .1, .1
+                pos_hint: {"x":.78, "y":.1}
+                on_release: self.parent.parent.current = "bottom_panel"
+
+<Question>:
+    text: self.question_text
+    size: self.size
+    pos: self.pos
+    background_normal: "images/gui/blank_box.png"
+    background_down: "images/gui/seethrough_box.png"
+    text_size: self.size
+    halign: "left"
+    valign: "center"
+    shorten: True
+    shorten_from: "right"
+    padding_x: 20
 
 <Select>:
     buttons: buttons
-    GridLayout:
-        id: buttons
-        cols: root.cols
-        rows: root.rows
-        spacing: 10
-        padding: 15
+    next_button: next_button
+    prev_button: prev_button
+    retired_button: retired_button
+    button_manager: button_manager
+    BoxLayout:
+        orientation: "vertical"
+        padding: 0,0,0,20
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint: 1., .2
+            padding: 100,30,30,0
+            spacing: 5
+            Label:
+                text: "Current Cards"
+                font_size: 56
+                pos_hint: {"center_x":.5, "center_y":.5}
+            Button:
+                id: retired_button
+                text: "Retired Cards"
+                size_hint: None, None
+                size: 102, 56
+                on_release: root.toggle_retired_cards()
+        ScreenManager:
+            id: button_manager
+            transition: SlideTransition()
+            Screen:
+                name: "page0"
+                ButtonLayout:
+                    id: buttons
+        RelativeLayout:
+            size_hint: 1., .1
+            pos_hint: {"center_x":.5}
+            CycleBut:
+                id: prev_button
+                text: "<< Previous"
+                on_release: root.cycle_inventory("prev")
+                pos_hint: {"center_x":.44, "center_y":.5}
+            CycleBut:
+                id: next_button
+                text: "Next >>"
+                on_release: root.cycle_inventory("next")
+                pos_hint: {"center_x":.56, "center_y":.5}
+            Button:
+                text: "close"
+                size_hint: None, None
+                size: 100, 40
+                pos_hint: {"x":.875}
+                on_release: root.parent.parent.parent.toggle_menu()
 
-<Card>
+<CycleBut@Button>:
+    size_hint: None, None
+    size: 112, 32
+
+<ButtonLayout>:
+    size_hint: 1., .8
+    spacing: 10
+    padding: 15
+
+<Card>:
     Label:
         text: root.title_text
-        font_size: 50
-        pos_hint: {"x":.05, "y":.35}
+        font_size: 45
+        size_hint: 0.68, 0.2
+        pos_hint: {"x":.31, "y":.8}
+        text_size: self.size
+        halign: "left"
+        padding_x: 10
+
     Label:
         text: root.main_text
-        font_size: 35
-        pos_hint: {"x":.05, "y":.1}
+        font_size: 25
+        pos_hint: {"x":0.3, "y":0.1}
+        size_hint: .68, .6
+        text_size: self.size
+        halign: "left"
+        valign: "top"
+        padding_y: 10
+        padding_x: 15
+        split_str: " "
+    Label:
+        text: root.tags_text
+        font_size: 15
+        size_hint: .25, .35
+        pos_hint: {"center_x":0.175, "y":0.02}
+        halign: "left"
+        valign: "top"
+        markup: True
+        text_size: self.size
+
     Widget:
         pos_hint: {"x":.05, "y":.4}
         canvas:
@@ -57,6 +232,21 @@
                 texture: root.img_tex
                 size: self.width/4, self.height/2
                 pos: self.pos
+    BoxLayout:
+        orientation: "horizontal"
+        size_hint: .2, .1
+        pos_hint: {"x":.76, "y":.025}
+        CardBut:
+            text: "Selection"
+            on_release: root.button_one()
+        CardBut:
+            text: "Close"
+            on_release: root.button_two()
+
+<CardBut@Button>:
+    size_hint: None, None
+    size: 100, 40
+    pos_hint: {"center_x":.5, "center_y":.5}
 
 <Menu>:
     canvas:

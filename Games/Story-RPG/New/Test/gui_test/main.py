@@ -13,7 +13,9 @@ from kivy.clock import Clock
 from kivy.uix.widget import Widget
 from kivy.properties import *
 
-from gui_test import GUI
+from gui import Menus
+from hud import HUD
+from conversation import Conversation
 from random import choice, randint
 
 def lor():
@@ -23,48 +25,76 @@ class MyGame(Widget):
     adder = NumericProperty(0)
     ordinal = lambda c, n: "%d%s" % (n,"tsnrhtdd"[(n/10%10!=1)*(n%10<4)*n%10::4])
     panel_toggle = BooleanProperty(False)
-    panel_text = DictProperty({"top_text":str(lor()),
+    panel_text = DictProperty({"top_text":lor(),
                                "question_list":["Question Goes Here ...."]*4})
 
     def setup(self):
         Window.bind(size=self.size_changed)
         self.keyboard = Window.request_keyboard(lambda : None, self)
         self.keyboard.bind(on_key_down=self.keydown)
-        self.gui = GUI(size=(xwidth, xheight))
-        self.gui.setup()
-        self.add_widget(self.gui)
+
+        # Initializing GUI elements.
+        self.menus = Menus(size=(xwidth, xheight))
+        self.menus.setup()
+
+        self.hud = HUD(size=(xwidth, xheight))
+
+        self.conv = Conversation(size=(xwidth, xheight))
+
+        self.add_widget(self.conv)
+        self.add_widget(self.menus)
+        self.add_widget(self.hud)
 
     def size_changed(self, inst, value):
-        self.gui.size = value
+        self.hud.set_size(value)
+        self.menus.set_size(value)
+        self.conv.set_size(value)
+
 
     def add_card(self):
         self.adder += 1
         persons = ["person1", "person2", "person3", "person4", "person5", "person6"]
         card = {"title":self.ordinal(self.adder), "maintext":lor(), "tags":[choice(persons) for i in range(randint(0,10))]}
-        self.gui.add_card(card)
-        self.gui.show_info(card["title"])
+        self.menus.add_card(card)
+        self.hud.show_info(card["title"])
 
     def update(self, dt):
-        self.gui.update(dt)
+        self.menus.update(dt)
 
     def keydown(self, *e):
         if e[1][1] == "spacebar":
-            self.gui.toggle_menu()
+            self.menus.toggle_menu()
         elif e[1][1] == "c":
             self.add_card()
         elif e[1][1] == "x":
-            self.gui.retire_card(self.gui.card.title_text)
+            self.menus.retire_card(self.menus.card.title_text)
         elif e[1][1] == "e":
             self.panel_toggle = not self.panel_toggle
             if self.panel_toggle:
-                self.gui.activate_panels(self.panel_text)
+                self.conv.add_text_to_panels(**self.panel_text)
+                self.conv.drop_panels()
             else:
-                self.gui.close_panels()
+                self.conv.drop_panels()
+        elif e[1][1] == "f":
+            print("Sizes of all widgets in the stack.")
+            print("Main: ", self.size)
+            print("Menus", self.menus.size)
+            print("Conversation", self.conv.size)
+            self.sizes_of_widgets(self.menus)
+            self.sizes_of_widgets(self.conv)
+            print("Done.")
+
+    def sizes_of_widgets(self, w):
+        for child in w.children:
+            print(child, child.size)
+            if len(child.children) != 0:
+                self.sizes_of_widgets(child)
+
 
 class MainApp(App):
 
     def build(self):
-        game = MyGame()
+        game = MyGame(size=(xwidth, xheight))
         game.setup()
         Clock.schedule_interval(game.update, 1.0/60.0)
         return game
