@@ -6,6 +6,7 @@ from kivy.config import Config
 xwidth, xheight = 1024, 768
 Config.set("graphics", "width", xwidth)
 Config.set("graphics", "height", xheight)
+Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 Config.write()
 from kivy.app import App
 from kivy.core.window import Window
@@ -13,83 +14,63 @@ from kivy.clock import Clock
 from kivy.uix.widget import Widget
 from kivy.properties import *
 
-from gui import Menus
-from hud import HUD
-from conversation import Conversation
+from gui import GUI
+from dialogue import Dialogue
 from random import choice, randint
+import json
 
 def lor():
     return "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec lectus sit amet sapien imperdiet lobortis. Nunc congue arcu dictum dui egestas, vel semper ipsum pharetra. Etiam interdum neque malesuada tellus rhoncus bibendum. Aenean lobortis interdum purus vel gravida. Maecenas ut nisi at lacus consequat venenatis. Curabitur nec pulvinar massa, sit amet egestas mauris. Fusce eu sagittis arcu, vel cursus quam. Suspendisse bibendum consequat aliquet. In eu tempor elit, in pulvinar nisl. Nam tincidunt vulputate efficitur. Etiam feugiat lacus id mi tristique ultrices. Nullam eget nulla ante. Morbi eget ultrices neque."
 
 class MyGame(Widget):
-    adder = NumericProperty(0)
     ordinal = lambda c, n: "%d%s" % (n,"tsnrhtdd"[(n/10%10!=1)*(n%10<4)*n%10::4])
-    panel_toggle = BooleanProperty(False)
-    panel_text = DictProperty({"top_text":lor(),
+    panel_text1 = DictProperty({"top_text":lor(),
                                "question_list":["Question Goes Here ...."]*4})
+    panel_text2 = DictProperty({"top_text":"Page 2",
+                               "question_list":["Question Goes Here ...."]*6})
 
     def setup(self):
         Window.bind(size=self.size_changed)
         self.keyboard = Window.request_keyboard(lambda : None, self)
         self.keyboard.bind(on_key_down=self.keydown)
 
+        # Initializing Dialogue
+        with open("new_data.json", "r+") as f:
+            data = json.load(f)
+        self.diag = Dialogue(**data)
+
         # Initializing GUI elements.
-        self.menus = Menus(size=(xwidth, xheight))
-        self.menus.setup()
+        self.gui = GUI(size=(xwidth, xheight))
+        self.gui.setup()
+        self.add_widget(self.gui)
 
-        self.hud = HUD(size=(xwidth, xheight))
+        conv = self.diag.current_conv
+        self.gui.add_text_to_conv_panels({"top_text":conv.top_text, "question_list":conv.bottom_question_list})
 
-        self.conv = Conversation(size=(xwidth, xheight))
+    def question_picked(self, text):
+        self.diag.current_conv.question_picked(text)
+        conv = self.diag.current_conv
+        self.gui.add_text_to_conv_panels({"top_text":conv.top_text, "question_list":conv.bottom_question_list})
 
-        self.add_widget(self.conv)
-        self.add_widget(self.menus)
-        self.add_widget(self.hud)
+    def size_changed(self, _, value):
+        self.gui.size_changed(value)
 
-    def size_changed(self, inst, value):
-        self.hud.set_size(value)
-        self.menus.set_size(value)
-        self.conv.set_size(value)
-
-
-    def add_card(self):
-        self.adder += 1
-        persons = ["person1", "person2", "person3", "person4", "person5", "person6"]
-        card = {"title":self.ordinal(self.adder), "maintext":lor(), "tags":[choice(persons) for i in range(randint(0,10))]}
-        self.menus.add_card(card)
-        self.hud.show_info(card["title"])
+    def speak_comment(self):
+        self.gui.comments[0].activate((xwidth/2, xheight/2), "Test text!!")
 
     def update(self, dt):
-        self.menus.update(dt)
+        self.gui.update(dt)
+        if self.diag.current_conv.end_conversation:
+            self.gui.conv_panels_toggle()
+            self.diag.current_conv.end_conversation = False
 
     def keydown(self, *e):
         if e[1][1] == "spacebar":
-            self.menus.toggle_menu()
-        elif e[1][1] == "c":
-            self.add_card()
-        elif e[1][1] == "x":
-            self.menus.retire_card(self.menus.card.title_text)
+            self.gui.conv_panels_toggle()
         elif e[1][1] == "e":
-            self.panel_toggle = not self.panel_toggle
-            if self.panel_toggle:
-                self.conv.add_text_to_panels(**self.panel_text)
-                self.conv.drop_panels()
-            else:
-                self.conv.drop_panels()
-        elif e[1][1] == "f":
-            print("Sizes of all widgets in the stack.")
-            print("Main: ", self.size)
-            print("Menus", self.menus.size)
-            print("Conversation", self.conv.size)
-            self.sizes_of_widgets(self.menus)
-            self.sizes_of_widgets(self.conv)
-            print("Done.")
-
-    def sizes_of_widgets(self, w):
-        for child in w.children:
-            print(child, child.size)
-            if len(child.children) != 0:
-                self.sizes_of_widgets(child)
-
+            self.gui.add_text_to_conv_panels(next(self.td))
+        elif e[1][1] == "r":
+            self.speak_comment()
 
 class MainApp(App):
 

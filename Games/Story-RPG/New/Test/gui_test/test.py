@@ -1,11 +1,15 @@
 #!/usr/bin/python3
 
-amount = 130
-size = 8
-amount_left = amount % size
-pages = int(amount/size)
+a = 10
+b = 4
 
-print(pages)
-for page in range(pages):
-    if page+1 == pages:
-        print(page)
+for i in range(100):
+    print("i: ", i)
+    if i == a:
+        print("Found a.")
+        for n in range(a):
+            print("n: ", n)
+            if n == b:
+                print("Found b.")
+                break
+        break

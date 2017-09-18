@@ -58,7 +58,7 @@
             size: self.size
             pos: 0,0
 
-<Conversation>:
+<DialoguePanels>:
     top_manager: top_manager
     bottom_manager: bottom_manager
     top_panel: top_panel
@@ -116,12 +116,30 @@
                 text: "Ask this"
                 size_hint: .1, .1
                 pos_hint: {"x":.88, "y":.1}
-                on_release: root.question_selected()
+                on_release: root.question_selected(self)
             Button:
                 text: "Go Back"
                 size_hint: .1, .1
                 pos_hint: {"x":.78, "y":.1}
                 on_release: self.parent.parent.current = "bottom_panel"
+
+<Comment>:
+    speechbox: speechbox
+    size: self.size
+    ScreenManager:
+        id: speechbox
+        transition: FadeTransition()
+        size: root.size
+        Screen:
+            name: "None"
+            size_hint: 1., 1.
+            pos_hint: {"x":0., "y":0.}
+        Menu:
+            name: "active"
+            size_hint: 1., 1.
+            pos_hint: {"x":0., "y":0.}
+            Label:
+                text: root.text
 
 <Question>:
     text: self.question_text

@@ -12,8 +12,11 @@ from kivy.uix.image import Image
 from kivy.animation import Animation
 from kivy.uix.screenmanager import Screen, ScreenManager, FadeTransition
 from kivy.properties import *
+import json
 
-from conversation import Conversation
+from guipanels import DialoguePanels
+from hud import HUD
+from comments import Comment
 from tools.tools import scale_image
 
 MAIN_COLOR = (0.435, 0.325, 0.239, 1.) # Light Brown.
@@ -24,24 +27,28 @@ class GUI(Widget):
     panel_toggle = BooleanProperty(False)
 
     def setup(self):
-        self.menus = Menus(size=size)
+        self.menus = Menus(size=self.size)
         self.menus.setup()
 
-        self.hud = HUD(size=size)
+        self.hud = HUD(size=self.size)
 
-        self.conv = Conversation(size=size)
+        self.panels = DialoguePanels(size=self.size)
 
-        self.add_widget(self.conv)
+        self.comments = [Comment()]
+
+        for comment in self.comments:
+            self.add_widget(comment)
+        self.add_widget(self.panels)
         self.add_widget(self.menus)
         self.add_widget(self.hud)
 
-    def size_changed(self, inst, value):
+    def size_changed(self, value):
         """
             This method must be linked to size property of the Window Object.
         """
         self.hud.set_size(value)
         self.menus.set_size(value)
-        self.conv.set_size(value)
+        self.panels.set_size(value)
 
     def add_card(self, card):
         """
@@ -51,7 +58,7 @@ class GUI(Widget):
         self.menus.add_card(card)
         self.hud.show_info(card["title"])
 
-    def open_card_menu(self):
+    def toggle_card_menu(self):
         """
             This method is a toggle.
         """
@@ -60,24 +67,28 @@ class GUI(Widget):
     def retire_card(self, card_title):
         self.menus.retire_card(card_title)
 
-    def conv_panels_toggle(self, text):
+    def conv_panels_toggle(self):
         """
-            text: Dict.
-             Contains two keys: 'top_text' and 'question_list'.
+            This method is a toggle.
         """
         self.panel_toggle = not self.panel_toggle
         if self.panel_toggle:
-            self.conv.drop_panels()
+            self.panels.drop_panels()
         else:
-            self.conv.drop_panels()
+            self.panels.drop_panels()
 
-    def add_text_to_conv_panels(self, text):
+    def add_text_to_conv_panels(self, text_dict):
         """
-            text: Dict.
+            text_dict: Dict.
              Contains two keys: 'top_text' and 'question_list'.
         """
-        self.conv.add_text_to_panels(**text)
+        self.panels.clear_text()
+        self.panels.add_text_to_panels(**text_dict)
+        if self.panels.bottom_manager.current == "question_big":
+            self.panels.bottom_manager.current = "bottom_panel"
 
+    def update(self, dt):
+        pass
 
 class Menu(Screen):
     pass

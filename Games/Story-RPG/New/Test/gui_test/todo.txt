@@ -1,7 +1,32 @@
 
-Todo list for the Card system  of the Story Game.
 
-I need a system for adding and storing cards,
- as well as moving them to the Retired section once they are done.
+Flag system.
 
-The Select class functions as the characters Card Inventory, maybe I should rename?
+Do we need it?
+
+Usecases:
+
+1. Player talks to NPC. Follows Dialogue Tree. Gets a card. End of Dialogue.
+    * Activate conversation by NPC Proximity.
+    * Find the right conversation. <-----Requires a Flag System.
+    * Start Conversation, by loading the GUI Panels with Top text an bottom list of Questions.
+    * Question Picked returns the text of the Question + "(1-9). ".
+    * System finds the next Question in the link, by locating the Question based on its text.
+    * We load the GUI Panels again.
+    * A Question is attached to a Card. Question Tag needs to contain the Card ID.
+    * We locate the Card by its ID, and load it into the Players Card Inventory.
+    * PS: We need a Card Inventory.
+    * End of Dialogue means the NPC will not talk to the player again. (Unless we have a card.)
+
+2. Player talks to another NPC, about something the first NPC talked about.
+    * Activate conversation needs to check for this. <------ Requires a Flag system.
+    * This event is inserted, either as a new conversation, or as a new thread inside another conversation.
+    * Cards needs this Usecase as well.
+
+What does the flag system do?
+
+1. Loads a file with all the flags of the game, and the node ID they are tied to.
+
+2. Checks for a flag at every question asked.
+
+3. Deploys an action, when the flag and the node ID match.
