@@ -25,6 +25,8 @@ WHITE = (1.,1.,1.,1.)
 
 class GUI(Widget):
     panel_toggle = BooleanProperty(False)
+    comment_list = ListProperty()
+    up = ListProperty()
 
     def setup(self):
         self.menus = Menus(size=self.size)
@@ -34,10 +36,6 @@ class GUI(Widget):
 
         self.panels = DialoguePanels(size=self.size)
 
-        self.comments = [Comment()]
-
-        for comment in self.comments:
-            self.add_widget(comment)
         self.add_widget(self.panels)
         self.add_widget(self.menus)
         self.add_widget(self.hud)
@@ -87,8 +85,25 @@ class GUI(Widget):
         if self.panels.bottom_manager.current == "question_big":
             self.panels.bottom_manager.current = "bottom_panel"
 
+    def add_comment(self, pos, text):
+        comment = Comment()
+        comment.setup()   # Does nothing atm.
+        comment.activate(pos,text)
+        self.add_widget(comment)
+        self.comment_list.append(comment)
+
     def update(self, dt):
-        pass
+        if len(self.comment_list) >= 2:
+            if self.comment_list[0].speechbox.current == "None":
+                del(self.comment_list[0])
+        for n1, c1 in enumerate(self.comment_list):
+            if c1.pos[0] + c1.size[0] > self.size[0]:
+                c1.pos[0] -= 1
+            for n2, c2 in enumerate(self.comment_list):
+                if n1 > n2:
+                    if c1.collide_widget(c2):
+                        c1.pos[1] += 1
+
 
 class Menu(Screen):
     pass

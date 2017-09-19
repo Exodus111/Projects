@@ -132,14 +132,31 @@
         size: root.size
         Screen:
             name: "None"
-            size_hint: 1., 1.
+            size: root.size
             pos_hint: {"x":0., "y":0.}
-        Menu:
+        CommentBox:
             name: "active"
-            size_hint: 1., 1.
+            size: root.size
             pos_hint: {"x":0., "y":0.}
             Label:
                 text: root.text
+                font_size: 18
+                shorten: True
+                shorten_from: "right"
+                split_str: ","
+
+<CommentBox@Screen>:
+    canvas:
+        Color:
+            rgba: .12,.12,.12, 1.
+        Rectangle:
+            size: self.size
+            pos: 0,0
+        Color:
+            rgba: 0.435, 0.325, 0.239, 1.
+        Rectangle:
+            size: self.size[0]-10, self.size[1]-10
+            pos: 5, 5
 
 <Question>:
     text: self.question_text

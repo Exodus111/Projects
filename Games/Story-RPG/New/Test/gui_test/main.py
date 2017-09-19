@@ -22,6 +22,20 @@ import json
 def lor():
     return "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec lectus sit amet sapien imperdiet lobortis. Nunc congue arcu dictum dui egestas, vel semper ipsum pharetra. Etiam interdum neque malesuada tellus rhoncus bibendum. Aenean lobortis interdum purus vel gravida. Maecenas ut nisi at lacus consequat venenatis. Curabitur nec pulvinar massa, sit amet egestas mauris. Fusce eu sagittis arcu, vel cursus quam. Suspendisse bibendum consequat aliquet. In eu tempor elit, in pulvinar nisl. Nam tincidunt vulputate efficitur. Etiam feugiat lacus id mi tristique ultrices. Nullam eget nulla ante. Morbi eget ultrices neque."
 
+COMMENTLIST = ["Test text!!",
+              "Much Longer Text.",
+              "Shorter Text.",
+              "Somewhat longer text, but wait there is also much more after this, which is kinda too much.",
+              "Other text stuff.",
+              "More textual information, with some extra stuff.",
+              "More stuff to put in Text."]
+
+POSLIST = [(xwidth/2, xheight/2),
+           (xwidth/2-100, xheight/2-100),
+           (xwidth/2+100, xheight/2+100),
+           (xwidth/2-100, xheight/2+100),
+           (xwidth/2+100, xheight/2-100)]
+
 class MyGame(Widget):
     ordinal = lambda c, n: "%d%s" % (n,"tsnrhtdd"[(n/10%10!=1)*(n%10<4)*n%10::4])
     panel_text1 = DictProperty({"top_text":lor(),
@@ -56,7 +70,7 @@ class MyGame(Widget):
         self.gui.size_changed(value)
 
     def speak_comment(self):
-        self.gui.comments[0].activate((xwidth/2, xheight/2), "Test text!!")
+        self.gui.add_comment(choice(POSLIST), choice(COMMENTLIST))
 
     def update(self, dt):
         self.gui.update(dt)
