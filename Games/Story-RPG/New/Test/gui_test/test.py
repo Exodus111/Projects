@@ -1,15 +1,6 @@
 #!/usr/bin/python3
 
-a = 10
-b = 4
+mygen = (str(i) for i in range(10))
 
-for i in range(100):
-    print("i: ", i)
-    if i == a:
-        print("Found a.")
-        for n in range(a):
-            print("n: ", n)
-            if n == b:
-                print("Found b.")
-                break
-        break
+print(len(list(mygen)))
+print(len(list(mygen)))

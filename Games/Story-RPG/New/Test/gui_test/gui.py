@@ -98,12 +98,11 @@ class GUI(Widget):
                 del(self.comment_list[0])
         for n1, c1 in enumerate(self.comment_list):
             if c1.pos[0] + c1.size[0] > self.size[0]:
-                c1.pos[0] -= 1
+                c1.pos[0] -= 3
             for n2, c2 in enumerate(self.comment_list):
                 if n1 > n2:
                     if c1.collide_widget(c2):
-                        c1.pos[1] += 1
-
+                        c1.pos[1] += 3
 
 class Menu(Screen):
     pass
