@@ -1,7 +1,45 @@
 {% extends 'base.html' %}
-
 {% block content %}
-
-<p>Under Construction</p>
-
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="menu_one">
+        <nav class="navbar">
+          <p class="navbar-text navbar-right">Non Garbage Games</p>
+        </nav>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <nav class="navbar navbar-inverse">
+        <p class="navbar-text">Non Garbage Games</p>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="top_area"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="open_left"></div>
+    </div>
+    <div class="col-md-3">
+      <div class="middle_menu"></div>
+    </div>
+    <div class="col-md-3">
+      <div class="mytext">
+        <p>{{ text }}</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="open_right"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="bottom_area"></div>
+    </div>
+  </div>
+</div>
 {% endblock %}

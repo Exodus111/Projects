@@ -48,7 +48,6 @@ class DialoguePanels(FloatLayout):
         else:
             self.parent.parent.question_picked(self.question_big.text)          # <---Calling outside the module
 
-
     def drop_panels(self):
         self.open_close = not self.open_close
         if self.open_close:

@@ -1,5 +1,4 @@
 
-
 Flag system.
 
 Rules:
@@ -18,6 +17,8 @@ Tags come in the following types:
 Card nodes will also contain the following tags:
 
  * name_<npc name>
+     These are the names of the people that can be asked about this card.
+     Those people need Question tags with the card Flag on them.
 
 Flags come in the following types:
 
@@ -25,8 +26,7 @@ Flags come in the following types:
      This is the first greeting of an NPC, the default one.
      This is a unique flag, as it defaults to True.
  * flag_<id>
-     This are regular flags.
+     These are regular flags.
      If they are found in a question, they block that question from being asked,
       unless this flag is tagged to true.
     If they are found in an answer, they set this flag to true.
- 

@@ -4,14 +4,14 @@ from collections import defaultdict
 
 
 num = defaultdict(int)
-def numerate(pre):
+def numerate(pre, n=1):
     """ A function for making unique IDs
         'pre' : string
         Returns a string combining the prefix
             with a unique number.
     """
     global num
-    num[pre] += 1
+    num[pre] += n
     return "{}{}".format(pre, num[pre])
 
 class Sticker(Frame):
@@ -36,7 +36,6 @@ class Sticker(Frame):
         w.bind("<ButtonPress-3>", self.draw_line)
         w.bind("<ButtonRelease-3>", self.pair_boxes)
         w.bind("<B3-Motion>", self.move_line)
-
 
     def pair_boxes(self, e):
         if self.drawing:
@@ -77,7 +76,7 @@ class Sticker(Frame):
         if self.drawing:
             new_x, new_y = self.parent.mouse_coords()
             self.parent.coords(self.my_line, (self.pos[0], self.pos[1], new_x, new_y))
-        
+
     def move(self, e):
         self.parent.move(self.w_id, e.x, e.y)
         self.parent.move(self.rect_id, e.x, e.y)
@@ -92,7 +91,7 @@ class Sticker(Frame):
 
     def add_entry(self, text):
         entry = Entry(self)
-        entry.insert(0, ",".join(text))
+        entry.insert(0, ", ".join(text))
         entry.pack(fill="both", expand=True)
         entry.config(state="readonly")
         self.bindings(entry)
@@ -172,10 +171,7 @@ class Sticker(Frame):
                     del self.parent.stickies[stick].my_lines[j]
         for h in to_be_removed:
             self.parent.delete(h)
-
-
-
-
+            
 class Node(Toplevel):
     """ This class is a catchall for all popup windows."""
     def __init__(self, parent, name, pos=(0,0), edit=False):

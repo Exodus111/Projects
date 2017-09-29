@@ -51,13 +51,17 @@ class Main(Frame):
             else:
                 canv.pack_forget()
 
+    def _separate_by_comma(self, _list):
+        new_list = [s.split(",") for s in _list][0]
+        return [t.strip(" ") for t in new_list]
+
     def save(self):
         self.db = DataBase()
         for canv in self.canvasi:
             self.db.add_npc(canv.name)
             for stick in canv.stickies:
                 node = {canv.stickies[stick].name:{"tags":[], "text":"", "links":{}, "coords":{}}}
-                node[canv.stickies[stick].name]["tags"] = [field.get() for field in canv.stickies[stick].entries]
+                node[canv.stickies[stick].name]["tags"] = self._separate_by_comma([field.get() for field in canv.stickies[stick].entries])
                 node[canv.stickies[stick].name]["text"] = "".join([text.get("1.0", "end-1c") for text in canv.stickies[stick].text])
                 node[canv.stickies[stick].name]["links"] = canv.stickies[stick].links
                 node[canv.stickies[stick].name]["coords"] = canv.stickies[stick].pos
@@ -73,6 +77,7 @@ class Main(Frame):
             canvas.delete("all")
             canvas.destroy()
         self.canvasi = []
+        nodecounter = 0
         for name in self.db.names:
             num = 0
             canv = Canv(self, name)
@@ -80,7 +85,11 @@ class Main(Frame):
             self.canvas_switch(name)
             self.menubar.add_button("show", name, self.canvas_switch)
             for node in self.db.nodes[name]:
-                cur = int(node[-1])
+                nodecounter += 1
+                if node[-2] in (str(i) for i in range(10)):
+                    cur = int(node[-2:])
+                else:
+                    cur = int(node[-1])
                 if cur > num:
                     num = cur
                 n = {}
@@ -95,6 +104,7 @@ class Main(Frame):
             for sticky in canv.stickies:
                 for other in canv.stickies[sticky].links:
                     canv.stickies[sticky].connect2box(other, True)
+        _ = numerate("Node", nodecounter)
 
     def save_image(self):
         for num, canv in enumerate(self.canvasi):

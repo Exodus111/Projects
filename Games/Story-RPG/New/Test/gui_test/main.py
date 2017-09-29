@@ -12,6 +12,8 @@ from kivy.app import App
 from kivy.core.window import Window
 from kivy.clock import Clock
 from kivy.uix.widget import Widget
+from kivy.uix.button import Button
+from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import *
 
 from gui import GUI
@@ -42,6 +44,10 @@ class MyGame(Widget):
                                "question_list":["Question Goes Here ...."]*4})
     panel_text2 = DictProperty({"top_text":"Page 2",
                                "question_list":["Question Goes Here ...."]*6})
+    button_cooldown = BooleanProperty(True)
+
+    def cooldown_flipper(self, *_):
+        self.button_cooldown = not self.button_cooldown
 
     def setup(self):
         Window.bind(size=self.size_changed)
@@ -49,22 +55,36 @@ class MyGame(Widget):
         self.keyboard.bind(on_key_down=self.keydown)
 
         # Initializing Dialogue
-        with open("new_data.json", "r+") as f:
+        with open("data.json", "r+") as f:
             data = json.load(f)
         self.diag = Dialogue(**data)
+        
+        self.button1 = Button(text="Donald", on_release=lambda *_: self.start_conversation("Donald"))
+        self.button2 = Button(text="Heidi", on_release=lambda *_: self.start_conversation("Heidi"))
+        self.buttons = BoxLayout()
+        self.buttons.add_widget(self.button1)
+        self.buttons.add_widget(self.button2)
+        self.add_widget(self.buttons)
+        self.buttons.pos = (xwidth/2, xheight/2)
 
         # Initializing GUI elements.
         self.gui = GUI(size=(xwidth, xheight))
         self.gui.setup()
         self.add_widget(self.gui)
 
+
+    def start_conversation(self, name):
+        self.diag.find_conversation(name)
         conv = self.diag.current_conv
         self.gui.add_text_to_conv_panels({"top_text":conv.top_text, "question_list":conv.bottom_question_list})
 
     def question_picked(self, text):
-        self.diag.current_conv.question_picked(text)
-        conv = self.diag.current_conv
-        self.gui.add_text_to_conv_panels({"top_text":conv.top_text, "question_list":conv.bottom_question_list})
+        if self.button_cooldown:                         #<-- Needed because Kivy sometimes presses a button multiple times.
+            self.diag.current_conv.question_picked(text)
+            conv = self.diag.current_conv
+            self.gui.add_text_to_conv_panels({"top_text":conv.top_text, "question_list":conv.bottom_question_list})
+            self.cooldown_flipper()
+            Clock.schedule_once(self.cooldown_flipper, 0.1)
 
     def size_changed(self, _, value):
         self.gui.size_changed(value)
@@ -74,15 +94,20 @@ class MyGame(Widget):
 
     def update(self, dt):
         self.gui.update(dt)
-        if self.diag.current_conv.end_conversation:
-            self.gui.conv_panels_toggle()
-            self.diag.current_conv.end_conversation = False
+        if self.diag.current_conv != None:
+            if self.diag.current_conv.end_conversation:
+                self.gui.conv_panels_toggle()
+                self.diag.current_conv.end_conversation = False
+        if self.diag.card_inventory != []:
+            card = self.diag.card_inventory[0]
+            self.gui.add_card(card)
+            del(self.diag.card_inventory[0])
 
     def keydown(self, *e):
         if e[1][1] == "spacebar":
             self.gui.conv_panels_toggle()
         elif e[1][1] == "e":
-            self.gui.add_text_to_conv_panels(next(self.td))
+            self.gui.toggle_card_menu()
         elif e[1][1] == "r":
             self.speak_comment()
 

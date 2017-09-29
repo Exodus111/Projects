@@ -1,0 +1,6003 @@
+Flat Tax Rate: 50
+Universial Basic Income: 15000
+
+Income: 0 
+Taxes Owed: 0 
+Taxed Income: 0 
+Taxes wth UB deducted: -15000 
+Final Income: 15000
+
+Income: 10000 
+Taxes Owed: 5000 
+Taxed Income: 5000 
+Taxes wth UB deducted: -10000 
+Final Income: 20000
+
+Income: 20000 
+Taxes Owed: 10000 
+Taxed Income: 10000 
+Taxes wth UB deducted: -5000 
+Final Income: 25000
+
+Income: 30000 
+Taxes Owed: 15000 
+Taxed Income: 15000 
+Taxes wth UB deducted: 0 
+Final Income: 30000
+
+Income: 40000 
+Taxes Owed: 20000 
+Taxed Income: 20000 
+Taxes wth UB deducted: 5000 
+Final Income: 35000
+
+Income: 50000 
+Taxes Owed: 25000 
+Taxed Income: 25000 
+Taxes wth UB deducted: 10000 
+Final Income: 40000
+
+Income: 60000 
+Taxes Owed: 30000 
+Taxed Income: 30000 
+Taxes wth UB deducted: 15000 
+Final Income: 45000
+
+Income: 70000 
+Taxes Owed: 35000 
+Taxed Income: 35000 
+Taxes wth UB deducted: 20000 
+Final Income: 50000
+
+Income: 80000 
+Taxes Owed: 40000 
+Taxed Income: 40000 
+Taxes wth UB deducted: 25000 
+Final Income: 55000
+
+Income: 90000 
+Taxes Owed: 45000 
+Taxed Income: 45000 
+Taxes wth UB deducted: 30000 
+Final Income: 60000
+
+Income: 100000 
+Taxes Owed: 50000 
+Taxed Income: 50000 
+Taxes wth UB deducted: 35000 
+Final Income: 65000
+
+Income: 110000 
+Taxes Owed: 55000 
+Taxed Income: 55000 
+Taxes wth UB deducted: 40000 
+Final Income: 70000
+
+Income: 120000 
+Taxes Owed: 60000 
+Taxed Income: 60000 
+Taxes wth UB deducted: 45000 
+Final Income: 75000
+
+Income: 130000 
+Taxes Owed: 65000 
+Taxed Income: 65000 
+Taxes wth UB deducted: 50000 
+Final Income: 80000
+
+Income: 140000 
+Taxes Owed: 70000 
+Taxed Income: 70000 
+Taxes wth UB deducted: 55000 
+Final Income: 85000
+
+Income: 150000 
+Taxes Owed: 75000 
+Taxed Income: 75000 
+Taxes wth UB deducted: 60000 
+Final Income: 90000
+
+Income: 160000 
+Taxes Owed: 80000 
+Taxed Income: 80000 
+Taxes wth UB deducted: 65000 
+Final Income: 95000
+
+Income: 170000 
+Taxes Owed: 85000 
+Taxed Income: 85000 
+Taxes wth UB deducted: 70000 
+Final Income: 100000
+
+Income: 180000 
+Taxes Owed: 90000 
+Taxed Income: 90000 
+Taxes wth UB deducted: 75000 
+Final Income: 105000
+
+Income: 190000 
+Taxes Owed: 95000 
+Taxed Income: 95000 
+Taxes wth UB deducted: 80000 
+Final Income: 110000
+
+Income: 200000 
+Taxes Owed: 100000 
+Taxed Income: 100000 
+Taxes wth UB deducted: 85000 
+Final Income: 115000
+
+Income: 210000 
+Taxes Owed: 105000 
+Taxed Income: 105000 
+Taxes wth UB deducted: 90000 
+Final Income: 120000
+
+Income: 220000 
+Taxes Owed: 110000 
+Taxed Income: 110000 
+Taxes wth UB deducted: 95000 
+Final Income: 125000
+
+Income: 230000 
+Taxes Owed: 115000 
+Taxed Income: 115000 
+Taxes wth UB deducted: 100000 
+Final Income: 130000
+
+Income: 240000 
+Taxes Owed: 120000 
+Taxed Income: 120000 
+Taxes wth UB deducted: 105000 
+Final Income: 135000
+
+Income: 250000 
+Taxes Owed: 125000 
+Taxed Income: 125000 
+Taxes wth UB deducted: 110000 
+Final Income: 140000
+
+Income: 260000 
+Taxes Owed: 130000 
+Taxed Income: 130000 
+Taxes wth UB deducted: 115000 
+Final Income: 145000
+
+Income: 270000 
+Taxes Owed: 135000 
+Taxed Income: 135000 
+Taxes wth UB deducted: 120000 
+Final Income: 150000
+
+Income: 280000 
+Taxes Owed: 140000 
+Taxed Income: 140000 
+Taxes wth UB deducted: 125000 
+Final Income: 155000
+
+Income: 290000 
+Taxes Owed: 145000 
+Taxed Income: 145000 
+Taxes wth UB deducted: 130000 
+Final Income: 160000
+
+Income: 300000 
+Taxes Owed: 150000 
+Taxed Income: 150000 
+Taxes wth UB deducted: 135000 
+Final Income: 165000
+
+Income: 310000 
+Taxes Owed: 155000 
+Taxed Income: 155000 
+Taxes wth UB deducted: 140000 
+Final Income: 170000
+
+Income: 320000 
+Taxes Owed: 160000 
+Taxed Income: 160000 
+Taxes wth UB deducted: 145000 
+Final Income: 175000
+
+Income: 330000 
+Taxes Owed: 165000 
+Taxed Income: 165000 
+Taxes wth UB deducted: 150000 
+Final Income: 180000
+
+Income: 340000 
+Taxes Owed: 170000 
+Taxed Income: 170000 
+Taxes wth UB deducted: 155000 
+Final Income: 185000
+
+Income: 350000 
+Taxes Owed: 175000 
+Taxed Income: 175000 
+Taxes wth UB deducted: 160000 
+Final Income: 190000
+
+Income: 360000 
+Taxes Owed: 180000 
+Taxed Income: 180000 
+Taxes wth UB deducted: 165000 
+Final Income: 195000
+
+Income: 370000 
+Taxes Owed: 185000 
+Taxed Income: 185000 
+Taxes wth UB deducted: 170000 
+Final Income: 200000
+
+Income: 380000 
+Taxes Owed: 190000 
+Taxed Income: 190000 
+Taxes wth UB deducted: 175000 
+Final Income: 205000
+
+Income: 390000 
+Taxes Owed: 195000 
+Taxed Income: 195000 
+Taxes wth UB deducted: 180000 
+Final Income: 210000
+
+Income: 400000 
+Taxes Owed: 200000 
+Taxed Income: 200000 
+Taxes wth UB deducted: 185000 
+Final Income: 215000
+
+Income: 410000 
+Taxes Owed: 205000 
+Taxed Income: 205000 
+Taxes wth UB deducted: 190000 
+Final Income: 220000
+
+Income: 420000 
+Taxes Owed: 210000 
+Taxed Income: 210000 
+Taxes wth UB deducted: 195000 
+Final Income: 225000
+
+Income: 430000 
+Taxes Owed: 215000 
+Taxed Income: 215000 
+Taxes wth UB deducted: 200000 
+Final Income: 230000
+
+Income: 440000 
+Taxes Owed: 220000 
+Taxed Income: 220000 
+Taxes wth UB deducted: 205000 
+Final Income: 235000
+
+Income: 450000 
+Taxes Owed: 225000 
+Taxed Income: 225000 
+Taxes wth UB deducted: 210000 
+Final Income: 240000
+
+Income: 460000 
+Taxes Owed: 230000 
+Taxed Income: 230000 
+Taxes wth UB deducted: 215000 
+Final Income: 245000
+
+Income: 470000 
+Taxes Owed: 235000 
+Taxed Income: 235000 
+Taxes wth UB deducted: 220000 
+Final Income: 250000
+
+Income: 480000 
+Taxes Owed: 240000 
+Taxed Income: 240000 
+Taxes wth UB deducted: 225000 
+Final Income: 255000
+
+Income: 490000 
+Taxes Owed: 245000 
+Taxed Income: 245000 
+Taxes wth UB deducted: 230000 
+Final Income: 260000
+
+Income: 500000 
+Taxes Owed: 250000 
+Taxed Income: 250000 
+Taxes wth UB deducted: 235000 
+Final Income: 265000
+
+Income: 510000 
+Taxes Owed: 255000 
+Taxed Income: 255000 
+Taxes wth UB deducted: 240000 
+Final Income: 270000
+
+Income: 520000 
+Taxes Owed: 260000 
+Taxed Income: 260000 
+Taxes wth UB deducted: 245000 
+Final Income: 275000
+
+Income: 530000 
+Taxes Owed: 265000 
+Taxed Income: 265000 
+Taxes wth UB deducted: 250000 
+Final Income: 280000
+
+Income: 540000 
+Taxes Owed: 270000 
+Taxed Income: 270000 
+Taxes wth UB deducted: 255000 
+Final Income: 285000
+
+Income: 550000 
+Taxes Owed: 275000 
+Taxed Income: 275000 
+Taxes wth UB deducted: 260000 
+Final Income: 290000
+
+Income: 560000 
+Taxes Owed: 280000 
+Taxed Income: 280000 
+Taxes wth UB deducted: 265000 
+Final Income: 295000
+
+Income: 570000 
+Taxes Owed: 285000 
+Taxed Income: 285000 
+Taxes wth UB deducted: 270000 
+Final Income: 300000
+
+Income: 580000 
+Taxes Owed: 290000 
+Taxed Income: 290000 
+Taxes wth UB deducted: 275000 
+Final Income: 305000
+
+Income: 590000 
+Taxes Owed: 295000 
+Taxed Income: 295000 
+Taxes wth UB deducted: 280000 
+Final Income: 310000
+
+Income: 600000 
+Taxes Owed: 300000 
+Taxed Income: 300000 
+Taxes wth UB deducted: 285000 
+Final Income: 315000
+
+Income: 610000 
+Taxes Owed: 305000 
+Taxed Income: 305000 
+Taxes wth UB deducted: 290000 
+Final Income: 320000
+
+Income: 620000 
+Taxes Owed: 310000 
+Taxed Income: 310000 
+Taxes wth UB deducted: 295000 
+Final Income: 325000
+
+Income: 630000 
+Taxes Owed: 315000 
+Taxed Income: 315000 
+Taxes wth UB deducted: 300000 
+Final Income: 330000
+
+Income: 640000 
+Taxes Owed: 320000 
+Taxed Income: 320000 
+Taxes wth UB deducted: 305000 
+Final Income: 335000
+
+Income: 650000 
+Taxes Owed: 325000 
+Taxed Income: 325000 
+Taxes wth UB deducted: 310000 
+Final Income: 340000
+
+Income: 660000 
+Taxes Owed: 330000 
+Taxed Income: 330000 
+Taxes wth UB deducted: 315000 
+Final Income: 345000
+
+Income: 670000 
+Taxes Owed: 335000 
+Taxed Income: 335000 
+Taxes wth UB deducted: 320000 
+Final Income: 350000
+
+Income: 680000 
+Taxes Owed: 340000 
+Taxed Income: 340000 
+Taxes wth UB deducted: 325000 
+Final Income: 355000
+
+Income: 690000 
+Taxes Owed: 345000 
+Taxed Income: 345000 
+Taxes wth UB deducted: 330000 
+Final Income: 360000
+
+Income: 700000 
+Taxes Owed: 350000 
+Taxed Income: 350000 
+Taxes wth UB deducted: 335000 
+Final Income: 365000
+
+Income: 710000 
+Taxes Owed: 355000 
+Taxed Income: 355000 
+Taxes wth UB deducted: 340000 
+Final Income: 370000
+
+Income: 720000 
+Taxes Owed: 360000 
+Taxed Income: 360000 
+Taxes wth UB deducted: 345000 
+Final Income: 375000
+
+Income: 730000 
+Taxes Owed: 365000 
+Taxed Income: 365000 
+Taxes wth UB deducted: 350000 
+Final Income: 380000
+
+Income: 740000 
+Taxes Owed: 370000 
+Taxed Income: 370000 
+Taxes wth UB deducted: 355000 
+Final Income: 385000
+
+Income: 750000 
+Taxes Owed: 375000 
+Taxed Income: 375000 
+Taxes wth UB deducted: 360000 
+Final Income: 390000
+
+Income: 760000 
+Taxes Owed: 380000 
+Taxed Income: 380000 
+Taxes wth UB deducted: 365000 
+Final Income: 395000
+
+Income: 770000 
+Taxes Owed: 385000 
+Taxed Income: 385000 
+Taxes wth UB deducted: 370000 
+Final Income: 400000
+
+Income: 780000 
+Taxes Owed: 390000 
+Taxed Income: 390000 
+Taxes wth UB deducted: 375000 
+Final Income: 405000
+
+Income: 790000 
+Taxes Owed: 395000 
+Taxed Income: 395000 
+Taxes wth UB deducted: 380000 
+Final Income: 410000
+
+Income: 800000 
+Taxes Owed: 400000 
+Taxed Income: 400000 
+Taxes wth UB deducted: 385000 
+Final Income: 415000
+
+Income: 810000 
+Taxes Owed: 405000 
+Taxed Income: 405000 
+Taxes wth UB deducted: 390000 
+Final Income: 420000
+
+Income: 820000 
+Taxes Owed: 410000 
+Taxed Income: 410000 
+Taxes wth UB deducted: 395000 
+Final Income: 425000
+
+Income: 830000 
+Taxes Owed: 415000 
+Taxed Income: 415000 
+Taxes wth UB deducted: 400000 
+Final Income: 430000
+
+Income: 840000 
+Taxes Owed: 420000 
+Taxed Income: 420000 
+Taxes wth UB deducted: 405000 
+Final Income: 435000
+
+Income: 850000 
+Taxes Owed: 425000 
+Taxed Income: 425000 
+Taxes wth UB deducted: 410000 
+Final Income: 440000
+
+Income: 860000 
+Taxes Owed: 430000 
+Taxed Income: 430000 
+Taxes wth UB deducted: 415000 
+Final Income: 445000
+
+Income: 870000 
+Taxes Owed: 435000 
+Taxed Income: 435000 
+Taxes wth UB deducted: 420000 
+Final Income: 450000
+
+Income: 880000 
+Taxes Owed: 440000 
+Taxed Income: 440000 
+Taxes wth UB deducted: 425000 
+Final Income: 455000
+
+Income: 890000 
+Taxes Owed: 445000 
+Taxed Income: 445000 
+Taxes wth UB deducted: 430000 
+Final Income: 460000
+
+Income: 900000 
+Taxes Owed: 450000 
+Taxed Income: 450000 
+Taxes wth UB deducted: 435000 
+Final Income: 465000
+
+Income: 910000 
+Taxes Owed: 455000 
+Taxed Income: 455000 
+Taxes wth UB deducted: 440000 
+Final Income: 470000
+
+Income: 920000 
+Taxes Owed: 460000 
+Taxed Income: 460000 
+Taxes wth UB deducted: 445000 
+Final Income: 475000
+
+Income: 930000 
+Taxes Owed: 465000 
+Taxed Income: 465000 
+Taxes wth UB deducted: 450000 
+Final Income: 480000
+
+Income: 940000 
+Taxes Owed: 470000 
+Taxed Income: 470000 
+Taxes wth UB deducted: 455000 
+Final Income: 485000
+
+Income: 950000 
+Taxes Owed: 475000 
+Taxed Income: 475000 
+Taxes wth UB deducted: 460000 
+Final Income: 490000
+
+Income: 960000 
+Taxes Owed: 480000 
+Taxed Income: 480000 
+Taxes wth UB deducted: 465000 
+Final Income: 495000
+
+Income: 970000 
+Taxes Owed: 485000 
+Taxed Income: 485000 
+Taxes wth UB deducted: 470000 
+Final Income: 500000
+
+Income: 980000 
+Taxes Owed: 490000 
+Taxed Income: 490000 
+Taxes wth UB deducted: 475000 
+Final Income: 505000
+
+Income: 990000 
+Taxes Owed: 495000 
+Taxed Income: 495000 
+Taxes wth UB deducted: 480000 
+Final Income: 510000
+
+Income: 1000000 
+Taxes Owed: 500000 
+Taxed Income: 500000 
+Taxes wth UB deducted: 485000 
+Final Income: 515000
+
+Income: 1010000 
+Taxes Owed: 505000 
+Taxed Income: 505000 
+Taxes wth UB deducted: 490000 
+Final Income: 520000
+
+Income: 1020000 
+Taxes Owed: 510000 
+Taxed Income: 510000 
+Taxes wth UB deducted: 495000 
+Final Income: 525000
+
+Income: 1030000 
+Taxes Owed: 515000 
+Taxed Income: 515000 
+Taxes wth UB deducted: 500000 
+Final Income: 530000
+
+Income: 1040000 
+Taxes Owed: 520000 
+Taxed Income: 520000 
+Taxes wth UB deducted: 505000 
+Final Income: 535000
+
+Income: 1050000 
+Taxes Owed: 525000 
+Taxed Income: 525000 
+Taxes wth UB deducted: 510000 
+Final Income: 540000
+
+Income: 1060000 
+Taxes Owed: 530000 
+Taxed Income: 530000 
+Taxes wth UB deducted: 515000 
+Final Income: 545000
+
+Income: 1070000 
+Taxes Owed: 535000 
+Taxed Income: 535000 
+Taxes wth UB deducted: 520000 
+Final Income: 550000
+
+Income: 1080000 
+Taxes Owed: 540000 
+Taxed Income: 540000 
+Taxes wth UB deducted: 525000 
+Final Income: 555000
+
+Income: 1090000 
+Taxes Owed: 545000 
+Taxed Income: 545000 
+Taxes wth UB deducted: 530000 
+Final Income: 560000
+
+Income: 1100000 
+Taxes Owed: 550000 
+Taxed Income: 550000 
+Taxes wth UB deducted: 535000 
+Final Income: 565000
+
+Income: 1110000 
+Taxes Owed: 555000 
+Taxed Income: 555000 
+Taxes wth UB deducted: 540000 
+Final Income: 570000
+
+Income: 1120000 
+Taxes Owed: 560000 
+Taxed Income: 560000 
+Taxes wth UB deducted: 545000 
+Final Income: 575000
+
+Income: 1130000 
+Taxes Owed: 565000 
+Taxed Income: 565000 
+Taxes wth UB deducted: 550000 
+Final Income: 580000
+
+Income: 1140000 
+Taxes Owed: 570000 
+Taxed Income: 570000 
+Taxes wth UB deducted: 555000 
+Final Income: 585000
+
+Income: 1150000 
+Taxes Owed: 575000 
+Taxed Income: 575000 
+Taxes wth UB deducted: 560000 
+Final Income: 590000
+
+Income: 1160000 
+Taxes Owed: 580000 
+Taxed Income: 580000 
+Taxes wth UB deducted: 565000 
+Final Income: 595000
+
+Income: 1170000 
+Taxes Owed: 585000 
+Taxed Income: 585000 
+Taxes wth UB deducted: 570000 
+Final Income: 600000
+
+Income: 1180000 
+Taxes Owed: 590000 
+Taxed Income: 590000 
+Taxes wth UB deducted: 575000 
+Final Income: 605000
+
+Income: 1190000 
+Taxes Owed: 595000 
+Taxed Income: 595000 
+Taxes wth UB deducted: 580000 
+Final Income: 610000
+
+Income: 1200000 
+Taxes Owed: 600000 
+Taxed Income: 600000 
+Taxes wth UB deducted: 585000 
+Final Income: 615000
+
+Income: 1210000 
+Taxes Owed: 605000 
+Taxed Income: 605000 
+Taxes wth UB deducted: 590000 
+Final Income: 620000
+
+Income: 1220000 
+Taxes Owed: 610000 
+Taxed Income: 610000 
+Taxes wth UB deducted: 595000 
+Final Income: 625000
+
+Income: 1230000 
+Taxes Owed: 615000 
+Taxed Income: 615000 
+Taxes wth UB deducted: 600000 
+Final Income: 630000
+
+Income: 1240000 
+Taxes Owed: 620000 
+Taxed Income: 620000 
+Taxes wth UB deducted: 605000 
+Final Income: 635000
+
+Income: 1250000 
+Taxes Owed: 625000 
+Taxed Income: 625000 
+Taxes wth UB deducted: 610000 
+Final Income: 640000
+
+Income: 1260000 
+Taxes Owed: 630000 
+Taxed Income: 630000 
+Taxes wth UB deducted: 615000 
+Final Income: 645000
+
+Income: 1270000 
+Taxes Owed: 635000 
+Taxed Income: 635000 
+Taxes wth UB deducted: 620000 
+Final Income: 650000
+
+Income: 1280000 
+Taxes Owed: 640000 
+Taxed Income: 640000 
+Taxes wth UB deducted: 625000 
+Final Income: 655000
+
+Income: 1290000 
+Taxes Owed: 645000 
+Taxed Income: 645000 
+Taxes wth UB deducted: 630000 
+Final Income: 660000
+
+Income: 1300000 
+Taxes Owed: 650000 
+Taxed Income: 650000 
+Taxes wth UB deducted: 635000 
+Final Income: 665000
+
+Income: 1310000 
+Taxes Owed: 655000 
+Taxed Income: 655000 
+Taxes wth UB deducted: 640000 
+Final Income: 670000
+
+Income: 1320000 
+Taxes Owed: 660000 
+Taxed Income: 660000 
+Taxes wth UB deducted: 645000 
+Final Income: 675000
+
+Income: 1330000 
+Taxes Owed: 665000 
+Taxed Income: 665000 
+Taxes wth UB deducted: 650000 
+Final Income: 680000
+
+Income: 1340000 
+Taxes Owed: 670000 
+Taxed Income: 670000 
+Taxes wth UB deducted: 655000 
+Final Income: 685000
+
+Income: 1350000 
+Taxes Owed: 675000 
+Taxed Income: 675000 
+Taxes wth UB deducted: 660000 
+Final Income: 690000
+
+Income: 1360000 
+Taxes Owed: 680000 
+Taxed Income: 680000 
+Taxes wth UB deducted: 665000 
+Final Income: 695000
+
+Income: 1370000 
+Taxes Owed: 685000 
+Taxed Income: 685000 
+Taxes wth UB deducted: 670000 
+Final Income: 700000
+
+Income: 1380000 
+Taxes Owed: 690000 
+Taxed Income: 690000 
+Taxes wth UB deducted: 675000 
+Final Income: 705000
+
+Income: 1390000 
+Taxes Owed: 695000 
+Taxed Income: 695000 
+Taxes wth UB deducted: 680000 
+Final Income: 710000
+
+Income: 1400000 
+Taxes Owed: 700000 
+Taxed Income: 700000 
+Taxes wth UB deducted: 685000 
+Final Income: 715000
+
+Income: 1410000 
+Taxes Owed: 705000 
+Taxed Income: 705000 
+Taxes wth UB deducted: 690000 
+Final Income: 720000
+
+Income: 1420000 
+Taxes Owed: 710000 
+Taxed Income: 710000 
+Taxes wth UB deducted: 695000 
+Final Income: 725000
+
+Income: 1430000 
+Taxes Owed: 715000 
+Taxed Income: 715000 
+Taxes wth UB deducted: 700000 
+Final Income: 730000
+
+Income: 1440000 
+Taxes Owed: 720000 
+Taxed Income: 720000 
+Taxes wth UB deducted: 705000 
+Final Income: 735000
+
+Income: 1450000 
+Taxes Owed: 725000 
+Taxed Income: 725000 
+Taxes wth UB deducted: 710000 
+Final Income: 740000
+
+Income: 1460000 
+Taxes Owed: 730000 
+Taxed Income: 730000 
+Taxes wth UB deducted: 715000 
+Final Income: 745000
+
+Income: 1470000 
+Taxes Owed: 735000 
+Taxed Income: 735000 
+Taxes wth UB deducted: 720000 
+Final Income: 750000
+
+Income: 1480000 
+Taxes Owed: 740000 
+Taxed Income: 740000 
+Taxes wth UB deducted: 725000 
+Final Income: 755000
+
+Income: 1490000 
+Taxes Owed: 745000 
+Taxed Income: 745000 
+Taxes wth UB deducted: 730000 
+Final Income: 760000
+
+Income: 1500000 
+Taxes Owed: 750000 
+Taxed Income: 750000 
+Taxes wth UB deducted: 735000 
+Final Income: 765000
+
+Income: 1510000 
+Taxes Owed: 755000 
+Taxed Income: 755000 
+Taxes wth UB deducted: 740000 
+Final Income: 770000
+
+Income: 1520000 
+Taxes Owed: 760000 
+Taxed Income: 760000 
+Taxes wth UB deducted: 745000 
+Final Income: 775000
+
+Income: 1530000 
+Taxes Owed: 765000 
+Taxed Income: 765000 
+Taxes wth UB deducted: 750000 
+Final Income: 780000
+
+Income: 1540000 
+Taxes Owed: 770000 
+Taxed Income: 770000 
+Taxes wth UB deducted: 755000 
+Final Income: 785000
+
+Income: 1550000 
+Taxes Owed: 775000 
+Taxed Income: 775000 
+Taxes wth UB deducted: 760000 
+Final Income: 790000
+
+Income: 1560000 
+Taxes Owed: 780000 
+Taxed Income: 780000 
+Taxes wth UB deducted: 765000 
+Final Income: 795000
+
+Income: 1570000 
+Taxes Owed: 785000 
+Taxed Income: 785000 
+Taxes wth UB deducted: 770000 
+Final Income: 800000
+
+Income: 1580000 
+Taxes Owed: 790000 
+Taxed Income: 790000 
+Taxes wth UB deducted: 775000 
+Final Income: 805000
+
+Income: 1590000 
+Taxes Owed: 795000 
+Taxed Income: 795000 
+Taxes wth UB deducted: 780000 
+Final Income: 810000
+
+Income: 1600000 
+Taxes Owed: 800000 
+Taxed Income: 800000 
+Taxes wth UB deducted: 785000 
+Final Income: 815000
+
+Income: 1610000 
+Taxes Owed: 805000 
+Taxed Income: 805000 
+Taxes wth UB deducted: 790000 
+Final Income: 820000
+
+Income: 1620000 
+Taxes Owed: 810000 
+Taxed Income: 810000 
+Taxes wth UB deducted: 795000 
+Final Income: 825000
+
+Income: 1630000 
+Taxes Owed: 815000 
+Taxed Income: 815000 
+Taxes wth UB deducted: 800000 
+Final Income: 830000
+
+Income: 1640000 
+Taxes Owed: 820000 
+Taxed Income: 820000 
+Taxes wth UB deducted: 805000 
+Final Income: 835000
+
+Income: 1650000 
+Taxes Owed: 825000 
+Taxed Income: 825000 
+Taxes wth UB deducted: 810000 
+Final Income: 840000
+
+Income: 1660000 
+Taxes Owed: 830000 
+Taxed Income: 830000 
+Taxes wth UB deducted: 815000 
+Final Income: 845000
+
+Income: 1670000 
+Taxes Owed: 835000 
+Taxed Income: 835000 
+Taxes wth UB deducted: 820000 
+Final Income: 850000
+
+Income: 1680000 
+Taxes Owed: 840000 
+Taxed Income: 840000 
+Taxes wth UB deducted: 825000 
+Final Income: 855000
+
+Income: 1690000 
+Taxes Owed: 845000 
+Taxed Income: 845000 
+Taxes wth UB deducted: 830000 
+Final Income: 860000
+
+Income: 1700000 
+Taxes Owed: 850000 
+Taxed Income: 850000 
+Taxes wth UB deducted: 835000 
+Final Income: 865000
+
+Income: 1710000 
+Taxes Owed: 855000 
+Taxed Income: 855000 
+Taxes wth UB deducted: 840000 
+Final Income: 870000
+
+Income: 1720000 
+Taxes Owed: 860000 
+Taxed Income: 860000 
+Taxes wth UB deducted: 845000 
+Final Income: 875000
+
+Income: 1730000 
+Taxes Owed: 865000 
+Taxed Income: 865000 
+Taxes wth UB deducted: 850000 
+Final Income: 880000
+
+Income: 1740000 
+Taxes Owed: 870000 
+Taxed Income: 870000 
+Taxes wth UB deducted: 855000 
+Final Income: 885000
+
+Income: 1750000 
+Taxes Owed: 875000 
+Taxed Income: 875000 
+Taxes wth UB deducted: 860000 
+Final Income: 890000
+
+Income: 1760000 
+Taxes Owed: 880000 
+Taxed Income: 880000 
+Taxes wth UB deducted: 865000 
+Final Income: 895000
+
+Income: 1770000 
+Taxes Owed: 885000 
+Taxed Income: 885000 
+Taxes wth UB deducted: 870000 
+Final Income: 900000
+
+Income: 1780000 
+Taxes Owed: 890000 
+Taxed Income: 890000 
+Taxes wth UB deducted: 875000 
+Final Income: 905000
+
+Income: 1790000 
+Taxes Owed: 895000 
+Taxed Income: 895000 
+Taxes wth UB deducted: 880000 
+Final Income: 910000
+
+Income: 1800000 
+Taxes Owed: 900000 
+Taxed Income: 900000 
+Taxes wth UB deducted: 885000 
+Final Income: 915000
+
+Income: 1810000 
+Taxes Owed: 905000 
+Taxed Income: 905000 
+Taxes wth UB deducted: 890000 
+Final Income: 920000
+
+Income: 1820000 
+Taxes Owed: 910000 
+Taxed Income: 910000 
+Taxes wth UB deducted: 895000 
+Final Income: 925000
+
+Income: 1830000 
+Taxes Owed: 915000 
+Taxed Income: 915000 
+Taxes wth UB deducted: 900000 
+Final Income: 930000
+
+Income: 1840000 
+Taxes Owed: 920000 
+Taxed Income: 920000 
+Taxes wth UB deducted: 905000 
+Final Income: 935000
+
+Income: 1850000 
+Taxes Owed: 925000 
+Taxed Income: 925000 
+Taxes wth UB deducted: 910000 
+Final Income: 940000
+
+Income: 1860000 
+Taxes Owed: 930000 
+Taxed Income: 930000 
+Taxes wth UB deducted: 915000 
+Final Income: 945000
+
+Income: 1870000 
+Taxes Owed: 935000 
+Taxed Income: 935000 
+Taxes wth UB deducted: 920000 
+Final Income: 950000
+
+Income: 1880000 
+Taxes Owed: 940000 
+Taxed Income: 940000 
+Taxes wth UB deducted: 925000 
+Final Income: 955000
+
+Income: 1890000 
+Taxes Owed: 945000 
+Taxed Income: 945000 
+Taxes wth UB deducted: 930000 
+Final Income: 960000
+
+Income: 1900000 
+Taxes Owed: 950000 
+Taxed Income: 950000 
+Taxes wth UB deducted: 935000 
+Final Income: 965000
+
+Income: 1910000 
+Taxes Owed: 955000 
+Taxed Income: 955000 
+Taxes wth UB deducted: 940000 
+Final Income: 970000
+
+Income: 1920000 
+Taxes Owed: 960000 
+Taxed Income: 960000 
+Taxes wth UB deducted: 945000 
+Final Income: 975000
+
+Income: 1930000 
+Taxes Owed: 965000 
+Taxed Income: 965000 
+Taxes wth UB deducted: 950000 
+Final Income: 980000
+
+Income: 1940000 
+Taxes Owed: 970000 
+Taxed Income: 970000 
+Taxes wth UB deducted: 955000 
+Final Income: 985000
+
+Income: 1950000 
+Taxes Owed: 975000 
+Taxed Income: 975000 
+Taxes wth UB deducted: 960000 
+Final Income: 990000
+
+Income: 1960000 
+Taxes Owed: 980000 
+Taxed Income: 980000 
+Taxes wth UB deducted: 965000 
+Final Income: 995000
+
+Income: 1970000 
+Taxes Owed: 985000 
+Taxed Income: 985000 
+Taxes wth UB deducted: 970000 
+Final Income: 1000000
+
+Income: 1980000 
+Taxes Owed: 990000 
+Taxed Income: 990000 
+Taxes wth UB deducted: 975000 
+Final Income: 1005000
+
+Income: 1990000 
+Taxes Owed: 995000 
+Taxed Income: 995000 
+Taxes wth UB deducted: 980000 
+Final Income: 1010000
+
+Income: 2000000 
+Taxes Owed: 1000000 
+Taxed Income: 1000000 
+Taxes wth UB deducted: 985000 
+Final Income: 1015000
+
+Income: 2010000 
+Taxes Owed: 1005000 
+Taxed Income: 1005000 
+Taxes wth UB deducted: 990000 
+Final Income: 1020000
+
+Income: 2020000 
+Taxes Owed: 1010000 
+Taxed Income: 1010000 
+Taxes wth UB deducted: 995000 
+Final Income: 1025000
+
+Income: 2030000 
+Taxes Owed: 1015000 
+Taxed Income: 1015000 
+Taxes wth UB deducted: 1000000 
+Final Income: 1030000
+
+Income: 2040000 
+Taxes Owed: 1020000 
+Taxed Income: 1020000 
+Taxes wth UB deducted: 1005000 
+Final Income: 1035000
+
+Income: 2050000 
+Taxes Owed: 1025000 
+Taxed Income: 1025000 
+Taxes wth UB deducted: 1010000 
+Final Income: 1040000
+
+Income: 2060000 
+Taxes Owed: 1030000 
+Taxed Income: 1030000 
+Taxes wth UB deducted: 1015000 
+Final Income: 1045000
+
+Income: 2070000 
+Taxes Owed: 1035000 
+Taxed Income: 1035000 
+Taxes wth UB deducted: 1020000 
+Final Income: 1050000
+
+Income: 2080000 
+Taxes Owed: 1040000 
+Taxed Income: 1040000 
+Taxes wth UB deducted: 1025000 
+Final Income: 1055000
+
+Income: 2090000 
+Taxes Owed: 1045000 
+Taxed Income: 1045000 
+Taxes wth UB deducted: 1030000 
+Final Income: 1060000
+
+Income: 2100000 
+Taxes Owed: 1050000 
+Taxed Income: 1050000 
+Taxes wth UB deducted: 1035000 
+Final Income: 1065000
+
+Income: 2110000 
+Taxes Owed: 1055000 
+Taxed Income: 1055000 
+Taxes wth UB deducted: 1040000 
+Final Income: 1070000
+
+Income: 2120000 
+Taxes Owed: 1060000 
+Taxed Income: 1060000 
+Taxes wth UB deducted: 1045000 
+Final Income: 1075000
+
+Income: 2130000 
+Taxes Owed: 1065000 
+Taxed Income: 1065000 
+Taxes wth UB deducted: 1050000 
+Final Income: 1080000
+
+Income: 2140000 
+Taxes Owed: 1070000 
+Taxed Income: 1070000 
+Taxes wth UB deducted: 1055000 
+Final Income: 1085000
+
+Income: 2150000 
+Taxes Owed: 1075000 
+Taxed Income: 1075000 
+Taxes wth UB deducted: 1060000 
+Final Income: 1090000
+
+Income: 2160000 
+Taxes Owed: 1080000 
+Taxed Income: 1080000 
+Taxes wth UB deducted: 1065000 
+Final Income: 1095000
+
+Income: 2170000 
+Taxes Owed: 1085000 
+Taxed Income: 1085000 
+Taxes wth UB deducted: 1070000 
+Final Income: 1100000
+
+Income: 2180000 
+Taxes Owed: 1090000 
+Taxed Income: 1090000 
+Taxes wth UB deducted: 1075000 
+Final Income: 1105000
+
+Income: 2190000 
+Taxes Owed: 1095000 
+Taxed Income: 1095000 
+Taxes wth UB deducted: 1080000 
+Final Income: 1110000
+
+Income: 2200000 
+Taxes Owed: 1100000 
+Taxed Income: 1100000 
+Taxes wth UB deducted: 1085000 
+Final Income: 1115000
+
+Income: 2210000 
+Taxes Owed: 1105000 
+Taxed Income: 1105000 
+Taxes wth UB deducted: 1090000 
+Final Income: 1120000
+
+Income: 2220000 
+Taxes Owed: 1110000 
+Taxed Income: 1110000 
+Taxes wth UB deducted: 1095000 
+Final Income: 1125000
+
+Income: 2230000 
+Taxes Owed: 1115000 
+Taxed Income: 1115000 
+Taxes wth UB deducted: 1100000 
+Final Income: 1130000
+
+Income: 2240000 
+Taxes Owed: 1120000 
+Taxed Income: 1120000 
+Taxes wth UB deducted: 1105000 
+Final Income: 1135000
+
+Income: 2250000 
+Taxes Owed: 1125000 
+Taxed Income: 1125000 
+Taxes wth UB deducted: 1110000 
+Final Income: 1140000
+
+Income: 2260000 
+Taxes Owed: 1130000 
+Taxed Income: 1130000 
+Taxes wth UB deducted: 1115000 
+Final Income: 1145000
+
+Income: 2270000 
+Taxes Owed: 1135000 
+Taxed Income: 1135000 
+Taxes wth UB deducted: 1120000 
+Final Income: 1150000
+
+Income: 2280000 
+Taxes Owed: 1140000 
+Taxed Income: 1140000 
+Taxes wth UB deducted: 1125000 
+Final Income: 1155000
+
+Income: 2290000 
+Taxes Owed: 1145000 
+Taxed Income: 1145000 
+Taxes wth UB deducted: 1130000 
+Final Income: 1160000
+
+Income: 2300000 
+Taxes Owed: 1150000 
+Taxed Income: 1150000 
+Taxes wth UB deducted: 1135000 
+Final Income: 1165000
+
+Income: 2310000 
+Taxes Owed: 1155000 
+Taxed Income: 1155000 
+Taxes wth UB deducted: 1140000 
+Final Income: 1170000
+
+Income: 2320000 
+Taxes Owed: 1160000 
+Taxed Income: 1160000 
+Taxes wth UB deducted: 1145000 
+Final Income: 1175000
+
+Income: 2330000 
+Taxes Owed: 1165000 
+Taxed Income: 1165000 
+Taxes wth UB deducted: 1150000 
+Final Income: 1180000
+
+Income: 2340000 
+Taxes Owed: 1170000 
+Taxed Income: 1170000 
+Taxes wth UB deducted: 1155000 
+Final Income: 1185000
+
+Income: 2350000 
+Taxes Owed: 1175000 
+Taxed Income: 1175000 
+Taxes wth UB deducted: 1160000 
+Final Income: 1190000
+
+Income: 2360000 
+Taxes Owed: 1180000 
+Taxed Income: 1180000 
+Taxes wth UB deducted: 1165000 
+Final Income: 1195000
+
+Income: 2370000 
+Taxes Owed: 1185000 
+Taxed Income: 1185000 
+Taxes wth UB deducted: 1170000 
+Final Income: 1200000
+
+Income: 2380000 
+Taxes Owed: 1190000 
+Taxed Income: 1190000 
+Taxes wth UB deducted: 1175000 
+Final Income: 1205000
+
+Income: 2390000 
+Taxes Owed: 1195000 
+Taxed Income: 1195000 
+Taxes wth UB deducted: 1180000 
+Final Income: 1210000
+
+Income: 2400000 
+Taxes Owed: 1200000 
+Taxed Income: 1200000 
+Taxes wth UB deducted: 1185000 
+Final Income: 1215000
+
+Income: 2410000 
+Taxes Owed: 1205000 
+Taxed Income: 1205000 
+Taxes wth UB deducted: 1190000 
+Final Income: 1220000
+
+Income: 2420000 
+Taxes Owed: 1210000 
+Taxed Income: 1210000 
+Taxes wth UB deducted: 1195000 
+Final Income: 1225000
+
+Income: 2430000 
+Taxes Owed: 1215000 
+Taxed Income: 1215000 
+Taxes wth UB deducted: 1200000 
+Final Income: 1230000
+
+Income: 2440000 
+Taxes Owed: 1220000 
+Taxed Income: 1220000 
+Taxes wth UB deducted: 1205000 
+Final Income: 1235000
+
+Income: 2450000 
+Taxes Owed: 1225000 
+Taxed Income: 1225000 
+Taxes wth UB deducted: 1210000 
+Final Income: 1240000
+
+Income: 2460000 
+Taxes Owed: 1230000 
+Taxed Income: 1230000 
+Taxes wth UB deducted: 1215000 
+Final Income: 1245000
+
+Income: 2470000 
+Taxes Owed: 1235000 
+Taxed Income: 1235000 
+Taxes wth UB deducted: 1220000 
+Final Income: 1250000
+
+Income: 2480000 
+Taxes Owed: 1240000 
+Taxed Income: 1240000 
+Taxes wth UB deducted: 1225000 
+Final Income: 1255000
+
+Income: 2490000 
+Taxes Owed: 1245000 
+Taxed Income: 1245000 
+Taxes wth UB deducted: 1230000 
+Final Income: 1260000
+
+Income: 2500000 
+Taxes Owed: 1250000 
+Taxed Income: 1250000 
+Taxes wth UB deducted: 1235000 
+Final Income: 1265000
+
+Income: 2510000 
+Taxes Owed: 1255000 
+Taxed Income: 1255000 
+Taxes wth UB deducted: 1240000 
+Final Income: 1270000
+
+Income: 2520000 
+Taxes Owed: 1260000 
+Taxed Income: 1260000 
+Taxes wth UB deducted: 1245000 
+Final Income: 1275000
+
+Income: 2530000 
+Taxes Owed: 1265000 
+Taxed Income: 1265000 
+Taxes wth UB deducted: 1250000 
+Final Income: 1280000
+
+Income: 2540000 
+Taxes Owed: 1270000 
+Taxed Income: 1270000 
+Taxes wth UB deducted: 1255000 
+Final Income: 1285000
+
+Income: 2550000 
+Taxes Owed: 1275000 
+Taxed Income: 1275000 
+Taxes wth UB deducted: 1260000 
+Final Income: 1290000
+
+Income: 2560000 
+Taxes Owed: 1280000 
+Taxed Income: 1280000 
+Taxes wth UB deducted: 1265000 
+Final Income: 1295000
+
+Income: 2570000 
+Taxes Owed: 1285000 
+Taxed Income: 1285000 
+Taxes wth UB deducted: 1270000 
+Final Income: 1300000
+
+Income: 2580000 
+Taxes Owed: 1290000 
+Taxed Income: 1290000 
+Taxes wth UB deducted: 1275000 
+Final Income: 1305000
+
+Income: 2590000 
+Taxes Owed: 1295000 
+Taxed Income: 1295000 
+Taxes wth UB deducted: 1280000 
+Final Income: 1310000
+
+Income: 2600000 
+Taxes Owed: 1300000 
+Taxed Income: 1300000 
+Taxes wth UB deducted: 1285000 
+Final Income: 1315000
+
+Income: 2610000 
+Taxes Owed: 1305000 
+Taxed Income: 1305000 
+Taxes wth UB deducted: 1290000 
+Final Income: 1320000
+
+Income: 2620000 
+Taxes Owed: 1310000 
+Taxed Income: 1310000 
+Taxes wth UB deducted: 1295000 
+Final Income: 1325000
+
+Income: 2630000 
+Taxes Owed: 1315000 
+Taxed Income: 1315000 
+Taxes wth UB deducted: 1300000 
+Final Income: 1330000
+
+Income: 2640000 
+Taxes Owed: 1320000 
+Taxed Income: 1320000 
+Taxes wth UB deducted: 1305000 
+Final Income: 1335000
+
+Income: 2650000 
+Taxes Owed: 1325000 
+Taxed Income: 1325000 
+Taxes wth UB deducted: 1310000 
+Final Income: 1340000
+
+Income: 2660000 
+Taxes Owed: 1330000 
+Taxed Income: 1330000 
+Taxes wth UB deducted: 1315000 
+Final Income: 1345000
+
+Income: 2670000 
+Taxes Owed: 1335000 
+Taxed Income: 1335000 
+Taxes wth UB deducted: 1320000 
+Final Income: 1350000
+
+Income: 2680000 
+Taxes Owed: 1340000 
+Taxed Income: 1340000 
+Taxes wth UB deducted: 1325000 
+Final Income: 1355000
+
+Income: 2690000 
+Taxes Owed: 1345000 
+Taxed Income: 1345000 
+Taxes wth UB deducted: 1330000 
+Final Income: 1360000
+
+Income: 2700000 
+Taxes Owed: 1350000 
+Taxed Income: 1350000 
+Taxes wth UB deducted: 1335000 
+Final Income: 1365000
+
+Income: 2710000 
+Taxes Owed: 1355000 
+Taxed Income: 1355000 
+Taxes wth UB deducted: 1340000 
+Final Income: 1370000
+
+Income: 2720000 
+Taxes Owed: 1360000 
+Taxed Income: 1360000 
+Taxes wth UB deducted: 1345000 
+Final Income: 1375000
+
+Income: 2730000 
+Taxes Owed: 1365000 
+Taxed Income: 1365000 
+Taxes wth UB deducted: 1350000 
+Final Income: 1380000
+
+Income: 2740000 
+Taxes Owed: 1370000 
+Taxed Income: 1370000 
+Taxes wth UB deducted: 1355000 
+Final Income: 1385000
+
+Income: 2750000 
+Taxes Owed: 1375000 
+Taxed Income: 1375000 
+Taxes wth UB deducted: 1360000 
+Final Income: 1390000
+
+Income: 2760000 
+Taxes Owed: 1380000 
+Taxed Income: 1380000 
+Taxes wth UB deducted: 1365000 
+Final Income: 1395000
+
+Income: 2770000 
+Taxes Owed: 1385000 
+Taxed Income: 1385000 
+Taxes wth UB deducted: 1370000 
+Final Income: 1400000
+
+Income: 2780000 
+Taxes Owed: 1390000 
+Taxed Income: 1390000 
+Taxes wth UB deducted: 1375000 
+Final Income: 1405000
+
+Income: 2790000 
+Taxes Owed: 1395000 
+Taxed Income: 1395000 
+Taxes wth UB deducted: 1380000 
+Final Income: 1410000
+
+Income: 2800000 
+Taxes Owed: 1400000 
+Taxed Income: 1400000 
+Taxes wth UB deducted: 1385000 
+Final Income: 1415000
+
+Income: 2810000 
+Taxes Owed: 1405000 
+Taxed Income: 1405000 
+Taxes wth UB deducted: 1390000 
+Final Income: 1420000
+
+Income: 2820000 
+Taxes Owed: 1410000 
+Taxed Income: 1410000 
+Taxes wth UB deducted: 1395000 
+Final Income: 1425000
+
+Income: 2830000 
+Taxes Owed: 1415000 
+Taxed Income: 1415000 
+Taxes wth UB deducted: 1400000 
+Final Income: 1430000
+
+Income: 2840000 
+Taxes Owed: 1420000 
+Taxed Income: 1420000 
+Taxes wth UB deducted: 1405000 
+Final Income: 1435000
+
+Income: 2850000 
+Taxes Owed: 1425000 
+Taxed Income: 1425000 
+Taxes wth UB deducted: 1410000 
+Final Income: 1440000
+
+Income: 2860000 
+Taxes Owed: 1430000 
+Taxed Income: 1430000 
+Taxes wth UB deducted: 1415000 
+Final Income: 1445000
+
+Income: 2870000 
+Taxes Owed: 1435000 
+Taxed Income: 1435000 
+Taxes wth UB deducted: 1420000 
+Final Income: 1450000
+
+Income: 2880000 
+Taxes Owed: 1440000 
+Taxed Income: 1440000 
+Taxes wth UB deducted: 1425000 
+Final Income: 1455000
+
+Income: 2890000 
+Taxes Owed: 1445000 
+Taxed Income: 1445000 
+Taxes wth UB deducted: 1430000 
+Final Income: 1460000
+
+Income: 2900000 
+Taxes Owed: 1450000 
+Taxed Income: 1450000 
+Taxes wth UB deducted: 1435000 
+Final Income: 1465000
+
+Income: 2910000 
+Taxes Owed: 1455000 
+Taxed Income: 1455000 
+Taxes wth UB deducted: 1440000 
+Final Income: 1470000
+
+Income: 2920000 
+Taxes Owed: 1460000 
+Taxed Income: 1460000 
+Taxes wth UB deducted: 1445000 
+Final Income: 1475000
+
+Income: 2930000 
+Taxes Owed: 1465000 
+Taxed Income: 1465000 
+Taxes wth UB deducted: 1450000 
+Final Income: 1480000
+
+Income: 2940000 
+Taxes Owed: 1470000 
+Taxed Income: 1470000 
+Taxes wth UB deducted: 1455000 
+Final Income: 1485000
+
+Income: 2950000 
+Taxes Owed: 1475000 
+Taxed Income: 1475000 
+Taxes wth UB deducted: 1460000 
+Final Income: 1490000
+
+Income: 2960000 
+Taxes Owed: 1480000 
+Taxed Income: 1480000 
+Taxes wth UB deducted: 1465000 
+Final Income: 1495000
+
+Income: 2970000 
+Taxes Owed: 1485000 
+Taxed Income: 1485000 
+Taxes wth UB deducted: 1470000 
+Final Income: 1500000
+
+Income: 2980000 
+Taxes Owed: 1490000 
+Taxed Income: 1490000 
+Taxes wth UB deducted: 1475000 
+Final Income: 1505000
+
+Income: 2990000 
+Taxes Owed: 1495000 
+Taxed Income: 1495000 
+Taxes wth UB deducted: 1480000 
+Final Income: 1510000
+
+Income: 3000000 
+Taxes Owed: 1500000 
+Taxed Income: 1500000 
+Taxes wth UB deducted: 1485000 
+Final Income: 1515000
+
+Income: 3010000 
+Taxes Owed: 1505000 
+Taxed Income: 1505000 
+Taxes wth UB deducted: 1490000 
+Final Income: 1520000
+
+Income: 3020000 
+Taxes Owed: 1510000 
+Taxed Income: 1510000 
+Taxes wth UB deducted: 1495000 
+Final Income: 1525000
+
+Income: 3030000 
+Taxes Owed: 1515000 
+Taxed Income: 1515000 
+Taxes wth UB deducted: 1500000 
+Final Income: 1530000
+
+Income: 3040000 
+Taxes Owed: 1520000 
+Taxed Income: 1520000 
+Taxes wth UB deducted: 1505000 
+Final Income: 1535000
+
+Income: 3050000 
+Taxes Owed: 1525000 
+Taxed Income: 1525000 
+Taxes wth UB deducted: 1510000 
+Final Income: 1540000
+
+Income: 3060000 
+Taxes Owed: 1530000 
+Taxed Income: 1530000 
+Taxes wth UB deducted: 1515000 
+Final Income: 1545000
+
+Income: 3070000 
+Taxes Owed: 1535000 
+Taxed Income: 1535000 
+Taxes wth UB deducted: 1520000 
+Final Income: 1550000
+
+Income: 3080000 
+Taxes Owed: 1540000 
+Taxed Income: 1540000 
+Taxes wth UB deducted: 1525000 
+Final Income: 1555000
+
+Income: 3090000 
+Taxes Owed: 1545000 
+Taxed Income: 1545000 
+Taxes wth UB deducted: 1530000 
+Final Income: 1560000
+
+Income: 3100000 
+Taxes Owed: 1550000 
+Taxed Income: 1550000 
+Taxes wth UB deducted: 1535000 
+Final Income: 1565000
+
+Income: 3110000 
+Taxes Owed: 1555000 
+Taxed Income: 1555000 
+Taxes wth UB deducted: 1540000 
+Final Income: 1570000
+
+Income: 3120000 
+Taxes Owed: 1560000 
+Taxed Income: 1560000 
+Taxes wth UB deducted: 1545000 
+Final Income: 1575000
+
+Income: 3130000 
+Taxes Owed: 1565000 
+Taxed Income: 1565000 
+Taxes wth UB deducted: 1550000 
+Final Income: 1580000
+
+Income: 3140000 
+Taxes Owed: 1570000 
+Taxed Income: 1570000 
+Taxes wth UB deducted: 1555000 
+Final Income: 1585000
+
+Income: 3150000 
+Taxes Owed: 1575000 
+Taxed Income: 1575000 
+Taxes wth UB deducted: 1560000 
+Final Income: 1590000
+
+Income: 3160000 
+Taxes Owed: 1580000 
+Taxed Income: 1580000 
+Taxes wth UB deducted: 1565000 
+Final Income: 1595000
+
+Income: 3170000 
+Taxes Owed: 1585000 
+Taxed Income: 1585000 
+Taxes wth UB deducted: 1570000 
+Final Income: 1600000
+
+Income: 3180000 
+Taxes Owed: 1590000 
+Taxed Income: 1590000 
+Taxes wth UB deducted: 1575000 
+Final Income: 1605000
+
+Income: 3190000 
+Taxes Owed: 1595000 
+Taxed Income: 1595000 
+Taxes wth UB deducted: 1580000 
+Final Income: 1610000
+
+Income: 3200000 
+Taxes Owed: 1600000 
+Taxed Income: 1600000 
+Taxes wth UB deducted: 1585000 
+Final Income: 1615000
+
+Income: 3210000 
+Taxes Owed: 1605000 
+Taxed Income: 1605000 
+Taxes wth UB deducted: 1590000 
+Final Income: 1620000
+
+Income: 3220000 
+Taxes Owed: 1610000 
+Taxed Income: 1610000 
+Taxes wth UB deducted: 1595000 
+Final Income: 1625000
+
+Income: 3230000 
+Taxes Owed: 1615000 
+Taxed Income: 1615000 
+Taxes wth UB deducted: 1600000 
+Final Income: 1630000
+
+Income: 3240000 
+Taxes Owed: 1620000 
+Taxed Income: 1620000 
+Taxes wth UB deducted: 1605000 
+Final Income: 1635000
+
+Income: 3250000 
+Taxes Owed: 1625000 
+Taxed Income: 1625000 
+Taxes wth UB deducted: 1610000 
+Final Income: 1640000
+
+Income: 3260000 
+Taxes Owed: 1630000 
+Taxed Income: 1630000 
+Taxes wth UB deducted: 1615000 
+Final Income: 1645000
+
+Income: 3270000 
+Taxes Owed: 1635000 
+Taxed Income: 1635000 
+Taxes wth UB deducted: 1620000 
+Final Income: 1650000
+
+Income: 3280000 
+Taxes Owed: 1640000 
+Taxed Income: 1640000 
+Taxes wth UB deducted: 1625000 
+Final Income: 1655000
+
+Income: 3290000 
+Taxes Owed: 1645000 
+Taxed Income: 1645000 
+Taxes wth UB deducted: 1630000 
+Final Income: 1660000
+
+Income: 3300000 
+Taxes Owed: 1650000 
+Taxed Income: 1650000 
+Taxes wth UB deducted: 1635000 
+Final Income: 1665000
+
+Income: 3310000 
+Taxes Owed: 1655000 
+Taxed Income: 1655000 
+Taxes wth UB deducted: 1640000 
+Final Income: 1670000
+
+Income: 3320000 
+Taxes Owed: 1660000 
+Taxed Income: 1660000 
+Taxes wth UB deducted: 1645000 
+Final Income: 1675000
+
+Income: 3330000 
+Taxes Owed: 1665000 
+Taxed Income: 1665000 
+Taxes wth UB deducted: 1650000 
+Final Income: 1680000
+
+Income: 3340000 
+Taxes Owed: 1670000 
+Taxed Income: 1670000 
+Taxes wth UB deducted: 1655000 
+Final Income: 1685000
+
+Income: 3350000 
+Taxes Owed: 1675000 
+Taxed Income: 1675000 
+Taxes wth UB deducted: 1660000 
+Final Income: 1690000
+
+Income: 3360000 
+Taxes Owed: 1680000 
+Taxed Income: 1680000 
+Taxes wth UB deducted: 1665000 
+Final Income: 1695000
+
+Income: 3370000 
+Taxes Owed: 1685000 
+Taxed Income: 1685000 
+Taxes wth UB deducted: 1670000 
+Final Income: 1700000
+
+Income: 3380000 
+Taxes Owed: 1690000 
+Taxed Income: 1690000 
+Taxes wth UB deducted: 1675000 
+Final Income: 1705000
+
+Income: 3390000 
+Taxes Owed: 1695000 
+Taxed Income: 1695000 
+Taxes wth UB deducted: 1680000 
+Final Income: 1710000
+
+Income: 3400000 
+Taxes Owed: 1700000 
+Taxed Income: 1700000 
+Taxes wth UB deducted: 1685000 
+Final Income: 1715000
+
+Income: 3410000 
+Taxes Owed: 1705000 
+Taxed Income: 1705000 
+Taxes wth UB deducted: 1690000 
+Final Income: 1720000
+
+Income: 3420000 
+Taxes Owed: 1710000 
+Taxed Income: 1710000 
+Taxes wth UB deducted: 1695000 
+Final Income: 1725000
+
+Income: 3430000 
+Taxes Owed: 1715000 
+Taxed Income: 1715000 
+Taxes wth UB deducted: 1700000 
+Final Income: 1730000
+
+Income: 3440000 
+Taxes Owed: 1720000 
+Taxed Income: 1720000 
+Taxes wth UB deducted: 1705000 
+Final Income: 1735000
+
+Income: 3450000 
+Taxes Owed: 1725000 
+Taxed Income: 1725000 
+Taxes wth UB deducted: 1710000 
+Final Income: 1740000
+
+Income: 3460000 
+Taxes Owed: 1730000 
+Taxed Income: 1730000 
+Taxes wth UB deducted: 1715000 
+Final Income: 1745000
+
+Income: 3470000 
+Taxes Owed: 1735000 
+Taxed Income: 1735000 
+Taxes wth UB deducted: 1720000 
+Final Income: 1750000
+
+Income: 3480000 
+Taxes Owed: 1740000 
+Taxed Income: 1740000 
+Taxes wth UB deducted: 1725000 
+Final Income: 1755000
+
+Income: 3490000 
+Taxes Owed: 1745000 
+Taxed Income: 1745000 
+Taxes wth UB deducted: 1730000 
+Final Income: 1760000
+
+Income: 3500000 
+Taxes Owed: 1750000 
+Taxed Income: 1750000 
+Taxes wth UB deducted: 1735000 
+Final Income: 1765000
+
+Income: 3510000 
+Taxes Owed: 1755000 
+Taxed Income: 1755000 
+Taxes wth UB deducted: 1740000 
+Final Income: 1770000
+
+Income: 3520000 
+Taxes Owed: 1760000 
+Taxed Income: 1760000 
+Taxes wth UB deducted: 1745000 
+Final Income: 1775000
+
+Income: 3530000 
+Taxes Owed: 1765000 
+Taxed Income: 1765000 
+Taxes wth UB deducted: 1750000 
+Final Income: 1780000
+
+Income: 3540000 
+Taxes Owed: 1770000 
+Taxed Income: 1770000 
+Taxes wth UB deducted: 1755000 
+Final Income: 1785000
+
+Income: 3550000 
+Taxes Owed: 1775000 
+Taxed Income: 1775000 
+Taxes wth UB deducted: 1760000 
+Final Income: 1790000
+
+Income: 3560000 
+Taxes Owed: 1780000 
+Taxed Income: 1780000 
+Taxes wth UB deducted: 1765000 
+Final Income: 1795000
+
+Income: 3570000 
+Taxes Owed: 1785000 
+Taxed Income: 1785000 
+Taxes wth UB deducted: 1770000 
+Final Income: 1800000
+
+Income: 3580000 
+Taxes Owed: 1790000 
+Taxed Income: 1790000 
+Taxes wth UB deducted: 1775000 
+Final Income: 1805000
+
+Income: 3590000 
+Taxes Owed: 1795000 
+Taxed Income: 1795000 
+Taxes wth UB deducted: 1780000 
+Final Income: 1810000
+
+Income: 3600000 
+Taxes Owed: 1800000 
+Taxed Income: 1800000 
+Taxes wth UB deducted: 1785000 
+Final Income: 1815000
+
+Income: 3610000 
+Taxes Owed: 1805000 
+Taxed Income: 1805000 
+Taxes wth UB deducted: 1790000 
+Final Income: 1820000
+
+Income: 3620000 
+Taxes Owed: 1810000 
+Taxed Income: 1810000 
+Taxes wth UB deducted: 1795000 
+Final Income: 1825000
+
+Income: 3630000 
+Taxes Owed: 1815000 
+Taxed Income: 1815000 
+Taxes wth UB deducted: 1800000 
+Final Income: 1830000
+
+Income: 3640000 
+Taxes Owed: 1820000 
+Taxed Income: 1820000 
+Taxes wth UB deducted: 1805000 
+Final Income: 1835000
+
+Income: 3650000 
+Taxes Owed: 1825000 
+Taxed Income: 1825000 
+Taxes wth UB deducted: 1810000 
+Final Income: 1840000
+
+Income: 3660000 
+Taxes Owed: 1830000 
+Taxed Income: 1830000 
+Taxes wth UB deducted: 1815000 
+Final Income: 1845000
+
+Income: 3670000 
+Taxes Owed: 1835000 
+Taxed Income: 1835000 
+Taxes wth UB deducted: 1820000 
+Final Income: 1850000
+
+Income: 3680000 
+Taxes Owed: 1840000 
+Taxed Income: 1840000 
+Taxes wth UB deducted: 1825000 
+Final Income: 1855000
+
+Income: 3690000 
+Taxes Owed: 1845000 
+Taxed Income: 1845000 
+Taxes wth UB deducted: 1830000 
+Final Income: 1860000
+
+Income: 3700000 
+Taxes Owed: 1850000 
+Taxed Income: 1850000 
+Taxes wth UB deducted: 1835000 
+Final Income: 1865000
+
+Income: 3710000 
+Taxes Owed: 1855000 
+Taxed Income: 1855000 
+Taxes wth UB deducted: 1840000 
+Final Income: 1870000
+
+Income: 3720000 
+Taxes Owed: 1860000 
+Taxed Income: 1860000 
+Taxes wth UB deducted: 1845000 
+Final Income: 1875000
+
+Income: 3730000 
+Taxes Owed: 1865000 
+Taxed Income: 1865000 
+Taxes wth UB deducted: 1850000 
+Final Income: 1880000
+
+Income: 3740000 
+Taxes Owed: 1870000 
+Taxed Income: 1870000 
+Taxes wth UB deducted: 1855000 
+Final Income: 1885000
+
+Income: 3750000 
+Taxes Owed: 1875000 
+Taxed Income: 1875000 
+Taxes wth UB deducted: 1860000 
+Final Income: 1890000
+
+Income: 3760000 
+Taxes Owed: 1880000 
+Taxed Income: 1880000 
+Taxes wth UB deducted: 1865000 
+Final Income: 1895000
+
+Income: 3770000 
+Taxes Owed: 1885000 
+Taxed Income: 1885000 
+Taxes wth UB deducted: 1870000 
+Final Income: 1900000
+
+Income: 3780000 
+Taxes Owed: 1890000 
+Taxed Income: 1890000 
+Taxes wth UB deducted: 1875000 
+Final Income: 1905000
+
+Income: 3790000 
+Taxes Owed: 1895000 
+Taxed Income: 1895000 
+Taxes wth UB deducted: 1880000 
+Final Income: 1910000
+
+Income: 3800000 
+Taxes Owed: 1900000 
+Taxed Income: 1900000 
+Taxes wth UB deducted: 1885000 
+Final Income: 1915000
+
+Income: 3810000 
+Taxes Owed: 1905000 
+Taxed Income: 1905000 
+Taxes wth UB deducted: 1890000 
+Final Income: 1920000
+
+Income: 3820000 
+Taxes Owed: 1910000 
+Taxed Income: 1910000 
+Taxes wth UB deducted: 1895000 
+Final Income: 1925000
+
+Income: 3830000 
+Taxes Owed: 1915000 
+Taxed Income: 1915000 
+Taxes wth UB deducted: 1900000 
+Final Income: 1930000
+
+Income: 3840000 
+Taxes Owed: 1920000 
+Taxed Income: 1920000 
+Taxes wth UB deducted: 1905000 
+Final Income: 1935000
+
+Income: 3850000 
+Taxes Owed: 1925000 
+Taxed Income: 1925000 
+Taxes wth UB deducted: 1910000 
+Final Income: 1940000
+
+Income: 3860000 
+Taxes Owed: 1930000 
+Taxed Income: 1930000 
+Taxes wth UB deducted: 1915000 
+Final Income: 1945000
+
+Income: 3870000 
+Taxes Owed: 1935000 
+Taxed Income: 1935000 
+Taxes wth UB deducted: 1920000 
+Final Income: 1950000
+
+Income: 3880000 
+Taxes Owed: 1940000 
+Taxed Income: 1940000 
+Taxes wth UB deducted: 1925000 
+Final Income: 1955000
+
+Income: 3890000 
+Taxes Owed: 1945000 
+Taxed Income: 1945000 
+Taxes wth UB deducted: 1930000 
+Final Income: 1960000
+
+Income: 3900000 
+Taxes Owed: 1950000 
+Taxed Income: 1950000 
+Taxes wth UB deducted: 1935000 
+Final Income: 1965000
+
+Income: 3910000 
+Taxes Owed: 1955000 
+Taxed Income: 1955000 
+Taxes wth UB deducted: 1940000 
+Final Income: 1970000
+
+Income: 3920000 
+Taxes Owed: 1960000 
+Taxed Income: 1960000 
+Taxes wth UB deducted: 1945000 
+Final Income: 1975000
+
+Income: 3930000 
+Taxes Owed: 1965000 
+Taxed Income: 1965000 
+Taxes wth UB deducted: 1950000 
+Final Income: 1980000
+
+Income: 3940000 
+Taxes Owed: 1970000 
+Taxed Income: 1970000 
+Taxes wth UB deducted: 1955000 
+Final Income: 1985000
+
+Income: 3950000 
+Taxes Owed: 1975000 
+Taxed Income: 1975000 
+Taxes wth UB deducted: 1960000 
+Final Income: 1990000
+
+Income: 3960000 
+Taxes Owed: 1980000 
+Taxed Income: 1980000 
+Taxes wth UB deducted: 1965000 
+Final Income: 1995000
+
+Income: 3970000 
+Taxes Owed: 1985000 
+Taxed Income: 1985000 
+Taxes wth UB deducted: 1970000 
+Final Income: 2000000
+
+Income: 3980000 
+Taxes Owed: 1990000 
+Taxed Income: 1990000 
+Taxes wth UB deducted: 1975000 
+Final Income: 2005000
+
+Income: 3990000 
+Taxes Owed: 1995000 
+Taxed Income: 1995000 
+Taxes wth UB deducted: 1980000 
+Final Income: 2010000
+
+Income: 4000000 
+Taxes Owed: 2000000 
+Taxed Income: 2000000 
+Taxes wth UB deducted: 1985000 
+Final Income: 2015000
+
+Income: 4010000 
+Taxes Owed: 2005000 
+Taxed Income: 2005000 
+Taxes wth UB deducted: 1990000 
+Final Income: 2020000
+
+Income: 4020000 
+Taxes Owed: 2010000 
+Taxed Income: 2010000 
+Taxes wth UB deducted: 1995000 
+Final Income: 2025000
+
+Income: 4030000 
+Taxes Owed: 2015000 
+Taxed Income: 2015000 
+Taxes wth UB deducted: 2000000 
+Final Income: 2030000
+
+Income: 4040000 
+Taxes Owed: 2020000 
+Taxed Income: 2020000 
+Taxes wth UB deducted: 2005000 
+Final Income: 2035000
+
+Income: 4050000 
+Taxes Owed: 2025000 
+Taxed Income: 2025000 
+Taxes wth UB deducted: 2010000 
+Final Income: 2040000
+
+Income: 4060000 
+Taxes Owed: 2030000 
+Taxed Income: 2030000 
+Taxes wth UB deducted: 2015000 
+Final Income: 2045000
+
+Income: 4070000 
+Taxes Owed: 2035000 
+Taxed Income: 2035000 
+Taxes wth UB deducted: 2020000 
+Final Income: 2050000
+
+Income: 4080000 
+Taxes Owed: 2040000 
+Taxed Income: 2040000 
+Taxes wth UB deducted: 2025000 
+Final Income: 2055000
+
+Income: 4090000 
+Taxes Owed: 2045000 
+Taxed Income: 2045000 
+Taxes wth UB deducted: 2030000 
+Final Income: 2060000
+
+Income: 4100000 
+Taxes Owed: 2050000 
+Taxed Income: 2050000 
+Taxes wth UB deducted: 2035000 
+Final Income: 2065000
+
+Income: 4110000 
+Taxes Owed: 2055000 
+Taxed Income: 2055000 
+Taxes wth UB deducted: 2040000 
+Final Income: 2070000
+
+Income: 4120000 
+Taxes Owed: 2060000 
+Taxed Income: 2060000 
+Taxes wth UB deducted: 2045000 
+Final Income: 2075000
+
+Income: 4130000 
+Taxes Owed: 2065000 
+Taxed Income: 2065000 
+Taxes wth UB deducted: 2050000 
+Final Income: 2080000
+
+Income: 4140000 
+Taxes Owed: 2070000 
+Taxed Income: 2070000 
+Taxes wth UB deducted: 2055000 
+Final Income: 2085000
+
+Income: 4150000 
+Taxes Owed: 2075000 
+Taxed Income: 2075000 
+Taxes wth UB deducted: 2060000 
+Final Income: 2090000
+
+Income: 4160000 
+Taxes Owed: 2080000 
+Taxed Income: 2080000 
+Taxes wth UB deducted: 2065000 
+Final Income: 2095000
+
+Income: 4170000 
+Taxes Owed: 2085000 
+Taxed Income: 2085000 
+Taxes wth UB deducted: 2070000 
+Final Income: 2100000
+
+Income: 4180000 
+Taxes Owed: 2090000 
+Taxed Income: 2090000 
+Taxes wth UB deducted: 2075000 
+Final Income: 2105000
+
+Income: 4190000 
+Taxes Owed: 2095000 
+Taxed Income: 2095000 
+Taxes wth UB deducted: 2080000 
+Final Income: 2110000
+
+Income: 4200000 
+Taxes Owed: 2100000 
+Taxed Income: 2100000 
+Taxes wth UB deducted: 2085000 
+Final Income: 2115000
+
+Income: 4210000 
+Taxes Owed: 2105000 
+Taxed Income: 2105000 
+Taxes wth UB deducted: 2090000 
+Final Income: 2120000
+
+Income: 4220000 
+Taxes Owed: 2110000 
+Taxed Income: 2110000 
+Taxes wth UB deducted: 2095000 
+Final Income: 2125000
+
+Income: 4230000 
+Taxes Owed: 2115000 
+Taxed Income: 2115000 
+Taxes wth UB deducted: 2100000 
+Final Income: 2130000
+
+Income: 4240000 
+Taxes Owed: 2120000 
+Taxed Income: 2120000 
+Taxes wth UB deducted: 2105000 
+Final Income: 2135000
+
+Income: 4250000 
+Taxes Owed: 2125000 
+Taxed Income: 2125000 
+Taxes wth UB deducted: 2110000 
+Final Income: 2140000
+
+Income: 4260000 
+Taxes Owed: 2130000 
+Taxed Income: 2130000 
+Taxes wth UB deducted: 2115000 
+Final Income: 2145000
+
+Income: 4270000 
+Taxes Owed: 2135000 
+Taxed Income: 2135000 
+Taxes wth UB deducted: 2120000 
+Final Income: 2150000
+
+Income: 4280000 
+Taxes Owed: 2140000 
+Taxed Income: 2140000 
+Taxes wth UB deducted: 2125000 
+Final Income: 2155000
+
+Income: 4290000 
+Taxes Owed: 2145000 
+Taxed Income: 2145000 
+Taxes wth UB deducted: 2130000 
+Final Income: 2160000
+
+Income: 4300000 
+Taxes Owed: 2150000 
+Taxed Income: 2150000 
+Taxes wth UB deducted: 2135000 
+Final Income: 2165000
+
+Income: 4310000 
+Taxes Owed: 2155000 
+Taxed Income: 2155000 
+Taxes wth UB deducted: 2140000 
+Final Income: 2170000
+
+Income: 4320000 
+Taxes Owed: 2160000 
+Taxed Income: 2160000 
+Taxes wth UB deducted: 2145000 
+Final Income: 2175000
+
+Income: 4330000 
+Taxes Owed: 2165000 
+Taxed Income: 2165000 
+Taxes wth UB deducted: 2150000 
+Final Income: 2180000
+
+Income: 4340000 
+Taxes Owed: 2170000 
+Taxed Income: 2170000 
+Taxes wth UB deducted: 2155000 
+Final Income: 2185000
+
+Income: 4350000 
+Taxes Owed: 2175000 
+Taxed Income: 2175000 
+Taxes wth UB deducted: 2160000 
+Final Income: 2190000
+
+Income: 4360000 
+Taxes Owed: 2180000 
+Taxed Income: 2180000 
+Taxes wth UB deducted: 2165000 
+Final Income: 2195000
+
+Income: 4370000 
+Taxes Owed: 2185000 
+Taxed Income: 2185000 
+Taxes wth UB deducted: 2170000 
+Final Income: 2200000
+
+Income: 4380000 
+Taxes Owed: 2190000 
+Taxed Income: 2190000 
+Taxes wth UB deducted: 2175000 
+Final Income: 2205000
+
+Income: 4390000 
+Taxes Owed: 2195000 
+Taxed Income: 2195000 
+Taxes wth UB deducted: 2180000 
+Final Income: 2210000
+
+Income: 4400000 
+Taxes Owed: 2200000 
+Taxed Income: 2200000 
+Taxes wth UB deducted: 2185000 
+Final Income: 2215000
+
+Income: 4410000 
+Taxes Owed: 2205000 
+Taxed Income: 2205000 
+Taxes wth UB deducted: 2190000 
+Final Income: 2220000
+
+Income: 4420000 
+Taxes Owed: 2210000 
+Taxed Income: 2210000 
+Taxes wth UB deducted: 2195000 
+Final Income: 2225000
+
+Income: 4430000 
+Taxes Owed: 2215000 
+Taxed Income: 2215000 
+Taxes wth UB deducted: 2200000 
+Final Income: 2230000
+
+Income: 4440000 
+Taxes Owed: 2220000 
+Taxed Income: 2220000 
+Taxes wth UB deducted: 2205000 
+Final Income: 2235000
+
+Income: 4450000 
+Taxes Owed: 2225000 
+Taxed Income: 2225000 
+Taxes wth UB deducted: 2210000 
+Final Income: 2240000
+
+Income: 4460000 
+Taxes Owed: 2230000 
+Taxed Income: 2230000 
+Taxes wth UB deducted: 2215000 
+Final Income: 2245000
+
+Income: 4470000 
+Taxes Owed: 2235000 
+Taxed Income: 2235000 
+Taxes wth UB deducted: 2220000 
+Final Income: 2250000
+
+Income: 4480000 
+Taxes Owed: 2240000 
+Taxed Income: 2240000 
+Taxes wth UB deducted: 2225000 
+Final Income: 2255000
+
+Income: 4490000 
+Taxes Owed: 2245000 
+Taxed Income: 2245000 
+Taxes wth UB deducted: 2230000 
+Final Income: 2260000
+
+Income: 4500000 
+Taxes Owed: 2250000 
+Taxed Income: 2250000 
+Taxes wth UB deducted: 2235000 
+Final Income: 2265000
+
+Income: 4510000 
+Taxes Owed: 2255000 
+Taxed Income: 2255000 
+Taxes wth UB deducted: 2240000 
+Final Income: 2270000
+
+Income: 4520000 
+Taxes Owed: 2260000 
+Taxed Income: 2260000 
+Taxes wth UB deducted: 2245000 
+Final Income: 2275000
+
+Income: 4530000 
+Taxes Owed: 2265000 
+Taxed Income: 2265000 
+Taxes wth UB deducted: 2250000 
+Final Income: 2280000
+
+Income: 4540000 
+Taxes Owed: 2270000 
+Taxed Income: 2270000 
+Taxes wth UB deducted: 2255000 
+Final Income: 2285000
+
+Income: 4550000 
+Taxes Owed: 2275000 
+Taxed Income: 2275000 
+Taxes wth UB deducted: 2260000 
+Final Income: 2290000
+
+Income: 4560000 
+Taxes Owed: 2280000 
+Taxed Income: 2280000 
+Taxes wth UB deducted: 2265000 
+Final Income: 2295000
+
+Income: 4570000 
+Taxes Owed: 2285000 
+Taxed Income: 2285000 
+Taxes wth UB deducted: 2270000 
+Final Income: 2300000
+
+Income: 4580000 
+Taxes Owed: 2290000 
+Taxed Income: 2290000 
+Taxes wth UB deducted: 2275000 
+Final Income: 2305000
+
+Income: 4590000 
+Taxes Owed: 2295000 
+Taxed Income: 2295000 
+Taxes wth UB deducted: 2280000 
+Final Income: 2310000
+
+Income: 4600000 
+Taxes Owed: 2300000 
+Taxed Income: 2300000 
+Taxes wth UB deducted: 2285000 
+Final Income: 2315000
+
+Income: 4610000 
+Taxes Owed: 2305000 
+Taxed Income: 2305000 
+Taxes wth UB deducted: 2290000 
+Final Income: 2320000
+
+Income: 4620000 
+Taxes Owed: 2310000 
+Taxed Income: 2310000 
+Taxes wth UB deducted: 2295000 
+Final Income: 2325000
+
+Income: 4630000 
+Taxes Owed: 2315000 
+Taxed Income: 2315000 
+Taxes wth UB deducted: 2300000 
+Final Income: 2330000
+
+Income: 4640000 
+Taxes Owed: 2320000 
+Taxed Income: 2320000 
+Taxes wth UB deducted: 2305000 
+Final Income: 2335000
+
+Income: 4650000 
+Taxes Owed: 2325000 
+Taxed Income: 2325000 
+Taxes wth UB deducted: 2310000 
+Final Income: 2340000
+
+Income: 4660000 
+Taxes Owed: 2330000 
+Taxed Income: 2330000 
+Taxes wth UB deducted: 2315000 
+Final Income: 2345000
+
+Income: 4670000 
+Taxes Owed: 2335000 
+Taxed Income: 2335000 
+Taxes wth UB deducted: 2320000 
+Final Income: 2350000
+
+Income: 4680000 
+Taxes Owed: 2340000 
+Taxed Income: 2340000 
+Taxes wth UB deducted: 2325000 
+Final Income: 2355000
+
+Income: 4690000 
+Taxes Owed: 2345000 
+Taxed Income: 2345000 
+Taxes wth UB deducted: 2330000 
+Final Income: 2360000
+
+Income: 4700000 
+Taxes Owed: 2350000 
+Taxed Income: 2350000 
+Taxes wth UB deducted: 2335000 
+Final Income: 2365000
+
+Income: 4710000 
+Taxes Owed: 2355000 
+Taxed Income: 2355000 
+Taxes wth UB deducted: 2340000 
+Final Income: 2370000
+
+Income: 4720000 
+Taxes Owed: 2360000 
+Taxed Income: 2360000 
+Taxes wth UB deducted: 2345000 
+Final Income: 2375000
+
+Income: 4730000 
+Taxes Owed: 2365000 
+Taxed Income: 2365000 
+Taxes wth UB deducted: 2350000 
+Final Income: 2380000
+
+Income: 4740000 
+Taxes Owed: 2370000 
+Taxed Income: 2370000 
+Taxes wth UB deducted: 2355000 
+Final Income: 2385000
+
+Income: 4750000 
+Taxes Owed: 2375000 
+Taxed Income: 2375000 
+Taxes wth UB deducted: 2360000 
+Final Income: 2390000
+
+Income: 4760000 
+Taxes Owed: 2380000 
+Taxed Income: 2380000 
+Taxes wth UB deducted: 2365000 
+Final Income: 2395000
+
+Income: 4770000 
+Taxes Owed: 2385000 
+Taxed Income: 2385000 
+Taxes wth UB deducted: 2370000 
+Final Income: 2400000
+
+Income: 4780000 
+Taxes Owed: 2390000 
+Taxed Income: 2390000 
+Taxes wth UB deducted: 2375000 
+Final Income: 2405000
+
+Income: 4790000 
+Taxes Owed: 2395000 
+Taxed Income: 2395000 
+Taxes wth UB deducted: 2380000 
+Final Income: 2410000
+
+Income: 4800000 
+Taxes Owed: 2400000 
+Taxed Income: 2400000 
+Taxes wth UB deducted: 2385000 
+Final Income: 2415000
+
+Income: 4810000 
+Taxes Owed: 2405000 
+Taxed Income: 2405000 
+Taxes wth UB deducted: 2390000 
+Final Income: 2420000
+
+Income: 4820000 
+Taxes Owed: 2410000 
+Taxed Income: 2410000 
+Taxes wth UB deducted: 2395000 
+Final Income: 2425000
+
+Income: 4830000 
+Taxes Owed: 2415000 
+Taxed Income: 2415000 
+Taxes wth UB deducted: 2400000 
+Final Income: 2430000
+
+Income: 4840000 
+Taxes Owed: 2420000 
+Taxed Income: 2420000 
+Taxes wth UB deducted: 2405000 
+Final Income: 2435000
+
+Income: 4850000 
+Taxes Owed: 2425000 
+Taxed Income: 2425000 
+Taxes wth UB deducted: 2410000 
+Final Income: 2440000
+
+Income: 4860000 
+Taxes Owed: 2430000 
+Taxed Income: 2430000 
+Taxes wth UB deducted: 2415000 
+Final Income: 2445000
+
+Income: 4870000 
+Taxes Owed: 2435000 
+Taxed Income: 2435000 
+Taxes wth UB deducted: 2420000 
+Final Income: 2450000
+
+Income: 4880000 
+Taxes Owed: 2440000 
+Taxed Income: 2440000 
+Taxes wth UB deducted: 2425000 
+Final Income: 2455000
+
+Income: 4890000 
+Taxes Owed: 2445000 
+Taxed Income: 2445000 
+Taxes wth UB deducted: 2430000 
+Final Income: 2460000
+
+Income: 4900000 
+Taxes Owed: 2450000 
+Taxed Income: 2450000 
+Taxes wth UB deducted: 2435000 
+Final Income: 2465000
+
+Income: 4910000 
+Taxes Owed: 2455000 
+Taxed Income: 2455000 
+Taxes wth UB deducted: 2440000 
+Final Income: 2470000
+
+Income: 4920000 
+Taxes Owed: 2460000 
+Taxed Income: 2460000 
+Taxes wth UB deducted: 2445000 
+Final Income: 2475000
+
+Income: 4930000 
+Taxes Owed: 2465000 
+Taxed Income: 2465000 
+Taxes wth UB deducted: 2450000 
+Final Income: 2480000
+
+Income: 4940000 
+Taxes Owed: 2470000 
+Taxed Income: 2470000 
+Taxes wth UB deducted: 2455000 
+Final Income: 2485000
+
+Income: 4950000 
+Taxes Owed: 2475000 
+Taxed Income: 2475000 
+Taxes wth UB deducted: 2460000 
+Final Income: 2490000
+
+Income: 4960000 
+Taxes Owed: 2480000 
+Taxed Income: 2480000 
+Taxes wth UB deducted: 2465000 
+Final Income: 2495000
+
+Income: 4970000 
+Taxes Owed: 2485000 
+Taxed Income: 2485000 
+Taxes wth UB deducted: 2470000 
+Final Income: 2500000
+
+Income: 4980000 
+Taxes Owed: 2490000 
+Taxed Income: 2490000 
+Taxes wth UB deducted: 2475000 
+Final Income: 2505000
+
+Income: 4990000 
+Taxes Owed: 2495000 
+Taxed Income: 2495000 
+Taxes wth UB deducted: 2480000 
+Final Income: 2510000
+
+Income: 5000000 
+Taxes Owed: 2500000 
+Taxed Income: 2500000 
+Taxes wth UB deducted: 2485000 
+Final Income: 2515000
+
+Income: 5010000 
+Taxes Owed: 2505000 
+Taxed Income: 2505000 
+Taxes wth UB deducted: 2490000 
+Final Income: 2520000
+
+Income: 5020000 
+Taxes Owed: 2510000 
+Taxed Income: 2510000 
+Taxes wth UB deducted: 2495000 
+Final Income: 2525000
+
+Income: 5030000 
+Taxes Owed: 2515000 
+Taxed Income: 2515000 
+Taxes wth UB deducted: 2500000 
+Final Income: 2530000
+
+Income: 5040000 
+Taxes Owed: 2520000 
+Taxed Income: 2520000 
+Taxes wth UB deducted: 2505000 
+Final Income: 2535000
+
+Income: 5050000 
+Taxes Owed: 2525000 
+Taxed Income: 2525000 
+Taxes wth UB deducted: 2510000 
+Final Income: 2540000
+
+Income: 5060000 
+Taxes Owed: 2530000 
+Taxed Income: 2530000 
+Taxes wth UB deducted: 2515000 
+Final Income: 2545000
+
+Income: 5070000 
+Taxes Owed: 2535000 
+Taxed Income: 2535000 
+Taxes wth UB deducted: 2520000 
+Final Income: 2550000
+
+Income: 5080000 
+Taxes Owed: 2540000 
+Taxed Income: 2540000 
+Taxes wth UB deducted: 2525000 
+Final Income: 2555000
+
+Income: 5090000 
+Taxes Owed: 2545000 
+Taxed Income: 2545000 
+Taxes wth UB deducted: 2530000 
+Final Income: 2560000
+
+Income: 5100000 
+Taxes Owed: 2550000 
+Taxed Income: 2550000 
+Taxes wth UB deducted: 2535000 
+Final Income: 2565000
+
+Income: 5110000 
+Taxes Owed: 2555000 
+Taxed Income: 2555000 
+Taxes wth UB deducted: 2540000 
+Final Income: 2570000
+
+Income: 5120000 
+Taxes Owed: 2560000 
+Taxed Income: 2560000 
+Taxes wth UB deducted: 2545000 
+Final Income: 2575000
+
+Income: 5130000 
+Taxes Owed: 2565000 
+Taxed Income: 2565000 
+Taxes wth UB deducted: 2550000 
+Final Income: 2580000
+
+Income: 5140000 
+Taxes Owed: 2570000 
+Taxed Income: 2570000 
+Taxes wth UB deducted: 2555000 
+Final Income: 2585000
+
+Income: 5150000 
+Taxes Owed: 2575000 
+Taxed Income: 2575000 
+Taxes wth UB deducted: 2560000 
+Final Income: 2590000
+
+Income: 5160000 
+Taxes Owed: 2580000 
+Taxed Income: 2580000 
+Taxes wth UB deducted: 2565000 
+Final Income: 2595000
+
+Income: 5170000 
+Taxes Owed: 2585000 
+Taxed Income: 2585000 
+Taxes wth UB deducted: 2570000 
+Final Income: 2600000
+
+Income: 5180000 
+Taxes Owed: 2590000 
+Taxed Income: 2590000 
+Taxes wth UB deducted: 2575000 
+Final Income: 2605000
+
+Income: 5190000 
+Taxes Owed: 2595000 
+Taxed Income: 2595000 
+Taxes wth UB deducted: 2580000 
+Final Income: 2610000
+
+Income: 5200000 
+Taxes Owed: 2600000 
+Taxed Income: 2600000 
+Taxes wth UB deducted: 2585000 
+Final Income: 2615000
+
+Income: 5210000 
+Taxes Owed: 2605000 
+Taxed Income: 2605000 
+Taxes wth UB deducted: 2590000 
+Final Income: 2620000
+
+Income: 5220000 
+Taxes Owed: 2610000 
+Taxed Income: 2610000 
+Taxes wth UB deducted: 2595000 
+Final Income: 2625000
+
+Income: 5230000 
+Taxes Owed: 2615000 
+Taxed Income: 2615000 
+Taxes wth UB deducted: 2600000 
+Final Income: 2630000
+
+Income: 5240000 
+Taxes Owed: 2620000 
+Taxed Income: 2620000 
+Taxes wth UB deducted: 2605000 
+Final Income: 2635000
+
+Income: 5250000 
+Taxes Owed: 2625000 
+Taxed Income: 2625000 
+Taxes wth UB deducted: 2610000 
+Final Income: 2640000
+
+Income: 5260000 
+Taxes Owed: 2630000 
+Taxed Income: 2630000 
+Taxes wth UB deducted: 2615000 
+Final Income: 2645000
+
+Income: 5270000 
+Taxes Owed: 2635000 
+Taxed Income: 2635000 
+Taxes wth UB deducted: 2620000 
+Final Income: 2650000
+
+Income: 5280000 
+Taxes Owed: 2640000 
+Taxed Income: 2640000 
+Taxes wth UB deducted: 2625000 
+Final Income: 2655000
+
+Income: 5290000 
+Taxes Owed: 2645000 
+Taxed Income: 2645000 
+Taxes wth UB deducted: 2630000 
+Final Income: 2660000
+
+Income: 5300000 
+Taxes Owed: 2650000 
+Taxed Income: 2650000 
+Taxes wth UB deducted: 2635000 
+Final Income: 2665000
+
+Income: 5310000 
+Taxes Owed: 2655000 
+Taxed Income: 2655000 
+Taxes wth UB deducted: 2640000 
+Final Income: 2670000
+
+Income: 5320000 
+Taxes Owed: 2660000 
+Taxed Income: 2660000 
+Taxes wth UB deducted: 2645000 
+Final Income: 2675000
+
+Income: 5330000 
+Taxes Owed: 2665000 
+Taxed Income: 2665000 
+Taxes wth UB deducted: 2650000 
+Final Income: 2680000
+
+Income: 5340000 
+Taxes Owed: 2670000 
+Taxed Income: 2670000 
+Taxes wth UB deducted: 2655000 
+Final Income: 2685000
+
+Income: 5350000 
+Taxes Owed: 2675000 
+Taxed Income: 2675000 
+Taxes wth UB deducted: 2660000 
+Final Income: 2690000
+
+Income: 5360000 
+Taxes Owed: 2680000 
+Taxed Income: 2680000 
+Taxes wth UB deducted: 2665000 
+Final Income: 2695000
+
+Income: 5370000 
+Taxes Owed: 2685000 
+Taxed Income: 2685000 
+Taxes wth UB deducted: 2670000 
+Final Income: 2700000
+
+Income: 5380000 
+Taxes Owed: 2690000 
+Taxed Income: 2690000 
+Taxes wth UB deducted: 2675000 
+Final Income: 2705000
+
+Income: 5390000 
+Taxes Owed: 2695000 
+Taxed Income: 2695000 
+Taxes wth UB deducted: 2680000 
+Final Income: 2710000
+
+Income: 5400000 
+Taxes Owed: 2700000 
+Taxed Income: 2700000 
+Taxes wth UB deducted: 2685000 
+Final Income: 2715000
+
+Income: 5410000 
+Taxes Owed: 2705000 
+Taxed Income: 2705000 
+Taxes wth UB deducted: 2690000 
+Final Income: 2720000
+
+Income: 5420000 
+Taxes Owed: 2710000 
+Taxed Income: 2710000 
+Taxes wth UB deducted: 2695000 
+Final Income: 2725000
+
+Income: 5430000 
+Taxes Owed: 2715000 
+Taxed Income: 2715000 
+Taxes wth UB deducted: 2700000 
+Final Income: 2730000
+
+Income: 5440000 
+Taxes Owed: 2720000 
+Taxed Income: 2720000 
+Taxes wth UB deducted: 2705000 
+Final Income: 2735000
+
+Income: 5450000 
+Taxes Owed: 2725000 
+Taxed Income: 2725000 
+Taxes wth UB deducted: 2710000 
+Final Income: 2740000
+
+Income: 5460000 
+Taxes Owed: 2730000 
+Taxed Income: 2730000 
+Taxes wth UB deducted: 2715000 
+Final Income: 2745000
+
+Income: 5470000 
+Taxes Owed: 2735000 
+Taxed Income: 2735000 
+Taxes wth UB deducted: 2720000 
+Final Income: 2750000
+
+Income: 5480000 
+Taxes Owed: 2740000 
+Taxed Income: 2740000 
+Taxes wth UB deducted: 2725000 
+Final Income: 2755000
+
+Income: 5490000 
+Taxes Owed: 2745000 
+Taxed Income: 2745000 
+Taxes wth UB deducted: 2730000 
+Final Income: 2760000
+
+Income: 5500000 
+Taxes Owed: 2750000 
+Taxed Income: 2750000 
+Taxes wth UB deducted: 2735000 
+Final Income: 2765000
+
+Income: 5510000 
+Taxes Owed: 2755000 
+Taxed Income: 2755000 
+Taxes wth UB deducted: 2740000 
+Final Income: 2770000
+
+Income: 5520000 
+Taxes Owed: 2760000 
+Taxed Income: 2760000 
+Taxes wth UB deducted: 2745000 
+Final Income: 2775000
+
+Income: 5530000 
+Taxes Owed: 2765000 
+Taxed Income: 2765000 
+Taxes wth UB deducted: 2750000 
+Final Income: 2780000
+
+Income: 5540000 
+Taxes Owed: 2770000 
+Taxed Income: 2770000 
+Taxes wth UB deducted: 2755000 
+Final Income: 2785000
+
+Income: 5550000 
+Taxes Owed: 2775000 
+Taxed Income: 2775000 
+Taxes wth UB deducted: 2760000 
+Final Income: 2790000
+
+Income: 5560000 
+Taxes Owed: 2780000 
+Taxed Income: 2780000 
+Taxes wth UB deducted: 2765000 
+Final Income: 2795000
+
+Income: 5570000 
+Taxes Owed: 2785000 
+Taxed Income: 2785000 
+Taxes wth UB deducted: 2770000 
+Final Income: 2800000
+
+Income: 5580000 
+Taxes Owed: 2790000 
+Taxed Income: 2790000 
+Taxes wth UB deducted: 2775000 
+Final Income: 2805000
+
+Income: 5590000 
+Taxes Owed: 2795000 
+Taxed Income: 2795000 
+Taxes wth UB deducted: 2780000 
+Final Income: 2810000
+
+Income: 5600000 
+Taxes Owed: 2800000 
+Taxed Income: 2800000 
+Taxes wth UB deducted: 2785000 
+Final Income: 2815000
+
+Income: 5610000 
+Taxes Owed: 2805000 
+Taxed Income: 2805000 
+Taxes wth UB deducted: 2790000 
+Final Income: 2820000
+
+Income: 5620000 
+Taxes Owed: 2810000 
+Taxed Income: 2810000 
+Taxes wth UB deducted: 2795000 
+Final Income: 2825000
+
+Income: 5630000 
+Taxes Owed: 2815000 
+Taxed Income: 2815000 
+Taxes wth UB deducted: 2800000 
+Final Income: 2830000
+
+Income: 5640000 
+Taxes Owed: 2820000 
+Taxed Income: 2820000 
+Taxes wth UB deducted: 2805000 
+Final Income: 2835000
+
+Income: 5650000 
+Taxes Owed: 2825000 
+Taxed Income: 2825000 
+Taxes wth UB deducted: 2810000 
+Final Income: 2840000
+
+Income: 5660000 
+Taxes Owed: 2830000 
+Taxed Income: 2830000 
+Taxes wth UB deducted: 2815000 
+Final Income: 2845000
+
+Income: 5670000 
+Taxes Owed: 2835000 
+Taxed Income: 2835000 
+Taxes wth UB deducted: 2820000 
+Final Income: 2850000
+
+Income: 5680000 
+Taxes Owed: 2840000 
+Taxed Income: 2840000 
+Taxes wth UB deducted: 2825000 
+Final Income: 2855000
+
+Income: 5690000 
+Taxes Owed: 2845000 
+Taxed Income: 2845000 
+Taxes wth UB deducted: 2830000 
+Final Income: 2860000
+
+Income: 5700000 
+Taxes Owed: 2850000 
+Taxed Income: 2850000 
+Taxes wth UB deducted: 2835000 
+Final Income: 2865000
+
+Income: 5710000 
+Taxes Owed: 2855000 
+Taxed Income: 2855000 
+Taxes wth UB deducted: 2840000 
+Final Income: 2870000
+
+Income: 5720000 
+Taxes Owed: 2860000 
+Taxed Income: 2860000 
+Taxes wth UB deducted: 2845000 
+Final Income: 2875000
+
+Income: 5730000 
+Taxes Owed: 2865000 
+Taxed Income: 2865000 
+Taxes wth UB deducted: 2850000 
+Final Income: 2880000
+
+Income: 5740000 
+Taxes Owed: 2870000 
+Taxed Income: 2870000 
+Taxes wth UB deducted: 2855000 
+Final Income: 2885000
+
+Income: 5750000 
+Taxes Owed: 2875000 
+Taxed Income: 2875000 
+Taxes wth UB deducted: 2860000 
+Final Income: 2890000
+
+Income: 5760000 
+Taxes Owed: 2880000 
+Taxed Income: 2880000 
+Taxes wth UB deducted: 2865000 
+Final Income: 2895000
+
+Income: 5770000 
+Taxes Owed: 2885000 
+Taxed Income: 2885000 
+Taxes wth UB deducted: 2870000 
+Final Income: 2900000
+
+Income: 5780000 
+Taxes Owed: 2890000 
+Taxed Income: 2890000 
+Taxes wth UB deducted: 2875000 
+Final Income: 2905000
+
+Income: 5790000 
+Taxes Owed: 2895000 
+Taxed Income: 2895000 
+Taxes wth UB deducted: 2880000 
+Final Income: 2910000
+
+Income: 5800000 
+Taxes Owed: 2900000 
+Taxed Income: 2900000 
+Taxes wth UB deducted: 2885000 
+Final Income: 2915000
+
+Income: 5810000 
+Taxes Owed: 2905000 
+Taxed Income: 2905000 
+Taxes wth UB deducted: 2890000 
+Final Income: 2920000
+
+Income: 5820000 
+Taxes Owed: 2910000 
+Taxed Income: 2910000 
+Taxes wth UB deducted: 2895000 
+Final Income: 2925000
+
+Income: 5830000 
+Taxes Owed: 2915000 
+Taxed Income: 2915000 
+Taxes wth UB deducted: 2900000 
+Final Income: 2930000
+
+Income: 5840000 
+Taxes Owed: 2920000 
+Taxed Income: 2920000 
+Taxes wth UB deducted: 2905000 
+Final Income: 2935000
+
+Income: 5850000 
+Taxes Owed: 2925000 
+Taxed Income: 2925000 
+Taxes wth UB deducted: 2910000 
+Final Income: 2940000
+
+Income: 5860000 
+Taxes Owed: 2930000 
+Taxed Income: 2930000 
+Taxes wth UB deducted: 2915000 
+Final Income: 2945000
+
+Income: 5870000 
+Taxes Owed: 2935000 
+Taxed Income: 2935000 
+Taxes wth UB deducted: 2920000 
+Final Income: 2950000
+
+Income: 5880000 
+Taxes Owed: 2940000 
+Taxed Income: 2940000 
+Taxes wth UB deducted: 2925000 
+Final Income: 2955000
+
+Income: 5890000 
+Taxes Owed: 2945000 
+Taxed Income: 2945000 
+Taxes wth UB deducted: 2930000 
+Final Income: 2960000
+
+Income: 5900000 
+Taxes Owed: 2950000 
+Taxed Income: 2950000 
+Taxes wth UB deducted: 2935000 
+Final Income: 2965000
+
+Income: 5910000 
+Taxes Owed: 2955000 
+Taxed Income: 2955000 
+Taxes wth UB deducted: 2940000 
+Final Income: 2970000
+
+Income: 5920000 
+Taxes Owed: 2960000 
+Taxed Income: 2960000 
+Taxes wth UB deducted: 2945000 
+Final Income: 2975000
+
+Income: 5930000 
+Taxes Owed: 2965000 
+Taxed Income: 2965000 
+Taxes wth UB deducted: 2950000 
+Final Income: 2980000
+
+Income: 5940000 
+Taxes Owed: 2970000 
+Taxed Income: 2970000 
+Taxes wth UB deducted: 2955000 
+Final Income: 2985000
+
+Income: 5950000 
+Taxes Owed: 2975000 
+Taxed Income: 2975000 
+Taxes wth UB deducted: 2960000 
+Final Income: 2990000
+
+Income: 5960000 
+Taxes Owed: 2980000 
+Taxed Income: 2980000 
+Taxes wth UB deducted: 2965000 
+Final Income: 2995000
+
+Income: 5970000 
+Taxes Owed: 2985000 
+Taxed Income: 2985000 
+Taxes wth UB deducted: 2970000 
+Final Income: 3000000
+
+Income: 5980000 
+Taxes Owed: 2990000 
+Taxed Income: 2990000 
+Taxes wth UB deducted: 2975000 
+Final Income: 3005000
+
+Income: 5990000 
+Taxes Owed: 2995000 
+Taxed Income: 2995000 
+Taxes wth UB deducted: 2980000 
+Final Income: 3010000
+
+Income: 6000000 
+Taxes Owed: 3000000 
+Taxed Income: 3000000 
+Taxes wth UB deducted: 2985000 
+Final Income: 3015000
+
+Income: 6010000 
+Taxes Owed: 3005000 
+Taxed Income: 3005000 
+Taxes wth UB deducted: 2990000 
+Final Income: 3020000
+
+Income: 6020000 
+Taxes Owed: 3010000 
+Taxed Income: 3010000 
+Taxes wth UB deducted: 2995000 
+Final Income: 3025000
+
+Income: 6030000 
+Taxes Owed: 3015000 
+Taxed Income: 3015000 
+Taxes wth UB deducted: 3000000 
+Final Income: 3030000
+
+Income: 6040000 
+Taxes Owed: 3020000 
+Taxed Income: 3020000 
+Taxes wth UB deducted: 3005000 
+Final Income: 3035000
+
+Income: 6050000 
+Taxes Owed: 3025000 
+Taxed Income: 3025000 
+Taxes wth UB deducted: 3010000 
+Final Income: 3040000
+
+Income: 6060000 
+Taxes Owed: 3030000 
+Taxed Income: 3030000 
+Taxes wth UB deducted: 3015000 
+Final Income: 3045000
+
+Income: 6070000 
+Taxes Owed: 3035000 
+Taxed Income: 3035000 
+Taxes wth UB deducted: 3020000 
+Final Income: 3050000
+
+Income: 6080000 
+Taxes Owed: 3040000 
+Taxed Income: 3040000 
+Taxes wth UB deducted: 3025000 
+Final Income: 3055000
+
+Income: 6090000 
+Taxes Owed: 3045000 
+Taxed Income: 3045000 
+Taxes wth UB deducted: 3030000 
+Final Income: 3060000
+
+Income: 6100000 
+Taxes Owed: 3050000 
+Taxed Income: 3050000 
+Taxes wth UB deducted: 3035000 
+Final Income: 3065000
+
+Income: 6110000 
+Taxes Owed: 3055000 
+Taxed Income: 3055000 
+Taxes wth UB deducted: 3040000 
+Final Income: 3070000
+
+Income: 6120000 
+Taxes Owed: 3060000 
+Taxed Income: 3060000 
+Taxes wth UB deducted: 3045000 
+Final Income: 3075000
+
+Income: 6130000 
+Taxes Owed: 3065000 
+Taxed Income: 3065000 
+Taxes wth UB deducted: 3050000 
+Final Income: 3080000
+
+Income: 6140000 
+Taxes Owed: 3070000 
+Taxed Income: 3070000 
+Taxes wth UB deducted: 3055000 
+Final Income: 3085000
+
+Income: 6150000 
+Taxes Owed: 3075000 
+Taxed Income: 3075000 
+Taxes wth UB deducted: 3060000 
+Final Income: 3090000
+
+Income: 6160000 
+Taxes Owed: 3080000 
+Taxed Income: 3080000 
+Taxes wth UB deducted: 3065000 
+Final Income: 3095000
+
+Income: 6170000 
+Taxes Owed: 3085000 
+Taxed Income: 3085000 
+Taxes wth UB deducted: 3070000 
+Final Income: 3100000
+
+Income: 6180000 
+Taxes Owed: 3090000 
+Taxed Income: 3090000 
+Taxes wth UB deducted: 3075000 
+Final Income: 3105000
+
+Income: 6190000 
+Taxes Owed: 3095000 
+Taxed Income: 3095000 
+Taxes wth UB deducted: 3080000 
+Final Income: 3110000
+
+Income: 6200000 
+Taxes Owed: 3100000 
+Taxed Income: 3100000 
+Taxes wth UB deducted: 3085000 
+Final Income: 3115000
+
+Income: 6210000 
+Taxes Owed: 3105000 
+Taxed Income: 3105000 
+Taxes wth UB deducted: 3090000 
+Final Income: 3120000
+
+Income: 6220000 
+Taxes Owed: 3110000 
+Taxed Income: 3110000 
+Taxes wth UB deducted: 3095000 
+Final Income: 3125000
+
+Income: 6230000 
+Taxes Owed: 3115000 
+Taxed Income: 3115000 
+Taxes wth UB deducted: 3100000 
+Final Income: 3130000
+
+Income: 6240000 
+Taxes Owed: 3120000 
+Taxed Income: 3120000 
+Taxes wth UB deducted: 3105000 
+Final Income: 3135000
+
+Income: 6250000 
+Taxes Owed: 3125000 
+Taxed Income: 3125000 
+Taxes wth UB deducted: 3110000 
+Final Income: 3140000
+
+Income: 6260000 
+Taxes Owed: 3130000 
+Taxed Income: 3130000 
+Taxes wth UB deducted: 3115000 
+Final Income: 3145000
+
+Income: 6270000 
+Taxes Owed: 3135000 
+Taxed Income: 3135000 
+Taxes wth UB deducted: 3120000 
+Final Income: 3150000
+
+Income: 6280000 
+Taxes Owed: 3140000 
+Taxed Income: 3140000 
+Taxes wth UB deducted: 3125000 
+Final Income: 3155000
+
+Income: 6290000 
+Taxes Owed: 3145000 
+Taxed Income: 3145000 
+Taxes wth UB deducted: 3130000 
+Final Income: 3160000
+
+Income: 6300000 
+Taxes Owed: 3150000 
+Taxed Income: 3150000 
+Taxes wth UB deducted: 3135000 
+Final Income: 3165000
+
+Income: 6310000 
+Taxes Owed: 3155000 
+Taxed Income: 3155000 
+Taxes wth UB deducted: 3140000 
+Final Income: 3170000
+
+Income: 6320000 
+Taxes Owed: 3160000 
+Taxed Income: 3160000 
+Taxes wth UB deducted: 3145000 
+Final Income: 3175000
+
+Income: 6330000 
+Taxes Owed: 3165000 
+Taxed Income: 3165000 
+Taxes wth UB deducted: 3150000 
+Final Income: 3180000
+
+Income: 6340000 
+Taxes Owed: 3170000 
+Taxed Income: 3170000 
+Taxes wth UB deducted: 3155000 
+Final Income: 3185000
+
+Income: 6350000 
+Taxes Owed: 3175000 
+Taxed Income: 3175000 
+Taxes wth UB deducted: 3160000 
+Final Income: 3190000
+
+Income: 6360000 
+Taxes Owed: 3180000 
+Taxed Income: 3180000 
+Taxes wth UB deducted: 3165000 
+Final Income: 3195000
+
+Income: 6370000 
+Taxes Owed: 3185000 
+Taxed Income: 3185000 
+Taxes wth UB deducted: 3170000 
+Final Income: 3200000
+
+Income: 6380000 
+Taxes Owed: 3190000 
+Taxed Income: 3190000 
+Taxes wth UB deducted: 3175000 
+Final Income: 3205000
+
+Income: 6390000 
+Taxes Owed: 3195000 
+Taxed Income: 3195000 
+Taxes wth UB deducted: 3180000 
+Final Income: 3210000
+
+Income: 6400000 
+Taxes Owed: 3200000 
+Taxed Income: 3200000 
+Taxes wth UB deducted: 3185000 
+Final Income: 3215000
+
+Income: 6410000 
+Taxes Owed: 3205000 
+Taxed Income: 3205000 
+Taxes wth UB deducted: 3190000 
+Final Income: 3220000
+
+Income: 6420000 
+Taxes Owed: 3210000 
+Taxed Income: 3210000 
+Taxes wth UB deducted: 3195000 
+Final Income: 3225000
+
+Income: 6430000 
+Taxes Owed: 3215000 
+Taxed Income: 3215000 
+Taxes wth UB deducted: 3200000 
+Final Income: 3230000
+
+Income: 6440000 
+Taxes Owed: 3220000 
+Taxed Income: 3220000 
+Taxes wth UB deducted: 3205000 
+Final Income: 3235000
+
+Income: 6450000 
+Taxes Owed: 3225000 
+Taxed Income: 3225000 
+Taxes wth UB deducted: 3210000 
+Final Income: 3240000
+
+Income: 6460000 
+Taxes Owed: 3230000 
+Taxed Income: 3230000 
+Taxes wth UB deducted: 3215000 
+Final Income: 3245000
+
+Income: 6470000 
+Taxes Owed: 3235000 
+Taxed Income: 3235000 
+Taxes wth UB deducted: 3220000 
+Final Income: 3250000
+
+Income: 6480000 
+Taxes Owed: 3240000 
+Taxed Income: 3240000 
+Taxes wth UB deducted: 3225000 
+Final Income: 3255000
+
+Income: 6490000 
+Taxes Owed: 3245000 
+Taxed Income: 3245000 
+Taxes wth UB deducted: 3230000 
+Final Income: 3260000
+
+Income: 6500000 
+Taxes Owed: 3250000 
+Taxed Income: 3250000 
+Taxes wth UB deducted: 3235000 
+Final Income: 3265000
+
+Income: 6510000 
+Taxes Owed: 3255000 
+Taxed Income: 3255000 
+Taxes wth UB deducted: 3240000 
+Final Income: 3270000
+
+Income: 6520000 
+Taxes Owed: 3260000 
+Taxed Income: 3260000 
+Taxes wth UB deducted: 3245000 
+Final Income: 3275000
+
+Income: 6530000 
+Taxes Owed: 3265000 
+Taxed Income: 3265000 
+Taxes wth UB deducted: 3250000 
+Final Income: 3280000
+
+Income: 6540000 
+Taxes Owed: 3270000 
+Taxed Income: 3270000 
+Taxes wth UB deducted: 3255000 
+Final Income: 3285000
+
+Income: 6550000 
+Taxes Owed: 3275000 
+Taxed Income: 3275000 
+Taxes wth UB deducted: 3260000 
+Final Income: 3290000
+
+Income: 6560000 
+Taxes Owed: 3280000 
+Taxed Income: 3280000 
+Taxes wth UB deducted: 3265000 
+Final Income: 3295000
+
+Income: 6570000 
+Taxes Owed: 3285000 
+Taxed Income: 3285000 
+Taxes wth UB deducted: 3270000 
+Final Income: 3300000
+
+Income: 6580000 
+Taxes Owed: 3290000 
+Taxed Income: 3290000 
+Taxes wth UB deducted: 3275000 
+Final Income: 3305000
+
+Income: 6590000 
+Taxes Owed: 3295000 
+Taxed Income: 3295000 
+Taxes wth UB deducted: 3280000 
+Final Income: 3310000
+
+Income: 6600000 
+Taxes Owed: 3300000 
+Taxed Income: 3300000 
+Taxes wth UB deducted: 3285000 
+Final Income: 3315000
+
+Income: 6610000 
+Taxes Owed: 3305000 
+Taxed Income: 3305000 
+Taxes wth UB deducted: 3290000 
+Final Income: 3320000
+
+Income: 6620000 
+Taxes Owed: 3310000 
+Taxed Income: 3310000 
+Taxes wth UB deducted: 3295000 
+Final Income: 3325000
+
+Income: 6630000 
+Taxes Owed: 3315000 
+Taxed Income: 3315000 
+Taxes wth UB deducted: 3300000 
+Final Income: 3330000
+
+Income: 6640000 
+Taxes Owed: 3320000 
+Taxed Income: 3320000 
+Taxes wth UB deducted: 3305000 
+Final Income: 3335000
+
+Income: 6650000 
+Taxes Owed: 3325000 
+Taxed Income: 3325000 
+Taxes wth UB deducted: 3310000 
+Final Income: 3340000
+
+Income: 6660000 
+Taxes Owed: 3330000 
+Taxed Income: 3330000 
+Taxes wth UB deducted: 3315000 
+Final Income: 3345000
+
+Income: 6670000 
+Taxes Owed: 3335000 
+Taxed Income: 3335000 
+Taxes wth UB deducted: 3320000 
+Final Income: 3350000
+
+Income: 6680000 
+Taxes Owed: 3340000 
+Taxed Income: 3340000 
+Taxes wth UB deducted: 3325000 
+Final Income: 3355000
+
+Income: 6690000 
+Taxes Owed: 3345000 
+Taxed Income: 3345000 
+Taxes wth UB deducted: 3330000 
+Final Income: 3360000
+
+Income: 6700000 
+Taxes Owed: 3350000 
+Taxed Income: 3350000 
+Taxes wth UB deducted: 3335000 
+Final Income: 3365000
+
+Income: 6710000 
+Taxes Owed: 3355000 
+Taxed Income: 3355000 
+Taxes wth UB deducted: 3340000 
+Final Income: 3370000
+
+Income: 6720000 
+Taxes Owed: 3360000 
+Taxed Income: 3360000 
+Taxes wth UB deducted: 3345000 
+Final Income: 3375000
+
+Income: 6730000 
+Taxes Owed: 3365000 
+Taxed Income: 3365000 
+Taxes wth UB deducted: 3350000 
+Final Income: 3380000
+
+Income: 6740000 
+Taxes Owed: 3370000 
+Taxed Income: 3370000 
+Taxes wth UB deducted: 3355000 
+Final Income: 3385000
+
+Income: 6750000 
+Taxes Owed: 3375000 
+Taxed Income: 3375000 
+Taxes wth UB deducted: 3360000 
+Final Income: 3390000
+
+Income: 6760000 
+Taxes Owed: 3380000 
+Taxed Income: 3380000 
+Taxes wth UB deducted: 3365000 
+Final Income: 3395000
+
+Income: 6770000 
+Taxes Owed: 3385000 
+Taxed Income: 3385000 
+Taxes wth UB deducted: 3370000 
+Final Income: 3400000
+
+Income: 6780000 
+Taxes Owed: 3390000 
+Taxed Income: 3390000 
+Taxes wth UB deducted: 3375000 
+Final Income: 3405000
+
+Income: 6790000 
+Taxes Owed: 3395000 
+Taxed Income: 3395000 
+Taxes wth UB deducted: 3380000 
+Final Income: 3410000
+
+Income: 6800000 
+Taxes Owed: 3400000 
+Taxed Income: 3400000 
+Taxes wth UB deducted: 3385000 
+Final Income: 3415000
+
+Income: 6810000 
+Taxes Owed: 3405000 
+Taxed Income: 3405000 
+Taxes wth UB deducted: 3390000 
+Final Income: 3420000
+
+Income: 6820000 
+Taxes Owed: 3410000 
+Taxed Income: 3410000 
+Taxes wth UB deducted: 3395000 
+Final Income: 3425000
+
+Income: 6830000 
+Taxes Owed: 3415000 
+Taxed Income: 3415000 
+Taxes wth UB deducted: 3400000 
+Final Income: 3430000
+
+Income: 6840000 
+Taxes Owed: 3420000 
+Taxed Income: 3420000 
+Taxes wth UB deducted: 3405000 
+Final Income: 3435000
+
+Income: 6850000 
+Taxes Owed: 3425000 
+Taxed Income: 3425000 
+Taxes wth UB deducted: 3410000 
+Final Income: 3440000
+
+Income: 6860000 
+Taxes Owed: 3430000 
+Taxed Income: 3430000 
+Taxes wth UB deducted: 3415000 
+Final Income: 3445000
+
+Income: 6870000 
+Taxes Owed: 3435000 
+Taxed Income: 3435000 
+Taxes wth UB deducted: 3420000 
+Final Income: 3450000
+
+Income: 6880000 
+Taxes Owed: 3440000 
+Taxed Income: 3440000 
+Taxes wth UB deducted: 3425000 
+Final Income: 3455000
+
+Income: 6890000 
+Taxes Owed: 3445000 
+Taxed Income: 3445000 
+Taxes wth UB deducted: 3430000 
+Final Income: 3460000
+
+Income: 6900000 
+Taxes Owed: 3450000 
+Taxed Income: 3450000 
+Taxes wth UB deducted: 3435000 
+Final Income: 3465000
+
+Income: 6910000 
+Taxes Owed: 3455000 
+Taxed Income: 3455000 
+Taxes wth UB deducted: 3440000 
+Final Income: 3470000
+
+Income: 6920000 
+Taxes Owed: 3460000 
+Taxed Income: 3460000 
+Taxes wth UB deducted: 3445000 
+Final Income: 3475000
+
+Income: 6930000 
+Taxes Owed: 3465000 
+Taxed Income: 3465000 
+Taxes wth UB deducted: 3450000 
+Final Income: 3480000
+
+Income: 6940000 
+Taxes Owed: 3470000 
+Taxed Income: 3470000 
+Taxes wth UB deducted: 3455000 
+Final Income: 3485000
+
+Income: 6950000 
+Taxes Owed: 3475000 
+Taxed Income: 3475000 
+Taxes wth UB deducted: 3460000 
+Final Income: 3490000
+
+Income: 6960000 
+Taxes Owed: 3480000 
+Taxed Income: 3480000 
+Taxes wth UB deducted: 3465000 
+Final Income: 3495000
+
+Income: 6970000 
+Taxes Owed: 3485000 
+Taxed Income: 3485000 
+Taxes wth UB deducted: 3470000 
+Final Income: 3500000
+
+Income: 6980000 
+Taxes Owed: 3490000 
+Taxed Income: 3490000 
+Taxes wth UB deducted: 3475000 
+Final Income: 3505000
+
+Income: 6990000 
+Taxes Owed: 3495000 
+Taxed Income: 3495000 
+Taxes wth UB deducted: 3480000 
+Final Income: 3510000
+
+Income: 7000000 
+Taxes Owed: 3500000 
+Taxed Income: 3500000 
+Taxes wth UB deducted: 3485000 
+Final Income: 3515000
+
+Income: 7010000 
+Taxes Owed: 3505000 
+Taxed Income: 3505000 
+Taxes wth UB deducted: 3490000 
+Final Income: 3520000
+
+Income: 7020000 
+Taxes Owed: 3510000 
+Taxed Income: 3510000 
+Taxes wth UB deducted: 3495000 
+Final Income: 3525000
+
+Income: 7030000 
+Taxes Owed: 3515000 
+Taxed Income: 3515000 
+Taxes wth UB deducted: 3500000 
+Final Income: 3530000
+
+Income: 7040000 
+Taxes Owed: 3520000 
+Taxed Income: 3520000 
+Taxes wth UB deducted: 3505000 
+Final Income: 3535000
+
+Income: 7050000 
+Taxes Owed: 3525000 
+Taxed Income: 3525000 
+Taxes wth UB deducted: 3510000 
+Final Income: 3540000
+
+Income: 7060000 
+Taxes Owed: 3530000 
+Taxed Income: 3530000 
+Taxes wth UB deducted: 3515000 
+Final Income: 3545000
+
+Income: 7070000 
+Taxes Owed: 3535000 
+Taxed Income: 3535000 
+Taxes wth UB deducted: 3520000 
+Final Income: 3550000
+
+Income: 7080000 
+Taxes Owed: 3540000 
+Taxed Income: 3540000 
+Taxes wth UB deducted: 3525000 
+Final Income: 3555000
+
+Income: 7090000 
+Taxes Owed: 3545000 
+Taxed Income: 3545000 
+Taxes wth UB deducted: 3530000 
+Final Income: 3560000
+
+Income: 7100000 
+Taxes Owed: 3550000 
+Taxed Income: 3550000 
+Taxes wth UB deducted: 3535000 
+Final Income: 3565000
+
+Income: 7110000 
+Taxes Owed: 3555000 
+Taxed Income: 3555000 
+Taxes wth UB deducted: 3540000 
+Final Income: 3570000
+
+Income: 7120000 
+Taxes Owed: 3560000 
+Taxed Income: 3560000 
+Taxes wth UB deducted: 3545000 
+Final Income: 3575000
+
+Income: 7130000 
+Taxes Owed: 3565000 
+Taxed Income: 3565000 
+Taxes wth UB deducted: 3550000 
+Final Income: 3580000
+
+Income: 7140000 
+Taxes Owed: 3570000 
+Taxed Income: 3570000 
+Taxes wth UB deducted: 3555000 
+Final Income: 3585000
+
+Income: 7150000 
+Taxes Owed: 3575000 
+Taxed Income: 3575000 
+Taxes wth UB deducted: 3560000 
+Final Income: 3590000
+
+Income: 7160000 
+Taxes Owed: 3580000 
+Taxed Income: 3580000 
+Taxes wth UB deducted: 3565000 
+Final Income: 3595000
+
+Income: 7170000 
+Taxes Owed: 3585000 
+Taxed Income: 3585000 
+Taxes wth UB deducted: 3570000 
+Final Income: 3600000
+
+Income: 7180000 
+Taxes Owed: 3590000 
+Taxed Income: 3590000 
+Taxes wth UB deducted: 3575000 
+Final Income: 3605000
+
+Income: 7190000 
+Taxes Owed: 3595000 
+Taxed Income: 3595000 
+Taxes wth UB deducted: 3580000 
+Final Income: 3610000
+
+Income: 7200000 
+Taxes Owed: 3600000 
+Taxed Income: 3600000 
+Taxes wth UB deducted: 3585000 
+Final Income: 3615000
+
+Income: 7210000 
+Taxes Owed: 3605000 
+Taxed Income: 3605000 
+Taxes wth UB deducted: 3590000 
+Final Income: 3620000
+
+Income: 7220000 
+Taxes Owed: 3610000 
+Taxed Income: 3610000 
+Taxes wth UB deducted: 3595000 
+Final Income: 3625000
+
+Income: 7230000 
+Taxes Owed: 3615000 
+Taxed Income: 3615000 
+Taxes wth UB deducted: 3600000 
+Final Income: 3630000
+
+Income: 7240000 
+Taxes Owed: 3620000 
+Taxed Income: 3620000 
+Taxes wth UB deducted: 3605000 
+Final Income: 3635000
+
+Income: 7250000 
+Taxes Owed: 3625000 
+Taxed Income: 3625000 
+Taxes wth UB deducted: 3610000 
+Final Income: 3640000
+
+Income: 7260000 
+Taxes Owed: 3630000 
+Taxed Income: 3630000 
+Taxes wth UB deducted: 3615000 
+Final Income: 3645000
+
+Income: 7270000 
+Taxes Owed: 3635000 
+Taxed Income: 3635000 
+Taxes wth UB deducted: 3620000 
+Final Income: 3650000
+
+Income: 7280000 
+Taxes Owed: 3640000 
+Taxed Income: 3640000 
+Taxes wth UB deducted: 3625000 
+Final Income: 3655000
+
+Income: 7290000 
+Taxes Owed: 3645000 
+Taxed Income: 3645000 
+Taxes wth UB deducted: 3630000 
+Final Income: 3660000
+
+Income: 7300000 
+Taxes Owed: 3650000 
+Taxed Income: 3650000 
+Taxes wth UB deducted: 3635000 
+Final Income: 3665000
+
+Income: 7310000 
+Taxes Owed: 3655000 
+Taxed Income: 3655000 
+Taxes wth UB deducted: 3640000 
+Final Income: 3670000
+
+Income: 7320000 
+Taxes Owed: 3660000 
+Taxed Income: 3660000 
+Taxes wth UB deducted: 3645000 
+Final Income: 3675000
+
+Income: 7330000 
+Taxes Owed: 3665000 
+Taxed Income: 3665000 
+Taxes wth UB deducted: 3650000 
+Final Income: 3680000
+
+Income: 7340000 
+Taxes Owed: 3670000 
+Taxed Income: 3670000 
+Taxes wth UB deducted: 3655000 
+Final Income: 3685000
+
+Income: 7350000 
+Taxes Owed: 3675000 
+Taxed Income: 3675000 
+Taxes wth UB deducted: 3660000 
+Final Income: 3690000
+
+Income: 7360000 
+Taxes Owed: 3680000 
+Taxed Income: 3680000 
+Taxes wth UB deducted: 3665000 
+Final Income: 3695000
+
+Income: 7370000 
+Taxes Owed: 3685000 
+Taxed Income: 3685000 
+Taxes wth UB deducted: 3670000 
+Final Income: 3700000
+
+Income: 7380000 
+Taxes Owed: 3690000 
+Taxed Income: 3690000 
+Taxes wth UB deducted: 3675000 
+Final Income: 3705000
+
+Income: 7390000 
+Taxes Owed: 3695000 
+Taxed Income: 3695000 
+Taxes wth UB deducted: 3680000 
+Final Income: 3710000
+
+Income: 7400000 
+Taxes Owed: 3700000 
+Taxed Income: 3700000 
+Taxes wth UB deducted: 3685000 
+Final Income: 3715000
+
+Income: 7410000 
+Taxes Owed: 3705000 
+Taxed Income: 3705000 
+Taxes wth UB deducted: 3690000 
+Final Income: 3720000
+
+Income: 7420000 
+Taxes Owed: 3710000 
+Taxed Income: 3710000 
+Taxes wth UB deducted: 3695000 
+Final Income: 3725000
+
+Income: 7430000 
+Taxes Owed: 3715000 
+Taxed Income: 3715000 
+Taxes wth UB deducted: 3700000 
+Final Income: 3730000
+
+Income: 7440000 
+Taxes Owed: 3720000 
+Taxed Income: 3720000 
+Taxes wth UB deducted: 3705000 
+Final Income: 3735000
+
+Income: 7450000 
+Taxes Owed: 3725000 
+Taxed Income: 3725000 
+Taxes wth UB deducted: 3710000 
+Final Income: 3740000
+
+Income: 7460000 
+Taxes Owed: 3730000 
+Taxed Income: 3730000 
+Taxes wth UB deducted: 3715000 
+Final Income: 3745000
+
+Income: 7470000 
+Taxes Owed: 3735000 
+Taxed Income: 3735000 
+Taxes wth UB deducted: 3720000 
+Final Income: 3750000
+
+Income: 7480000 
+Taxes Owed: 3740000 
+Taxed Income: 3740000 
+Taxes wth UB deducted: 3725000 
+Final Income: 3755000
+
+Income: 7490000 
+Taxes Owed: 3745000 
+Taxed Income: 3745000 
+Taxes wth UB deducted: 3730000 
+Final Income: 3760000
+
+Income: 7500000 
+Taxes Owed: 3750000 
+Taxed Income: 3750000 
+Taxes wth UB deducted: 3735000 
+Final Income: 3765000
+
+Income: 7510000 
+Taxes Owed: 3755000 
+Taxed Income: 3755000 
+Taxes wth UB deducted: 3740000 
+Final Income: 3770000
+
+Income: 7520000 
+Taxes Owed: 3760000 
+Taxed Income: 3760000 
+Taxes wth UB deducted: 3745000 
+Final Income: 3775000
+
+Income: 7530000 
+Taxes Owed: 3765000 
+Taxed Income: 3765000 
+Taxes wth UB deducted: 3750000 
+Final Income: 3780000
+
+Income: 7540000 
+Taxes Owed: 3770000 
+Taxed Income: 3770000 
+Taxes wth UB deducted: 3755000 
+Final Income: 3785000
+
+Income: 7550000 
+Taxes Owed: 3775000 
+Taxed Income: 3775000 
+Taxes wth UB deducted: 3760000 
+Final Income: 3790000
+
+Income: 7560000 
+Taxes Owed: 3780000 
+Taxed Income: 3780000 
+Taxes wth UB deducted: 3765000 
+Final Income: 3795000
+
+Income: 7570000 
+Taxes Owed: 3785000 
+Taxed Income: 3785000 
+Taxes wth UB deducted: 3770000 
+Final Income: 3800000
+
+Income: 7580000 
+Taxes Owed: 3790000 
+Taxed Income: 3790000 
+Taxes wth UB deducted: 3775000 
+Final Income: 3805000
+
+Income: 7590000 
+Taxes Owed: 3795000 
+Taxed Income: 3795000 
+Taxes wth UB deducted: 3780000 
+Final Income: 3810000
+
+Income: 7600000 
+Taxes Owed: 3800000 
+Taxed Income: 3800000 
+Taxes wth UB deducted: 3785000 
+Final Income: 3815000
+
+Income: 7610000 
+Taxes Owed: 3805000 
+Taxed Income: 3805000 
+Taxes wth UB deducted: 3790000 
+Final Income: 3820000
+
+Income: 7620000 
+Taxes Owed: 3810000 
+Taxed Income: 3810000 
+Taxes wth UB deducted: 3795000 
+Final Income: 3825000
+
+Income: 7630000 
+Taxes Owed: 3815000 
+Taxed Income: 3815000 
+Taxes wth UB deducted: 3800000 
+Final Income: 3830000
+
+Income: 7640000 
+Taxes Owed: 3820000 
+Taxed Income: 3820000 
+Taxes wth UB deducted: 3805000 
+Final Income: 3835000
+
+Income: 7650000 
+Taxes Owed: 3825000 
+Taxed Income: 3825000 
+Taxes wth UB deducted: 3810000 
+Final Income: 3840000
+
+Income: 7660000 
+Taxes Owed: 3830000 
+Taxed Income: 3830000 
+Taxes wth UB deducted: 3815000 
+Final Income: 3845000
+
+Income: 7670000 
+Taxes Owed: 3835000 
+Taxed Income: 3835000 
+Taxes wth UB deducted: 3820000 
+Final Income: 3850000
+
+Income: 7680000 
+Taxes Owed: 3840000 
+Taxed Income: 3840000 
+Taxes wth UB deducted: 3825000 
+Final Income: 3855000
+
+Income: 7690000 
+Taxes Owed: 3845000 
+Taxed Income: 3845000 
+Taxes wth UB deducted: 3830000 
+Final Income: 3860000
+
+Income: 7700000 
+Taxes Owed: 3850000 
+Taxed Income: 3850000 
+Taxes wth UB deducted: 3835000 
+Final Income: 3865000
+
+Income: 7710000 
+Taxes Owed: 3855000 
+Taxed Income: 3855000 
+Taxes wth UB deducted: 3840000 
+Final Income: 3870000
+
+Income: 7720000 
+Taxes Owed: 3860000 
+Taxed Income: 3860000 
+Taxes wth UB deducted: 3845000 
+Final Income: 3875000
+
+Income: 7730000 
+Taxes Owed: 3865000 
+Taxed Income: 3865000 
+Taxes wth UB deducted: 3850000 
+Final Income: 3880000
+
+Income: 7740000 
+Taxes Owed: 3870000 
+Taxed Income: 3870000 
+Taxes wth UB deducted: 3855000 
+Final Income: 3885000
+
+Income: 7750000 
+Taxes Owed: 3875000 
+Taxed Income: 3875000 
+Taxes wth UB deducted: 3860000 
+Final Income: 3890000
+
+Income: 7760000 
+Taxes Owed: 3880000 
+Taxed Income: 3880000 
+Taxes wth UB deducted: 3865000 
+Final Income: 3895000
+
+Income: 7770000 
+Taxes Owed: 3885000 
+Taxed Income: 3885000 
+Taxes wth UB deducted: 3870000 
+Final Income: 3900000
+
+Income: 7780000 
+Taxes Owed: 3890000 
+Taxed Income: 3890000 
+Taxes wth UB deducted: 3875000 
+Final Income: 3905000
+
+Income: 7790000 
+Taxes Owed: 3895000 
+Taxed Income: 3895000 
+Taxes wth UB deducted: 3880000 
+Final Income: 3910000
+
+Income: 7800000 
+Taxes Owed: 3900000 
+Taxed Income: 3900000 
+Taxes wth UB deducted: 3885000 
+Final Income: 3915000
+
+Income: 7810000 
+Taxes Owed: 3905000 
+Taxed Income: 3905000 
+Taxes wth UB deducted: 3890000 
+Final Income: 3920000
+
+Income: 7820000 
+Taxes Owed: 3910000 
+Taxed Income: 3910000 
+Taxes wth UB deducted: 3895000 
+Final Income: 3925000
+
+Income: 7830000 
+Taxes Owed: 3915000 
+Taxed Income: 3915000 
+Taxes wth UB deducted: 3900000 
+Final Income: 3930000
+
+Income: 7840000 
+Taxes Owed: 3920000 
+Taxed Income: 3920000 
+Taxes wth UB deducted: 3905000 
+Final Income: 3935000
+
+Income: 7850000 
+Taxes Owed: 3925000 
+Taxed Income: 3925000 
+Taxes wth UB deducted: 3910000 
+Final Income: 3940000
+
+Income: 7860000 
+Taxes Owed: 3930000 
+Taxed Income: 3930000 
+Taxes wth UB deducted: 3915000 
+Final Income: 3945000
+
+Income: 7870000 
+Taxes Owed: 3935000 
+Taxed Income: 3935000 
+Taxes wth UB deducted: 3920000 
+Final Income: 3950000
+
+Income: 7880000 
+Taxes Owed: 3940000 
+Taxed Income: 3940000 
+Taxes wth UB deducted: 3925000 
+Final Income: 3955000
+
+Income: 7890000 
+Taxes Owed: 3945000 
+Taxed Income: 3945000 
+Taxes wth UB deducted: 3930000 
+Final Income: 3960000
+
+Income: 7900000 
+Taxes Owed: 3950000 
+Taxed Income: 3950000 
+Taxes wth UB deducted: 3935000 
+Final Income: 3965000
+
+Income: 7910000 
+Taxes Owed: 3955000 
+Taxed Income: 3955000 
+Taxes wth UB deducted: 3940000 
+Final Income: 3970000
+
+Income: 7920000 
+Taxes Owed: 3960000 
+Taxed Income: 3960000 
+Taxes wth UB deducted: 3945000 
+Final Income: 3975000
+
+Income: 7930000 
+Taxes Owed: 3965000 
+Taxed Income: 3965000 
+Taxes wth UB deducted: 3950000 
+Final Income: 3980000
+
+Income: 7940000 
+Taxes Owed: 3970000 
+Taxed Income: 3970000 
+Taxes wth UB deducted: 3955000 
+Final Income: 3985000
+
+Income: 7950000 
+Taxes Owed: 3975000 
+Taxed Income: 3975000 
+Taxes wth UB deducted: 3960000 
+Final Income: 3990000
+
+Income: 7960000 
+Taxes Owed: 3980000 
+Taxed Income: 3980000 
+Taxes wth UB deducted: 3965000 
+Final Income: 3995000
+
+Income: 7970000 
+Taxes Owed: 3985000 
+Taxed Income: 3985000 
+Taxes wth UB deducted: 3970000 
+Final Income: 4000000
+
+Income: 7980000 
+Taxes Owed: 3990000 
+Taxed Income: 3990000 
+Taxes wth UB deducted: 3975000 
+Final Income: 4005000
+
+Income: 7990000 
+Taxes Owed: 3995000 
+Taxed Income: 3995000 
+Taxes wth UB deducted: 3980000 
+Final Income: 4010000
+
+Income: 8000000 
+Taxes Owed: 4000000 
+Taxed Income: 4000000 
+Taxes wth UB deducted: 3985000 
+Final Income: 4015000
+
+Income: 8010000 
+Taxes Owed: 4005000 
+Taxed Income: 4005000 
+Taxes wth UB deducted: 3990000 
+Final Income: 4020000
+
+Income: 8020000 
+Taxes Owed: 4010000 
+Taxed Income: 4010000 
+Taxes wth UB deducted: 3995000 
+Final Income: 4025000
+
+Income: 8030000 
+Taxes Owed: 4015000 
+Taxed Income: 4015000 
+Taxes wth UB deducted: 4000000 
+Final Income: 4030000
+
+Income: 8040000 
+Taxes Owed: 4020000 
+Taxed Income: 4020000 
+Taxes wth UB deducted: 4005000 
+Final Income: 4035000
+
+Income: 8050000 
+Taxes Owed: 4025000 
+Taxed Income: 4025000 
+Taxes wth UB deducted: 4010000 
+Final Income: 4040000
+
+Income: 8060000 
+Taxes Owed: 4030000 
+Taxed Income: 4030000 
+Taxes wth UB deducted: 4015000 
+Final Income: 4045000
+
+Income: 8070000 
+Taxes Owed: 4035000 
+Taxed Income: 4035000 
+Taxes wth UB deducted: 4020000 
+Final Income: 4050000
+
+Income: 8080000 
+Taxes Owed: 4040000 
+Taxed Income: 4040000 
+Taxes wth UB deducted: 4025000 
+Final Income: 4055000
+
+Income: 8090000 
+Taxes Owed: 4045000 
+Taxed Income: 4045000 
+Taxes wth UB deducted: 4030000 
+Final Income: 4060000
+
+Income: 8100000 
+Taxes Owed: 4050000 
+Taxed Income: 4050000 
+Taxes wth UB deducted: 4035000 
+Final Income: 4065000
+
+Income: 8110000 
+Taxes Owed: 4055000 
+Taxed Income: 4055000 
+Taxes wth UB deducted: 4040000 
+Final Income: 4070000
+
+Income: 8120000 
+Taxes Owed: 4060000 
+Taxed Income: 4060000 
+Taxes wth UB deducted: 4045000 
+Final Income: 4075000
+
+Income: 8130000 
+Taxes Owed: 4065000 
+Taxed Income: 4065000 
+Taxes wth UB deducted: 4050000 
+Final Income: 4080000
+
+Income: 8140000 
+Taxes Owed: 4070000 
+Taxed Income: 4070000 
+Taxes wth UB deducted: 4055000 
+Final Income: 4085000
+
+Income: 8150000 
+Taxes Owed: 4075000 
+Taxed Income: 4075000 
+Taxes wth UB deducted: 4060000 
+Final Income: 4090000
+
+Income: 8160000 
+Taxes Owed: 4080000 
+Taxed Income: 4080000 
+Taxes wth UB deducted: 4065000 
+Final Income: 4095000
+
+Income: 8170000 
+Taxes Owed: 4085000 
+Taxed Income: 4085000 
+Taxes wth UB deducted: 4070000 
+Final Income: 4100000
+
+Income: 8180000 
+Taxes Owed: 4090000 
+Taxed Income: 4090000 
+Taxes wth UB deducted: 4075000 
+Final Income: 4105000
+
+Income: 8190000 
+Taxes Owed: 4095000 
+Taxed Income: 4095000 
+Taxes wth UB deducted: 4080000 
+Final Income: 4110000
+
+Income: 8200000 
+Taxes Owed: 4100000 
+Taxed Income: 4100000 
+Taxes wth UB deducted: 4085000 
+Final Income: 4115000
+
+Income: 8210000 
+Taxes Owed: 4105000 
+Taxed Income: 4105000 
+Taxes wth UB deducted: 4090000 
+Final Income: 4120000
+
+Income: 8220000 
+Taxes Owed: 4110000 
+Taxed Income: 4110000 
+Taxes wth UB deducted: 4095000 
+Final Income: 4125000
+
+Income: 8230000 
+Taxes Owed: 4115000 
+Taxed Income: 4115000 
+Taxes wth UB deducted: 4100000 
+Final Income: 4130000
+
+Income: 8240000 
+Taxes Owed: 4120000 
+Taxed Income: 4120000 
+Taxes wth UB deducted: 4105000 
+Final Income: 4135000
+
+Income: 8250000 
+Taxes Owed: 4125000 
+Taxed Income: 4125000 
+Taxes wth UB deducted: 4110000 
+Final Income: 4140000
+
+Income: 8260000 
+Taxes Owed: 4130000 
+Taxed Income: 4130000 
+Taxes wth UB deducted: 4115000 
+Final Income: 4145000
+
+Income: 8270000 
+Taxes Owed: 4135000 
+Taxed Income: 4135000 
+Taxes wth UB deducted: 4120000 
+Final Income: 4150000
+
+Income: 8280000 
+Taxes Owed: 4140000 
+Taxed Income: 4140000 
+Taxes wth UB deducted: 4125000 
+Final Income: 4155000
+
+Income: 8290000 
+Taxes Owed: 4145000 
+Taxed Income: 4145000 
+Taxes wth UB deducted: 4130000 
+Final Income: 4160000
+
+Income: 8300000 
+Taxes Owed: 4150000 
+Taxed Income: 4150000 
+Taxes wth UB deducted: 4135000 
+Final Income: 4165000
+
+Income: 8310000 
+Taxes Owed: 4155000 
+Taxed Income: 4155000 
+Taxes wth UB deducted: 4140000 
+Final Income: 4170000
+
+Income: 8320000 
+Taxes Owed: 4160000 
+Taxed Income: 4160000 
+Taxes wth UB deducted: 4145000 
+Final Income: 4175000
+
+Income: 8330000 
+Taxes Owed: 4165000 
+Taxed Income: 4165000 
+Taxes wth UB deducted: 4150000 
+Final Income: 4180000
+
+Income: 8340000 
+Taxes Owed: 4170000 
+Taxed Income: 4170000 
+Taxes wth UB deducted: 4155000 
+Final Income: 4185000
+
+Income: 8350000 
+Taxes Owed: 4175000 
+Taxed Income: 4175000 
+Taxes wth UB deducted: 4160000 
+Final Income: 4190000
+
+Income: 8360000 
+Taxes Owed: 4180000 
+Taxed Income: 4180000 
+Taxes wth UB deducted: 4165000 
+Final Income: 4195000
+
+Income: 8370000 
+Taxes Owed: 4185000 
+Taxed Income: 4185000 
+Taxes wth UB deducted: 4170000 
+Final Income: 4200000
+
+Income: 8380000 
+Taxes Owed: 4190000 
+Taxed Income: 4190000 
+Taxes wth UB deducted: 4175000 
+Final Income: 4205000
+
+Income: 8390000 
+Taxes Owed: 4195000 
+Taxed Income: 4195000 
+Taxes wth UB deducted: 4180000 
+Final Income: 4210000
+
+Income: 8400000 
+Taxes Owed: 4200000 
+Taxed Income: 4200000 
+Taxes wth UB deducted: 4185000 
+Final Income: 4215000
+
+Income: 8410000 
+Taxes Owed: 4205000 
+Taxed Income: 4205000 
+Taxes wth UB deducted: 4190000 
+Final Income: 4220000
+
+Income: 8420000 
+Taxes Owed: 4210000 
+Taxed Income: 4210000 
+Taxes wth UB deducted: 4195000 
+Final Income: 4225000
+
+Income: 8430000 
+Taxes Owed: 4215000 
+Taxed Income: 4215000 
+Taxes wth UB deducted: 4200000 
+Final Income: 4230000
+
+Income: 8440000 
+Taxes Owed: 4220000 
+Taxed Income: 4220000 
+Taxes wth UB deducted: 4205000 
+Final Income: 4235000
+
+Income: 8450000 
+Taxes Owed: 4225000 
+Taxed Income: 4225000 
+Taxes wth UB deducted: 4210000 
+Final Income: 4240000
+
+Income: 8460000 
+Taxes Owed: 4230000 
+Taxed Income: 4230000 
+Taxes wth UB deducted: 4215000 
+Final Income: 4245000
+
+Income: 8470000 
+Taxes Owed: 4235000 
+Taxed Income: 4235000 
+Taxes wth UB deducted: 4220000 
+Final Income: 4250000
+
+Income: 8480000 
+Taxes Owed: 4240000 
+Taxed Income: 4240000 
+Taxes wth UB deducted: 4225000 
+Final Income: 4255000
+
+Income: 8490000 
+Taxes Owed: 4245000 
+Taxed Income: 4245000 
+Taxes wth UB deducted: 4230000 
+Final Income: 4260000
+
+Income: 8500000 
+Taxes Owed: 4250000 
+Taxed Income: 4250000 
+Taxes wth UB deducted: 4235000 
+Final Income: 4265000
+
+Income: 8510000 
+Taxes Owed: 4255000 
+Taxed Income: 4255000 
+Taxes wth UB deducted: 4240000 
+Final Income: 4270000
+
+Income: 8520000 
+Taxes Owed: 4260000 
+Taxed Income: 4260000 
+Taxes wth UB deducted: 4245000 
+Final Income: 4275000
+
+Income: 8530000 
+Taxes Owed: 4265000 
+Taxed Income: 4265000 
+Taxes wth UB deducted: 4250000 
+Final Income: 4280000
+
+Income: 8540000 
+Taxes Owed: 4270000 
+Taxed Income: 4270000 
+Taxes wth UB deducted: 4255000 
+Final Income: 4285000
+
+Income: 8550000 
+Taxes Owed: 4275000 
+Taxed Income: 4275000 
+Taxes wth UB deducted: 4260000 
+Final Income: 4290000
+
+Income: 8560000 
+Taxes Owed: 4280000 
+Taxed Income: 4280000 
+Taxes wth UB deducted: 4265000 
+Final Income: 4295000
+
+Income: 8570000 
+Taxes Owed: 4285000 
+Taxed Income: 4285000 
+Taxes wth UB deducted: 4270000 
+Final Income: 4300000
+
+Income: 8580000 
+Taxes Owed: 4290000 
+Taxed Income: 4290000 
+Taxes wth UB deducted: 4275000 
+Final Income: 4305000
+
+Income: 8590000 
+Taxes Owed: 4295000 
+Taxed Income: 4295000 
+Taxes wth UB deducted: 4280000 
+Final Income: 4310000
+
+Income: 8600000 
+Taxes Owed: 4300000 
+Taxed Income: 4300000 
+Taxes wth UB deducted: 4285000 
+Final Income: 4315000
+
+Income: 8610000 
+Taxes Owed: 4305000 
+Taxed Income: 4305000 
+Taxes wth UB deducted: 4290000 
+Final Income: 4320000
+
+Income: 8620000 
+Taxes Owed: 4310000 
+Taxed Income: 4310000 
+Taxes wth UB deducted: 4295000 
+Final Income: 4325000
+
+Income: 8630000 
+Taxes Owed: 4315000 
+Taxed Income: 4315000 
+Taxes wth UB deducted: 4300000 
+Final Income: 4330000
+
+Income: 8640000 
+Taxes Owed: 4320000 
+Taxed Income: 4320000 
+Taxes wth UB deducted: 4305000 
+Final Income: 4335000
+
+Income: 8650000 
+Taxes Owed: 4325000 
+Taxed Income: 4325000 
+Taxes wth UB deducted: 4310000 
+Final Income: 4340000
+
+Income: 8660000 
+Taxes Owed: 4330000 
+Taxed Income: 4330000 
+Taxes wth UB deducted: 4315000 
+Final Income: 4345000
+
+Income: 8670000 
+Taxes Owed: 4335000 
+Taxed Income: 4335000 
+Taxes wth UB deducted: 4320000 
+Final Income: 4350000
+
+Income: 8680000 
+Taxes Owed: 4340000 
+Taxed Income: 4340000 
+Taxes wth UB deducted: 4325000 
+Final Income: 4355000
+
+Income: 8690000 
+Taxes Owed: 4345000 
+Taxed Income: 4345000 
+Taxes wth UB deducted: 4330000 
+Final Income: 4360000
+
+Income: 8700000 
+Taxes Owed: 4350000 
+Taxed Income: 4350000 
+Taxes wth UB deducted: 4335000 
+Final Income: 4365000
+
+Income: 8710000 
+Taxes Owed: 4355000 
+Taxed Income: 4355000 
+Taxes wth UB deducted: 4340000 
+Final Income: 4370000
+
+Income: 8720000 
+Taxes Owed: 4360000 
+Taxed Income: 4360000 
+Taxes wth UB deducted: 4345000 
+Final Income: 4375000
+
+Income: 8730000 
+Taxes Owed: 4365000 
+Taxed Income: 4365000 
+Taxes wth UB deducted: 4350000 
+Final Income: 4380000
+
+Income: 8740000 
+Taxes Owed: 4370000 
+Taxed Income: 4370000 
+Taxes wth UB deducted: 4355000 
+Final Income: 4385000
+
+Income: 8750000 
+Taxes Owed: 4375000 
+Taxed Income: 4375000 
+Taxes wth UB deducted: 4360000 
+Final Income: 4390000
+
+Income: 8760000 
+Taxes Owed: 4380000 
+Taxed Income: 4380000 
+Taxes wth UB deducted: 4365000 
+Final Income: 4395000
+
+Income: 8770000 
+Taxes Owed: 4385000 
+Taxed Income: 4385000 
+Taxes wth UB deducted: 4370000 
+Final Income: 4400000
+
+Income: 8780000 
+Taxes Owed: 4390000 
+Taxed Income: 4390000 
+Taxes wth UB deducted: 4375000 
+Final Income: 4405000
+
+Income: 8790000 
+Taxes Owed: 4395000 
+Taxed Income: 4395000 
+Taxes wth UB deducted: 4380000 
+Final Income: 4410000
+
+Income: 8800000 
+Taxes Owed: 4400000 
+Taxed Income: 4400000 
+Taxes wth UB deducted: 4385000 
+Final Income: 4415000
+
+Income: 8810000 
+Taxes Owed: 4405000 
+Taxed Income: 4405000 
+Taxes wth UB deducted: 4390000 
+Final Income: 4420000
+
+Income: 8820000 
+Taxes Owed: 4410000 
+Taxed Income: 4410000 
+Taxes wth UB deducted: 4395000 
+Final Income: 4425000
+
+Income: 8830000 
+Taxes Owed: 4415000 
+Taxed Income: 4415000 
+Taxes wth UB deducted: 4400000 
+Final Income: 4430000
+
+Income: 8840000 
+Taxes Owed: 4420000 
+Taxed Income: 4420000 
+Taxes wth UB deducted: 4405000 
+Final Income: 4435000
+
+Income: 8850000 
+Taxes Owed: 4425000 
+Taxed Income: 4425000 
+Taxes wth UB deducted: 4410000 
+Final Income: 4440000
+
+Income: 8860000 
+Taxes Owed: 4430000 
+Taxed Income: 4430000 
+Taxes wth UB deducted: 4415000 
+Final Income: 4445000
+
+Income: 8870000 
+Taxes Owed: 4435000 
+Taxed Income: 4435000 
+Taxes wth UB deducted: 4420000 
+Final Income: 4450000
+
+Income: 8880000 
+Taxes Owed: 4440000 
+Taxed Income: 4440000 
+Taxes wth UB deducted: 4425000 
+Final Income: 4455000
+
+Income: 8890000 
+Taxes Owed: 4445000 
+Taxed Income: 4445000 
+Taxes wth UB deducted: 4430000 
+Final Income: 4460000
+
+Income: 8900000 
+Taxes Owed: 4450000 
+Taxed Income: 4450000 
+Taxes wth UB deducted: 4435000 
+Final Income: 4465000
+
+Income: 8910000 
+Taxes Owed: 4455000 
+Taxed Income: 4455000 
+Taxes wth UB deducted: 4440000 
+Final Income: 4470000
+
+Income: 8920000 
+Taxes Owed: 4460000 
+Taxed Income: 4460000 
+Taxes wth UB deducted: 4445000 
+Final Income: 4475000
+
+Income: 8930000 
+Taxes Owed: 4465000 
+Taxed Income: 4465000 
+Taxes wth UB deducted: 4450000 
+Final Income: 4480000
+
+Income: 8940000 
+Taxes Owed: 4470000 
+Taxed Income: 4470000 
+Taxes wth UB deducted: 4455000 
+Final Income: 4485000
+
+Income: 8950000 
+Taxes Owed: 4475000 
+Taxed Income: 4475000 
+Taxes wth UB deducted: 4460000 
+Final Income: 4490000
+
+Income: 8960000 
+Taxes Owed: 4480000 
+Taxed Income: 4480000 
+Taxes wth UB deducted: 4465000 
+Final Income: 4495000
+
+Income: 8970000 
+Taxes Owed: 4485000 
+Taxed Income: 4485000 
+Taxes wth UB deducted: 4470000 
+Final Income: 4500000
+
+Income: 8980000 
+Taxes Owed: 4490000 
+Taxed Income: 4490000 
+Taxes wth UB deducted: 4475000 
+Final Income: 4505000
+
+Income: 8990000 
+Taxes Owed: 4495000 
+Taxed Income: 4495000 
+Taxes wth UB deducted: 4480000 
+Final Income: 4510000
+
+Income: 9000000 
+Taxes Owed: 4500000 
+Taxed Income: 4500000 
+Taxes wth UB deducted: 4485000 
+Final Income: 4515000
+
+Income: 9010000 
+Taxes Owed: 4505000 
+Taxed Income: 4505000 
+Taxes wth UB deducted: 4490000 
+Final Income: 4520000
+
+Income: 9020000 
+Taxes Owed: 4510000 
+Taxed Income: 4510000 
+Taxes wth UB deducted: 4495000 
+Final Income: 4525000
+
+Income: 9030000 
+Taxes Owed: 4515000 
+Taxed Income: 4515000 
+Taxes wth UB deducted: 4500000 
+Final Income: 4530000
+
+Income: 9040000 
+Taxes Owed: 4520000 
+Taxed Income: 4520000 
+Taxes wth UB deducted: 4505000 
+Final Income: 4535000
+
+Income: 9050000 
+Taxes Owed: 4525000 
+Taxed Income: 4525000 
+Taxes wth UB deducted: 4510000 
+Final Income: 4540000
+
+Income: 9060000 
+Taxes Owed: 4530000 
+Taxed Income: 4530000 
+Taxes wth UB deducted: 4515000 
+Final Income: 4545000
+
+Income: 9070000 
+Taxes Owed: 4535000 
+Taxed Income: 4535000 
+Taxes wth UB deducted: 4520000 
+Final Income: 4550000
+
+Income: 9080000 
+Taxes Owed: 4540000 
+Taxed Income: 4540000 
+Taxes wth UB deducted: 4525000 
+Final Income: 4555000
+
+Income: 9090000 
+Taxes Owed: 4545000 
+Taxed Income: 4545000 
+Taxes wth UB deducted: 4530000 
+Final Income: 4560000
+
+Income: 9100000 
+Taxes Owed: 4550000 
+Taxed Income: 4550000 
+Taxes wth UB deducted: 4535000 
+Final Income: 4565000
+
+Income: 9110000 
+Taxes Owed: 4555000 
+Taxed Income: 4555000 
+Taxes wth UB deducted: 4540000 
+Final Income: 4570000
+
+Income: 9120000 
+Taxes Owed: 4560000 
+Taxed Income: 4560000 
+Taxes wth UB deducted: 4545000 
+Final Income: 4575000
+
+Income: 9130000 
+Taxes Owed: 4565000 
+Taxed Income: 4565000 
+Taxes wth UB deducted: 4550000 
+Final Income: 4580000
+
+Income: 9140000 
+Taxes Owed: 4570000 
+Taxed Income: 4570000 
+Taxes wth UB deducted: 4555000 
+Final Income: 4585000
+
+Income: 9150000 
+Taxes Owed: 4575000 
+Taxed Income: 4575000 
+Taxes wth UB deducted: 4560000 
+Final Income: 4590000
+
+Income: 9160000 
+Taxes Owed: 4580000 
+Taxed Income: 4580000 
+Taxes wth UB deducted: 4565000 
+Final Income: 4595000
+
+Income: 9170000 
+Taxes Owed: 4585000 
+Taxed Income: 4585000 
+Taxes wth UB deducted: 4570000 
+Final Income: 4600000
+
+Income: 9180000 
+Taxes Owed: 4590000 
+Taxed Income: 4590000 
+Taxes wth UB deducted: 4575000 
+Final Income: 4605000
+
+Income: 9190000 
+Taxes Owed: 4595000 
+Taxed Income: 4595000 
+Taxes wth UB deducted: 4580000 
+Final Income: 4610000
+
+Income: 9200000 
+Taxes Owed: 4600000 
+Taxed Income: 4600000 
+Taxes wth UB deducted: 4585000 
+Final Income: 4615000
+
+Income: 9210000 
+Taxes Owed: 4605000 
+Taxed Income: 4605000 
+Taxes wth UB deducted: 4590000 
+Final Income: 4620000
+
+Income: 9220000 
+Taxes Owed: 4610000 
+Taxed Income: 4610000 
+Taxes wth UB deducted: 4595000 
+Final Income: 4625000
+
+Income: 9230000 
+Taxes Owed: 4615000 
+Taxed Income: 4615000 
+Taxes wth UB deducted: 4600000 
+Final Income: 4630000
+
+Income: 9240000 
+Taxes Owed: 4620000 
+Taxed Income: 4620000 
+Taxes wth UB deducted: 4605000 
+Final Income: 4635000
+
+Income: 9250000 
+Taxes Owed: 4625000 
+Taxed Income: 4625000 
+Taxes wth UB deducted: 4610000 
+Final Income: 4640000
+
+Income: 9260000 
+Taxes Owed: 4630000 
+Taxed Income: 4630000 
+Taxes wth UB deducted: 4615000 
+Final Income: 4645000
+
+Income: 9270000 
+Taxes Owed: 4635000 
+Taxed Income: 4635000 
+Taxes wth UB deducted: 4620000 
+Final Income: 4650000
+
+Income: 9280000 
+Taxes Owed: 4640000 
+Taxed Income: 4640000 
+Taxes wth UB deducted: 4625000 
+Final Income: 4655000
+
+Income: 9290000 
+Taxes Owed: 4645000 
+Taxed Income: 4645000 
+Taxes wth UB deducted: 4630000 
+Final Income: 4660000
+
+Income: 9300000 
+Taxes Owed: 4650000 
+Taxed Income: 4650000 
+Taxes wth UB deducted: 4635000 
+Final Income: 4665000
+
+Income: 9310000 
+Taxes Owed: 4655000 
+Taxed Income: 4655000 
+Taxes wth UB deducted: 4640000 
+Final Income: 4670000
+
+Income: 9320000 
+Taxes Owed: 4660000 
+Taxed Income: 4660000 
+Taxes wth UB deducted: 4645000 
+Final Income: 4675000
+
+Income: 9330000 
+Taxes Owed: 4665000 
+Taxed Income: 4665000 
+Taxes wth UB deducted: 4650000 
+Final Income: 4680000
+
+Income: 9340000 
+Taxes Owed: 4670000 
+Taxed Income: 4670000 
+Taxes wth UB deducted: 4655000 
+Final Income: 4685000
+
+Income: 9350000 
+Taxes Owed: 4675000 
+Taxed Income: 4675000 
+Taxes wth UB deducted: 4660000 
+Final Income: 4690000
+
+Income: 9360000 
+Taxes Owed: 4680000 
+Taxed Income: 4680000 
+Taxes wth UB deducted: 4665000 
+Final Income: 4695000
+
+Income: 9370000 
+Taxes Owed: 4685000 
+Taxed Income: 4685000 
+Taxes wth UB deducted: 4670000 
+Final Income: 4700000
+
+Income: 9380000 
+Taxes Owed: 4690000 
+Taxed Income: 4690000 
+Taxes wth UB deducted: 4675000 
+Final Income: 4705000
+
+Income: 9390000 
+Taxes Owed: 4695000 
+Taxed Income: 4695000 
+Taxes wth UB deducted: 4680000 
+Final Income: 4710000
+
+Income: 9400000 
+Taxes Owed: 4700000 
+Taxed Income: 4700000 
+Taxes wth UB deducted: 4685000 
+Final Income: 4715000
+
+Income: 9410000 
+Taxes Owed: 4705000 
+Taxed Income: 4705000 
+Taxes wth UB deducted: 4690000 
+Final Income: 4720000
+
+Income: 9420000 
+Taxes Owed: 4710000 
+Taxed Income: 4710000 
+Taxes wth UB deducted: 4695000 
+Final Income: 4725000
+
+Income: 9430000 
+Taxes Owed: 4715000 
+Taxed Income: 4715000 
+Taxes wth UB deducted: 4700000 
+Final Income: 4730000
+
+Income: 9440000 
+Taxes Owed: 4720000 
+Taxed Income: 4720000 
+Taxes wth UB deducted: 4705000 
+Final Income: 4735000
+
+Income: 9450000 
+Taxes Owed: 4725000 
+Taxed Income: 4725000 
+Taxes wth UB deducted: 4710000 
+Final Income: 4740000
+
+Income: 9460000 
+Taxes Owed: 4730000 
+Taxed Income: 4730000 
+Taxes wth UB deducted: 4715000 
+Final Income: 4745000
+
+Income: 9470000 
+Taxes Owed: 4735000 
+Taxed Income: 4735000 
+Taxes wth UB deducted: 4720000 
+Final Income: 4750000
+
+Income: 9480000 
+Taxes Owed: 4740000 
+Taxed Income: 4740000 
+Taxes wth UB deducted: 4725000 
+Final Income: 4755000
+
+Income: 9490000 
+Taxes Owed: 4745000 
+Taxed Income: 4745000 
+Taxes wth UB deducted: 4730000 
+Final Income: 4760000
+
+Income: 9500000 
+Taxes Owed: 4750000 
+Taxed Income: 4750000 
+Taxes wth UB deducted: 4735000 
+Final Income: 4765000
+
+Income: 9510000 
+Taxes Owed: 4755000 
+Taxed Income: 4755000 
+Taxes wth UB deducted: 4740000 
+Final Income: 4770000
+
+Income: 9520000 
+Taxes Owed: 4760000 
+Taxed Income: 4760000 
+Taxes wth UB deducted: 4745000 
+Final Income: 4775000
+
+Income: 9530000 
+Taxes Owed: 4765000 
+Taxed Income: 4765000 
+Taxes wth UB deducted: 4750000 
+Final Income: 4780000
+
+Income: 9540000 
+Taxes Owed: 4770000 
+Taxed Income: 4770000 
+Taxes wth UB deducted: 4755000 
+Final Income: 4785000
+
+Income: 9550000 
+Taxes Owed: 4775000 
+Taxed Income: 4775000 
+Taxes wth UB deducted: 4760000 
+Final Income: 4790000
+
+Income: 9560000 
+Taxes Owed: 4780000 
+Taxed Income: 4780000 
+Taxes wth UB deducted: 4765000 
+Final Income: 4795000
+
+Income: 9570000 
+Taxes Owed: 4785000 
+Taxed Income: 4785000 
+Taxes wth UB deducted: 4770000 
+Final Income: 4800000
+
+Income: 9580000 
+Taxes Owed: 4790000 
+Taxed Income: 4790000 
+Taxes wth UB deducted: 4775000 
+Final Income: 4805000
+
+Income: 9590000 
+Taxes Owed: 4795000 
+Taxed Income: 4795000 
+Taxes wth UB deducted: 4780000 
+Final Income: 4810000
+
+Income: 9600000 
+Taxes Owed: 4800000 
+Taxed Income: 4800000 
+Taxes wth UB deducted: 4785000 
+Final Income: 4815000
+
+Income: 9610000 
+Taxes Owed: 4805000 
+Taxed Income: 4805000 
+Taxes wth UB deducted: 4790000 
+Final Income: 4820000
+
+Income: 9620000 
+Taxes Owed: 4810000 
+Taxed Income: 4810000 
+Taxes wth UB deducted: 4795000 
+Final Income: 4825000
+
+Income: 9630000 
+Taxes Owed: 4815000 
+Taxed Income: 4815000 
+Taxes wth UB deducted: 4800000 
+Final Income: 4830000
+
+Income: 9640000 
+Taxes Owed: 4820000 
+Taxed Income: 4820000 
+Taxes wth UB deducted: 4805000 
+Final Income: 4835000
+
+Income: 9650000 
+Taxes Owed: 4825000 
+Taxed Income: 4825000 
+Taxes wth UB deducted: 4810000 
+Final Income: 4840000
+
+Income: 9660000 
+Taxes Owed: 4830000 
+Taxed Income: 4830000 
+Taxes wth UB deducted: 4815000 
+Final Income: 4845000
+
+Income: 9670000 
+Taxes Owed: 4835000 
+Taxed Income: 4835000 
+Taxes wth UB deducted: 4820000 
+Final Income: 4850000
+
+Income: 9680000 
+Taxes Owed: 4840000 
+Taxed Income: 4840000 
+Taxes wth UB deducted: 4825000 
+Final Income: 4855000
+
+Income: 9690000 
+Taxes Owed: 4845000 
+Taxed Income: 4845000 
+Taxes wth UB deducted: 4830000 
+Final Income: 4860000
+
+Income: 9700000 
+Taxes Owed: 4850000 
+Taxed Income: 4850000 
+Taxes wth UB deducted: 4835000 
+Final Income: 4865000
+
+Income: 9710000 
+Taxes Owed: 4855000 
+Taxed Income: 4855000 
+Taxes wth UB deducted: 4840000 
+Final Income: 4870000
+
+Income: 9720000 
+Taxes Owed: 4860000 
+Taxed Income: 4860000 
+Taxes wth UB deducted: 4845000 
+Final Income: 4875000
+
+Income: 9730000 
+Taxes Owed: 4865000 
+Taxed Income: 4865000 
+Taxes wth UB deducted: 4850000 
+Final Income: 4880000
+
+Income: 9740000 
+Taxes Owed: 4870000 
+Taxed Income: 4870000 
+Taxes wth UB deducted: 4855000 
+Final Income: 4885000
+
+Income: 9750000 
+Taxes Owed: 4875000 
+Taxed Income: 4875000 
+Taxes wth UB deducted: 4860000 
+Final Income: 4890000
+
+Income: 9760000 
+Taxes Owed: 4880000 
+Taxed Income: 4880000 
+Taxes wth UB deducted: 4865000 
+Final Income: 4895000
+
+Income: 9770000 
+Taxes Owed: 4885000 
+Taxed Income: 4885000 
+Taxes wth UB deducted: 4870000 
+Final Income: 4900000
+
+Income: 9780000 
+Taxes Owed: 4890000 
+Taxed Income: 4890000 
+Taxes wth UB deducted: 4875000 
+Final Income: 4905000
+
+Income: 9790000 
+Taxes Owed: 4895000 
+Taxed Income: 4895000 
+Taxes wth UB deducted: 4880000 
+Final Income: 4910000
+
+Income: 9800000 
+Taxes Owed: 4900000 
+Taxed Income: 4900000 
+Taxes wth UB deducted: 4885000 
+Final Income: 4915000
+
+Income: 9810000 
+Taxes Owed: 4905000 
+Taxed Income: 4905000 
+Taxes wth UB deducted: 4890000 
+Final Income: 4920000
+
+Income: 9820000 
+Taxes Owed: 4910000 
+Taxed Income: 4910000 
+Taxes wth UB deducted: 4895000 
+Final Income: 4925000
+
+Income: 9830000 
+Taxes Owed: 4915000 
+Taxed Income: 4915000 
+Taxes wth UB deducted: 4900000 
+Final Income: 4930000
+
+Income: 9840000 
+Taxes Owed: 4920000 
+Taxed Income: 4920000 
+Taxes wth UB deducted: 4905000 
+Final Income: 4935000
+
+Income: 9850000 
+Taxes Owed: 4925000 
+Taxed Income: 4925000 
+Taxes wth UB deducted: 4910000 
+Final Income: 4940000
+
+Income: 9860000 
+Taxes Owed: 4930000 
+Taxed Income: 4930000 
+Taxes wth UB deducted: 4915000 
+Final Income: 4945000
+
+Income: 9870000 
+Taxes Owed: 4935000 
+Taxed Income: 4935000 
+Taxes wth UB deducted: 4920000 
+Final Income: 4950000
+
+Income: 9880000 
+Taxes Owed: 4940000 
+Taxed Income: 4940000 
+Taxes wth UB deducted: 4925000 
+Final Income: 4955000
+
+Income: 9890000 
+Taxes Owed: 4945000 
+Taxed Income: 4945000 
+Taxes wth UB deducted: 4930000 
+Final Income: 4960000
+
+Income: 9900000 
+Taxes Owed: 4950000 
+Taxed Income: 4950000 
+Taxes wth UB deducted: 4935000 
+Final Income: 4965000
+
+Income: 9910000 
+Taxes Owed: 4955000 
+Taxed Income: 4955000 
+Taxes wth UB deducted: 4940000 
+Final Income: 4970000
+
+Income: 9920000 
+Taxes Owed: 4960000 
+Taxed Income: 4960000 
+Taxes wth UB deducted: 4945000 
+Final Income: 4975000
+
+Income: 9930000 
+Taxes Owed: 4965000 
+Taxed Income: 4965000 
+Taxes wth UB deducted: 4950000 
+Final Income: 4980000
+
+Income: 9940000 
+Taxes Owed: 4970000 
+Taxed Income: 4970000 
+Taxes wth UB deducted: 4955000 
+Final Income: 4985000
+
+Income: 9950000 
+Taxes Owed: 4975000 
+Taxed Income: 4975000 
+Taxes wth UB deducted: 4960000 
+Final Income: 4990000
+
+Income: 9960000 
+Taxes Owed: 4980000 
+Taxed Income: 4980000 
+Taxes wth UB deducted: 4965000 
+Final Income: 4995000
+
+Income: 9970000 
+Taxes Owed: 4985000 
+Taxed Income: 4985000 
+Taxes wth UB deducted: 4970000 
+Final Income: 5000000
+
+Income: 9980000 
+Taxes Owed: 4990000 
+Taxed Income: 4990000 
+Taxes wth UB deducted: 4975000 
+Final Income: 5005000
+
+Income: 9990000 
+Taxes Owed: 4995000 
+Taxed Income: 4995000 
+Taxes wth UB deducted: 4980000 
+Final Income: 5010000
+

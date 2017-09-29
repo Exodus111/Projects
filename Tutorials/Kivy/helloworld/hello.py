@@ -3,10 +3,11 @@ import kivy
 kivy.require("1.9.0")
 
 from kivy.app import App
+from kivy.properties import StringProperty
 from kivy.uix.label import Label
 
 class Hello(Label):
-    text = "Hello World"
+    text = StringProperty("Hello World")
 
 class HelloApp(App):
 

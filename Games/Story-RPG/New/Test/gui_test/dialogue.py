@@ -11,48 +11,11 @@ class Dialogue():
         self.node_list = []
         self.conversations = []
         self.clear_tags()
-        self.flags = self.create_flags()                 #<-- Dict
-        self.cards = self.assemble_cards()               #<-- Dict
+        self.flags = self.create_flags()                      #<-- Dict
+        self.cards = self.assemble_cards()                    #<-- Dict
         self.parse_conversations()
-        self.current_conv = self.conversations[0]
+        self.current_conv = None
         self.card_inventory = []
-
-    def create_flags(self):
-        flags = []
-        for taglist in self.tags.values():
-            for tag in taglist:
-                if tag[0:4] == "flag":
-                    flags.append(tag)
-        return {i:False for i in list(set(flags))}
-
-    def assemble_cards(self):
-        cards = {}
-        for node, taglist in self.tags.items():
-            if len(taglist) == 1:
-                if taglist[0][0:4] == "card":
-                    cards[taglist[0]] = node
-        return cards
-
-    def add_card_to_inventory(self, tag):
-        for card in self.cards.keys():
-            if card == tag:
-                self.card_inventory.append(self.data[self.cards[card]])
-
-    def check_flag(self, flag):
-        return self.flag[flag]
-
-    def set_flag(self, flag, truefalse=True):
-        self.flag[flag] = truefalse
-
-    def clear_tags(self):
-        self.tags = {i:[tag.strip(".").lower() for tag in j] for i,j in self.tags.items()}
-
-    def parse_conversations(self):
-        for name in self.names:
-            for node in self.nodes[name]:
-                for tag in self.tags[node]:
-                    if tag == "greeting":
-                        self.create_conversation(node)
 
     def assemble_node(self, node):
         node_dict = {}
@@ -63,6 +26,64 @@ class Dialogue():
         node_dict["text"] = self.text[node]
         node_dict["tags"] = self.tags[node]
         return node_dict
+
+    def find_conversation(self, npc):
+        npc = npc.lower()
+        for convs in self.conversations:
+            if convs.npc.lower() == npc:
+                self.current_conv = convs
+                self.current_conv.find_start()
+
+    def create_flags(self):
+        flags = []
+        for taglist in self.tags.values():
+            for tag in taglist:
+                if tag[0:4] == "flag":
+                    flags.append(tag)
+        flags = {i:False for i in list(set(flags))}
+        return flags
+
+    def assemble_cards(self):
+        cards = {}
+        for node, taglist in self.tags.items():
+            for tag in taglist:
+                if tag in ("question", "answer", "greeting", "greeting_reply"):
+                    break
+                elif tag[0:4] == "card": # This works because Question/Answer always comes first.
+                    cards[tag] = node
+        return cards
+
+    def add_card_to_inventory(self, tag):
+        for card in self.cards.keys():
+            if card == tag:
+                title = self._tag_strip(card, "card")
+                text = self.text[self.cards[card]]
+                names = [self._tag_strip(i, "name") for i in self.tags[self.cards[card]] if i[0:4] == "name"]
+                card_dict = {"id":card, "title":title, "maintext":text, "tags":names}
+                self.card_inventory.append(card_dict)
+
+    def _tag_strip(self, tag, _id):
+        tag = tag.replace("_", " ")
+        tag = tag.strip(_id)
+        tag = tag.strip()
+        tag = tag.capitalize()
+        return tag
+
+    def check_flag(self, flag):
+        return self.flags[flag]
+
+    def set_flag(self, flag, truefalse=True):
+        self.flags[flag] = truefalse
+
+    def clear_tags(self):
+        self.tags = {i:[tag.strip(".").lower() for tag in j] for i,j in self.tags.items()}
+
+    def parse_conversations(self):
+        for name in self.names:
+            for node in self.nodes[name]:
+                for tag in self.tags[node]:
+                    if tag == "greeting":
+                        self.create_conversation(node)
 
     def check_links(self, node):
         link_nodes = []
@@ -94,8 +115,11 @@ class Conversation():
         self.id_tag = id_tag
         self.data = {i["id"]:{h:j for h,j in i.items() if h != "id"} for i in data}
         self.npc = data[0]["npc"]
+        self.current_node = None
+        self.top_text = "No Text"
+        self.bottom_question_list = ["Empty List"]
         self.greeting_nodes = self.assemble_greeting_nodes()
-        self.find_start()
+        self.master.set_flag("flag_start_"+self.npc, False)
         self.end_conversation = False
 
     def __repr__(self):
@@ -110,22 +134,27 @@ class Conversation():
         return greeting_nodes
 
     def find_start(self):
-        if self.master.check_flag("flag_start_"+self.npc):
+        if not self.master.check_flag("flag_start_"+self.npc):
             for node in self.greeting_nodes:
-                if "flag_start" in node["flags"]:
-                    self.current_node = node
-                    self.top_text = node["text"]
-                    self.bottom_question_list = self.get_bottom_list(node)
-                    self.master.set_flag("flag_start_"+self.npc, False)
+                if "flag_start" in self.data[node]["tags"]:
+                    self.current_node = self.data[node]
+                    self.top_text = self.data[node]["text"]
+                    self.bottom_question_list = self.get_bottom_list(self.data[node])
+                    self.master.set_flag("flag_start_"+self.npc)
+                    self._check_tag_in_answer(self.data[node])
         else:
             for node in self.greeting_nodes:
-                for tag in node["tags"]:
+                for tag in self.data[node]["tags"]:
                     if tag[0:4] == "flag":
                         if self.master.check_flag(tag):
-                            self.current_node = node
-                            self.top_text = node["text"]
-                            self.bottom_question_list = self.get_bottom_list(node)
+                            self.current_node = self.data[node]
+                            self.top_text = self.data[node]["text"]
+                            self.bottom_question_list = self.get_bottom_list(self.data[node])
+                            self._check_tag_in_answer(self.data[node])
                             self.master.set_flag(tag, False)
+        if self.current_node == None:
+            raise Exception("No greeting found, here is the greeting list: \n" + str(self.greeting_nodes))
+
 
     def get_bottom_list(self, node):
         questions = []
@@ -141,7 +170,7 @@ class Conversation():
     def _check_tag_in_question(self, node):
         question = False
         for tag in self.data[node]["tags"]:
-            if tag == "question" or tag == "greeting_reply":
+            if tag == "question" or tag == "reply":
                 question = True
         if question:
             for tag in self.data[node]["tags"]:
@@ -150,13 +179,13 @@ class Conversation():
                         return True
                     else:
                         return False
-                else:
-                    return True
+            else:
+                return True
         else:
             return False
 
     def question_picked(self, question_text):
-        if question_text != "1. Continue...":
+        if "Continue..." not in question_text:
             node = self._find_node(question_text)
             if self.data[node]["links"] != []:
                 self._setup_answer_node(self.data[self.data[node]["links"][0]])   # Questions always have one linked node.
@@ -164,7 +193,7 @@ class Conversation():
                 self.end_conversation = True
         else:
             if self.current_node["links"] != []:
-                self._setup_answer_node(self.data[self.data[node]["links"][0]])
+                self._setup_answer_node(self.data[self.current_node["links"][0]])
             else:
                 self.end_conversation = True
 
@@ -172,7 +201,7 @@ class Conversation():
         if question[1] not in (str(i) for i in range(10)):
             number = int(question[0])
         else:
-            number = int(question[0:1])
+            number = int(question[0:2])
         return self.question_ids[number-1]
 
     def _setup_answer_node(self, node):
@@ -182,7 +211,7 @@ class Conversation():
         self.bottom_question_list = self.get_bottom_list(node)
 
     def _check_tag_in_answer(self, node):
-        for tag in self.data[node]["tags"]:
+        for tag in node["tags"]:
             if tag[0:4] == "flag":
                 self.master.set_flag(tag)
             if tag[0:4] == "card":
