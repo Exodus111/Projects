@@ -7,26 +7,69 @@ Rules:
 
 Tags come in the following types:
 
+Primary Tags:
+
 * greeting
-* greeting_reply
+* reply
+
 * question
 * answer
+
+* comment
+* comment_reply
+
+Secondary Tags:
+
 * flag_<id>
+* block_<id>
 * card_<id>
+* start_<npc name>
+* start
+* save_<id>           # Testing
+* back_<id>           # Testing 
 
-Card nodes will also contain the following tags:
+ * greeting
+    The first node of any conversation. 
+    Greetings always begin with the NPC talking.
 
- * name_<npc name>
+ * reply
+    The reply to a greeting. 
+    This is always the player talking.
+
+ * question
+    The Player asking a question.
+
+ * answer
+    The NPC answering a question, or generally talking.
+
+ * comment
+    This text is said outside of conversations. 
+    Comment is always the NPC talking.
+
+ * comment_reply
+    This is the players comments. Appears over the players head.
+
+ * flag_<id>
+    If they are found in a node, they set this flag to true.
+
+ * block_<id>
+ 	This flag blocks a node from being read, unless that flag is true.
+ 
+ * card_<id>
+    Card tag, gives this card to the player.
+
+ * card_name_<npc name>
      These are the names of the people that can be asked about this card.
      Those people need Question tags with the card Flag on them.
 
-Flags come in the following types:
+ * start_<npc name>
+     This is the first greeting node of an NPC, the default one.
 
- * flag_start_<npc name>
-     This is the first greeting of an NPC, the default one.
-     This is a unique flag, as it defaults to True.
- * flag_<id>
-     These are regular flags.
-     If they are found in a question, they block that question from being asked,
-      unless this flag is tagged to true.
-    If they are found in an answer, they set this flag to true.
+ * start
+    Indicates the first node in a comment chain.
+
+ * save_<id>   # TESTING
+    This tag saves a spot in the conversation that can be returned to later.
+
+ * back_<id>   # TESTING 
+    This tags takes you back to the saved tag. But ommits the conversation path you last took.

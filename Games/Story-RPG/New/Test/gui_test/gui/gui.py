@@ -14,9 +14,9 @@ from kivy.uix.screenmanager import Screen, ScreenManager, FadeTransition
 from kivy.properties import *
 import json
 
-from guipanels import DialoguePanels
-from hud import HUD
-from comments import Comment
+from gui.guipanels import DialoguePanels
+from gui.hud import HUD
+from gui.comment_gui import CommentGUI
 from tools.tools import scale_image
 
 MAIN_COLOR = (0.435, 0.325, 0.239, 1.) # Light Brown.
@@ -26,8 +26,12 @@ WHITE = (1.,1.,1.,1.)
 class GUI(Widget):
     panel_toggle = BooleanProperty(False)
     comment_list = ListProperty()
+    textpos_list = ListProperty()
     up = ListProperty()
+    timer = NumericProperty()
 
+    def __repr__(self):
+        return "Main GUI Object \n"
     def setup(self):
         self.menus = Menus(size=self.size)
         self.menus.setup()
@@ -53,8 +57,9 @@ class GUI(Widget):
             card: Dict.
             Contains the keys 'title', 'maintext' and 'tags'
         """
-        self.menus.add_card(card)
-        self.hud.show_info(card["title"])
+        if card not in self.menus.card_db.values(): 
+            self.menus.add_card(card)
+            self.hud.show_info(card["title"])
 
     def toggle_card_menu(self):
         """
@@ -85,24 +90,57 @@ class GUI(Widget):
         if self.panels.bottom_manager.current == "question_big":
             self.panels.bottom_manager.current = "bottom_panel"
 
-    def add_comment(self, pos, text):
-        comment = Comment()
-        comment.setup()   # Does nothing atm.
-        comment.activate(pos,text)
-        self.add_widget(comment)
-        self.comment_list.append(comment)
+    def add_comments(self, textdicts):
+        """
+            Activates a comment thread.
+          textdicts: List containing Dicts.
+           Dict keys are: pos, text
+        """
+        neg = 0
+        for n, i in enumerate(textdicts):
+            if i["text"] == "":
+                neg += 1
+            else:
+                self.textpos_list.append((i, abs(n-neg)*4))
 
-    def update(self, dt):
-        if len(self.comment_list) >= 2:
+    def run_comments(self, dt):
+        if self.textpos_list != []:
+            self.timer += dt
+            dct, tm = self.textpos_list[0]
+            if tm <= self.timer:
+                self.activate_comment(dct)
+                del(self.textpos_list[0])
+        else:
+            if self.timer != 0.:
+                self.timer = 0.
+
+    def collide_comments(self):
+        if self.comment_list != []:
             if self.comment_list[0].speechbox.current == "None":
+                self.remove_widget(self.comment_list[0])
                 del(self.comment_list[0])
+
         for n1, c1 in enumerate(self.comment_list):
             if c1.pos[0] + c1.size[0] > self.size[0]:
                 c1.pos[0] -= 3
+            if c1.pos[1] + c1.size[1] > self.size[1]:
+                c1.pos[1] -= 3
             for n2, c2 in enumerate(self.comment_list):
                 if n1 > n2:
                     if c1.collide_widget(c2):
                         c1.pos[1] += 3
+
+    def activate_comment(self, txt_dict):
+        comment = CommentGUI()
+        comment.setup(txt_dict["pos"], txt_dict["text"])
+        self.add_widget(comment)
+        comment.activate()
+        self.comment_list.append(comment)
+
+    def update(self, dt):
+        self.run_comments(dt)
+        self.collide_comments()
+        
 
 class Menu(Screen):
     pass

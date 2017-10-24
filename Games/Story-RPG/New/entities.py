@@ -28,22 +28,18 @@ class Entity(Widget):
     counter = NumericProperty(0)
     name = StringProperty("")
     collided_with = StringProperty("")
-    movement_reversed = BooleanProperty(False)
     collide_widget = ObjectProperty(None)
     entsize = ListProperty([0,0])
     multiplier = NumericProperty(3)
-    poses = DictProperty(["walkup",
-                          "",])
 
     def place(self, x, y):
         self.pos = self.to_widget(x, y)
 
     def entitysetup(self, atlasfile):
         self.atlas = Atlas(atlasfile)
-        if len(self.atlas) > 1:
-            for pose in self.atlas:
-                print(pose)
-                self.frames[pose] = scale_image(self.atlas[pose], self.multiplier, True)
+        if len(self.atlas.textures.keys()) > 1:
+            for pose in self.atlas.textures.keys():
+                self.frames[pose] = scale_image(self.atlas[pose], self.multiplier, True, False) # <-- The False stops the image from being flipped. No idea why it happens.
         self.set_frame("idle", 1)
         self.gen = self._num()
 
@@ -97,7 +93,6 @@ class Entity(Widget):
 class Player(Entity):
     screen_size = ListProperty([0,0])
     mid_pos = ListProperty([0,0])
-
 
     def playersetup(self, screen_size):
         self.screen_size = screen_size
@@ -206,7 +201,7 @@ class NPCController(Widget):
 
     def controllersetup(self):
         for name in self.npcs:
-            npc = NPC(size=(48,110))
+            npc = NPC(size=(48, 110))
             npc.name = name
             npc.home = self.npcs[name]["home"]
             npc.npcsetup("images/{}.atlas".format(name))

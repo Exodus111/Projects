@@ -47,8 +47,6 @@ class Game(Widget):
         self.events.eventsetup()
 
         # Setting up the Menu controller.
-        self.menus = GUI(size=self.size)
-        self.menus.setup()
 
         # Setting up the world.
         self.world = World()
@@ -66,8 +64,6 @@ class Game(Widget):
         self.player.pos = [900, 500]
 
         # Setting up the Dialogue controller.
-        self.dialogue = Dialogue()
-        self.dialogue.dialoguesetup()
 
         # Start Menu
         self.startmenu = StartMenu()
@@ -77,8 +73,6 @@ class Game(Widget):
         self.world.add_npcs(self.npcs.npcgroup)
         self.world.add_widget(self.player, index=3)
         self.add_widget(self.world)
-        self.add_widget(self.menus)
-        self.add_widget(self.dialogue)
         self.add_widget(self.startmenu)
 
         self.startmenu.setup()
@@ -97,7 +91,6 @@ class Game(Widget):
         Clock.schedule_once(self.world.center_screen, delay)
 
     def update(self, dt):
-        self.menus.update(dt)
         self.npcs.update(dt)
         self.player.update(dt)
 
@@ -109,7 +102,7 @@ class Game(Widget):
             if key[1] in ("w", "a", "s", "d", "up", "down", "left", "right"):
                 self.player.keydown(key[1])
             elif key[1] == "spacebar":
-                self.menus.toggle_menu()
+                pass
 
     def key_up(self, key):
         if not self.menu_on:
