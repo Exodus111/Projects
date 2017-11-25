@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+from kivy.clock import Clock
 from kivy.uix.relativelayout import RelativeLayout, FloatLayout
 from kivy.vector import Vector
 from kivy.uix.boxlayout import BoxLayout
@@ -7,16 +8,23 @@ from kivy.uix.image import Image
 from kivy.uix.label import Label
 from kivy.graphics import Line, Color, Rectangle
 from kivy.properties import *
+from random import choice
 from path import Path
 import json
 
-from tools.tools import circle_collide, scale_image, quad_overlap
+from tools.tools import *
 
 class WorldElement(Image):
     name = StringProperty("")
 
 class ClutterGroup(Widget):
     pass
+
+class DoorWidget(Widget):
+    name = StringProperty("")
+
+    def __repr__(self):
+        return "Door Widget, " + self.name
 
 class ClutterElement(Widget):
     rect = ListProperty([0,0,0,0])
@@ -43,30 +51,14 @@ class World(RelativeLayout):
     poi = ListProperty([])
     dots = ListProperty([])
     once = BooleanProperty(True)
+    _once = BooleanProperty(True)
+    colliding_with = ListProperty()
     walls = DictProperty({})
     player_line = ListProperty([])
     act_walls = ListProperty([])
     worlddict = DictProperty()
 
-    doors = DictProperty({"church":{
-                          "main":{
-                          "to_basement":(1883, 327),
-                          "to_thack_room":(146, 808),
-                          "to_priest_room":(1496, 855),
-                          "to_tower":(0,0),
-                          "out":(830, 72)},
-
-                          "basement":{
-                          "from_basement":(1590, 192)},
-
-                          "priest_room":{
-                          "from_priest_room":(248, 115)},
-
-                          "tower":{
-                          "from_tower":(0,0)},
-
-                          "thack_room":{
-                          "from_thack_room":(248, 115)}}})
+    doors = DictProperty(load_json("./data/doors.json"))
 
     def setupworld(self):
         with open("world.json", "r+") as f:
@@ -97,17 +89,17 @@ class World(RelativeLayout):
             self.walls[scene] = walldict
 
     def start_scene(self, scene, part):
-        self.bg = WorldElement(texture=scale_image(self.worlddict[scene][part]["bg"]))
-        self.fg = WorldElement(texture=scale_image(self.worlddict[scene][part]["fg"]))
-        self.clutter = WorldElement(texture=scale_image(self.worlddict[scene][part]["clutter"]))
+        self.bg = WorldElement(texture=scale_and_convert(self.worlddict[scene][part]["bg"]))
+        self.fg = WorldElement(texture=scale_and_convert(self.worlddict[scene][part]["fg"]))
+        self.clutter = WorldElement(texture=scale_and_convert(self.worlddict[scene][part]["clutter"]))
         self.load_scene(scene, part, True)
 
     def load_scene(self, scene, part, first=False):
         # Setting up the scenes textures.
         if not first:
-            self.bg.texture = scale_image(self.worlddict[scene][part]["bg"])
-            self.fg.texture = scale_image(self.worlddict[scene][part]["fg"])
-            self.clutter.texture = scale_image(self.worlddict[scene][part]["clutter"])
+            self.bg.texture = scale_and_convert(self.worlddict[scene][part]["bg"])
+            self.fg.texture = scale_and_convert(self.worlddict[scene][part]["fg"])
+            self.clutter.texture = scale_and_convert(self.worlddict[scene][part]["clutter"])
 
         # Setting up the sizes.
         self.bg.size = self.bg.texture.size
@@ -128,10 +120,15 @@ class World(RelativeLayout):
         self.make_clutter_collision(scene, part)
 
         # This sets up the ability to move between rooms.
+        [self.remove_widget(j) for j in self.poi]
+        self.poi = []
         for i, v in self.doors[scene][part].items():
-            w = Widget(pos=v, size=(64, 64))
-            w.name = i
-            self.poi.append(w)
+            if "to_" in i or "from_" in i:
+                w = DoorWidget()
+                w.pos = v
+                w.name = i
+                self.poi.append(w)
+                self.add_widget(w)
 
 ## <-------- Loading Methods, loaded from load_scene. ---------->
 
@@ -140,13 +137,11 @@ class World(RelativeLayout):
         for child in self.children:
             if hasattr(child, "etype"):
                 if child.name != "Thack":
-                    print("Removing-->", child.name)
                     self.remove_widget(child)
         for npc in npcs:
             if npc.home == self.home:
                 self.in_world.append(npc.name)
-                print("Adding --->", npc.name)
-                self.add_widget(npc, index=1)
+                self.add_widget(npc, index=2)
 
     def draw_line(self, points):
         """For testing collision."""
@@ -173,7 +168,7 @@ class World(RelativeLayout):
             linelist.append([pointlist[n][0], pointlist[n][1] , pointlist[n+1][0], pointlist[n+1][1]])
         return linelist
 
-## <---------- This part checks for Line collisions. Called from Player()
+## <-------- Collision Methods. -------------------->
 
     def collide_walls(self, pos, direction, dist=20):
         for line in quad_overlap(self.linelist):
@@ -195,17 +190,30 @@ class World(RelativeLayout):
             direction = (int(x),int(y))
         return direction
 
-##<------ Movement Methods -------------->
+    def collide_npcs(self, wid):
+        for child in self.children:
+            if hasattr(child, "etype"):
+                if child.name != "Thack":
+                    if child.collider.collide_widget(wid.collider):
+                        self.parent.begin_conv(child.name)
+                        return True
+        else:
+            return False
 
-    def move_world(self, direction):
+##<------ Movement Methods -------------->
+    
+    def center_world(self, pos):
+        pass
+
+    def move_world(self, direction, speedup=0):
         if direction == "left":
-            self.worldcenter[0] -= self.worldspeed
+            self.worldcenter[0] -= (self.worldspeed+speedup)
         if direction == "right":
-            self.worldcenter[0] += self.worldspeed
+            self.worldcenter[0] += (self.worldspeed+speedup)
         if direction == "up":
-            self.worldcenter[1] -= self.worldspeed
+            self.worldcenter[1] -= (self.worldspeed+speedup)
         if direction == "down":
-            self.worldcenter[1] += self.worldspeed
+            self.worldcenter[1] += (self.worldspeed+speedup)
 
     def center_screen(self, dt):
         pos = self.parent.player.pos
@@ -218,64 +226,54 @@ class World(RelativeLayout):
         self.parent.center_screen(0.1)
 
 ## <------------
+    
+    @staticmethod
+    def _switch_to_from(name):
+        if "to_" in name:
+            return name.replace("to_",  "from_")
+        elif "from_" in name:
+            return name.replace("from_", "to_")
+
+    def _get_opposing_door_pos(self, name):
+        for key in self.doors.keys():
+            for k in self.doors[key]:
+                if name in self.doors[key][k]:
+                    return self.doors[key][k][name]
+
+    def check_door(self, name):
+        name = self._switch_to_from(name)
+        for key in self.doors.keys():
+            for k in self.doors[key]:
+                if name in self.doors[key][k].keys():
+                    self.load_scene(key, k)
+                    self.size = mult_tuple(self.doors[key][k]["size"], 3)
+                    new_pos = self._get_opposing_door_pos(name)
+                    shunt = self.get_shunt(key, k, name)
+                    new_pos = add_tuple(new_pos, shunt)
+                    self.move_player(new_pos)
+                    self.once = False
+                    self.parent.gui.hud.add_text_to_top_bar(text2=self.home)
+                    return
+
+    def get_shunt(self, key, k, name):
+        if name in self.doors[key][k]["shunts"]:
+            return (self.doors[key][k]["shunts"][1], self.doors[key][k]["shunts"][2])
+        else:
+            return (0,0)
 
     def collide_poi(self, w):
-        poilist = [poi for poi in self.poi if circle_collide(w, poi)]
-        if poilist != []:
-            if self.once:
-                for p in poilist:
-                    if p.name == "to_basement":
-                        self.load_scene("church", "basement")
-                        self.size = (640*3, 416*3)
-                        new_pos = self.doors["church"]["basement"]["from_basement"]
-                        self.move_player(new_pos)
-                        self.once = False
-                        break
-                    elif p.name == "to_thack_room":
-                        self.load_scene("church", "thack_room")
-                        self.size = (192*3, 256*3)
-                        new_pos = self.doors["church"]["thack_room"]["from_thack_room"]
-                        self.move_player(new_pos)
-                        self.once = False
-                        break
-                    elif p.name == "to_priest_room":
-                        self.load_scene("church", "priest_room")
-                        self.size = (192*3, 256*3)
-                        new_pos = self.doors["church"]["priest_room"]["from_priest_room"]
-                        self.move_player(new_pos)
-                        self.once = False
-                        break
-                    elif p.name == "to_tower":
-                        self.load_scene("church", "tower")
-                        self.size = (192*3, 256*3)
-                        break
-                    elif p.name == "from_basement":
-                        self.load_scene("church", "main")
-                        self.size = (768*3, 608*3)
-                        new_pos = self.doors["church"]["main"]["to_basement"]
-                        self.move_player(new_pos)
-                        self.once = False
-                        break
-                    elif p.name == "from_thack_room":
-                        self.load_scene("church", "main")
-                        self.size = (768*3, 608*3)
-                        new_pos = self.doors["church"]["main"]["to_thack_room"]
-                        self.move_player(new_pos)
-                        self.once = False
-                        break
-                    elif p.name == "from_priest_room":
-                        self.load_scene("church", "main")
-                        self.size = (768*3, 608*3)
-                        new_pos = self.doors["church"]["main"]["to_priest_room"]
-                        self.move_player(new_pos)
-                        self.once = False
-                        break
-                    elif p.name == "from_tower":
-                        self.load_scene("church", "main")
-                        self.size = (768*3, 608*3)
-                        new_pos = self.doors["church"]["main"]["to_tower"]
-                        self.move_player(new_pos)
-                        self.once = False
-                        break
-        else:
-            self.once = True
+        for poi in self.poi:
+            if w.collide_widget(poi):
+                if self.once:
+                    w.turn_red()
+                    self.check_door(poi.name)
+                    self.once = False
+                    self.colliding_with.append(poi)
+                    return
+        if self.colliding_with != []:
+            if not w.collide_widget(self.colliding_with[0]):
+                Clock.schedule_once(lambda *x: self._set_once(True), 2)
+                self.colliding_with = []
+
+    def _set_once(self, truefalse):
+        self.once = truefalse

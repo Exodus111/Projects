@@ -25,6 +25,7 @@ import json
 class MyGame(Widget):
     ordinal = lambda c, n: "%d%s" % (n,"tsnrhtdd"[(n/10%10!=1)*(n%10<4)*n%10::4])
     button_cooldown = BooleanProperty(True)
+    card_counter = DictProperty({"inv":0, "ret":0})
 
     def cooldown_flipper(self, *_):
         self.button_cooldown = not self.button_cooldown
@@ -103,14 +104,12 @@ class MyGame(Widget):
     def update(self, dt):
         self.events.update(dt)
         self.gui.update(dt)
+        self.update_cards(dt)
+
         if self.diag.current_conv != None:
             if self.diag.current_conv.end_conversation:
                 self.gui.conv_panels_toggle()
                 self.diag.current_conv.end_conversation = False
-        if self.diag.card_inventory != []:
-            card = self.diag.card_inventory[0]
-            self.gui.add_card(card)
-            del(self.diag.card_inventory[0])
 
         if self.events.playerwait_30:
             self.events.playerwait_30 = False
@@ -123,7 +122,23 @@ class MyGame(Widget):
                 if node_list != []:
                     break
             if node_list != []:
-                self.manage_comments(node_list) #<--- FIX THIS!!!
+                self.manage_comments(node_list)
+
+    def update_cards(self, dt):
+        if len(self.diag.card_inventory) != self.card_counter["inv"]:
+            card = self.diag.card_inventory[-1]
+            self.gui.add_card(card)
+            self.card_counter["inv"] += 1
+
+        if len(self.diag.retired_cards) != self.card_counter["ret"]:
+            card_title = self.diag.tag_strip(self.diag.retired_cards[-1], "card")
+            self.gui.retire_card(card_title)
+            self.card_counter["ret"] += 1
+            self.card_counter["inv"] -= 1
+
+        if self.diag.card_changed != None:
+            self.gui.update_card(self.diag.card_changed)
+            self.diag.card_changed = None
 
     def keydown(self, *e):
         if e[1][1] == "spacebar":
@@ -132,7 +147,6 @@ class MyGame(Widget):
             self.gui.toggle_card_menu()
         elif e[1][1] == "r":
             pass
-            #self.speak_comment()
 
 class MainApp(App):
 

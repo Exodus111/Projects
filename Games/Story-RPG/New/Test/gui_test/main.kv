@@ -14,11 +14,11 @@
         transition: FadeTransition()
         Screen:
             name: "None"
-            size_hint: .5, .24
+            size_hint: .35, .15
             pos_hint: {"right":1., "y":.5}
         InfoBox:
             name: "info"
-            size_hint: .5, .24
+            size_hint: .35, .15
             pos_hint: {"right":1., "y":.5}
             Label:
                 text: root.info_text
@@ -254,6 +254,7 @@
         split_str: " "
     Label:
         text: root.tags_text
+        markup: True
         font_size: 15
         size_hint: .25, .35
         pos_hint: {"center_x":0.175, "y":0.02}

@@ -31,7 +31,7 @@ class Conversation():
                 self.current_node = self.data[node]
                 self.top_text = self.data[node]["text"]
                 self._setup_bottom_list(self.data[node])
-                self._check_tag_in_answer(self.data[node])
+                self._set_tags_and_cards(self.data[node])
         if self.current_node == None:
             raise Exception("No greeting found, here is the node list: \n" + str(self.data.keys()))
 
@@ -42,6 +42,7 @@ class Conversation():
         """
         if "Continue..." not in question_text:
             node = self._find_node(question_text)
+            self._set_tags_and_cards(self.data[node])
             self.callback_list.append(node)
             if self.data[node]["links"] != []:
                 answernode = self._check_nodes_for_block(self.data[node]["links"])
@@ -52,7 +53,7 @@ class Conversation():
                 else:
                     self.end_conversation = True
             else:
-                self.end_conversation = True         
+                self.end_conversation = True
         else:
             if self.current_node["links"] != []:
                 answernode = self._check_nodes_for_block(self.current_node["links"])
@@ -63,7 +64,7 @@ class Conversation():
                 else:
                     self.end_conversation = True
             else:
-                self.end_conversation = True 
+                self.end_conversation = True
 
     def _check_nodes_for_block(self, nodelist):
         passed = []
@@ -80,12 +81,12 @@ class Conversation():
         return self.question_ids[number-1]
 
     def _setup_answer_node(self, node):
-        self._check_tag_in_answer(node)
+        self._set_tags_and_cards(node)
         self.callback_list.append([k for k,v in self.data.items() if v == self.current_node][0])
         self.current_node = node
         self.top_text = node["text"]
 
-    def _check_tag_in_answer(self, node):
+    def _set_tags_and_cards(self, node):
         for tag in node["tags"]:
             if tag[0:4] == "flag":
                 self.master.set_flag(tag)
@@ -129,7 +130,7 @@ class Conversation():
         return temp_list
 
     def _check_tag_in_node(self, node, _type):
-        tag_dict = {"q":["question", "reply"], "a":["answer", "greeting"]}
+        tag_dict = {"q":("question", "reply"), "a":("answer", "greeting")}
         passed = False
         for tag in self.data[node]["tags"]:
             if tag in tag_dict[_type]:

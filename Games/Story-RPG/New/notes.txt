@@ -81,6 +81,6 @@ Secondary Tags:
     This tag belongs to a comment, on the starting node.
      It signifies that this comment chain is to be used when the NPC is busy.
 
-* once
-   This only exists after a block tag.
-   It signifies that the block tag will not be part of a callback loop, the player will get only one chance to select this choice.
+ * once
+    This only exists after a block tag.
+    It signifies that the block tag will not be part of a callback loop, the player will get only one chance to select this choice.

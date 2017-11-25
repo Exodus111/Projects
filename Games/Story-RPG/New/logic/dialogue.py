@@ -9,6 +9,7 @@ class Dialogue():
             'names', 'nodes', 'links', 'tags', 'coords', 'text'"""
         for i,j in kwargs.items(): setattr(self, i, j)
         self.counter = 1
+        self.button_cooldown = True
         self.node_list = []
         self.conversations = []
         self.comments = []
@@ -179,7 +180,6 @@ class Dialogue():
                         card["tags"][k] = truefalse
                         self.card_changed = card
 
-
     def check_card_npc(self, tag, npc):
         for t in ("card_", "flag_", "block_"):
             tag = tag.replace(t, "")
@@ -192,6 +192,54 @@ class Dialogue():
                     return False
         else:
             return False
+
+########## Public Methods.
+
+    def start_conversation(self, name):
+        # Might have had a minor mental breakdown when I wrote this code.
+        # But it works so...
+        once = False
+        while True:
+            if self.current_conv != None:
+                if self.current_conv.npc.lower() == name.lower():
+                    if self.current_conv.type == "comment":
+                        self.manage_comments()
+                        return
+            if once:
+                break
+            once = True
+            self.find_conversation(name)
+        conv = self.current_conv
+        self.master.gui.add_text_to_conv_panels({"top_text":conv.top_text, "question_list":conv.bottom_question_list})
+        self.master.gui.conv_panels_toggle()
+
+    def question_picked(self, text):
+        if self.button_cooldown:      #<-- Needed because Kivy sometimes presses a button multiple times.
+            self.current_conv.question_picked(text)
+            conv = self.current_conv
+            self.master.gui.add_text_to_conv_panels({"top_text":conv.top_text, "question_list":conv.bottom_question_list})
+            self.cooldown_flipper()
+            self.master.cooldown(self.cooldown_flipper, 0.1)
+
+    def manage_comments(self, commentlist=None):
+        if commentlist == None:
+            commentlist = self.current_conv.comments
+        for comment in commentlist:
+            comment["pos"] = self.get_npc_pos(comment["npc"])
+        self.master.gui.add_comments(commentlist)
+
+    def get_npc_pos(self, name):
+        if name in ("player", "Thack"):
+            return self.master.player.comment_pos()
+        else:
+            for npc in self.master.npcs.npcgroup:
+                if name == npc.name.lower():
+                    print(npc.comment_pos())
+                    return npc.comment_pos() 
+
+    def cooldown_flipper(self, *_):
+        self.button_cooldown = not self.button_cooldown
+
 
 
 

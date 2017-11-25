@@ -25,6 +25,11 @@ def neg(pos, size):
         y -= h
     return [x, y, w, h]
 
+def get_json(filename):
+    with open(filename, "r+") as f:
+        out = json.load(f)
+    return out
+
 
 class EventHandler(Widget):
     calls = DictProperty()
@@ -33,6 +38,9 @@ class EventHandler(Widget):
         self.keyboard = Window.request_keyboard(lambda : None, self)
         self.keyboard.bind(on_key_down=lambda *x: self.calls["keydown"](x[1], x[3]))
         self.keyboard.bind(on_key_up=lambda *x: self.calls["keyup"](x[1]))
+
+class PathPoint(Widget):
+    pass
 
 class Rect(Widget):
     rect_size = ListProperty([0,0])
@@ -46,15 +54,11 @@ class Rect(Widget):
 class Editor(RelativeLayout):
     growth = NumericProperty(3)
     line_points = ListProperty()
+    path_list = ListProperty()
     mouse_pos = ListProperty([0,0])
     mouse_pressed = StringProperty("")
     imgpos = ListProperty([0,0])
-    images = DictProperty({
-        "main":{"BG":"images/CI Main Back.png", "FG":"images/CI Main Obj.png"},
-        "basement":{"BG":"images/CI Basement Back.png","FG":"images/CI Basement Obj.png"},
-        "tower":{"BG":"images/CI Tower Top Back.png","FG":"images/CI Tower Top Obj.png"},
-        "priest_room":{"BG":"images/CI Priest Room Back.png","FG":"images/CI Priest Room Obj.png"},
-        "thack_room":{"BG":"images/CI Player Room Back.png","FG":"images/CI Player Room Obj.png"}})
+    images = DictProperty(get_json("images.json"))
     imgtexture = ObjectProperty(None)
     fgtexture = ObjectProperty(None)
     imgsize = ListProperty([0,0])
@@ -91,9 +95,13 @@ class Editor(RelativeLayout):
         if self.parent.sav_rects:
             self.save_rects()
             self.parent.sav_rects = False
-        if self.parent.sav_lines:
+        elif self.parent.sav_lines:
             self.save_lines()
             self.parent.sav_lines = False
+        elif self.parent.sav_path:
+            self.save_path()
+            self.parent.sav_path = False
+
 
     def straighten_line(self, pos1, pos2):
         (x, y) = pos1
@@ -132,7 +140,6 @@ class Editor(RelativeLayout):
             self.line_points[-1] = self.straighten_line(pos, self.line_points[-2])
             self.check_for_endpoint(pos)
 
-
     def make_rect(self, pos):
         if not self.active_rect:
             pos = (pos[0]-self.pos[0], pos[1]-self.pos[1])
@@ -142,6 +149,26 @@ class Editor(RelativeLayout):
             self.active_rect = True
         else:
             self.active_rect = False
+
+    def make_path(self, pos):
+        pos = (pos[0]-self.pos[0], pos[1]-self.pos[1])
+        pos = (pos[0]-15, pos[1]-15)
+        center = (int(pos[0]+15), int(pos[1]+15))
+        path = PathPoint(pos=pos)
+        self.add_widget(path)
+        self.path_list.append(center)
+
+    def save_path(self):
+        if self.path_list != []:
+            savedict = {"points":self.path_list,
+                        "npc":self.parent.npc,
+                        "room": self.parent.scene,
+                        "id":self.parent.path_id}
+            with open("./saves/path_{}_{}.json".format(self.parent.npc.lower(), self.parent.path_id), "w+") as f:
+                json.dump(savedict, f, indent=4, sort_keys=True)
+            self.path_list = []
+        else:
+            print("No Path to Save.")
 
     def save_rects(self):
         if self.rectlist != []:
@@ -167,14 +194,16 @@ class Editor(RelativeLayout):
 
     def touched(self, e):
         if e.button == "right":
-            if self.parent.rect_mode:
+            if self.parent.mode == "Rectangle Mode":
                 self.make_rect((e.x, e.y))
-            else:
+            elif self.parent.mode == "Line Mode":
                 self.make_line((e.x, e.y))
+            elif self.parent.mode == "Path Mode":
+                self.make_path((e.x, e.y))
 
     def mouseover(self, x):
         self.mouse_pos = (x[1][0]-self.pos[0], x[1][1]-self.pos[1])
-        if self.parent.rect_mode:
+        if self.parent.mode == "Rectangle Mode":
             if self.active_rect:
                 rect_pos = self.rectlist[-1].rect_pos
                 new_size = [self.mouse_pos[0] - rect_pos[0], self.mouse_pos[1] - rect_pos[1]]
@@ -203,6 +232,7 @@ class Editor(RelativeLayout):
             self.move["right"] = False
 
 class HUD(BoxLayout):
+    modes = ListProperty(["Rectangle Mode", "Line Mode",  "Path Mode"])
     mode = StringProperty("Rectangle Mode")
 
     def setup(self):
@@ -212,24 +242,29 @@ class HUD(BoxLayout):
         pass
 
     def switch_mode(self):
+        index = self.modes.index(self.mode)
+        index += 1
+        if index > 2: index = 0
+        self.mode = self.modes[index]
+        self.parent.mode = self.mode
+
+    def save(self):
         if self.mode == "Rectangle Mode":
-            self.mode = "Line Mode"
-        else:
-            self.mode = "Rectangle Mode"
-        self.parent.rect_mode = not self.parent.rect_mode
-
-    def save_lines(self):
-        self.parent.sav_lines = True
-
-    def save_rects(self):
-        self.parent.sav_rects = True
+            self.parent.sav_rects = True
+        elif self.mode == "Line Mode":
+            self.parent.sav_lines = True
+        elif self.mode == "Path Mode":
+            self.parent.sav_path = True
 
 class Main(Widget):
     w_size = Window.size
     sav_rects = BooleanProperty(False)
     sav_lines = BooleanProperty(False)
-    rect_mode = BooleanProperty(True)
-    scene = StringProperty("thack_room")
+    sav_path = BooleanProperty(False)
+    mode = StringProperty("Rectangle Mode")
+    scene = StringProperty("main")
+    npc = StringProperty("Djonsiscus")
+    path_id = StringProperty("01")
 
     def setup(self):
         for child in self.children:
@@ -238,7 +273,6 @@ class Main(Widget):
     def update(self, dt):
         for child in self.children:
             child.update(dt)
-
 
 class EditorApp(App):
     def build(self):

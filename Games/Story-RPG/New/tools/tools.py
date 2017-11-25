@@ -6,6 +6,12 @@ from kivy.atlas import Atlas
 from kivy.vector import Vector
 from kivy.graphics.texture import Texture
 
+def mult_tuple(tup, num):
+    return (tup[0]*num, tup[1]*num)
+
+def add_tuple(tup, num):
+    return (tup[0]+num[0], tup[1]+num[1])
+
 def pairwise(iterable):
     a = iter(iterable)
     return zip(a, a)
@@ -26,10 +32,15 @@ def quad_overlap(iterable):
         yield  a,b,c,d
 
 def circle_collide(w1, w2, dist=50):
-    if Vector(w1.center).distance(w2.center) < dist:
-        return True
-    else:
-        return False
+    return Vector(w1.pos).distance(w2.pos) < dist
+
+
+def load_json(filename):
+    import json
+    with open(filename, "+r") as f:
+        myfile = json.load(f)
+    return myfile
+
 
 def divide_image(filename, top, bottom, name):
     im = Image.open(filename)
@@ -71,27 +82,51 @@ def divide_all(folder):
         n = n.rstrip(".png")
         divide_image(img, d[n]["size"][0], d[n]["size"][1], d[n]["name"])
 
-def make_atlas(folder):
+def make_atlas(folder, size):
     fold = Path(folder)
     subdirs = fold.dirs()
     for dirc in subdirs:
-        Atlas.create("images/{}".format(dirc.basename()), dirc.files("*.png"), [160,256])
+        Atlas.create("images/{}".format(dirc.basename()), dirc.files("*.png"), size)
 
+def scale_and_convert(filename, multiplier=3, fil=False, flip=True):
+    img = scale_image(filename, multiplier, fil, flip)
+    return convert_pil_to_kivy_image(img)
 
 def scale_image(filename, multiplier=3, fil=False, flip=True):
-    """ Returns Kivy Texture Object"""
+    """ Returns Pil Image Object"""
     if fil:
-        filename.save("temp")
-        filename = "temp"
+        filename.save("temp_")
+        filename = "temp_"
     img = Img.open(filename)
     if flip:
         img = img.transpose(Img.FLIP_TOP_BOTTOM)
     size = img.size
     new_size = (size[0]*multiplier, size[1]*multiplier)
     img = img.resize(new_size)
-    image = Texture.create(size=new_size)
+    return img
+
+def convert_pil_to_kivy_image(img):
+    """Returns Kivy Texture Object"""
+    image = Texture.create(size=img.size)
     image.blit_buffer(img.tobytes(), colorfmt="rgba", bufferfmt="ubyte")
     return image
+
+
+def scale_images(folders, multiplier=3):
+    """Returns Atlas Object"""
+    for folder in folders.dirs():
+        for f in folder.files():
+            img = scale_image(f, multiplier)
+            img.save("./temp/{}{}".format(folder.basename(), f.basename()), "PNG")
+    make_atlas("./temp", (160,256))
+    for t in Path("./temp").dirs():
+        t.rmdir()
+
+def multiply(nums):
+    factor = 1
+    for i in nums:
+        factor *= i
+    return factor
 
 if __name__ == "__main__":
     #divide_all("images/stored")

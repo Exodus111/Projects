@@ -29,6 +29,7 @@ class GUI(Widget):
     textpos_list = ListProperty()
     up = ListProperty()
     timer = NumericProperty()
+    active_card_amount = NumericProperty()
 
     def __repr__(self):
         return "Main GUI Object \n"
@@ -44,6 +45,8 @@ class GUI(Widget):
         self.add_widget(self.panels)
         self.add_widget(self.menus)
         self.add_widget(self.hud)
+
+        self.update_card_top_list()
 
     def size_changed(self, value):
         """
@@ -71,6 +74,14 @@ class GUI(Widget):
         self.menus.card_db[num]["tags"] = card["tags"]
         if not any(self.menus.card_db[num]["tags"].values()):
             self.retire_card(card["title"])
+        self.update_card_top_list()
+
+    def update_card_top_list(self):
+        self.active_card_amount = self.menus.check_for_amount_of_active_cards()
+        if self.active_card_amount == 0:            
+            self.hud.add_text_to_top_bar(text3="Active Cards: None")
+        else:
+            self.hud.add_text_to_top_bar(text3="Active Cards: {}".format(self.active_card_amount))
 
     def toggle_card_menu(self):
         """
@@ -336,6 +347,9 @@ class Menus(FloatLayout):
             self.manager.current = "Selection"
         else:
             self.manager.current = "None"
+
+    def check_for_amount_of_active_cards(self):
+        return len(self.select.active_cards)
 
     def update(self, dt):
         pass

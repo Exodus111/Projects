@@ -1,0 +1,29 @@
+{"church":{
+                          "main":{
+                          "size":[768, 608],
+                          "to_basement":[1883, 327],
+                          "to_thack_room":[146, 808],
+                          "to_priest_room":[1514, 835],
+                          "to_out":[830, 72],
+                          "shunts":["to_priest_room", 0, -50]},
+
+                          "basement":{
+                          "size":[640, 416],
+                          "from_basement":[1590, 192],
+                          "shunts":[]},
+
+                          "priest_room":{
+                          "size":[192, 256],
+                          "from_priest_room":[269, 115],
+                          "shunts":[]},
+
+                          "tower":{
+                          "size":[192, 256],
+                          "from_tower":[146, 394],
+                          "shunts":[]},
+
+                          "thack_room":{
+                          "size":[192, 256],
+                          "from_thack_room":[248, 115], 
+                          "to_tower":[131, 391],
+                          "shunts":["to_tower", 30, -5]}}}

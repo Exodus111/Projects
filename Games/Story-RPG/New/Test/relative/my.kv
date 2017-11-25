@@ -1,0 +1,33 @@
+#: kivy 1.10.0
+
+<MyGame>:
+	bg: bg
+	fg: fg
+	controller: controller
+	MyBackground:
+		id: bg
+		canvas:
+	        Color:
+	            rgba: 1., 0., 0., 1.
+	        Rectangle:
+	            pos: root.pos
+	            size: root.size
+    MyForeground:
+    	id: fg
+    	canvas:
+    		Color:
+    			rgba: 0., 0., 1., 1.
+    		Rectangle:
+    			pos: root.size[0]/4, root.size[1]/4
+    			size: root.size[0]/2, root.size[1]/2
+    MyController:
+    	id: controller
+    	size_hint: None, None
+    	size: 105, 105
+    	pos: self.move
+    	canvas:
+    		Color:
+    			rgba: 1., 1., 1., 1.
+    		Rectangle:
+    			pos: self.pos
+    			size: self.size
