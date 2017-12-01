@@ -43,10 +43,11 @@ class InputHandler(Widget):
 class Game(Widget):
     temp_text = StringProperty()
     temp_textlist = ListProperty(["", "", "", ""])
-    menu_on = BooleanProperty(True)
     button_cooldown = BooleanProperty(True)
     card_counter = DictProperty({"inv":0, "ret":0})
+    menu_on = BooleanProperty(True)
     in_conversation = BooleanProperty(False)
+    in_game = BooleanProperty(False)
 
     def gamesetup(self):
         # Setting up the Input Handler.
@@ -55,6 +56,23 @@ class Game(Widget):
         self.input.calls["keyup"] = self.key_up
         self.input.calls["mouseover"] = self.mouse_over
         self.input.eventsetup()
+
+        # Setting up the Gui controller.
+        self.gui = GUI(size=SIZE)
+        self.gui.setup()
+
+        self.events = EventCreator()
+
+        # Start Menu
+        self.startmenu = StartMenu()
+
+        self.add_widget(self.startmenu)
+        self.add_widget(self.gui)         # <-- GUI goes last.
+
+        self.startmenu.setup(SIZE)
+
+    def start_new_game(self):
+        self.in_game = True
 
         # Setting up the world.
         self.world = World()
@@ -71,34 +89,25 @@ class Game(Widget):
         self.player.pos = [900, 500]
         self.player.playersetup(Window.size)
 
-        # Setting up the Gui controller.
-        self.gui = GUI(size=SIZE)
-        self.gui.setup()
-
-        # Setting up the Dialogue controller.
-        with open("data/dialogue/dialogue.json", "r+") as f:
-            data = json.load(f)
-        self.events = EventCreator()
-        self.diag = Dialogue(self.events, **data)
-        self.diag.master = self
-
-        # Start Menu
-        self.startmenu = StartMenu()
-
         # Adding everything to the Widget stack
         self.add_widget(self.input)
         self.world.add_npcs(self.npcs.npcgroup)
         self.world.add_widget(self.player, index=2)
         self.add_widget(self.world)
-        self.add_widget(self.startmenu)
-        self.add_widget(self.gui)         # <-- GUI goes last.
 
-        self.startmenu.setup()
+        # Setting up the Dialogue controller.
+        with open("data/dialogue/dialogue.json", "r+") as f:
+            data = json.load(f)
+        self.diag = Dialogue(self.events, **data)
+        self.diag.master = self
 
         self.gui.hud.add_text_to_top_bar(text2=self.world.home)
 
         # Centering Screen on the player
         self.center_screen(0.2)
+
+    def insert_menu(self, menu):
+        self.add_widget(menu)
 
     def draw_test_nodes(self):
         for node in self.npcs.npc_paths['djonsiscus_01']["points"]:
@@ -119,21 +128,22 @@ class Game(Widget):
         self.gui.size_changed(value)
 
     def update(self, dt):
-        if not self.in_conversation:
-            self.npcs.update(dt)
-            self.player.update(dt)
-        else:
-            self.player.set_frame("idle", 1)
-            self.player.collide_world(x=(SIZE[0]/2)-50, y=(SIZE[1]/2)-50, speedup=25)
+        if self.in_game:
+            if not self.in_conversation:
+                self.npcs.update(dt)
+                self.player.update(dt)
+            else:
+                self.player.set_frame("idle", 1)
+                self.player.collide_world(x=(SIZE[0]/2)-50, y=(SIZE[1]/2)-50, speedup=25)
+            self.update_cards(dt)
+            if self.diag.current_conv != None:
+                if self.diag.current_conv.end_conversation:
+                    self.gui.conv_panels_toggle()
+                    self.diag.current_conv.end_conversation = False
+                    self.in_conversation = False
+
         self.events.update(dt)
         self.gui.update(dt)
-        self.update_cards(dt)
-
-        if self.diag.current_conv != None:
-            if self.diag.current_conv.end_conversation:
-                self.gui.conv_panels_toggle()
-                self.diag.current_conv.end_conversation = False
-                self.in_conversation = False
 
     def update_cards(self, dt):
         if len(self.diag.card_inventory) != self.card_counter["inv"]:

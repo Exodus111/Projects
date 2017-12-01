@@ -10,6 +10,27 @@
             pos: self.pos
             size: self.size
 
+<Options>:
+    manager: manager
+    credits: credits
+    size_hint: None, None
+    center: self.gamesize[0]/2, self.gamesize[1]/2
+    ScreenManager:
+        id: manager
+        transition: FadeTransition()
+        Screen:
+            name: "options"
+            Menu:
+                BoxLayout:
+                    Label: 
+                        text: root.textdict["Title"]
+        Credits:
+            id: credits
+            name: "credits"
+            Menu:
+                Label:
+                    text: credits.text
+
 <StartMenu>:
     button_new: ne
     button_load: lo
@@ -19,7 +40,7 @@
     button_quit: qu
     orientation: "vertical"
     size: 400, 500
-    center: 1366/2, 768/2
+    center: self.gamesize[0]/2, self.gamesize[1]/2
     spacing: 1
     padding: 1
     GUIButton:
