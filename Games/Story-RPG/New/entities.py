@@ -96,7 +96,7 @@ class Entity(Widget):
         pass
 
     def comment_pos(self):
-        return self.to_window(self.pos[0], self.pos[1]+120)
+        return self.pos[0]+40, self.pos[1]+200
 
     def collide_npcs(self, mov):
         if self.name != "Thack":

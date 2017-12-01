@@ -16,19 +16,27 @@ class EventCreator:
 		self.player_outside_bounds_lament = False
 
 		# Triggers and timers.
+		self.uptime = 0.0
 		self.player_timer = defaultdict(float)
 		self.cooldown = {}
 		self.trigger = defaultdict(bool)
 
 	def check_cooldown(self, name, duration):
 		if name not in self.cooldown.keys():
-			self.cooldown[name] = float(duration)
+			self.cooldown[name] = self.uptime + float(duration)
+			self.trigger[name] = True
 			return True
-		elif self.cooldown[name] <= 0.0:
+		elif self.cooldown[name] < self.uptime and self.trigger[name]:
+			self.trigger[name] = not self.trigger[name]
+			return True
+		elif self.cooldown[name] < self.uptime - float(duration):
 			del(self.cooldown[name])
-			return True
 		else:
 			return False
+
+	def reset_cooldown(self, name):
+		if name in self.cooldown.keys():
+			del(self.cooldown[name])
 
 	def insert_flags(self, flags):
 		for flag in flags:
@@ -45,15 +53,9 @@ class EventCreator:
 		self.room[room] = False
 
 	def update(self, dt):
+		self.uptime += dt
 		self.time_idles(dt)
 		self.check_bounds(dt)
-		self.timeout_cds(dt)
-
-	def timeout_cds(self, dt):
-		for cd in self.cooldown.keys():
-			if self.cooldown[cd] > 0:
-				self.cooldown[cd] -= dt
-
 
 	def check_bounds(self, dt):
 		if self.player_outside_bounds:

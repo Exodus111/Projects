@@ -168,10 +168,11 @@ class Game(Widget):
                 self.player.keyup(key[1])
 
     def begin_conv(self, name):
-        if self.events.check_cooldown("Conversation", 2): ## Problem.
+        if self.events.check_cooldown("Conversation", 200): ## Problem.
             if not self.in_conversation:
                 self.diag.start_conversation(name)
                 if self.diag.current_conv.type != "comment":
+                    self.events.reset_cooldown("Conversation")
                     self.in_conversation = True
 
     def cooldown(self, call, time):

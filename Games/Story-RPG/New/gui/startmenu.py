@@ -11,4 +11,27 @@ class StartMenu(BoxLayout):
     button_quit = ObjectProperty()
 
     def setup(self):
-        self.button_new.bind(on_press=lambda *args: self.parent.menu_on_off())
+    	for call in ("new", "load", "credits", "about", "options", "quit"):
+    		eval("self.button_{}.bind(on_press=self._on_{})".format(call, call))
+
+    def _on_new(self, *_):
+    	self.parent.menu_on_off()
+    	print("New Pressed")
+
+    def _on_load(self, *_):
+    	print("Load Pressed")
+
+    def _on_credits(self, *_):
+    	print("Credits Pressed")
+
+    def _on_about(self, *_):
+    	print("About Pressed")
+
+    def _on_options(self, *_):
+    	print("Options Pressed")
+
+    def _on_quit(self, *_):
+    	print("Quit Pressed")
+
+
+

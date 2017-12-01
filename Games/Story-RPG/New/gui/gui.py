@@ -139,13 +139,14 @@ class GUI(Widget):
     def collide_comments(self):
         if self.comment_list != []:
             if self.comment_list[0].speechbox.current == "None":
-                self.remove_widget(self.comment_list[0])
+                self.parent.world.remove_widget(self.comment_list[0])
                 del(self.comment_list[0])
 
         for n1, c1 in enumerate(self.comment_list):
-            if c1.pos[0] + c1.size[0] > self.size[0]:
+            pos = c1.to_window(c1.pos[0], c1.pos[1])
+            if pos[0] + c1.size[0] > self.size[0]:
                 c1.pos[0] -= 3
-            if c1.pos[1] + c1.size[1] > self.size[1]:
+            if pos[1] + c1.size[1] > self.size[1]:
                 c1.pos[1] -= 3
             for n2, c2 in enumerate(self.comment_list):
                 if n1 > n2:
@@ -153,9 +154,9 @@ class GUI(Widget):
                         c1.pos[1] += 3
 
     def activate_comment(self, txt_dict):
-        comment = CommentGUI()
+        comment = CommentGUI(size_hint=(None, None))
         comment.setup(txt_dict["pos"], txt_dict["text"])
-        self.add_widget(comment)
+        self.parent.world.add_widget(comment)
         comment.activate()
         self.comment_list.append(comment)
 

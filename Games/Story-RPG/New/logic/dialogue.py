@@ -234,8 +234,7 @@ class Dialogue():
         else:
             for npc in self.master.npcs.npcgroup:
                 if name == npc.name.lower():
-                    print(npc.comment_pos())
-                    return npc.comment_pos() 
+                    return npc.comment_pos()
 
     def cooldown_flipper(self, *_):
         self.button_cooldown = not self.button_cooldown
