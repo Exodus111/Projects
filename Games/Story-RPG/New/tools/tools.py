@@ -7,7 +7,7 @@ from kivy.vector import Vector
 from kivy.graphics.texture import Texture
 
 def mult_tuple(tup, num):
-    return (tup[0]*num, tup[1]*num)
+    return (int(tup[0]*num), int(tup[1]*num))
 
 def add_tuple(tup, num):
     return (tup[0]+num[0], tup[1]+num[1])

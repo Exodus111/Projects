@@ -1,6 +1,8 @@
 #: kivy 1.10.0
 #: import FadeTransition kivy.uix.screenmanager.FadeTransition
 #: import SlideTransition kivy.uix.screenmanager.SlideTransition
+#: import RiseInTransition kivy.uix.screenmanager.RiseInTransition
+
 
 <Game>:
     canvas:
@@ -10,31 +12,9 @@
             pos: self.pos
             size: self.size
 
-<Options>:
-    manager: manager
-    credits: credits
-    size_hint: None, None
-    center: self.gamesize[0]/2, self.gamesize[1]/2
-    ScreenManager:
-        id: manager
-        transition: FadeTransition()
-        Screen:
-            name: "options"
-            Menu:
-                BoxLayout:
-                    Label: 
-                        text: root.textdict["Title"]
-        Credits:
-            id: credits
-            name: "credits"
-            Menu:
-                Label:
-                    text: credits.text
-
 <StartMenu>:
     button_new: ne
     button_load: lo
-    button_credits: cr
     button_about: ab
     button_options: op
     button_quit: qu
@@ -50,23 +30,53 @@
         id: lo
         text: "Load"
     GUIButton:
-        id: cr
-        text: "Credits"
-    GUIButton:
         id: ab
         text: "About"
     GUIButton:
         id: op
-        text: "Options"
+        text: "Res:{},{}".format(root.gamesize[0], root.gamesize[1])
     GUIButton:
         id: qu
         text: "Quit"
 
 <GUIButton@Button>:
+    name: "gui_button"
     background_normal: "images/gui/guibutton.png"
+    background_down: "images/gui/button_down.png"
     font_name: "vcrmono"
     text_size: None, None
     font_size: 32
+
+<ResButton>:
+    background_normal: "images/gui/menu_long_bg.png"
+    background_down: "images/gui/button_down.png"
+    font_name: "vcrmono"
+    text_size: None, None
+    font_size: 32
+
+<About>:
+    name: "about"
+    center: self.gamecenter
+    Menu:
+        BoxLayout:
+            orientation: "vertical"
+            Label:
+                size_hint: 1., .2 
+                text: root.textlist[0]
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint: 1., .35
+                Image:
+                    source: "images/gui/empty_profile.png" 
+                Label:
+                    text: root.textlist[1]
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint: 1., .35
+                Image:
+                    source: "images/gui/empty_profile.png" 
+                Label:
+                    text: root.textlist[2]
 
 <World>:
     center: self.worldcenter

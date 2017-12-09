@@ -47,7 +47,7 @@ class Game(Widget):
     card_counter = DictProperty({"inv":0, "ret":0})
     menu_on = BooleanProperty(True)
     in_conversation = BooleanProperty(False)
-    in_game = BooleanProperty(False)
+    game_started = BooleanProperty(False)
 
     def gamesetup(self):
         # Setting up the Input Handler.
@@ -57,22 +57,21 @@ class Game(Widget):
         self.input.calls["mouseover"] = self.mouse_over
         self.input.eventsetup()
 
-        # Setting up the Gui controller.
-        self.gui = GUI(size=SIZE)
-        self.gui.setup()
-
         self.events = EventCreator()
 
         # Start Menu
         self.startmenu = StartMenu()
 
         self.add_widget(self.startmenu)
-        self.add_widget(self.gui)         # <-- GUI goes last.
 
         self.startmenu.setup(SIZE)
 
     def start_new_game(self):
-        self.in_game = True
+        self.game_started = True
+
+        # Setting up the Gui controller.
+        self.gui = GUI(size=SIZE)
+        self.gui.setup()
 
         # Setting up the world.
         self.world = World()
@@ -95,6 +94,8 @@ class Game(Widget):
         self.world.add_widget(self.player, index=2)
         self.add_widget(self.world)
 
+        self.add_widget(self.gui)         # <-- GUI goes last.
+
         # Setting up the Dialogue controller.
         with open("data/dialogue/dialogue.json", "r+") as f:
             data = json.load(f)
@@ -106,8 +107,14 @@ class Game(Widget):
         # Centering Screen on the player
         self.center_screen(0.2)
 
+    def change_resolution(self, new):
+        global SIZE
+        SIZE = new
+        self.startmenu.gamesize = SIZE
+
     def insert_menu(self, menu):
         self.add_widget(menu)
+        self.menu_on_off()
 
     def draw_test_nodes(self):
         for node in self.npcs.npc_paths['djonsiscus_01']["points"]:
@@ -128,7 +135,7 @@ class Game(Widget):
         self.gui.size_changed(value)
 
     def update(self, dt):
-        if self.in_game:
+        if self.game_started:
             if not self.in_conversation:
                 self.npcs.update(dt)
                 self.player.update(dt)
@@ -141,9 +148,9 @@ class Game(Widget):
                     self.gui.conv_panels_toggle()
                     self.diag.current_conv.end_conversation = False
                     self.in_conversation = False
+            self.gui.update(dt)
 
         self.events.update(dt)
-        self.gui.update(dt)
 
     def update_cards(self, dt):
         if len(self.diag.card_inventory) != self.card_counter["inv"]:
