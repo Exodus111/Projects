@@ -18,13 +18,16 @@ class WorldElement(Image):
     name = StringProperty("")
 
 class ClutterGroup(Widget):
-    pass
+    name = StringProperty("Nothing.")
+
+    def __repr__(self):
+        return "<Clutter Group Widget, {}>".format(self.name)
 
 class DoorWidget(Widget):
     name = StringProperty("")
 
     def __repr__(self):
-        return "Door Widget, " + self.name
+        return "<Door Widget, {}>".format(self.name)
 
 class ClutterElement(Widget):
     rect = ListProperty([0,0,0,0])
@@ -46,7 +49,6 @@ class World(RelativeLayout):
     in_world = ListProperty([])
     bg = ObjectProperty(None)
     fg = ObjectProperty(None)
-    clutter = ObjectProperty(None)
     cluttergroup = ObjectProperty(None)
     poi = ListProperty([])
     dots = ListProperty([])
@@ -67,7 +69,6 @@ class World(RelativeLayout):
         self.load_walls("church")
         self.start_scene("church", "main")
         self.add_widget(self.bg, index=1)
-        self.add_widget(self.clutter, index=1)
         self.add_widget(self.fg, index=1)
 
     def load_walls(self, scene):
@@ -91,20 +92,21 @@ class World(RelativeLayout):
     def start_scene(self, scene, part):
         self.bg = WorldElement(texture=scale_and_convert(self.worlddict[scene][part]["bg"]))
         self.fg = WorldElement(texture=scale_and_convert(self.worlddict[scene][part]["fg"]))
-        self.clutter = WorldElement(texture=scale_and_convert(self.worlddict[scene][part]["clutter"]))
         self.load_scene(scene, part, True)
 
     def load_scene(self, scene, part, first=False):
         # Setting up the scenes textures.
         if not first:
-            self.bg.texture = scale_and_convert(self.worlddict[scene][part]["bg"])
-            self.fg.texture = scale_and_convert(self.worlddict[scene][part]["fg"])
-            self.clutter.texture = scale_and_convert(self.worlddict[scene][part]["clutter"])
+            if scene == "outside":
+                growth = 4
+            else:
+                growth = 3
+            self.bg.texture = scale_and_convert(self.worlddict[scene][part]["bg"], growth)
+            self.fg.texture = scale_and_convert(self.worlddict[scene][part]["fg"], growth)
 
         # Setting up the sizes.
         self.bg.size = self.bg.texture.size
         self.fg.size = self.fg.texture.size
-        self.clutter.size = self.clutter.texture.size
 
         # Adding NPCs. (Not on first load.)
         self.home = scene + " " + part
@@ -112,6 +114,8 @@ class World(RelativeLayout):
             self.add_npcs(self.parent.npcs.npcgroup)
 
         # This sets up the collison for the walls.
+        if scene not in self.walls.keys():
+            self.load_walls(scene)
         self.linelist = self.walls[scene][part]["bg"]["points"]
         #self.draw_line(self.linelist) #<--- Used to test the walls.
 
@@ -150,7 +154,7 @@ class World(RelativeLayout):
             Line(points=points, width=1.0)
 
     def make_clutter_collision(self, scene, part):
-        if len(self.cluttergroup.children) == 0:
+        if self.cluttergroup not in self.children:
             self.add_widget(self.cluttergroup, index=0)
         else:
             self.cluttergroup.clear_widgets()
@@ -161,6 +165,7 @@ class World(RelativeLayout):
             clutter.rect = r.copy()
             #clutter.show()  #<-- For testing.
             self.cluttergroup.add_widget(clutter)
+        self.cluttergroup.name = scene + " " + part
 
     def _make_linelist(self, pointlist):
         linelist = []
@@ -252,6 +257,12 @@ class World(RelativeLayout):
                     new_pos = add_tuple(new_pos, shunt)
                     self.move_player(new_pos)
                     self.once = False
+                    if "outside" in self.home and not self.parent.events.player_outside:
+                        self.parent.events.player_outside = True
+                        self.parent.player.resize_player("small")
+                    elif "outside" not in self.home and self.parent.events.player_outside:
+                        self.parent.events.player_outside = False
+                        self.parent.player.resize_player("big")
                     self.parent.gui.hud.add_text_to_top_bar(text2=self.home)
                     return
 
@@ -265,7 +276,6 @@ class World(RelativeLayout):
         for poi in self.poi:
             if w.collide_widget(poi):
                 if self.once:
-                    w.turn_red()
                     self.check_door(poi.name)
                     self.once = False
                     self.colliding_with.append(poi)

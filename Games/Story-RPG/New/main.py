@@ -176,8 +176,7 @@ class Game(Widget):
             if key[1] in ("w", "a", "s", "d", "up", "down", "left", "right"):
                 self.player.keydown(key[1])
             elif key[1] == "spacebar":
-                self.npcs.npc_walk_path("Djonsiscus", "01")
-                #self.start_conversation("Djonsiscus")
+                print(self.player.pos)
 
     def key_up(self, key):
         if not self.menu_on:

@@ -9,6 +9,7 @@ SECONDARY_COLOR = (.12,.12,.12, 1.) # Dark.
 class HUD(FloatLayout):
     top_bar = ObjectProperty()
     info_manager = ObjectProperty()
+    floatmenu = ObjectProperty()
     info_text = StringProperty()
 
     def set_size(self, size):
@@ -28,6 +29,12 @@ class HUD(FloatLayout):
         self.info_manager.current="None"
         self.info_text = ""
 
+    def on_press_inv(self):
+        self.parent.toggle_card_menu()
+
+    def on_press_opt(self, *_):
+        self.parent.toggle_ingame_menu()
+
 class TopBar(Widget):
     text_one = StringProperty()
     text_two = StringProperty()
@@ -39,3 +46,8 @@ class TopBar(Widget):
 
     def add_text(self, text):
         self.text_one, self.text_two, self.text_three = text
+
+class FloatMenu(FloatLayout):
+    inventory = ObjectProperty()
+    options = ObjectProperty()
+

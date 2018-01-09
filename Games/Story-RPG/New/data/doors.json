@@ -26,4 +26,13 @@
                           "size":[192, 256],
                           "from_thack_room":[248, 115], 
                           "to_tower":[131, 391],
-                          "shunts":["to_tower", 30, -5]}}}
+                          "shunts":["to_tower", 30, -5]}},
+"apothecary":{},
+"blacksmith":{},
+"manor":{},
+"mayor":{},
+"goods":{},
+"outside":{"main":{"from_out":[610, 274],
+                   "size": [326, 280],
+                   "shunts":[]}}}
+

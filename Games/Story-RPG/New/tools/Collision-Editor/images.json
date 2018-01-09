@@ -1,6 +1,6 @@
 {
-        "main":{"BG":"images/CI Main Back.png", "FG":"images/CI Main Obj.png"},
-        "basement":{"BG":"images/CI Basement Back.png","FG":"images/CI Basement Obj.png"},
-        "tower":{"BG":"images/CI Tower Top Back.png","FG":"images/CI Tower Top Obj.png"},
-        "priest_room":{"BG":"images/CI Priest Room Back.png","FG":"images/CI Priest Room Obj.png"},
-        "thack_room":{"BG":"images/CI Player Room Back.png","FG":"images/CI Player Room Obj.png"}}
+        "main":{"BG":"images/Church/CI Main Back.png", "FG":"images/Church/CI Main Obj.png"},
+        "basement":{"BG":"images/Church/CI Basement Back.png","FG":"images/Church/CI Basement Obj.png"},
+        "tower":{"BG":"images/Church/CI Tower Top Back.png","FG":"images/Church/CI Tower Top Obj.png"},
+        "priest_room":{"BG":"images/Church/CI Priest Room Back.png","FG":"images/Church/CI Priest Room Obj.png"},
+        "thack_room":{"BG":"images/Church/CI Player Room Back.png","FG":"images/Church/CI Player Room Obj.png"}}

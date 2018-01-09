@@ -6,6 +6,8 @@ from kivy.atlas import Atlas
 from kivy.vector import Vector
 from kivy.graphics.texture import Texture
 
+NUMBER = iter(i for i in range(10000))
+
 def mult_tuple(tup, num):
     return (int(tup[0]*num), int(tup[1]*num))
 
@@ -110,7 +112,6 @@ def convert_pil_to_kivy_image(img):
     image = Texture.create(size=img.size)
     image.blit_buffer(img.tobytes(), colorfmt="rgba", bufferfmt="ubyte")
     return image
-
 
 def scale_images(folders, multiplier=3):
     """Returns Atlas Object"""

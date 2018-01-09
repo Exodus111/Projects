@@ -1,4 +1,5 @@
 from collections import defaultdict
+from path import Path
 
 class EventCreator:
 	def __init__(self):
@@ -12,6 +13,7 @@ class EventCreator:
 		self.playerwait_30 = False
 		self.player_in_menu = False
 		self.player_moving = False
+		self.player_outside = False
 		self.player_outside_bounds = False
 		self.player_outside_bounds_lament = False
 
@@ -20,6 +22,16 @@ class EventCreator:
 		self.player_timer = defaultdict(float)
 		self.cooldown = {}
 		self.trigger = defaultdict(bool)
+
+	def save(self, player_pos): # Not tested, should work.
+		savedict = {"player_pos":player_pos, "flags":[]}
+		for flag in self.flags.keys():
+			if self.flags[flag]:
+				savedict["flags"].append(flag)
+		counter = len(Path("/saves").files("savefile*.*"))
+		counter += 1
+		with open("/saves/savefile{}.json".format(counter), "w+") as f:
+			json.dump(f, savedict)
 
 	def check_cooldown(self, name, duration):
 		if name not in self.cooldown.keys():

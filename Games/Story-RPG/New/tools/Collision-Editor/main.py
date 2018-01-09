@@ -11,8 +11,10 @@ from kivy.graphics import Rectangle
 from kivy.uix.relativelayout import RelativeLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.popup import Popup
 from kivy.properties import *
 
+from path import Path
 import json
 
 def neg(pos, size):
@@ -42,6 +44,15 @@ class EventHandler(Widget):
 class PathPoint(Widget):
     pass
 
+class FileMenu(Popup):
+    path = StringProperty("./")
+    filepattern = StringProperty("*.*")
+
+    def file_name(self, selection):
+        self.path = selection and Path(selection[0]).dirname() or self.path
+        return selection and Path(selection[0]).basename() or ""
+
+
 class Rect(Widget):
     rect_size = ListProperty([0,0])
     rect_pos = ListProperty([0,0])
@@ -52,9 +63,13 @@ class Rect(Widget):
         self.rect_pos = p
 
 class Editor(RelativeLayout):
+    name = StringProperty("Editor")
+    pause = BooleanProperty(False)
     growth = NumericProperty(3)
     line_points = ListProperty()
     path_list = ListProperty()
+    paths = ListProperty()
+    rectlist = ListProperty([])
     mouse_pos = ListProperty([0,0])
     mouse_pressed = StringProperty("")
     imgpos = ListProperty([0,0])
@@ -62,7 +77,6 @@ class Editor(RelativeLayout):
     imgtexture = ObjectProperty(None)
     fgtexture = ObjectProperty(None)
     imgsize = ListProperty([0,0])
-    rectlist = ListProperty([])
     speed = NumericProperty(15)
     active_rect = BooleanProperty(False)
     move = DictProperty({"up":False,
@@ -81,26 +95,71 @@ class Editor(RelativeLayout):
         self.imgtexture = Image(source=self.images[self.parent.scene]["BG"]).texture
         self.fgtexture = Image(source=self.images[self.parent.scene]["FG"]).texture
         self.imgsize = [self.imgtexture.size[0]*self.growth, self.imgtexture.size[1]*self.growth]
+        
+        self.savescreen = FileMenu()
+        self.savescreen.ok_pressed = self.save_to_file
+        self.savescreen.filepattern = "*.json"
+        self.savescreen.bind(on_open=self.toggle_pause)
+        self.savescreen.bind(on_dismiss=self.toggle_pause)
 
+        self.loadbg = FileMenu()
+        self.loadbg.ok_pressed = self.load_bg_image
+        self.loadbg.path = "./images"
+        self.loadbg.filepattern = "*.png"
+        self.loadbg.bind(on_open=self.toggle_pause)
+        self.loadbg.bind(on_dismiss=self.toggle_pause)
+
+        self.loadfg = FileMenu()
+        self.loadfg.ok_pressed = self.load_fg_image
+        self.loadfg.path = "./images"
+        self.loadfg.filepattern = "*.png"
+        self.loadfg.bind(on_open=self.toggle_pause)
+        self.loadfg.bind(on_dismiss=self.toggle_pause)
+
+    def clear_all(self):
+        if self.parent.mode == "Rectangle Mode":
+            for rect in self.rectlist:
+                self.remove_widget(rect)
+            self.rectlist = []
+        elif self.parent.mode == "Line Mode":
+            self.line_points = []
+        elif self.parent.mode == "Path Mode":
+            for path in self.paths:
+                self.remove_widget(path)
+            self.path_list = []
+            self.paths = []
+
+    def load_bg_image(self, filename):
+        self.imgtexture = Image(source=filename).texture
+        self.imgsize = [self.imgtexture.size[0]*self.growth, self.imgtexture.size[1]*self.growth]
+        self.loadbg.dismiss()
+
+    def load_fg_image(self, filename):
+        self.fgtexture = Image(source=filename).texture
+        self.loadfg.dismiss()
+
+    def toggle_pause(self, *args):
+        self.pause = not self.pause
 
     def update(self, dt):
-        if self.move["up"]:
-            self.pos[1] -= self.speed
-        if self.move["down"]:
-            self.pos[1] += self.speed
-        if self.move["left"]:
-            self.pos[0] += self.speed
-        if self.move["right"]:
-            self.pos[0] -= self.speed
-        if self.parent.sav_rects:
-            self.save_rects()
-            self.parent.sav_rects = False
-        elif self.parent.sav_lines:
-            self.save_lines()
-            self.parent.sav_lines = False
-        elif self.parent.sav_path:
-            self.save_path()
-            self.parent.sav_path = False
+        if not self.pause:
+            if self.move["up"]:
+                self.pos[1] -= self.speed
+            if self.move["down"]:
+                self.pos[1] += self.speed
+            if self.move["left"]:
+                self.pos[0] += self.speed
+            if self.move["right"]:
+                self.pos[0] -= self.speed
+            if self.parent.sav_rects:
+                self.save_rects()
+                self.parent.sav_rects = False
+            elif self.parent.sav_lines:
+                self.save_lines()
+                self.parent.sav_lines = False
+            elif self.parent.sav_path:
+                self.save_path()
+                self.parent.sav_path = False
 
 
     def straighten_line(self, pos1, pos2):
@@ -156,38 +215,50 @@ class Editor(RelativeLayout):
         center = (int(pos[0]+15), int(pos[1]+15))
         path = PathPoint(pos=pos)
         self.add_widget(path)
+        self.paths.append(path)
         self.path_list.append(center)
 
-    def save_path(self):
+    def savemenu(self, mode):
+        self.savescreen.open()
+
+    def save_to_file(self, filename):
+        modes = ["Rectangle Mode", "Line Mode",  "Path Mode"]
+        if self.parent.mode == modes[0]:
+            self.save_rects(filename)
+        elif self.parent.mode == modes[1]:
+            self.save_lines(filename)
+        elif self.parent.mode == modes[2]:
+            self.save_path(filename)
+        self.savescreen.dismiss()
+
+    def save_path(self, filename):
         if self.path_list != []:
             savedict = {"points":self.path_list,
                         "npc":self.parent.npc,
                         "room": self.parent.scene,
                         "id":self.parent.path_id}
-            with open("./saves/path_{}_{}.json".format(self.parent.npc.lower(), self.parent.path_id), "w+") as f:
+            with open(filename, "w+") as f:
                 json.dump(savedict, f, indent=4, sort_keys=True)
             self.path_list = []
         else:
             print("No Path to Save.")
 
-    def save_rects(self):
+    def save_rects(self, filename):
         if self.rectlist != []:
             savedict = {}
             for num, rect in enumerate(self.rectlist):
                 savedict["rect" + str(num)] = neg(rect.rect_pos, rect.rect_size)
-            filename = "{}{}".format(self.parent.scene, "_clutter.json")
-            with open("./saves/{}".format(filename), "w+") as f:
+            with open(filename, "w+") as f:
                 json.dump({self.parent.scene:savedict}, f, indent=4, sort_keys=True)
         else:
             print("No rectangles to save.")
 
-    def save_lines(self):
+    def save_lines(self, filename):
         if self.line_points != []:
             savedict = {self.parent.scene:[int(item) for sublist in self.line_points for item in sublist]}
             savedict["growth"] = self.growth
             savedict["size"] = self.imgsize
-            filename = "{}{}".format(self.parent.scene, "_wall.json")
-            with open("./saves/{}".format(filename), "w+") as f:
+            with open(filename, "w+") as f:
                 json.dump(savedict, f, indent=4, sort_keys=True)
         else:
             print("No points to save.")
@@ -220,6 +291,9 @@ class Editor(RelativeLayout):
             self.move["down"] = True
         if key[1] in ("d", "right"):
             self.move["right"] = True
+        if key[1] == "backspace":  ## <-- Clears Rects/Lines/Paths, mode dependent.
+            if not self.pause:
+                self.clear_all()
 
     def keyup(self, key):
         if key[1] in ("w", "up"):
@@ -234,6 +308,7 @@ class Editor(RelativeLayout):
 class HUD(BoxLayout):
     modes = ListProperty(["Rectangle Mode", "Line Mode",  "Path Mode"])
     mode = StringProperty("Rectangle Mode")
+    name = StringProperty("HUD")
 
     def setup(self):
         pass
@@ -249,15 +324,18 @@ class HUD(BoxLayout):
         self.parent.mode = self.mode
 
     def save(self):
-        if self.mode == "Rectangle Mode":
-            self.parent.sav_rects = True
-        elif self.mode == "Line Mode":
-            self.parent.sav_lines = True
-        elif self.mode == "Path Mode":
-            self.parent.sav_path = True
+        self.parent.editor.savemenu(self.mode)
+
+    def load_bg(self):
+        self.parent.editor.loadbg.open()
+
+    def load_fg(self):
+        self.parent.editor.loadfg.open()
 
 class Main(Widget):
     w_size = Window.size
+    editor = ObjectProperty()
+    hud = ObjectProperty()
     sav_rects = BooleanProperty(False)
     sav_lines = BooleanProperty(False)
     sav_path = BooleanProperty(False)

@@ -12,6 +12,8 @@ class DialoguePanels(FloatLayout):
     bottom_buttons = ListProperty()
     open_close = BooleanProperty(False)
     question_big = ObjectProperty()
+    portraits = DictProperty({"portait name":"portrait file"}) # Portraits go here. Needs implementation.
+
 
     def set_size(self, size):
         self.size = size

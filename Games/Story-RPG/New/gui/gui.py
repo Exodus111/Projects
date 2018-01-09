@@ -17,7 +17,9 @@ import json
 from gui.guipanels import DialoguePanels
 from gui.hud import HUD
 from gui.comment_gui import CommentGUI
+from gui.startmenu import InGameMenu
 from tools.tools import scale_image
+from tools.fbofloatlayout import FboFloatLayout
 
 MAIN_COLOR = (0.435, 0.325, 0.239, 1.) # Light Brown.
 SECONDARY_COLOR = (.12,.12,.12, 1.) # Dark.
@@ -40,10 +42,14 @@ class GUI(Widget):
 
         self.hud = HUD(size=self.size)
 
+        self.ingame = InGameMenu()
+        self.ingame.setup(self.size)
+
         self.panels = DialoguePanels(size=self.size)
 
         self.add_widget(self.panels)
         self.add_widget(self.menus)
+        self.add_widget(self.ingame)
         self.add_widget(self.hud)
 
         self.update_card_top_list()
@@ -88,6 +94,13 @@ class GUI(Widget):
             This method is a toggle.
         """
         self.menus.toggle_menu()
+
+    def toggle_ingame_menu(self):
+        if self.ingame.alpha == 0.:
+            Animation(alpha=1.0, duration=.5).start(self.ingame)
+        elif self.ingame.alpha == 1.0:
+            Animation(alpha=0.0, duration=.5).start(self.ingame)
+
 
     def retire_card(self, card_title):
         self.menus.retire_card(card_title)
@@ -298,7 +311,7 @@ class Card(RelativeLayout):
     def button_two(self):
         self.parent.manager.current = "None"
 
-class Menus(FloatLayout):
+class Menus(FboFloatLayout):
     manager = ObjectProperty()
     notes = ObjectProperty()
     card = ObjectProperty()
@@ -309,6 +322,7 @@ class Menus(FloatLayout):
     card_lookup = DictProperty()
 
     def setup(self):
+        self.alpha = 0.0
         self.select.setup((4, 4), [], [])
         self.card.img_tex = Image(source="images/gui/empty_profile.png").texture
 
@@ -344,10 +358,10 @@ class Menus(FloatLayout):
         self.card.tags_text = ", ".join(namelist)
 
     def toggle_menu(self):
-        if self.manager.current_screen.name == "None":
-            self.manager.current = "Selection"
-        else:
-            self.manager.current = "None"
+        if self.alpha == 0.0:
+            Animation(alpha=1.0, duration=.5).start(self)
+        elif self.alpha == 1.0:
+            Animation(alpha=0.0, duration=.5).start(self)
 
     def check_for_amount_of_active_cards(self):
         return len(self.select.active_cards)

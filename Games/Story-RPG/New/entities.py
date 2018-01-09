@@ -34,6 +34,8 @@ class Entity(Widget):
     frame = ObjectProperty(None)
     collider_size = ListProperty([48,110])
     frames = DictProperty()
+    frames_big = DictProperty()
+    frames_small = DictProperty()
     dirs = DictProperty({"up":[0,1],
             "down":[0,-1],
             "left":[-1,0],
@@ -59,11 +61,19 @@ class Entity(Widget):
     def entitysetup(self, atlasfile, screen_size):
         self.atlas = Atlas(atlasfile)
         self.frame_pos = self.pos_to_frame()
-        if len(self.atlas.textures.keys()) > 1:
-            for pose in self.atlas.textures.keys(): self.frames[pose] = scale_and_convert(self.atlas[pose], self.multiplier, True, False) # <-- The False stops the image from being flipped. No idea why it happens.
+        for pose in self.atlas.textures.keys():
+            self.frames_big[pose] = scale_and_convert(self.atlas[pose], self.multiplier, True, False) # <-- The False stops the image from being flipped. No idea why it happens.
+            self.frames_small[pose] = self.atlas[pose]
+        self.resize_player("big")
         self.set_frame("idle", 1)
         self.gen = self._num()
         self.collider.pos = self.pos
+
+    def resize_player(self, size):
+        if size == "big":
+            self.frames = self.frames_big
+        elif size == "small":
+            self.frames = self.frames_small
 
     def pos_to_frame(self):
         return (self.pos[0]-(self.size[0]/2), self.pos[1])

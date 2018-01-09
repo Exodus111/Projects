@@ -13,31 +13,75 @@
             size: self.size
 
 <StartMenu>:
+    transition: FadeTransition()
     button_new: ne
     button_load: lo
     button_about: ab
     button_options: op
     button_quit: qu
-    orientation: "vertical"
+    size_hint: None, None
+    size: self.gamesize
+    canvas:
+        Color:
+            rgba: .1, .1, .1, .5
+        Rectangle:
+            pos: root.pos
+            size: root.size
+    Screen:
+        name: "active"
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: None, None
+            size: 400, 500
+            center: root.gamesize[0]/2, root.gamesize[1]/2
+            spacing: 1
+            padding: 1
+            GUIButton:
+                id: ne
+                text: "New"
+            GUIButton:
+                id: lo
+                text: "Load"
+            GUIButton:
+                id: ab
+                text: "About"
+            GUIButton:
+                id: op
+                text: "Res:{},{}".format(root.gamesize[0], root.gamesize[1])
+            GUIButton:
+                id: qu
+                text: "Quit"
+                on_press: app.stop()
+    Screen:
+        name: "inactive"
+
+<InGameMenu>:
+    button_save: sa
+    button_load: lo
+    button_options: op
+    button_quit: qu
+    size_hint: None, None
     size: 400, 500
-    center: self.gamesize[0]/2, self.gamesize[1]/2
-    spacing: 1
-    padding: 1
-    GUIButton:
-        id: ne
-        text: "New"
-    GUIButton:
-        id: lo
-        text: "Load"
-    GUIButton:
-        id: ab
-        text: "About"
-    GUIButton:
-        id: op
-        text: "Res:{},{}".format(root.gamesize[0], root.gamesize[1])
-    GUIButton:
-        id: qu
-        text: "Quit"
+    center: root.gamesize[0]/2, root.gamesize[1]/2
+    BoxLayout:
+        orientation: "vertical"
+        size_hint: None, None
+        size: 400, 500
+        spacing: 1
+        padding: 1
+        GUIButton:
+            id: sa
+            text: "Save"
+        GUIButton:
+            id: lo
+            text: "Load"
+        GUIButton:
+            id: op
+            text: "Options"
+        GUIButton:
+            id: qu
+            text: "Quit"
+            on_press: app.stop()
 
 <GUIButton@Button>:
     name: "gui_button"
@@ -56,8 +100,10 @@
 
 <About>:
     name: "about"
-    center: self.gamecenter
+    center: self.gamecenter 
     Menu:
+        size: root.size
+        pos: root.pos
         BoxLayout:
             orientation: "vertical"
             Label:
@@ -67,16 +113,28 @@
                 orientation: "horizontal"
                 size_hint: 1., .35
                 Image:
-                    source: "images/gui/empty_profile.png" 
+                    source: "images/gui/author.png"
+                    size_hint: .4, 1.
                 Label:
                     text: root.textlist[1]
+                    size_hint: .6, 1.
+                    valign: "center"
+                    padding_x: 20
+                    text_size: self.size[0]*.8, self.size[1]
             BoxLayout:
                 orientation: "horizontal"
                 size_hint: 1., .35
                 Image:
-                    source: "images/gui/empty_profile.png" 
+                    source: "images/gui/artist.png"
+                    size_hint: .4, 1.
+
                 Label:
                     text: root.textlist[2]
+                    size_hint: .6, 1.
+                    valign: "center"
+                    padding_x: 20
+                    text_size: self.size[0]*.8, self.size[1]
+
 
 <World>:
     center: self.worldcenter
@@ -121,6 +179,7 @@
 <HUD>:
     top_bar: top_bar
     info_manager: info_manager
+    floatmenu: floatmenu
     TopBar:
         id: top_bar
         size_hint: 1., .025
@@ -139,6 +198,27 @@
             Label:
                 text: root.info_text
                 font_size: 54
+    FloatMenu:
+        id: floatmenu
+        size_hint: .3, .08
+        pos_hint: {"x":.7, "top":.95}
+        BoxLayout:
+            orientation: "horizontal"
+            pos_hint: {"x":.6, "y":.0}
+            Button:
+                size_hint: None, None
+                size: 64, 64
+                background_normal: "images/gui/ingamemenu/inventory_icon.png"
+                background_down: "images/gui/ingamemenu/inventory_icon_down.png"
+                border: 0,0,64,64
+                on_press: root.on_press_inv()
+            Button:
+                size_hint: None, None
+                size: 64, 64
+                background_normal: "images/gui/ingamemenu/options_icon.png"
+                background_down: "images/gui/ingamemenu/options_icon_down.png"
+                border: 0,0,64,64
+                on_press: root.on_press_opt()
 
 <Menus>:
     manager: manager
@@ -149,10 +229,6 @@
         id: manager
         transition: FadeTransition()
         size: root.size
-        Screen:
-            name: "None"
-            size_hint: .9, .7
-            pos_hint: {"x":.05, "top":.85}
         Menu:
             name: "Selection"
             size_hint: .9, .7

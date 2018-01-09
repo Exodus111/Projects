@@ -2,16 +2,30 @@
 
 
 <Main>:
+    editor: editor
+    hud: hud
     size: self.w_size
     Editor:
+        id: editor
         pos: 0,0
         size: root.size
     HUD:
+        id: hud
         pos: 0,0
         size: root.size
 
 <HUD>:
     spacing: 5
+    Button:
+        text: "Load bg image"
+        pos_hint: {"x": 0, "top": 1}
+        size_hint: .1, .05
+        on_press: root.load_bg()
+    Button:
+        text: "Load fg image"
+        pos_hint: {"x": 0, "top": 1}
+        size_hint: .1, .05
+        on_press: root.load_fg() 
     Button:
         text: "Save " + root.mode
         pos_hint: {"x": 0, "top": 1}
@@ -23,6 +37,30 @@
         size_hint: .1, .05
         on_press: root.switch_mode()
 
+<FileMenu>:
+    title: "Save Menu"
+    size_hint: .4, .8
+    BoxLayout:
+        orientation: "vertical"
+        TextInput:
+            id: textinput
+            multiline: False
+            size_hint: 1., .1 
+            text: root.file_name(filechooser.selection)
+        FileChooserListView:
+            id: filechooser
+            path: root.path
+            size_hint: 1., .8
+            filters: root.filepattern 
+        BoxLayout:
+            size_hint: 1., .1
+            orientation: "horizontal"
+            Button:
+                text: "Ok"
+                on_release: root.ok_pressed(filechooser.path + "/" + textinput.text)
+            Button:
+                text: "Cancel"
+                on_release: root.dismiss()
 
 <Editor>:
     canvas:
