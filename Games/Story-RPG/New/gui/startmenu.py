@@ -134,3 +134,39 @@ class InGameMenu(FboFloatLayout):
 
     def _on_quit(self, *_):
     	print("App Stop failed!")
+
+class ClassMenu(FboFloatLayout):  ## Fbo Fade In how??
+    button1 = ObjectProperty()
+    button2 = ObjectProperty()
+    button3 = ObjectProperty()
+    book_text = StringProperty("Nothing Here")
+    gamesize = ListProperty([0,0])
+    menu_size = ListProperty([100, 100])
+    imagedict = DictProperty({
+        "button1":{"normal":"images/gui/books/book1/book1_normal.png", 
+                   "hover":"images/gui/books/book1/book1_hover.png", 
+                   "clicked":"images/gui/books/book1/book1_clicked.png"},
+
+        "button2":{"normal":"images/gui/books/book2/book2_normal.png", 
+                   "hover":"images/gui/books/book2/book2_hover.png", 
+                   "clicked":"images/gui/books/book2/book2_clicked.png"}, 
+
+        "button3":{"normal":"images/gui/books/book3/book3_normal.png", 
+                   "hover":"images/gui/books/book3/book3_hover.png", 
+                   "clicked":"images/gui/books/book3/book3_clicked.png"}})
+
+    def setup(self, gamesize):
+        self.alpha = 0.
+        self.gamesize = gamesize
+        w, h, = gamesize
+        self.menu_size[0] = (int(w*0.8))
+        self.menu_size[1] = (int(h*0.65))
+
+    def check_for_hover(self, mousepos):
+        for button in (self.button1, self.button2, self.button3):
+            if button.collide_point(*mousepos):
+                button.background_normal = self.imagedict[button.name]["hover"]
+            else:
+                if button.background_normal == self.imagedict[button.name]["hover"]:
+                    button.background_normal = self.imagedict[button.name]["normal"]
+

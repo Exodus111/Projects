@@ -24,6 +24,15 @@ class Dialogue():
         self.card_inventory = []
         self.retired_cards = []
         self.card_changed = None
+        self.portraits = {
+        "apothecary":"images/portraits/Portrait Apothecary.png",
+        "blacksmith":"images/portraits/Portrait Blacksmith.png",
+        "girl":"images/portraits/Portrait Girl.png",
+        "guy":"images/portraits/Portrait Guy.png",
+        "old_lady":"images/portraits/Portrait Old.png",
+        "wife":"images/portraits/Portrait Wife.png",
+        "Djonsiscus":"images/portraits/Portrait Priest.png",
+        }
 
 #############################  Loading Methods ######################################################
 
@@ -210,7 +219,8 @@ class Dialogue():
             once = True
             self.find_conversation(name)
         conv = self.current_conv
-        self.master.gui.add_text_to_conv_panels({"top_text":conv.top_text, "question_list":conv.bottom_question_list})
+        portrait = self.portraits[name]
+        self.master.gui.add_text_to_conv_panels({"top_text":conv.top_text, "question_list":conv.bottom_question_list}, portrait)
         self.master.gui.conv_panels_toggle()
 
     def question_picked(self, text):

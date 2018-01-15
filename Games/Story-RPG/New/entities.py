@@ -54,6 +54,7 @@ class Entity(Widget):
     frame_pos = ListProperty([0,0])
     multiplier = NumericProperty(3)
     timer = NumericProperty(0.)
+    size_adjust = NumericProperty(0)
 
     def place(self, x, y):
         self.pos = self.to_widget(x, y)
@@ -64,16 +65,20 @@ class Entity(Widget):
         for pose in self.atlas.textures.keys():
             self.frames_big[pose] = scale_and_convert(self.atlas[pose], self.multiplier, True, False) # <-- The False stops the image from being flipped. No idea why it happens.
             self.frames_small[pose] = self.atlas[pose]
-        self.resize_player("big")
+        self.resize_entity("big")
         self.set_frame("idle", 1)
         self.gen = self._num()
         self.collider.pos = self.pos
 
-    def resize_player(self, size):
+    def resize_entity(self, size):
         if size == "big":
             self.frames = self.frames_big
+            self.size_adjust = 0
+            self.collider_size = [48, 48]
         elif size == "small":
             self.frames = self.frames_small
+            self.size_adjust = -20
+            self.collider_size = [24, 24]
 
     def pos_to_frame(self):
         return (self.pos[0]-(self.size[0]/2), self.pos[1])
@@ -217,7 +222,7 @@ class Player(Entity):
         if move_str != "":
             direction = self.parent.collide_walls(self.collider.center, direction)
             self.pos = Vector(self.pos) + Vector(direction)*self.walk_speed
-            self.collider.pos = (self.pos[0], self.pos[1])
+            self.collider.pos = (self.pos[0]+self.size_adjust, self.pos[1])
 
         # Collide with POI (Doors).
         self.parent.collide_poi(self.collider)

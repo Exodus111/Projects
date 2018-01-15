@@ -52,7 +52,6 @@ class FileMenu(Popup):
         self.path = selection and Path(selection[0]).dirname() or self.path
         return selection and Path(selection[0]).basename() or ""
 
-
 class Rect(Widget):
     rect_size = ListProperty([0,0])
     rect_pos = ListProperty([0,0])
@@ -65,7 +64,7 @@ class Rect(Widget):
 class Editor(RelativeLayout):
     name = StringProperty("Editor")
     pause = BooleanProperty(False)
-    growth = NumericProperty(3)
+    growth = NumericProperty(4)
     line_points = ListProperty()
     path_list = ListProperty()
     paths = ListProperty()

@@ -23,6 +23,10 @@ class ClutterGroup(Widget):
     def __repr__(self):
         return "<Clutter Group Widget, {}>".format(self.name)
 
+    def show_all(self):
+        for child in self.children:
+            child.show()
+
 class DoorWidget(Widget):
     name = StringProperty("")
 
@@ -83,8 +87,7 @@ class World(RelativeLayout):
                         wall_info = json.load(f)
                         if num == 0:
                             walldict[i]["bg"] = {"size":wall_info["size"],
-                                                  "growth":wall_info["growth"],
-                                                  "points":wall_info[i]}
+                                                 "points":wall_info[i]}
                         else:
                             walldict[i]["clutter"] = {"rects":wall_info[i]}
             self.walls[scene] = walldict
@@ -122,6 +125,7 @@ class World(RelativeLayout):
 
         # This sets up the collision for objects in the rooms.
         self.make_clutter_collision(scene, part)
+        #self.cluttergroup.show_all() # for Testing clutter collisions.
 
         # This sets up the ability to move between rooms.
         [self.remove_widget(j) for j in self.poi]
@@ -161,7 +165,6 @@ class World(RelativeLayout):
         rects = self.walls[scene][part]["clutter"]["rects"]
         for r in rects.values():
             clutter = ClutterElement()
-            w, h = self.walls[scene][part]["bg"]["size"]
             clutter.rect = r.copy()
             #clutter.show()  #<-- For testing.
             self.cluttergroup.add_widget(clutter)
@@ -259,16 +262,16 @@ class World(RelativeLayout):
                     self.once = False
                     if "outside" in self.home and not self.parent.events.player_outside:
                         self.parent.events.player_outside = True
-                        self.parent.player.resize_player("small")
+                        self.parent.player.resize_entity("small")
                     elif "outside" not in self.home and self.parent.events.player_outside:
                         self.parent.events.player_outside = False
-                        self.parent.player.resize_player("big")
+                        self.parent.player.resize_entity("big")
                     self.parent.gui.hud.add_text_to_top_bar(text2=self.home)
                     return
 
     def get_shunt(self, key, k, name):
-        if name in self.doors[key][k]["shunts"]:
-            return (self.doors[key][k]["shunts"][1], self.doors[key][k]["shunts"][2])
+        if name in self.doors[key][k]["shunts"].keys():
+            return (self.doors[key][k]["shunts"][name][0], self.doors[key][k]["shunts"][name][1])
         else:
             return (0,0)
 

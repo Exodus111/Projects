@@ -12,6 +12,43 @@
             pos: self.pos
             size: self.size
 
+<ClassMenu>:
+    button1: button1
+    button2: button2
+    button3: button3
+    size_hint: None, None
+    size: self.gamesize
+    center: self.gamesize[0]/2, self.gamesize[1]/2
+    Menu:
+        size_hint: None, None
+        size: root.menu_size
+        pos_hint: {"x":.1, "y":.2}
+        BoxLayout:
+            orientation: "vertical"
+            BoxLayout:
+                orientation: "horizontal"
+                Button:
+                    id: button1
+                    name: "button1"
+                    size_hint: .3, .9
+                    background_normal: root.imagedict["button1"]["normal"]
+                    background_down: root.imagedict["button1"]["clicked"]
+                Button:
+                    id: button2
+                    name: "button2"
+                    size_hint: .3, .9
+                    background_normal: root.imagedict["button2"]["normal"]
+                    background_down: root.imagedict["button2"]["clicked"]
+                Button:
+                    id: button3
+                    name: "button3"
+                    size_hint: .3, 1.
+                    background_normal: root.imagedict["button3"]["normal"]
+                    background_down: root.imagedict["button3"]["clicked"]
+            Label:
+                size_hint: 1., .2
+                text: root.book_text
+
 <StartMenu>:
     transition: FadeTransition()
     button_new: ne
@@ -163,6 +200,12 @@
         id: collider
         size_hint: None, None
         size: root.collider_size
+        canvas:
+            Color:
+                rgba: 1, 1, 1, .0
+            Rectangle:
+                pos: self.pos
+                size: self.size
 
 <DoorWidget>:
     size_hint: None, None
@@ -269,14 +312,26 @@
             name: "top_panel"
             size_hint: 1., .25
             pos_hint: {"x":0., "top":.975}
-            Label:
-                text: root.top_text
+            BoxLayout:
+                orientation: "horizontal"
                 size_hint: 1., 1.
                 pos_hint: {"x":.0, "y":.0}
-                text_size: self.size
-                padding: 20, 20
-                valign: "top"
-                split_str: " "
+                Image:
+                    size_hint: .1, 1.
+                    source: root.portrait
+                    allow_stretch: True
+                    canvas:
+                        Rectangle:
+                            texture: self.texture
+                            size: self.width + 53, self.height + 53
+                            pos: self.pos[0]-33, self.pos[1]-28
+                Label:
+                    size_hint: .7, 1.
+                    text: root.top_text
+                    text_size: self.size
+                    padding: 20, 20
+                    valign: "top"
+                    split_str: " "
 
     ScreenManager:
         id: bottom_manager

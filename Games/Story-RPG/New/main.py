@@ -169,14 +169,17 @@ class Game(Widget):
             self.diag.card_changed = None
 
     def mouse_over(self, pos):
-        pass
+        if self.game_started:
+            if self.gui.classmenu.alpha != 0.:
+                self.gui.classmenu.check_for_hover(pos)
 
     def key_down(self, key, mod):
         if not self.menu_on:
             if key[1] in ("w", "a", "s", "d", "up", "down", "left", "right"):
                 self.player.keydown(key[1])
             elif key[1] == "spacebar":
-                print(self.player.pos)
+                self.gui.toggle_class_menu()
+                #print(self.player.pos)
 
     def key_up(self, key):
         if not self.menu_on:
@@ -184,7 +187,7 @@ class Game(Widget):
                 self.player.keyup(key[1])
 
     def begin_conv(self, name):
-        if self.events.check_cooldown("Conversation", 200): ## Problem.
+        if self.events.check_cooldown("Conversation", 200):
             if not self.in_conversation:
                 self.diag.start_conversation(name)
                 if self.diag.current_conv.type != "comment":

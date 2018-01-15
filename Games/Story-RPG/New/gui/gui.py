@@ -13,11 +13,13 @@ from kivy.animation import Animation
 from kivy.uix.screenmanager import Screen, ScreenManager, FadeTransition
 from kivy.properties import *
 import json
+from path import Path
 
 from gui.guipanels import DialoguePanels
 from gui.hud import HUD
 from gui.comment_gui import CommentGUI
 from gui.startmenu import InGameMenu
+from gui.startmenu import ClassMenu
 from tools.tools import scale_image
 from tools.fbofloatlayout import FboFloatLayout
 
@@ -45,11 +47,15 @@ class GUI(Widget):
         self.ingame = InGameMenu()
         self.ingame.setup(self.size)
 
+        self.classmenu = ClassMenu()
+        self.classmenu.setup(self.size)
+
         self.panels = DialoguePanels(size=self.size)
 
         self.add_widget(self.panels)
         self.add_widget(self.menus)
         self.add_widget(self.ingame)
+        self.add_widget(self.classmenu)
         self.add_widget(self.hud)
 
         self.update_card_top_list()
@@ -101,6 +107,11 @@ class GUI(Widget):
         elif self.ingame.alpha == 1.0:
             Animation(alpha=0.0, duration=.5).start(self.ingame)
 
+    def toggle_class_menu(self):
+        if self.classmenu.alpha == 0.:
+            Animation(alpha=1.0, duration=.5).start(self.classmenu)
+        elif self.classmenu.alpha == 1.0:
+            Animation(alpha=0.0, duration=.5).start(self.classmenu)
 
     def retire_card(self, card_title):
         self.menus.retire_card(card_title)
@@ -115,11 +126,12 @@ class GUI(Widget):
         else:
             self.panels.drop_panels()
 
-    def add_text_to_conv_panels(self, text_dict):
+    def add_text_to_conv_panels(self, text_dict, portrait):
         """
             text_dict: Dict.
              Contains two keys: 'top_text' and 'question_list'.
         """
+        self.panels.portrait = portrait
         self.panels.clear_text()
         self.panels.add_text_to_panels(**text_dict)
         if self.panels.bottom_manager.current == "question_big":
