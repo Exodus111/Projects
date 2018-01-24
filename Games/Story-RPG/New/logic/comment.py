@@ -14,6 +14,9 @@ class Comment():
 		self.end_conversation = False
 		self.append_comments()
 
+	def __repr__(self):
+		return "Comment node. Npc: {}, First comment: {}, Busy? {}.".format(self.npc, self.comments[0][0,8], self.busy)
+
 	def check_node_for_npc(self, node):
 		if "comment" in node["tags"]:
 			# if npcname in tags: <-- code for more then one NPC talking.

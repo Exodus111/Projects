@@ -1,0 +1,22 @@
+{"church":{
+                          "main":{"exit_poi":[840, 200]},
+
+                          "basement":{},
+
+                          "priest_room":{},
+
+                          "tower":{},
+
+                          "thack_room":{"class_poi":[164, 235]},
+          },
+"apothecary":{"main":{}},
+"blacksmith":{"main":{}},
+"goods":{"main":{}},
+"manor":{"main":{}},
+"mayor":{"main":{},
+         "second_floor":{}, 
+         "study":{}
+       },
+"outside":{"main":{}}
+
+

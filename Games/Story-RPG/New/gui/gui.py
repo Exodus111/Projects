@@ -104,14 +104,20 @@ class GUI(Widget):
     def toggle_ingame_menu(self):
         if self.ingame.alpha == 0.:
             Animation(alpha=1.0, duration=.5).start(self.ingame)
+            self.ingame.enable_buttons()
         elif self.ingame.alpha == 1.0:
             Animation(alpha=0.0, duration=.5).start(self.ingame)
+            self.ingame.disable_buttons()
 
     def toggle_class_menu(self):
         if self.classmenu.alpha == 0.:
             Animation(alpha=1.0, duration=.5).start(self.classmenu)
+            self.classmenu.toggle_buttons(False)
+            self.parent.menu_on = True
         elif self.classmenu.alpha == 1.0:
             Animation(alpha=0.0, duration=.5).start(self.classmenu)
+            self.classmenu.toggle_buttons(True)
+            self.parent.menu_on = False
 
     def retire_card(self, card_title):
         self.menus.retire_card(card_title)
@@ -141,14 +147,23 @@ class GUI(Widget):
         """
             Activates a comment thread.
           textdicts: List containing Dicts.
-           Dict keys are: pos, text
+           Dict keys are: entity, text
         """
+        tmr = 0 ## <--- You need to fix the timer between comments.
         neg = 0
         for n, i in enumerate(textdicts):
             if i["text"] == "":
                 neg += 1
             else:
-                self.textpos_list.append((i, abs(n-neg)*4))
+                i["text"] = i["text"].replace("\n\n", " ")
+                if n+neg-1 >= 0:
+                    prev = textdicts[n+neg-1]
+                    temp = int((len(prev["text"])/15))
+                    if temp < 4: temp = 4
+                    tmr += temp
+                else:
+                    tmr += 0
+                self.textpos_list.append((i, tmr))
 
     def run_comments(self, dt):
         if self.textpos_list != []:
@@ -166,21 +181,20 @@ class GUI(Widget):
             if self.comment_list[0].speechbox.current == "None":
                 self.parent.world.remove_widget(self.comment_list[0])
                 del(self.comment_list[0])
-
-        for n1, c1 in enumerate(self.comment_list):
-            pos = c1.to_window(c1.pos[0], c1.pos[1])
-            if pos[0] + c1.size[0] > self.size[0]:
-                c1.pos[0] -= 3
-            if pos[1] + c1.size[1] > self.size[1]:
-                c1.pos[1] -= 3
-            for n2, c2 in enumerate(self.comment_list):
-                if n1 > n2:
-                    if c1.collide_widget(c2):
-                        c1.pos[1] += 3
+            for n1, c1 in enumerate(self.comment_list):
+                pos = c1.to_window(c1.pos[0], c1.pos[1])
+                if pos[0] + c1.size[0] > self.size[0]:
+                    c1.moveside -= 3
+                if pos[1] + c1.size[1] > self.size[1]:
+                    c1.moveup -= 3
+                for n2, c2 in enumerate(self.comment_list):
+                    if n1 < n2:
+                        if c1.collide_widget(c2):
+                            c1.moveup += 3
 
     def activate_comment(self, txt_dict):
         comment = CommentGUI(size_hint=(None, None))
-        comment.setup(txt_dict["pos"], txt_dict["text"])
+        comment.setup(txt_dict["entity"], txt_dict["text"])
         self.parent.world.add_widget(comment)
         comment.activate()
         self.comment_list.append(comment)
@@ -188,6 +202,8 @@ class GUI(Widget):
     def update(self, dt):
         self.run_comments(dt)
         self.collide_comments()
+        for com in self.comment_list:
+            com.set_center()
 
 class Menu(Screen):
     pass

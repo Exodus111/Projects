@@ -16,10 +16,12 @@
     button1: button1
     button2: button2
     button3: button3
+    menu: menu
     size_hint: None, None
     size: self.gamesize
     center: self.gamesize[0]/2, self.gamesize[1]/2
     Menu:
+        id: menu
         size_hint: None, None
         size: root.menu_size
         pos_hint: {"x":.1, "y":.2}
@@ -33,21 +35,59 @@
                     size_hint: .3, .9
                     background_normal: root.imagedict["button1"]["normal"]
                     background_down: root.imagedict["button1"]["clicked"]
+                    on_press: root.button_clicked(self)
                 Button:
                     id: button2
                     name: "button2"
                     size_hint: .3, .9
                     background_normal: root.imagedict["button2"]["normal"]
                     background_down: root.imagedict["button2"]["clicked"]
+                    on_press: root.button_clicked(self)
                 Button:
                     id: button3
                     name: "button3"
-                    size_hint: .3, 1.
+                    size_hint: .3, .9
                     background_normal: root.imagedict["button3"]["normal"]
                     background_down: root.imagedict["button3"]["clicked"]
+                    on_press: root.button_clicked(self)
             Label:
                 size_hint: 1., .2
                 text: root.book_text
+
+<ClassPopup>:
+    title: self.book_title
+    title_align: "center"
+    size_hint: .4, .8
+    separator_color: .12,.12,.12, 1.
+    Menu:
+        BoxLayout:
+            orientation: "vertical"
+            Label:
+                size_hint: 1., .89
+                text: root.book_text
+                padding: 15, 15
+                text_size: self.size
+                halign: "left"
+                valign: "top"
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint: 1., .08
+                Widget:
+                    size_hint: .03, 1.
+                Button:
+                    size_hint: .47, 1.
+                    text: "Ok"
+                    on_press: root.master.book_chosen(root.book_title)
+                    on_release: root.dismiss()
+                Button:
+                    size_hint: .47, 1.
+                    text: "Cancel"
+                    on_press: root.dismiss()
+                Widget:
+                    size_hint: .03, 1.
+            Widget:
+                size_hint: 1., .03
+
 
 <StartMenu>:
     transition: FadeTransition()
@@ -388,6 +428,7 @@
             Label:
                 text: root.text
                 font_size: 18
+                halign: "center"
                 shorten: True
                 shorten_from: "right"
                 split_str: ","

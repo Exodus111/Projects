@@ -1,63 +1,68 @@
 {
     "coords": {
         "Node1": [
-            445.243375,
-            264.521125
+            417,
+            357
         ],
         "Node10": [
-            3058.0,
-            412.0
+            3840.0,
+            244.0
         ],
         "Node11": [
-            3462.0,
-            375.0
+            4216.0,
+            254.0
         ],
         "Node12": [
-            3889,
-            345
+            4564.0,
+            241.0
+        ],
+        "Node13": [
+            4900.0,
+            211.0
+        ],
+        "Node14": [
+            5214.0,
+            219.0
         ],
         "Node2": [
-            840.10375,
-            501.22787500000004
-        ],
-        "Node26": [
-            370.0,
-            880.0
+            779,
+            235
         ],
         "Node3": [
-            1490,
-            38
+            1115,
+            354
         ],
         "Node4": [
-            1303,
-            863
+            1519,
+            233
         ],
         "Node5": [
-            1316.0,
-            476.0
+            1914,
+            323
         ],
         "Node6": [
-            1735,
-            481
+            2236.0,
+            299.0
         ],
         "Node7": [
-            1852,
-            845
+            2623.0,
+            310.0
         ],
         "Node8": [
-            2260.0,
-            395.0
+            3048.0,
+            260.0
         ],
         "Node9": [
-            2668,
-            145
+            3494.0,
+            283.0
         ]
     },
     "links": {
-        "Node1": [],
+        "Node1": [
+            "Node2"
+        ],
         "Node10": [
             "Node9",
-            "Node8",
             "Node11"
         ],
         "Node11": [
@@ -65,40 +70,43 @@
             "Node12"
         ],
         "Node12": [
-            "Node11"
+            "Node11",
+            "Node13"
+        ],
+        "Node13": [
+            "Node12",
+            "Node14"
+        ],
+        "Node14": [
+            "Node13"
         ],
         "Node2": [
-            "Node3",
-            "Node4",
-            "Node5"
+            "Node1",
+            "Node3"
         ],
-        "Node26": [],
         "Node3": [
             "Node2",
-            "Node8"
+            "Node4"
         ],
         "Node4": [
-            "Node2",
-            "Node7"
+            "Node3",
+            "Node5"
         ],
         "Node5": [
-            "Node2",
+            "Node4",
             "Node6"
         ],
         "Node6": [
             "Node5",
-            "Node8"
+            "Node7"
         ],
         "Node7": [
-            "Node4",
+            "Node6",
             "Node8"
         ],
         "Node8": [
-            "Node3",
-            "Node6",
             "Node7",
-            "Node9",
-            "Node10"
+            "Node9"
         ],
         "Node9": [
             "Node8",
@@ -106,87 +114,86 @@
         ]
     },
     "names": [
-        "Djonsiscus"
+        "Tutorial"
     ],
     "nodes": {
-        "Djonsiscus": [
-            "Node5",
-            "Node12",
+        "Tutorial": [
             "Node8",
+            "Node13",
+            "Node3",
+            "Node14",
+            "Node4",
+            "Node5",
+            "Node9",
+            "Node12",
+            "Node6",
+            "Node11",
             "Node1",
             "Node10",
-            "Node6",
-            "Node4",
-            "Node3",
             "Node7",
-            "Node26",
-            "Node11",
-            "Node9",
             "Node2"
         ]
     },
     "tags": {
         "Node1": [
-            "card_djonsiscus"
+            "busy",
+            "start",
+            "comment"
         ],
         "Node10": [
-            "answer"
+            "comment_reply"
         ],
         "Node11": [
-            "question",
-            "block_flag_priest_like"
+            "comment"
         ],
         "Node12": [
-            "answer"
+            "comment_reply"
+        ],
+        "Node13": [
+            "comment"
+        ],
+        "Node14": [
+            "comment_reply"
         ],
         "Node2": [
-            "greeting",
-            "start_djonsiscus",
-            "card_djonsiscus"
-        ],
-        "Node26": [
-            "comment",
-            "start",
-            "busy"
+            "comment_reply"
         ],
         "Node3": [
-            "reply",
-            "flag_priest_like"
+            "comment"
         ],
         "Node4": [
-            "reply",
-            "flag_priest_no_like"
+            "comment_reply"
         ],
         "Node5": [
-            "reply"
+            "comment"
         ],
         "Node6": [
-            "answer"
+            "comment_reply"
         ],
         "Node7": [
-            "answer"
+            "comment"
         ],
         "Node8": [
-            "answer"
+            "comment_reply"
         ],
         "Node9": [
-            "answer",
-            "block_flag_priest_no_like"
+            "comment"
         ]
     },
     "text": {
-        "Node1": "Djonsiscus is the Priest of the Village.",
-        "Node10": "Once you are done I have another task for you, so make sure to get back to me.",
-        "Node11": "Sir, If I may.\n\nWhat is the next task about?",
-        "Node12": "I can't really tell you right now, but rest assured, it will be quite a bit more interesting.",
-        "Node2": "Hello there young man.",
-        "Node26": "Sorry, busy busy.",
-        "Node3": "Hello sir.",
-        "Node4": "What is it now?",
-        "Node5": "Uhuh...",
-        "Node6": "\"Uhuh\" indeed. Pay attention will you.",
-        "Node7": "Don't be rude boy. Now pay attention.",
-        "Node8": "I need you to clean the Attic room today.\nIt will be a difficult task, that place has not been cleaned in... \n\nOh eleven years or so I think?\n\nAnyway, get to it, time's a wastin'",
-        "Node9": "No, not a word. Get to it."
+        "Node1": "Oh... Hi there!",
+        "Node10": "I hope that doesn't sound boring to you.\n\nIt's honestly quite entertaining once you get into it, well... \nIn MY opinion anyway. Take that for what it's worth I guess.",
+        "Node11": "Also... This is not a \"funny\" game.\n\nThis might seem funny, because you kinda caught me off guard, and I'm not used to this... \nBut no, the game is not like that really. \n\nIt's quite serious... oh and ADULT!",
+        "Node12": "I mean... It's not like an adult game or anything...\n\nBut it contains some pretty adult themes, \nand is not appropriate for children, \nso you know.... trigger warning and all that.",
+        "Node13": "Ok, that's about it. What else... No I think that's all...\n\nNo wait, I forgot...",
+        "Node14": "My name is Thack.\nNice to meet you.",
+        "Node2": "Did we... did we start?",
+        "Node3": "Oh we did!!\nOk, here we go. Welcome to the Game!\n\nWow! I never really thought anyone would actually play this...",
+        "Node4": "Damn, this is wrong... sorry.\n\nI'm terrible at this.",
+        "Node5": "Ok... This is the tutorial for the game. \nRight... tutorial... lets get THAT over with.",
+        "Node6": "Ok, so you can move using the WASD keys, as you do in most games.\n\nYou can also use the movement keys... but I'm not sure why you would want to... ",
+        "Node7": "I don't know. Maybe you like using the movement keys instead of the WASD keys.\n\nThat's up to you.. I don't... it really has nothing to do with me.\nYou can use either, its fine... really.",
+        "Node8": "Ok, moving around, easy right?\n\nSecondly the rest of the game... \nSo this is an RPG, it really is.\nBut, its probably different from games you've played before.",
+        "Node9": "I mean. There is no combat here, this game is about... \nyou know... dialogue... talking to people. \nThinking about what they say, and so on..."
     }
 }

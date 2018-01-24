@@ -5,6 +5,7 @@ from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.dropdown import DropDown
 from kivy.uix.button import Button
 from kivy.uix.widget import Widget
+from kivy.uix.popup import Popup
 from kivy.graphics import Color, Rectangle
 from kivy.properties import *
 
@@ -108,20 +109,23 @@ class InGameMenu(FboFloatLayout):
     gamesize = ListProperty([0,0])
 
     def setup(self, gamesize):
-    	self.alpha = 0.
-    	self.gamesize = gamesize
-    	for call in ("save", "load", "options", "quit"):
-    		eval("self.button_{}.bind(on_release=self._on_{})".format(call, call))
+        self.alpha = 0.
+        self.gamesize = gamesize
+        for call in ("save", "load", "options", "quit"):
+            eval("self.button_{}.bind(on_release=self._on_{})".format(call, call))
+        self.disable_buttons()
 
     def disable_buttons(self):
-    	for but in self.children:
-    		if but.name == "gui_button":
-	    		but.disabled = True
+        self.button_save.disabled = True
+        self.button_load.disabled = True
+        self.button_options.disabled = True
+        self.button_quit.disabled = True
 
     def enable_buttons(self, *_):
-    	for but in self.children:
-    		if but.name == "gui_button":
-    			but.disabled = False
+        self.button_save.disabled = False
+        self.button_load.disabled = False
+        self.button_options.disabled = False
+        self.button_quit.disabled = False
 
     def _on_save(self, *_):
     	print("Save Pressed")
@@ -135,11 +139,18 @@ class InGameMenu(FboFloatLayout):
     def _on_quit(self, *_):
     	print("App Stop failed!")
 
-class ClassMenu(FboFloatLayout):  ## Fbo Fade In how??
+class ClassPopup(Popup):
+    master = ObjectProperty()
+    book_title = StringProperty()
+    book_text = StringProperty()
+
+class ClassMenu(FboFloatLayout):
     button1 = ObjectProperty()
     button2 = ObjectProperty()
     button3 = ObjectProperty()
-    book_text = StringProperty("Nothing Here")
+    menu = ObjectProperty()
+    book_text = StringProperty("Select one of the Books to read.")
+    book_dict = DictProperty(load_json("data/class_book_text.json"))
     gamesize = ListProperty([0,0])
     menu_size = ListProperty([100, 100])
     imagedict = DictProperty({
@@ -161,12 +172,37 @@ class ClassMenu(FboFloatLayout):  ## Fbo Fade In how??
         w, h, = gamesize
         self.menu_size[0] = (int(w*0.8))
         self.menu_size[1] = (int(h*0.65))
+        self.toggle_buttons(True)
+
+    def toggle_buttons(self, truefalse):
+        self.button1.disabled = truefalse
+        self.button2.disabled = truefalse
+        self.button3.disabled = truefalse
 
     def check_for_hover(self, mousepos):
+        x,y = mousepos
+        x1, y1 = self.menu.pos
+        mousepos = (x-x1, y-y1) 
         for button in (self.button1, self.button2, self.button3):
             if button.collide_point(*mousepos):
                 button.background_normal = self.imagedict[button.name]["hover"]
+                self.book_text = self.book_dict[button.name]["title"]
             else:
                 if button.background_normal == self.imagedict[button.name]["hover"]:
                     button.background_normal = self.imagedict[button.name]["normal"]
+                    self.book_text = "Select one of the Books to read."
+
+    def button_clicked(self, button):
+        popup = ClassPopup()
+        popup.book_title = self.book_dict[button.name]["title"]
+        popup.book_text = self.book_dict[button.name]["text"]
+        popup.master = self
+        popup.open()
+
+    def book_chosen(self, title):
+        self.parent.parent.events.flags["flag_"+title] = True
+        self.parent.parent.toggle_class_menu()
+
+
+
 

@@ -8,14 +8,23 @@ class CommentGUI(RelativeLayout):
     text = StringProperty()
     speechbox = ObjectProperty()
     timeout = NumericProperty(6.)
+    entity = ObjectProperty()
+    moveup = NumericProperty(0) 
+    moveside = NumericProperty(0) 
 
     def __repr__(self):
-        return "Comment GUI Object \n" + self.text
+        return "Comment GUI Object: \n" + self.text
 
-    def setup(self, pos, text):
+    def setup(self, entity, text):
         self.size = (200, 150)
         self.text = text
-        self.center = pos
+        self.timeout = float((len(text)/15)+5)
+        self.entity = entity
+        self.set_center()
+
+    def set_center(self, *_):
+        self.center[0] = self.entity.comment_pos[0] + self.moveside
+        self.center[1] = self.entity.comment_pos[1] + self.moveup
 
     def deactivate(self, *args):
         self.speechbox.current = "None"

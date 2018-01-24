@@ -33,6 +33,12 @@ class DoorWidget(Widget):
     def __repr__(self):
         return "<Door Widget, {}>".format(self.name)
 
+class PoiWidget(Widget):
+    name = StringProperty("")
+
+    def __repr__(self):
+        return "<Poi Widget, {}>".format(self.name)
+
 class ClutterElement(Widget):
     rect = ListProperty([0,0,0,0])
 
@@ -54,7 +60,7 @@ class World(RelativeLayout):
     bg = ObjectProperty(None)
     fg = ObjectProperty(None)
     cluttergroup = ObjectProperty(None)
-    poi = ListProperty([])
+    poi_list = ListProperty([])
     dots = ListProperty([])
     once = BooleanProperty(True)
     _once = BooleanProperty(True)
@@ -64,7 +70,7 @@ class World(RelativeLayout):
     act_walls = ListProperty([])
     worlddict = DictProperty()
 
-    doors = DictProperty(load_json("./data/doors.json"))
+    pois = DictProperty(load_json("./data/doors.json"))
 
     def setupworld(self):
         with open("world.json", "r+") as f:
@@ -122,23 +128,39 @@ class World(RelativeLayout):
         self.linelist = self.walls[scene][part]["bg"]["points"]
         #self.draw_line(self.linelist) #<--- Used to test the walls.
 
-
         # This sets up the collision for objects in the rooms.
         self.make_clutter_collision(scene, part)
         #self.cluttergroup.show_all() # for Testing clutter collisions.
 
         # This sets up the ability to move between rooms.
-        [self.remove_widget(j) for j in self.poi]
-        self.poi = []
-        for i, v in self.doors[scene][part].items():
+        [self.remove_widget(j) for j in self.poi_list]
+        for l, v in self.pois[scene][part].items():
+            if "to_" in l or "from_" in l:
+                w = DoorWidget()
+            elif "poi" in l:
+                w = PoiWidget()
+            else:
+                continue
+            w.pos = v
+            w.name = l
+            self.poi_list.append(w)
+            self.add_widget(w)
+## <-------- Loading Methods, loaded from load_scene. ---------->
+
+    def load_poi(self, scene, part, poi_dict):
+        poi_list = []
+        for i, v in poi_dict[scene][part].items():
             if "to_" in i or "from_" in i:
                 w = DoorWidget()
-                w.pos = v
-                w.name = i
-                self.poi.append(w)
-                self.add_widget(w)
-
-## <-------- Loading Methods, loaded from load_scene. ---------->
+            elif "poi" in i:
+                w = PoiWidget()
+            else:
+                continue
+            w.pos = v
+            w.name = i
+            poi_list.append(w)
+            self.add_widget(w)
+        return poi_list
 
     def add_npcs(self, npcs):
         self.in_world = []
@@ -243,18 +265,18 @@ class World(RelativeLayout):
             return name.replace("from_", "to_")
 
     def _get_opposing_door_pos(self, name):
-        for key in self.doors.keys():
-            for k in self.doors[key]:
-                if name in self.doors[key][k]:
-                    return self.doors[key][k][name]
+        for key in self.pois.keys():
+            for k in self.pois[key]:
+                if name in self.pois[key][k]:
+                    return self.pois[key][k][name]
 
     def check_door(self, name):
         name = self._switch_to_from(name)
-        for key in self.doors.keys():
-            for k in self.doors[key]:
-                if name in self.doors[key][k].keys():
+        for key in self.pois.keys():
+            for k in self.pois[key]:
+                if name in self.pois[key][k].keys():
                     self.load_scene(key, k)
-                    self.size = mult_tuple(self.doors[key][k]["size"], 3)
+                    self.size = mult_tuple(self.pois[key][k]["size"], 3)
                     new_pos = self._get_opposing_door_pos(name)
                     shunt = self.get_shunt(key, k, name)
                     new_pos = add_tuple(new_pos, shunt)
@@ -270,14 +292,17 @@ class World(RelativeLayout):
                     return
 
     def get_shunt(self, key, k, name):
-        if name in self.doors[key][k]["shunts"].keys():
-            return (self.doors[key][k]["shunts"][name][0], self.doors[key][k]["shunts"][name][1])
+        if name in self.pois[key][k]["shunts"].keys():
+            return (self.pois[key][k]["shunts"][name][0], self.pois[key][k]["shunts"][name][1])
         else:
             return (0,0)
 
-    def collide_poi(self, w):
-        for poi in self.poi:
+    def collide_door(self, w):
+        for poi in self.poi_list:
             if w.collide_widget(poi):
+                if "poi" in poi.name:
+                    self.parent.events.activate_poi(poi)
+                    return
                 if self.once:
                     self.check_door(poi.name)
                     self.once = False

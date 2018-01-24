@@ -56,14 +56,11 @@ class Game(Widget):
         self.input.calls["keyup"] = self.key_up
         self.input.calls["mouseover"] = self.mouse_over
         self.input.eventsetup()
-
-        self.events = EventCreator()
+        self.events = EventCreator(self)
 
         # Start Menu
         self.startmenu = StartMenu()
-
         self.add_widget(self.startmenu)
-
         self.startmenu.setup(SIZE)
 
     def start_new_game(self):
@@ -128,6 +125,13 @@ class Game(Widget):
         else:
             self.remove_widget(self.startmenu)
 
+    def toggle_classmenu(self):
+        if self.gui.classmenu.alpha == 0.:
+            self.in_conversation = True
+        else:
+            self.in_conversation = False
+        self.gui.toggle_class_menu()
+
     def center_screen(self, delay=0.1):
         Clock.schedule_once(self.world.center_screen, delay)
 
@@ -141,6 +145,7 @@ class Game(Widget):
                 self.player.update(dt)
             else:
                 self.player.set_frame("idle", 1)
+                for direction in self.player.moving: direction = False
                 self.player.collide_world(x=(SIZE[0]/2)-50, y=(SIZE[1]/2)-50, speedup=25)
             self.update_cards(dt)
             if self.diag.current_conv != None:
@@ -149,7 +154,6 @@ class Game(Widget):
                     self.diag.current_conv.end_conversation = False
                     self.in_conversation = False
             self.gui.update(dt)
-
         self.events.update(dt)
 
     def update_cards(self, dt):
@@ -178,8 +182,7 @@ class Game(Widget):
             if key[1] in ("w", "a", "s", "d", "up", "down", "left", "right"):
                 self.player.keydown(key[1])
             elif key[1] == "spacebar":
-                self.gui.toggle_class_menu()
-                #print(self.player.pos)
+                print(self.player.pos)
 
     def key_up(self, key):
         if not self.menu_on:

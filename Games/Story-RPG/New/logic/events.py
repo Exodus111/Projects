@@ -2,10 +2,15 @@ from collections import defaultdict
 from path import Path
 
 class EventCreator:
-	def __init__(self):
+	def __init__(self, master):
 
+		self.master = master
 		self.flags = {}
 		self.rooms = {}
+		self.poi = {"exit_poi":self.poi_exit,
+					"class_poi":self.poi_class_menu,
+					"start_poi":self.poi_start
+					}
 
 		# Default Events
 		self.playerwait_10 = False
@@ -18,10 +23,10 @@ class EventCreator:
 		self.player_outside_bounds_lament = False
 
 		# Triggers and timers.
-		self.uptime = 0.0
+		self.uptime = 0.0 
 		self.player_timer = defaultdict(float)
 		self.cooldown = {}
-		self.trigger = defaultdict(bool)
+		self.trigger = defaultdict(bool) # Defaults as False		
 
 	def save(self, player_pos): # Not tested, should work.
 		savedict = {"player_pos":player_pos, "flags":[]}
@@ -93,4 +98,21 @@ class EventCreator:
 				self.trigger["idle_30"] = True
 				self.playerwait_30 = True
 			self.player_timer["player_idle"] = 0.
+
+	def activate_poi(self, poi):
+		if poi.name in self.poi.keys():
+			self.poi[poi.name]()
+
+	def poi_class_menu(self):
+		if not self.trigger["class_menu"]:
+			self.master.toggle_classmenu()
+			self.trigger["class_menu"] = True
+
+	def poi_exit(self):
+		pass
+
+	def poi_start(self):
+		if not self.trigger["Tutorial"] and self.playerwait_10:
+			self.master.begin_conv("Tutorial")
+			self.trigger["Tutorial"]
 

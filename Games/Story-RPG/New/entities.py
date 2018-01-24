@@ -55,6 +55,7 @@ class Entity(Widget):
     multiplier = NumericProperty(3)
     timer = NumericProperty(0.)
     size_adjust = NumericProperty(0)
+    comment_pos = ListProperty()
 
     def place(self, x, y):
         self.pos = self.to_widget(x, y)
@@ -92,6 +93,7 @@ class Entity(Widget):
         self.move()
         self.collide_world()
         self.frame_pos = self.pos_to_frame()
+        self.set_comment_pos()
 
     def move(self):
         pass
@@ -110,8 +112,8 @@ class Entity(Widget):
     def collide_world(self):
         pass
 
-    def comment_pos(self):
-        return self.pos[0]+40, self.pos[1]+200
+    def set_comment_pos(self):
+        self.comment_pos = [self.pos[0]+40, self.pos[1]+150]
 
     def collide_npcs(self, mov):
         if self.name != "Thack":
@@ -224,8 +226,8 @@ class Player(Entity):
             self.pos = Vector(self.pos) + Vector(direction)*self.walk_speed
             self.collider.pos = (self.pos[0]+self.size_adjust, self.pos[1])
 
-        # Collide with POI (Doors).
-        self.parent.collide_poi(self.collider)
+        # Collide with Doors.
+        self.parent.collide_door(self.collider)
 
         # Set Animation Frame.
         self.set_frame(self.current, self.framenum)
@@ -353,10 +355,10 @@ class NPC(Entity):
 
 class NPCController(Widget):
     npcs = DictProperty({"Djonsiscus":{"home":"church main", "place":(1955, 733)},
-                         "Jarod":{"home":"church basement", "place":(1602, 694)},
-                         "Tylda Travisteene":{"home":"outside", "place":(1955, 733)},
-                         "Sheila Travisteene":{"home":"outside", "place":(278, 317)},
-                         "Mr Johes":{"home":"outside", "place":(1955, 733)},
+                         "Jarod":{"home":"blacksmith main", "place":(400, 280)},
+                         "Tylda Travisteene":{"home":"goods main", "place":(610, 238)},
+                         "Sheila Travisteene":{"home":"goods main", "place":(106, 214)},
+                         "Mr Johes":{"home":"apothecary main", "place":(142, 328)},
                          "Riff Danner":{"home":"outside", "place":(1955, 733)}})
     npc_paths = DictProperty()
     npcgroup = ListProperty([])

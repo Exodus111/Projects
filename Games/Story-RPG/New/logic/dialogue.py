@@ -5,8 +5,9 @@ from logic.comment import Comment
 class Dialogue():
     def __init__(self, events, **kwargs):
         """
-            kwargs contains the Key:Values:
-            'names', 'nodes', 'links', 'tags', 'coords', 'text'"""
+            kwargs contains the Keys:
+            'names', 'nodes', 'links', 'tags', 'coords', 'text'
+        """
         for i,j in kwargs.items(): setattr(self, i, j)
         self.counter = 1
         self.button_cooldown = True
@@ -235,16 +236,18 @@ class Dialogue():
         if commentlist == None:
             commentlist = self.current_conv.comments
         for comment in commentlist:
-            comment["pos"] = self.get_npc_pos(comment["npc"])
+            comment["entity"] = self.get_npc_pos(comment["npc"])
         self.master.gui.add_comments(commentlist)
 
     def get_npc_pos(self, name):
         if name in ("player", "Thack"):
-            return self.master.player.comment_pos()
+            return self.master.player
         else:
             for npc in self.master.npcs.npcgroup:
                 if name == npc.name.lower():
-                    return npc.comment_pos()
+                    return npc
+            else:
+                return self.master.player
 
     def cooldown_flipper(self, *_):
         self.button_cooldown = not self.button_cooldown

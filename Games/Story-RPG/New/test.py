@@ -1,6 +1,15 @@
 #!/usr/bin/python3
 
-from kivy.uix.floatlayout import FloatLayout
 
-floater = FloatLayout()
-print(dir(floater))
+def myfunc():
+	"""
+	>>> myfunc()
+	4
+	"""
+	return 4
+
+if __name__ == "__main__":
+	from doctest import testmod
+	testmod() 
+
+
