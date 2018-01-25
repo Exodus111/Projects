@@ -159,7 +159,10 @@ class GUI(Widget):
                 if n+neg-1 >= 0:
                     prev = textdicts[n+neg-1]
                     temp = int((len(prev["text"])/15))
-                    if temp < 4: temp = 4
+                    if temp < 4: 
+                        temp = 4
+                    else:
+                        temp += (temp*0.25)
                     tmr += temp
                 else:
                     tmr += 0
