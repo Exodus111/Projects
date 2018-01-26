@@ -201,7 +201,7 @@ class ClassMenu(FboFloatLayout):
 
     def book_chosen(self, title):
         self.parent.parent.events.flags["flag_"+title] = True
-        self.parent.parent.toggle_class_menu()
+        self.parent.parent.toggle_classmenu()
 
 
 

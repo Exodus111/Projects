@@ -34,6 +34,7 @@ class GUI(Widget):
     up = ListProperty()
     timer = NumericProperty()
     active_card_amount = NumericProperty()
+    next_comment = BooleanProperty(False)
 
     def __repr__(self):
         return "Main GUI Object \n"
@@ -155,11 +156,11 @@ class GUI(Widget):
             if i["text"] == "":
                 neg += 1
             else:
-                i["text"] = i["text"].replace("\n\n", " ")
+                i["text"] = i["text"].replace("\n\n", "\n")
                 if n+neg-1 >= 0:
                     prev = textdicts[n+neg-1]
                     temp = int((len(prev["text"])/15))
-                    if temp < 4: 
+                    if temp < 4:
                         temp = 4
                     else:
                         temp += (temp*0.25)
@@ -168,7 +169,7 @@ class GUI(Widget):
                     tmr += 0
                 self.textpos_list.append((i, tmr))
 
-    def run_comments(self, dt):
+    def run_comments_old(self, dt):
         if self.textpos_list != []:
             self.timer += dt
             dct, tm = self.textpos_list[0]
@@ -178,6 +179,21 @@ class GUI(Widget):
         else:
             if self.timer != 0.:
                 self.timer = 0.
+
+    def run_comments(self, dt):
+        if self.textpos_list != []:
+            dct, tmr = self.textpos_list[0]
+            if dct["space exception"]:
+                self.parent.events.add_cooldown("space exception", 4)
+            if self.next_comment or self.parent.events.if_cooldown("space exception"):
+                self.activate_comment(dct)
+                del(self.textpos_list[0])
+                self.comment_list[-1].timeout_comment(4)
+                self.next_comment = False
+            if self.parent.events.if_cooldown("space exception"):
+                self.parent.events.reset_cooldown("space exception")
+        else:
+            self.next_comment = True
 
     def collide_comments(self):
         if self.comment_list != []:

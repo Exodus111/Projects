@@ -1,8 +1,8 @@
 {
     "coords": {
         "Node1": [
-            417,
-            357
+            320,
+            364
         ],
         "Node10": [
             3840.0,
@@ -25,8 +25,8 @@
             219.0
         ],
         "Node2": [
-            779,
-            235
+            734,
+            249
         ],
         "Node3": [
             1115,
@@ -118,18 +118,18 @@
     ],
     "nodes": {
         "Tutorial": [
-            "Node8",
             "Node13",
-            "Node3",
-            "Node14",
             "Node4",
             "Node5",
-            "Node9",
-            "Node12",
-            "Node6",
+            "Node3",
             "Node11",
-            "Node1",
+            "Node14",
+            "Node6",
             "Node10",
+            "Node1",
+            "Node9",
+            "Node8",
+            "Node12",
             "Node7",
             "Node2"
         ]
@@ -138,7 +138,8 @@
         "Node1": [
             "busy",
             "start",
-            "comment"
+            "comment",
+            "space_exception"
         ],
         "Node10": [
             "comment_reply"
@@ -181,16 +182,16 @@
         ]
     },
     "text": {
-        "Node1": "Oh... Hi there!",
+        "Node1": "Did we... did we start?",
         "Node10": "I hope that doesn't sound boring to you.\n\nIt's honestly quite entertaining once you get into it, well... \nIn MY opinion anyway. Take that for what it's worth I guess.",
         "Node11": "Also... This is not a \"funny\" game.\n\nThis might seem funny, because you kinda caught me off guard, and I'm not used to this... \nBut no, the game is not like that really. \n\nIt's quite serious... oh and ADULT!",
         "Node12": "I mean... It's not like an adult game or anything...\n\nBut it contains some pretty adult themes, \nand is not appropriate for children, \nso you know.... trigger warning and all that.",
         "Node13": "Ok, that's about it. What else... No I think that's all...\n\nNo wait, I forgot...",
         "Node14": "My name is Thack.\nNice to meet you.",
-        "Node2": "Did we... did we start?",
-        "Node3": "Oh we did!!\nOk, here we go. Welcome to the Game!\n\nWow! I never really thought anyone would actually play this...",
-        "Node4": "Damn, this is wrong... sorry.\n\nI'm terrible at this.",
-        "Node5": "Ok... This is the tutorial for the game. \nRight... tutorial... lets get THAT over with.",
+        "Node2": "You need to press Spacebar for this.",
+        "Node3": "Nice! Ok, here we go. Welcome to the Game!\nWow! I never really thought anyone would actually play this...",
+        "Node4": "Damn, this is wrong... sorry.\nI'm terrible at this.",
+        "Node5": "Ok... This is the tutorial for the game. \nRight... tutorial... lets do this!",
         "Node6": "Ok, so you can move using the WASD keys, as you do in most games.\n\nYou can also use the movement keys... but I'm not sure why you would want to... ",
         "Node7": "I don't know. Maybe you like using the movement keys instead of the WASD keys.\n\nThat's up to you.. I don't... it really has nothing to do with me.\nYou can use either, its fine... really.",
         "Node8": "Ok, moving around, easy right?\n\nSecondly the rest of the game... \nSo this is an RPG, it really is.\nBut, its probably different from games you've played before.",

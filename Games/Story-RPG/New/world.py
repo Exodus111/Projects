@@ -117,10 +117,13 @@ class World(RelativeLayout):
         self.bg.size = self.bg.texture.size
         self.fg.size = self.fg.texture.size
 
-        # Adding NPCs. (Not on first load.)
         self.home = scene + " " + part
-        if self.parent != None:
-            self.add_npcs(self.parent.npcs.npcgroup)
+        self.parent.events.room = self.room
+    
+        # Adding NPCs. (Not on first load.)
+        if not first:    
+            if self.parent != None:
+                self.add_npcs(self.parent.npcs.npcgroup)
 
         # This sets up the collison for the walls.
         if scene not in self.walls.keys():
@@ -304,10 +307,14 @@ class World(RelativeLayout):
                     self.parent.events.activate_poi(poi)
                     return
                 if self.once:
-                    self.check_door(poi.name)
-                    self.once = False
-                    self.colliding_with.append(poi)
-                    return
+                    if not self.parent.events.trigger["Tutorial"] or poi.name == "to_thack_room":    
+                        self.check_door(poi.name)
+                        self.once = False
+                        self.colliding_with.append(poi)
+                        return
+                    else:
+                        return
+        
         if self.colliding_with != []:
             if not w.collide_widget(self.colliding_with[0]):
                 Clock.schedule_once(lambda *x: self._set_once(True), 2)

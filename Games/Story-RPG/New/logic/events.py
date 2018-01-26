@@ -6,7 +6,8 @@ class EventCreator:
 
 		self.master = master
 		self.flags = {}
-		self.rooms = {}
+		self.room = ""
+		self.prev_room = ""
 		self.poi = {"exit_poi":self.poi_exit,
 					"class_poi":self.poi_class_menu,
 					"start_poi":self.poi_start
@@ -26,7 +27,8 @@ class EventCreator:
 		self.uptime = 0.0 
 		self.player_timer = defaultdict(float)
 		self.cooldown = {}
-		self.trigger = defaultdict(bool) # Defaults as False		
+		self.trigger = defaultdict(bool) # Defaults as False
+		self.trigger["Tutorial"] = True		
 
 	def save(self, player_pos): # Not tested, should work.
 		savedict = {"player_pos":player_pos, "flags":[]}
@@ -51,6 +53,15 @@ class EventCreator:
 		else:
 			return False
 
+	def add_cooldown(self, name, duration):
+		self.cooldown[name] = self.uptime + float(duration)
+
+	def if_cooldown(self, name):
+		if name in self.cooldown.keys():
+			return self.cooldown[name] < self.uptime
+		else:
+			return False
+
 	def reset_cooldown(self, name):
 		if name in self.cooldown.keys():
 			del(self.cooldown[name])
@@ -59,18 +70,15 @@ class EventCreator:
 		for flag in flags:
 			self.flags[flag] = False
 
-	def insert_rooms(self, rooms):
-		for room in rooms:
-			self.rooms[room] = False
-
-	def is_in_room(self, room):
-		self.room[room] = True
-
-	def left_room(self, room):
-		self.room[room] = False
-
 	def update(self, dt):
 		self.uptime += dt
+		if self.prev_room != self.room:
+			if self.trigger["Tutorial"]:
+				if self.room == "church main" and self.playerwait_10:
+					self.tutorial_start(1)
+				elif self.room == "church thack_room":
+					self.tutorial_start(2)
+			self.prev_room = self.room
 		self.time_idles(dt)
 		self.check_bounds(dt)
 
@@ -104,15 +112,18 @@ class EventCreator:
 			self.poi[poi.name]()
 
 	def poi_class_menu(self):
-		if not self.trigger["class_menu"]:
+		if self.trigger["class_menu"]:
 			self.master.toggle_classmenu()
-			self.trigger["class_menu"] = True
+			self.trigger["class_menu"] = False
 
 	def poi_exit(self):
 		pass
 
-	def poi_start(self):
-		if not self.trigger["Tutorial"] and self.playerwait_10:
-			self.master.begin_conv("Tutorial")
-			self.trigger["Tutorial"]
+	def tutorial_start(self, section):  ## DONE. Now write the rest of the tutorial!
+		if section == 1:
+			self.master.begin_conv("Tutorial")  ## Opening.
+		elif section == 2:
+			pass ## Expostion and class selection.
+		elif section == 3:
+			pass ## Turn Tutorial off.
 

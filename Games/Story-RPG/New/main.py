@@ -182,7 +182,10 @@ class Game(Widget):
             if key[1] in ("w", "a", "s", "d", "up", "down", "left", "right"):
                 self.player.keydown(key[1])
             elif key[1] == "spacebar":
-                print(self.player.pos)
+                if not self.gui.next_comment:
+                    self.gui.next_comment = True
+                else:
+                    print(self.player.pos)
 
     def key_up(self, key):
         if not self.menu_on:

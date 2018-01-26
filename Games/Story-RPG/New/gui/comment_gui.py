@@ -26,13 +26,15 @@ class CommentGUI(RelativeLayout):
         self.center[0] = self.entity.comment_pos[0] + self.moveside
         self.center[1] = self.entity.comment_pos[1] + self.moveup
 
+    def timeout_comment(self, tmr):
+        Clock.schedule_once(self.deactivate, tmr)
+
     def deactivate(self, *args):
         self.speechbox.current = "None"
 
     def activate(self):
         self.set_text_size()
         self.speechbox.current = "active"
-        Clock.schedule_once(self.deactivate, self.timeout)
 
     def set_text_size(self):
         l = Label(text=self.text, font_size=18, padding_x=15, padding_y=10, shorten=True, shorten_from="right", split_str=",")

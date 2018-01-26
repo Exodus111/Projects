@@ -44,7 +44,8 @@ class Comment():
 		while True:
 			self.comments.append({
 				"npc":self.check_node_for_npc(self.current_node).lower(), 
-				"text":self.current_node["text"]})
+				"text":self.current_node["text"], 
+				"space exception":"space_exception" in self.current_node["tags"]})
 			self.current_node = self.goto_next(self.current_node)
 			if self.current_node == None:
 				break

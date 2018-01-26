@@ -2,7 +2,6 @@
                           "main":{
                           "size":[768, 608],
                           "exit_poi":[840, 200],
-                          "start_poi":[900, 500],
                           "to_basement":[1883, 327],
                           "to_thack_room":[146, 808],
                           "to_priest_room":[1514, 835],
@@ -27,7 +26,7 @@
 
                           "thack_room":{
                           "size":[192, 256],
-                          "class_poi":[164, 235],
+                          "class_poi":[120, 235],
                           "from_thack_room":[248, 115], 
                           "to_tower":[131, 391],
                           "shunts":{"to_tower":[30, -5]}}},
