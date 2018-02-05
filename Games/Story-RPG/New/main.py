@@ -70,11 +70,6 @@ class Game(Widget):
         self.gui = GUI(size=SIZE)
         self.gui.setup()
 
-        # Setting up the world.
-        self.world = World()
-        self.world.worldcenter = self.center
-        self.world.setupworld()
-
         # Setting up the NPCs.
         self.npcs = NPCController()
         self.npcs.controllersetup(SIZE)
@@ -85,11 +80,17 @@ class Game(Widget):
         self.player.pos = [900, 500]
         self.player.playersetup(Window.size)
 
+        # Setting up the world.
+        self.world = World()
+        self.world.worldcenter = self.center
+        self.world.setupworld()
+
         # Adding everything to the Widget stack
         self.add_widget(self.input)
         self.world.add_npcs(self.npcs.npcgroup)
         self.world.add_widget(self.player, index=2)
         self.add_widget(self.world)
+        self.world.set_home_text(self.world.home)
 
         self.add_widget(self.gui)         # <-- GUI goes last.
 

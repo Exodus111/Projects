@@ -21,8 +21,8 @@
             211.0
         ],
         "Node14": [
-            5214.0,
-            219.0
+            5267,
+            216
         ],
         "Node2": [
             734,
@@ -31,6 +31,14 @@
         "Node3": [
             1115,
             354
+        ],
+        "Node30": [
+            5670,
+            218
+        ],
+        "Node31": [
+            6055,
+            209
         ],
         "Node4": [
             1519,
@@ -78,7 +86,8 @@
             "Node14"
         ],
         "Node14": [
-            "Node13"
+            "Node13",
+            "Node30"
         ],
         "Node2": [
             "Node1",
@@ -87,6 +96,13 @@
         "Node3": [
             "Node2",
             "Node4"
+        ],
+        "Node30": [
+            "Node14",
+            "Node31"
+        ],
+        "Node31": [
+            "Node30"
         ],
         "Node4": [
             "Node3",
@@ -118,26 +134,28 @@
     ],
     "nodes": {
         "Tutorial": [
-            "Node13",
-            "Node4",
-            "Node5",
-            "Node3",
+            "Node31",
             "Node11",
-            "Node14",
+            "Node4",
             "Node6",
+            "Node7",
             "Node10",
             "Node1",
+            "Node13",
+            "Node14",
+            "Node30",
+            "Node5",
             "Node9",
+            "Node2",
+            "Node3",
             "Node8",
-            "Node12",
-            "Node7",
-            "Node2"
+            "Node12"
         ]
     },
     "tags": {
         "Node1": [
-            "busy",
             "start",
+            "start_tutorial",
             "comment",
             "space_exception"
         ],
@@ -154,13 +172,22 @@
             "comment"
         ],
         "Node14": [
-            "comment_reply"
+            "comment_reply",
+            ""
         ],
         "Node2": [
             "comment_reply"
         ],
         "Node3": [
+            "comment",
+            "flag_spacebar_pressed"
+        ],
+        "Node30": [
             "comment"
+        ],
+        "Node31": [
+            "comment",
+            "flag_tutorial_part1"
         ],
         "Node4": [
             "comment_reply"
@@ -187,9 +214,11 @@
         "Node11": "Also... This is not a \"funny\" game.\n\nThis might seem funny, because you kinda caught me off guard, and I'm not used to this... \nBut no, the game is not like that really. \n\nIt's quite serious... oh and ADULT!",
         "Node12": "I mean... It's not like an adult game or anything...\n\nBut it contains some pretty adult themes, \nand is not appropriate for children, \nso you know.... trigger warning and all that.",
         "Node13": "Ok, that's about it. What else... No I think that's all...\n\nNo wait, I forgot...",
-        "Node14": "My name is Thack.\nNice to meet you.",
-        "Node2": "You need to press Spacebar for this.",
+        "Node14": "Nice to meet you.\nMy name is Thack.",
+        "Node2": "You need to press Spacebar to continue.",
         "Node3": "Nice! Ok, here we go. Welcome to the Game!\nWow! I never really thought anyone would actually play this...",
+        "Node30": "I'm an apprentice to Father Djonsicus here in the Church.\n\nI'm new here, but this village is... \nI don't actually remember the name of the Village.. \nSorry. As I said, I'm new, I just arrived a few days ago actually.\n\nAnyway, there is not a lot of people in the village at the moment, \nmost are away at some festival I believe. \nAnd I've mostly been doing chores and required reading.",
+        "Node31": "I want to tell you more, but, let's go to my room first.\nIts the door on the left there.\n\nAnd the only door that is going to work because... \nwell as I said, this is a tutorial.",
         "Node4": "Damn, this is wrong... sorry.\nI'm terrible at this.",
         "Node5": "Ok... This is the tutorial for the game. \nRight... tutorial... lets do this!",
         "Node6": "Ok, so you can move using the WASD keys, as you do in most games.\n\nYou can also use the movement keys... but I'm not sure why you would want to... ",

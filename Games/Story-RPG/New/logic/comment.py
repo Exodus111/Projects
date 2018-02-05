@@ -15,7 +15,7 @@ class Comment():
 		self.append_comments()
 
 	def __repr__(self):
-		return "Comment node. Npc: {}, First comment: {}, Busy? {}.".format(self.npc, self.comments[0][0,8], self.busy)
+		return "Comment node. Npc: {}, First comment: {}, Busy? {}.".format(self.npc, self.comments[0], self.busy)
 
 	def check_node_for_npc(self, node):
 		if "comment" in node["tags"]:
@@ -24,7 +24,7 @@ class Comment():
 		elif "comment_reply" in node["tags"]:
 			return "player"
 		else:
-			raise Exception("Comment node missing essetial 'comment' or 'comment_reply' tag. Not supposed to happen.") 
+			raise Exception("Comment node missing essential 'comment' or 'comment_reply' tag. Not supposed to happen.") 
 
 	def check_for_busy(self):
 		for node in self.node_db:
@@ -41,13 +41,14 @@ class Comment():
 			raise Exception("Start not found in comments")
 
 	def append_comments(self):
+		node = self.current_node
 		while True:
 			self.comments.append({
-				"npc":self.check_node_for_npc(self.current_node).lower(), 
-				"text":self.current_node["text"], 
-				"space exception":"space_exception" in self.current_node["tags"]})
-			self.current_node = self.goto_next(self.current_node)
-			if self.current_node == None:
+				"npc":self.check_node_for_npc(node).lower(), 
+				"text":node["text"], 
+				"space exception":"space_exception" in node["tags"]})
+			node = self.goto_next(node)
+			if node == None:
 				break
 
 	def goto_next(self, node):

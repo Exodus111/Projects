@@ -117,9 +117,8 @@ class World(RelativeLayout):
         self.bg.size = self.bg.texture.size
         self.fg.size = self.fg.texture.size
 
-        self.home = scene + " " + part
-        self.parent.events.room = self.room
-    
+        self.set_home_text(scene + " " + part)
+
         # Adding NPCs. (Not on first load.)
         if not first:    
             if self.parent != None:
@@ -137,6 +136,7 @@ class World(RelativeLayout):
 
         # This sets up the ability to move between rooms.
         [self.remove_widget(j) for j in self.poi_list]
+        self.poi_list = []
         for l, v in self.pois[scene][part].items():
             if "to_" in l or "from_" in l:
                 w = DoorWidget()
@@ -149,6 +149,13 @@ class World(RelativeLayout):
             self.poi_list.append(w)
             self.add_widget(w)
 ## <-------- Loading Methods, loaded from load_scene. ---------->
+
+    def set_home_text(self, text):
+        self.home = text
+        if self.parent != None:
+            self.parent.events.room = self.home
+
+
 
     def load_poi(self, scene, part, poi_dict):
         poi_list = []

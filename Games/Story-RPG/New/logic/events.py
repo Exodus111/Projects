@@ -9,8 +9,7 @@ class EventCreator:
 		self.room = ""
 		self.prev_room = ""
 		self.poi = {"exit_poi":self.poi_exit,
-					"class_poi":self.poi_class_menu,
-					"start_poi":self.poi_start
+					"class_poi":self.poi_class_menu
 					}
 
 		# Default Events
@@ -28,7 +27,7 @@ class EventCreator:
 		self.player_timer = defaultdict(float)
 		self.cooldown = {}
 		self.trigger = defaultdict(bool) # Defaults as False
-		self.trigger["Tutorial"] = True		
+		self.trigger["Tutorial"] = False
 
 	def save(self, player_pos): # Not tested, should work.
 		savedict = {"player_pos":player_pos, "flags":[]}
@@ -74,10 +73,13 @@ class EventCreator:
 		self.uptime += dt
 		if self.prev_room != self.room:
 			if self.trigger["Tutorial"]:
-				if self.room == "church main" and self.playerwait_10:
+				if self.room == "church main":
 					self.tutorial_start(1)
 				elif self.room == "church thack_room":
 					self.tutorial_start(2)
+			if not self.trigger["Tutorial"] and not self.trigger["game started"]:
+				self.trigger["game started"] = True
+				self.game_start()
 			self.prev_room = self.room
 		self.time_idles(dt)
 		self.check_bounds(dt)
@@ -119,11 +121,14 @@ class EventCreator:
 	def poi_exit(self):
 		pass
 
-	def tutorial_start(self, section):  ## DONE. Now write the rest of the tutorial!
+	def tutorial_start(self, section):
 		if section == 1:
 			self.master.begin_conv("Tutorial")  ## Opening.
 		elif section == 2:
 			pass ## Expostion and class selection.
 		elif section == 3:
 			pass ## Turn Tutorial off.
+
+	def game_start(self): # Once the Tutorial is over.
+		pass
 

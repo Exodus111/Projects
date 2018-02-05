@@ -10,7 +10,8 @@ class CommentGUI(RelativeLayout):
     timeout = NumericProperty(6.)
     entity = ObjectProperty()
     moveup = NumericProperty(0) 
-    moveside = NumericProperty(0) 
+    moveside = NumericProperty(0)
+    timing_out = BooleanProperty(False)
 
     def __repr__(self):
         return "Comment GUI Object: \n" + self.text
@@ -28,6 +29,7 @@ class CommentGUI(RelativeLayout):
 
     def timeout_comment(self, tmr):
         Clock.schedule_once(self.deactivate, tmr)
+        self.timing_out = True
 
     def deactivate(self, *args):
         self.speechbox.current = "None"

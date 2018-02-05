@@ -34,7 +34,7 @@ class GUI(Widget):
     up = ListProperty()
     timer = NumericProperty()
     active_card_amount = NumericProperty()
-    next_comment = BooleanProperty(False)
+    next_comment = BooleanProperty(True)
 
     def __repr__(self):
         return "Main GUI Object \n"
@@ -150,7 +150,7 @@ class GUI(Widget):
           textdicts: List containing Dicts.
            Dict keys are: entity, text
         """
-        tmr = 0 ## <--- You need to fix the timer between comments.
+        tmr = 0
         neg = 0
         for n, i in enumerate(textdicts):
             if i["text"] == "":
@@ -169,17 +169,6 @@ class GUI(Widget):
                     tmr += 0
                 self.textpos_list.append((i, tmr))
 
-    def run_comments_old(self, dt):
-        if self.textpos_list != []:
-            self.timer += dt
-            dct, tm = self.textpos_list[0]
-            if tm <= self.timer:
-                self.activate_comment(dct)
-                del(self.textpos_list[0])
-        else:
-            if self.timer != 0.:
-                self.timer = 0.
-
     def run_comments(self, dt):
         if self.textpos_list != []:
             dct, tmr = self.textpos_list[0]
@@ -188,12 +177,17 @@ class GUI(Widget):
             if self.next_comment or self.parent.events.if_cooldown("space exception"):
                 self.activate_comment(dct)
                 del(self.textpos_list[0])
-                self.comment_list[-1].timeout_comment(4)
+                if len(self.comment_list) >= 2:
+                    [i.timeout_comment(4) for i in self.comment_list[0:-1] if not i.timing_out]
+                if len(self.textpos_list) == 0:
+                    self.comment_list[-1].timeout_comment(20)
                 self.next_comment = False
             if self.parent.events.if_cooldown("space exception"):
                 self.parent.events.reset_cooldown("space exception")
-        else:
-            self.next_comment = True
+        elif self.textpos_list == [] and len(self.comment_list) != 0:
+            if self.next_comment:
+                self.comment_list[-1].timeout_comment(1)
+
 
     def collide_comments(self):
         if self.comment_list != []:

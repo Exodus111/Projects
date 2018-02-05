@@ -151,8 +151,8 @@ class Dialogue():
                                 for flag in node["tags"]:
                                     if flag[0:5] == "block":
                                         if "card" not in flag:
-                                            if self.check_flag(flag[6:]):
-                                                self.set_flag(flag[6:], False)
+                                            if not self.check_flag(flag[6:]):
+                                                self.set_flag(flag[6:])
                                                 greeting_list.append(convs)
                                         else:
                                             if self.check_card_npc(flag, convs.npc):
@@ -163,14 +163,12 @@ class Dialogue():
             conv = None
             for c in greeting_list:
                 c.find_start()
-                if c.current_node["coords"][0] > num:
+                if c.current_node["coords"][0] < num:
                     num = c.current_node["coords"][0]
                     conv = c
             self.current_conv = conv
             self.current_conv.find_start()
-        elif len(greeting_list) == 0:
-            self.current_conv = self.busy_nodes[npc]
-        else:
+        elif greeting_list != []:
             self.current_conv = greeting_list[0]
             self.current_conv.find_start()
 
@@ -203,22 +201,46 @@ class Dialogue():
         else:
             return False
 
+    def find_comment(self, name):
+        comment_list = []
+        for comment in self.comments:
+            if comment.npc.lower() == name.lower():
+                if "start_"+ name.lower() in comment.current_node["tags"]:
+                    if not self.check_flag("start_"+ name.lower()):
+                        self.set_flag("start_"+ name.lower())
+                        self.current_conv = comment
+                        return
+                elif "start" in comment.current_node["tags"]:
+                    for tags in commment.current_node["tags"]:
+                        if tag[0:5] == "block":
+                            if self.check_flag(flag[6:]):
+                                self.set_flag(flag[6:], False)
+                                comment_list.append(comment)
+                                break
+                            else:
+                                break
+        num = 999999
+        conv = None
+        for com in comment_list:
+            if com.current_node["coords"][0] < num:
+                num = com.current_node["coords"][0]
+                conv = com
+        self.current_conv = conv
+            
+    def pick_busy(self, name):
+        self.current_conv = self.busy_nodes[name]
+
 ########## Public Methods.
 
     def start_conversation(self, name):
-        # Might have had a minor mental breakdown when I wrote this code.
-        # But it works so...
-        once = False
-        while True:
+        for func in (self.find_conversation, self.find_comment, self.pick_busy):
             if self.current_conv != None:
-                if self.current_conv.npc.lower() == name.lower():
-                    if self.current_conv.type == "comment":
-                        self.manage_comments()
-                        return
-            if once:
                 break
-            once = True
-            self.find_conversation(name)
+            func(name)
+        if self.current_conv.npc.lower() == name.lower():
+            if self.current_conv.type == "comment":
+                self.manage_comments()
+                return
         conv = self.current_conv
         portrait = self.portraits[name]
         self.master.gui.add_text_to_conv_panels({"top_text":conv.top_text, "question_list":conv.bottom_question_list}, portrait)
