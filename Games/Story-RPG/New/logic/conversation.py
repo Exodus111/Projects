@@ -138,7 +138,8 @@ class Conversation():
         if passed:
             for tag in self.data[node]["tags"]:
                 if tag[0:5] == "block":
-                    if self.master.check_flag(tag[6:]):
+                    switched = tag.replace("block", "flag")
+                    if self.master.check_flag(switched):
                         self._check_card_name(tag)
                         if "once" in self.data[node]["tags"]:
                             self.master.set_flag(tag[6:], False)

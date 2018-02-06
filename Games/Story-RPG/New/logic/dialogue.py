@@ -68,7 +68,7 @@ class Dialogue():
     def assemble_commentary(self):
         for name in self.nodes.keys():
             for node in self.nodes[name]:
-                if ("comment" in self.tags[node] or "comment_reply" in self.tags[node]) and "start" in self.tags[node]:
+                if ("comment" in self.tags[node] or "comment_reply" in self.tags[node]) and "start" in self.tags[node] or any(["start_" in t for t in self.tags[node]]):
                     node = self.assemble_node(node)
                     self.node_list.append(node)
                     self.trace_nodes(node)
@@ -205,16 +205,17 @@ class Dialogue():
         comment_list = []
         for comment in self.comments:
             if comment.npc.lower() == name.lower():
-                if "start_"+ name.lower() in comment.current_node["tags"]:
-                    if not self.check_flag("start_"+ name.lower()):
-                        self.set_flag("start_"+ name.lower())
-                        self.current_conv = comment
-                        return
+                if "start_"+ name.lower() in comment.current_node["tags"] and not self.check_flag("start_"+ name.lower()):
+                    self.set_flag("start_"+ name.lower())
+                    self.current_conv = comment
+                    return
                 elif "start" in comment.current_node["tags"]:
-                    for tags in commment.current_node["tags"]:
+                    for tag in comment.current_node["tags"]:
                         if tag[0:5] == "block":
-                            if self.check_flag(flag[6:]):
-                                self.set_flag(flag[6:], False)
+                            switched = tag.replace("block", "flag")
+                            if not self.check_flag(switched):
+                                print(tag, switched, "passed")
+                                self.set_flag(switched, True)
                                 comment_list.append(comment)
                                 break
                             else:
@@ -228,11 +229,12 @@ class Dialogue():
         self.current_conv = conv
             
     def pick_busy(self, name):
-        self.current_conv = self.busy_nodes[name]
+        self.current_conv = self.busy_nodes[name.lower()]
 
 ########## Public Methods.
 
     def start_conversation(self, name):
+        self.current_conv = None
         for func in (self.find_conversation, self.find_comment, self.pick_busy):
             if self.current_conv != None:
                 break

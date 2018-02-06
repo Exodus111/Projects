@@ -35,7 +35,7 @@ class Comment():
 
 	def find_first(self):
 		for node in self.node_db:
-			if "start" in node["tags"]:
+			if "start" in node["tags"] or any(["start_" in t for t in node["tags"]]):
 				return node
 		else:
 			raise Exception("Start not found in comments")

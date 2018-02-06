@@ -1,68 +1,80 @@
 {
     "coords": {
         "Node1": [
-            320,
-            364
+            306.14538811677113,
+            356.58776721610707
         ],
         "Node10": [
-            3840.0,
-            244.0
+            4110.005143007137,
+            226.9107301175719
         ],
         "Node11": [
-            4216.0,
-            254.0
+            4516.326525915882,
+            237.71714987578312
         ],
         "Node12": [
-            4564.0,
-            241.0
+            4892.389933501632,
+            223.66880419010857
         ],
         "Node13": [
-            4900.0,
-            211.0
+            5255.485637377529,
+            191.24954491547476
+        ],
+        "Node134": [
+            248.87136339825116,
+            1199.4885083565857
         ],
         "Node14": [
-            5267,
-            216
+            5647.758674600602,
+            191.24954491547476
         ],
         "Node2": [
-            734,
-            249
+            753.5311661067178,
+            232.3139399966775
         ],
         "Node3": [
-            1115,
-            354
-        ],
-        "Node30": [
-            5670,
-            218
+            1165.2557588945667,
+            345.7813474578958
         ],
         "Node31": [
-            6055,
-            209
+            6025.983366137994,
+            195.57211281875917
         ],
         "Node4": [
-            1519,
-            233
+            1601.835117126302,
+            215.02366838353947
         ],
         "Node5": [
-            1914,
-            323
+            2028.688697575647,
+            312.28144620744104
         ],
         "Node6": [
-            2236.0,
-            299.0
+            2376.655413790049,
+            286.34603878773373
+        ],
+        "Node64": [
+            253.193931301536,
+            789.9251995203789
+        ],
+        "Node65": [
+            690.8539315090923,
+            785.6026316170946
+        ],
+        "Node66": [
+            1087.4495366354456,
+            789.9251995203789
         ],
         "Node7": [
-            2623.0,
-            310.0
+            2794.863858432825,
+            298.23310052176635
         ],
         "Node8": [
-            3048.0,
-            260.0
+            3254.1366981568053,
+            244.20100173071
         ],
         "Node9": [
-            3494.0,
-            283.0
+            3736.103019373028,
+            269.05576717459587
         ]
     },
     "links": {
@@ -85,9 +97,10 @@
             "Node12",
             "Node14"
         ],
+        "Node134": [],
         "Node14": [
             "Node13",
-            "Node30"
+            "Node31"
         ],
         "Node2": [
             "Node1",
@@ -97,12 +110,8 @@
             "Node2",
             "Node4"
         ],
-        "Node30": [
-            "Node14",
-            "Node31"
-        ],
         "Node31": [
-            "Node30"
+            "Node14"
         ],
         "Node4": [
             "Node3",
@@ -115,6 +124,16 @@
         "Node6": [
             "Node5",
             "Node7"
+        ],
+        "Node64": [
+            "Node65"
+        ],
+        "Node65": [
+            "Node64",
+            "Node66"
+        ],
+        "Node66": [
+            "Node65"
         ],
         "Node7": [
             "Node6",
@@ -134,27 +153,29 @@
     ],
     "nodes": {
         "Tutorial": [
-            "Node31",
-            "Node11",
-            "Node4",
-            "Node6",
-            "Node7",
-            "Node10",
-            "Node1",
             "Node13",
-            "Node14",
-            "Node30",
-            "Node5",
-            "Node9",
-            "Node2",
-            "Node3",
+            "Node31",
+            "Node12",
+            "Node6",
+            "Node10",
             "Node8",
-            "Node12"
+            "Node66",
+            "Node1",
+            "Node9",
+            "Node4",
+            "Node7",
+            "Node14",
+            "Node11",
+            "Node65",
+            "Node3",
+            "Node64",
+            "Node2",
+            "Node5",
+            "Node134"
         ]
     },
     "tags": {
         "Node1": [
-            "start",
             "start_tutorial",
             "comment",
             "space_exception"
@@ -171,6 +192,11 @@
         "Node13": [
             "comment"
         ],
+        "Node134": [
+            "busy",
+            "start",
+            "comment"
+        ],
         "Node14": [
             "comment_reply",
             ""
@@ -181,9 +207,6 @@
         "Node3": [
             "comment",
             "flag_spacebar_pressed"
-        ],
-        "Node30": [
-            "comment"
         ],
         "Node31": [
             "comment",
@@ -198,6 +221,17 @@
         "Node6": [
             "comment_reply"
         ],
+        "Node64": [
+            "start",
+            "comment",
+            "block_tutorial_part1"
+        ],
+        "Node65": [
+            "comment"
+        ],
+        "Node66": [
+            "comment"
+        ],
         "Node7": [
             "comment"
         ],
@@ -211,17 +245,20 @@
     "text": {
         "Node1": "Did we... did we start?",
         "Node10": "I hope that doesn't sound boring to you.\n\nIt's honestly quite entertaining once you get into it, well... \nIn MY opinion anyway. Take that for what it's worth I guess.",
-        "Node11": "Also... This is not a \"funny\" game.\n\nThis might seem funny, because you kinda caught me off guard, and I'm not used to this... \nBut no, the game is not like that really. \n\nIt's quite serious... oh and ADULT!",
+        "Node11": "Also... This is not a \"funny\" game.\n\nThis might seem funny, because you kinda caught me off guard, \nand I'm not used to this... \nBut no, the game is not like that really. \n\nIt's quite serious... oh and ADULT!",
         "Node12": "I mean... It's not like an adult game or anything...\n\nBut it contains some pretty adult themes, \nand is not appropriate for children, \nso you know.... trigger warning and all that.",
         "Node13": "Ok, that's about it. What else... No I think that's all...\n\nNo wait, I forgot...",
+        "Node134": "Can't talk, busy right now.",
         "Node14": "Nice to meet you.\nMy name is Thack.",
         "Node2": "You need to press Spacebar to continue.",
         "Node3": "Nice! Ok, here we go. Welcome to the Game!\nWow! I never really thought anyone would actually play this...",
-        "Node30": "I'm an apprentice to Father Djonsicus here in the Church.\n\nI'm new here, but this village is... \nI don't actually remember the name of the Village.. \nSorry. As I said, I'm new, I just arrived a few days ago actually.\n\nAnyway, there is not a lot of people in the village at the moment, \nmost are away at some festival I believe. \nAnd I've mostly been doing chores and required reading.",
-        "Node31": "I want to tell you more, but, let's go to my room first.\nIts the door on the left there.\n\nAnd the only door that is going to work because... \nwell as I said, this is a tutorial.",
+        "Node31": "I want to tell you more, but, let's go to my room first.\nIts the door on the left there.\n\nAnd the only door that is going to work because... \nWell as I said... this is a tutorial.",
         "Node4": "Damn, this is wrong... sorry.\nI'm terrible at this.",
         "Node5": "Ok... This is the tutorial for the game. \nRight... tutorial... lets do this!",
         "Node6": "Ok, so you can move using the WASD keys, as you do in most games.\n\nYou can also use the movement keys... but I'm not sure why you would want to... ",
+        "Node64": "Ok, so.. \nI'm an apprentice to Father Djonsicus here in the Church.",
+        "Node65": "I'm new here, but this village is... \nI don't actually remember the name of the Village.. \nSorry. As I said, I'm new, I just arrived a few days ago actually.",
+        "Node66": "Anyway, there is not a lot of people in the village at the moment, \nmost are away at some festival I believe. \nAnd I've mostly been doing chores and required reading.",
         "Node7": "I don't know. Maybe you like using the movement keys instead of the WASD keys.\n\nThat's up to you.. I don't... it really has nothing to do with me.\nYou can use either, its fine... really.",
         "Node8": "Ok, moving around, easy right?\n\nSecondly the rest of the game... \nSo this is an RPG, it really is.\nBut, its probably different from games you've played before.",
         "Node9": "I mean. There is no combat here, this game is about... \nyou know... dialogue... talking to people. \nThinking about what they say, and so on..."

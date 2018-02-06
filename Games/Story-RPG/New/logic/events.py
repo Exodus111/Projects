@@ -27,7 +27,7 @@ class EventCreator:
 		self.player_timer = defaultdict(float)
 		self.cooldown = {}
 		self.trigger = defaultdict(bool) # Defaults as False
-		self.trigger["Tutorial"] = False
+		self.trigger["Tutorial"] = True
 
 	def save(self, player_pos): # Not tested, should work.
 		savedict = {"player_pos":player_pos, "flags":[]}
@@ -125,7 +125,7 @@ class EventCreator:
 		if section == 1:
 			self.master.begin_conv("Tutorial")  ## Opening.
 		elif section == 2:
-			pass ## Expostion and class selection.
+			self.master.begin_conv("Tutorial")
 		elif section == 3:
 			pass ## Turn Tutorial off.
 
