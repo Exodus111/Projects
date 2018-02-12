@@ -213,9 +213,8 @@ class Dialogue():
                     for tag in comment.current_node["tags"]:
                         if tag[0:5] == "block":
                             switched = tag.replace("block", "flag")
-                            if not self.check_flag(switched):
-                                print(tag, switched, "passed")
-                                self.set_flag(switched, True)
+                            if self.check_flag(switched):
+                                self.set_flag(switched)
                                 comment_list.append(comment)
                                 break
                             else:
@@ -235,10 +234,10 @@ class Dialogue():
 
     def start_conversation(self, name):
         self.current_conv = None
-        for func in (self.find_conversation, self.find_comment, self.pick_busy):
+        for fun in (self.find_conversation, self.find_comment, self.pick_busy):
             if self.current_conv != None:
                 break
-            func(name)
+            fun(name)
         if self.current_conv.npc.lower() == name.lower():
             if self.current_conv.type == "comment":
                 self.manage_comments()

@@ -35,6 +35,7 @@ class GUI(Widget):
     timer = NumericProperty()
     active_card_amount = NumericProperty()
     next_comment = BooleanProperty(True)
+    commenting = BooleanProperty(False)
 
     def __repr__(self):
         return "Main GUI Object \n"
@@ -148,7 +149,7 @@ class GUI(Widget):
         """
             Activates a comment thread.
           textdicts: List containing Dicts.
-           Dict keys are: entity, text
+           Dict keys are: entity, text, tags
         """
         tmr = 0
         neg = 0
@@ -172,10 +173,13 @@ class GUI(Widget):
     def run_comments(self, dt):
         if self.textpos_list != []:
             dct, tmr = self.textpos_list[0]
-            if dct["space exception"]:
-                self.parent.events.add_cooldown("space exception", 4)
+            if "space_exception" in dct["tags"]:
+                print("space exception found")
+                self.parent.events.add_cooldown("space exception", 2)
             if self.next_comment or self.parent.events.if_cooldown("space exception"):
                 self.activate_comment(dct)
+                ## Check all the TAGS here.
+                self.parent.events.check_comment_tags(dct["tags"])
                 del(self.textpos_list[0])
                 if len(self.comment_list) >= 2:
                     [i.timeout_comment(4) for i in self.comment_list[0:-1] if not i.timing_out]
@@ -188,9 +192,10 @@ class GUI(Widget):
             if self.next_comment:
                 self.comment_list[-1].timeout_comment(1)
 
-
     def collide_comments(self):
         if self.comment_list != []:
+            if not self.commenting:
+                self.commenting = True
             if self.comment_list[0].speechbox.current == "None":
                 self.parent.world.remove_widget(self.comment_list[0])
                 del(self.comment_list[0])
@@ -204,6 +209,10 @@ class GUI(Widget):
                     if n1 < n2:
                         if c1.collide_widget(c2):
                             c1.moveup += 3
+        else:
+            if self.commenting:
+                self.commenting = False
+
 
     def activate_comment(self, txt_dict):
         comment = CommentGUI(size_hint=(None, None))

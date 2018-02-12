@@ -32,6 +32,26 @@
             753.5311661067178,
             232.3139399966775
         ],
+        "Node202": [
+            1483,
+            769
+        ],
+        "Node203": [
+            1879.0,
+            773.0
+        ],
+        "Node204": [
+            2249,
+            762
+        ],
+        "Node205": [
+            2568.0,
+            748.0
+        ],
+        "Node206": [
+            2951,
+            778
+        ],
         "Node3": [
             1165.2557588945667,
             345.7813474578958
@@ -106,6 +126,25 @@
             "Node1",
             "Node3"
         ],
+        "Node202": [
+            "Node66",
+            "Node203"
+        ],
+        "Node203": [
+            "Node202",
+            "Node204"
+        ],
+        "Node204": [
+            "Node203",
+            "Node205"
+        ],
+        "Node205": [
+            "Node204",
+            "Node206"
+        ],
+        "Node206": [
+            "Node205"
+        ],
         "Node3": [
             "Node2",
             "Node4"
@@ -133,7 +172,8 @@
             "Node66"
         ],
         "Node66": [
-            "Node65"
+            "Node65",
+            "Node202"
         ],
         "Node7": [
             "Node6",
@@ -153,25 +193,30 @@
     ],
     "nodes": {
         "Tutorial": [
-            "Node13",
-            "Node31",
-            "Node12",
-            "Node6",
-            "Node10",
-            "Node8",
-            "Node66",
-            "Node1",
-            "Node9",
             "Node4",
-            "Node7",
-            "Node14",
-            "Node11",
-            "Node65",
-            "Node3",
             "Node64",
-            "Node2",
+            "Node13",
+            "Node203",
             "Node5",
-            "Node134"
+            "Node9",
+            "Node8",
+            "Node202",
+            "Node204",
+            "Node66",
+            "Node10",
+            "Node14",
+            "Node6",
+            "Node2",
+            "Node134",
+            "Node31",
+            "Node1",
+            "Node3",
+            "Node65",
+            "Node11",
+            "Node205",
+            "Node7",
+            "Node12",
+            "Node206"
         ]
     },
     "tags": {
@@ -204,19 +249,36 @@
         "Node2": [
             "comment_reply"
         ],
+        "Node202": [
+            "comment"
+        ],
+        "Node203": [
+            "comment"
+        ],
+        "Node204": [
+            "comment"
+        ],
+        "Node205": [
+            "comment"
+        ],
+        "Node206": [
+            "comment",
+            "flag_tutorial_part3"
+        ],
         "Node3": [
             "comment",
             "flag_spacebar_pressed"
         ],
         "Node31": [
             "comment",
-            "flag_tutorial_part1"
+            "flag_tutorial_part2"
         ],
         "Node4": [
             "comment_reply"
         ],
         "Node5": [
-            "comment"
+            "comment",
+            "flag_tutorial_part1"
         ],
         "Node6": [
             "comment_reply"
@@ -251,6 +313,11 @@
         "Node134": "Can't talk, busy right now.",
         "Node14": "Nice to meet you.\nMy name is Thack.",
         "Node2": "You need to press Spacebar to continue.",
+        "Node202": "Speaking of which... I've got some books to read.",
+        "Node203": "I don't have time to read all of them, one would do for now.\nBut you have to help me pick.",
+        "Node204": "They are supposed to help me get better at conversations, \nand... you know... speaking to people. \nI guess I can be kind of shy...",
+        "Node205": "I suppose it's something that might come in handy... who knows.",
+        "Node206": "Anyway... Let's pick one.",
         "Node3": "Nice! Ok, here we go. Welcome to the Game!\nWow! I never really thought anyone would actually play this...",
         "Node31": "I want to tell you more, but, let's go to my room first.\nIts the door on the left there.\n\nAnd the only door that is going to work because... \nWell as I said... this is a tutorial.",
         "Node4": "Damn, this is wrong... sorry.\nI'm terrible at this.",

@@ -5,12 +5,11 @@ class EventCreator:
 	def __init__(self, master):
 
 		self.master = master
-		self.flags = {}
+		self.flags = {}            ## All flags start as False
 		self.room = ""
 		self.prev_room = ""
 		self.poi = {"exit_poi":self.poi_exit,
-					"class_poi":self.poi_class_menu
-					}
+					"class_poi":self.poi_class_menu}
 
 		# Default Events
 		self.playerwait_10 = False
@@ -72,24 +71,43 @@ class EventCreator:
 	def update(self, dt):
 		self.uptime += dt
 		if self.prev_room != self.room:
-			if self.trigger["Tutorial"]:
-				if self.room == "church main":
-					self.tutorial_start(1)
-				elif self.room == "church thack_room":
-					self.tutorial_start(2)
-			if not self.trigger["Tutorial"] and not self.trigger["game started"]:
-				self.trigger["game started"] = True
-				self.game_start()
+			self.tutorial_event_checker()
 			self.prev_room = self.room
+		if self.master.game_started:
+			if self.master.gui.commenting != self.trigger["commenting"]:  ## Fix this. 
+				self.tutorial_event_checker()                             ## This part is not working.
+				self.trigger["commenting"] = self.master.gui.commenting
 		self.time_idles(dt)
 		self.check_bounds(dt)
+
+	def tutorial_event_checker(self):
+		if self.trigger["Tutorial"]:
+			if self.room == "church main":
+				if not self.flags["flag_tutorial_part2"]:
+					self.tutorial_start(1)
+			elif self.room == "church thack_room":
+				if self.flags["flag_tutorial_part2"]:
+					self.tutorial_start(2)
+					self.flags["flag_tutorial_part2"] = False
+				elif self.flags["flag_tutorial_part3"] and not self.trigger["commenting"]:
+					self.flags["flag_tutorial_part3"] = False
+					self.tutorial_start(3)
+		if not self.trigger["Tutorial"] and not self.trigger["game started"]:
+			self.trigger["game started"] = True
+			self.game_start()
+
+	def check_comment_tags(self, tags):
+		for tag in tags:
+			if tag[:4] == "flag":
+				self.flags[tag] = True
+			elif tag[:4] == "card":
+				self.parent.diag.add_card_to_inventory(tag)
 
 	def check_bounds(self, dt):
 		if self.player_outside_bounds:
 			self.player_timer["out of bounds"] += dt
 		else:
 			self.player_timer["out of bounds"] = 0.
-
 		if self.player_timer["out of bounds"] > 10.:
 			self.player_outside_bounds_lament = True
 
@@ -127,7 +145,7 @@ class EventCreator:
 		elif section == 2:
 			self.master.begin_conv("Tutorial")
 		elif section == 3:
-			pass ## Turn Tutorial off.
+			self.master.toggle_classmenu()
 
 	def game_start(self): # Once the Tutorial is over.
 		pass

@@ -14,7 +14,7 @@ class Conversation():
         self.end_conversation = False
 
     def __repr__(self):
-        return "< {}, {} >".format(self.id_tag, self.npc)
+        return "<{}, {}>".format(self.id_tag, self.npc)
 
     def nodes(self):
         for _id, node in self.data.items():
@@ -127,7 +127,7 @@ class Conversation():
             for t in self.data[node]["tags"]:
                 if t == tag:
                     temp_list.append(node)
-        return temp_list
+        return temp_list  
 
     def _check_tag_in_node(self, node, _type):
         tag_dict = {"q":("question", "reply"), "a":("answer", "greeting")}

@@ -19,7 +19,7 @@ class Comment():
 
 	def check_node_for_npc(self, node):
 		if "comment" in node["tags"]:
-			# if npcname in tags: <-- code for more then one NPC talking.
+			# if npcname in tags: <-- code for more then one NPC talking. (not done)
 			return self.npc
 		elif "comment_reply" in node["tags"]:
 			return "player"
@@ -46,7 +46,7 @@ class Comment():
 			self.comments.append({
 				"npc":self.check_node_for_npc(node).lower(), 
 				"text":node["text"], 
-				"space exception":"space_exception" in node["tags"]})
+				"tags":node["tags"]})
 			node = self.goto_next(node)
 			if node == None:
 				break
