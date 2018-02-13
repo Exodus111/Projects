@@ -66,11 +66,11 @@ class Main(Frame):
                 node[canv.stickies[stick].name]["links"] = canv.stickies[stick].links
                 node[canv.stickies[stick].name]["coords"] = canv.stickies[stick].pos
                 self.db.add_node(canv.name, node)
-        fname = filedialog.asksaveasfile(parent=self, mode='w', title='Choose a filename', initialdir="./data")
+        fname = filedialog.asksaveasfile(parent=self, mode='w', title='Choose a filename', initialdir="/home/aurelio/Projects/Games/Story-RPG/New/data/dialogue/")
         self.db.save(fname.name)
 
     def load(self):
-        fname = filedialog.askopenfile(parent=self, mode='rb', title='Choose a file', initialdir="./data")
+        fname = filedialog.askopenfile(parent=self, mode='rb', title='Choose a file', initialdir="/home/aurelio/Projects/Games/Story-RPG/New/data/dialogue/")
         self.db.load(fname.name)
         for canvas in self.canvasi:
             self.menubar.remove_item(canvas.name)
@@ -85,7 +85,8 @@ class Main(Frame):
             self.canvas_switch(name)
             self.menubar.add_button("show", name, self.canvas_switch)
             for node in self.db.nodes[name]:
-                nodecounter += 1
+                if int(node.strip("Node")) > nodecounter:
+                    nodecounter = int(node.strip("Node"))
                 if node[-2] in (str(i) for i in range(10)):
                     cur = int(node[-2:])
                 else:
@@ -104,7 +105,7 @@ class Main(Frame):
             for sticky in canv.stickies:
                 for other in canv.stickies[sticky].links:
                     canv.stickies[sticky].connect2box(other, True)
-        _ = numerate("Node", nodecounter)
+        _ = numerate("Node", nodecounter+1)
 
     def save_image(self):
         for num, canv in enumerate(self.canvasi):

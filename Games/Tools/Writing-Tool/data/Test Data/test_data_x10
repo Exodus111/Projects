@@ -1,0 +1,507 @@
+{
+    "coords": {
+        "Node1": [
+            625.3419016107457,
+            340.04209659169055
+        ],
+        "Node10": [
+            694.9203413945112,
+            86.40320557139592
+        ],
+        "Node104": [
+            3264.1859576990446,
+            -258.3119562456564
+        ],
+        "Node105": [
+            3299.0097225206678,
+            70.02639778681706
+        ],
+        "Node106": [
+            3217.4226163671456,
+            475.9719991360587
+        ],
+        "Node107": [
+            3664.161770793148,
+            -376.71275663918505
+        ],
+        "Node108": [
+            3855.1949949574973,
+            60.07675069492427
+        ],
+        "Node109": [
+            3634.312829517472,
+            629.1965643512126
+        ],
+        "Node11": [
+            1150.409492621438,
+            -358.98889550517833
+        ],
+        "Node110": [
+            3703.2452216725114,
+            -724.3856772279865
+        ],
+        "Node111": [
+            2439,
+            -55
+        ],
+        "Node113": [
+            2870.1807727224414,
+            -358.14631602099615
+        ],
+        "Node114": [
+            2790,
+            582
+        ],
+        "Node116": [
+            2910,
+            -6
+        ],
+        "Node117": [
+            3184.0,
+            567.0
+        ],
+        "Node118": [
+            3557.0,
+            194.0
+        ],
+        "Node119": [
+            3990.0,
+            120.0
+        ],
+        "Node12": [
+            1164.994120616387,
+            80.79373326564516
+        ],
+        "Node120": [
+            4430.0,
+            60.0
+        ],
+        "Node13": [
+            1156.8597620849,
+            580.7924657307326
+        ],
+        "Node14": [
+            1613.306227457494,
+            -619.5325552372897
+        ],
+        "Node15": [
+            1738.1830906254647,
+            81.28501305883805
+        ],
+        "Node16": [
+            1671.438560311552,
+            604.4760087453488
+        ],
+        "Node17": [
+            2387.3274741624323,
+            47.91274790187967
+        ],
+        "Node2": [
+            971,
+            644
+        ],
+        "Node3": [
+            1367.2619879989097,
+            296.362399023892
+        ],
+        "Node36": [
+            1842.5547162907199,
+            1504.4946412407253
+        ],
+        "Node38": [
+            2239,
+            -409
+        ],
+        "Node39": [
+            1633.4088853814378,
+            -990.2993031015583
+        ],
+        "Node4": [
+            1511,
+            615
+        ],
+        "Node40": [
+            1673.4082074257262,
+            991.2966885894016
+        ],
+        "Node41": [
+            2815.498594890445,
+            24.49376764691334
+        ],
+        "Node5": [
+            1294.216035256337,
+            1060.291767211639
+        ],
+        "Node6": [
+            1889,
+            -38
+        ],
+        "Node7": [
+            1995,
+            589
+        ],
+        "Node8": [
+            2040,
+            1022
+        ],
+        "Node9": [
+            293.2821243027905,
+            -199.67988202186973
+        ]
+    },
+    "links": {
+        "Node1": [],
+        "Node10": [
+            "Node11",
+            "Node12",
+            "Node13"
+        ],
+        "Node104": [
+            "Node41",
+            "Node107"
+        ],
+        "Node105": [
+            "Node41",
+            "Node108"
+        ],
+        "Node106": [
+            "Node41",
+            "Node109"
+        ],
+        "Node107": [
+            "Node104"
+        ],
+        "Node108": [
+            "Node105"
+        ],
+        "Node109": [
+            "Node106"
+        ],
+        "Node11": [
+            "Node10",
+            "Node14"
+        ],
+        "Node110": [],
+        "Node111": [
+            "Node6",
+            "Node7",
+            "Node8",
+            "Node116"
+        ],
+        "Node113": [],
+        "Node114": [
+            "Node7",
+            "Node6",
+            "Node8",
+            "Node117"
+        ],
+        "Node116": [
+            "Node111",
+            "Node118"
+        ],
+        "Node117": [
+            "Node114",
+            "Node118"
+        ],
+        "Node118": [
+            "Node116",
+            "Node117",
+            "Node119"
+        ],
+        "Node119": [
+            "Node118",
+            "Node120"
+        ],
+        "Node12": [
+            "Node10",
+            "Node15"
+        ],
+        "Node120": [
+            "Node119"
+        ],
+        "Node13": [
+            "Node10",
+            "Node16"
+        ],
+        "Node14": [
+            "Node11"
+        ],
+        "Node15": [
+            "Node12",
+            "Node17"
+        ],
+        "Node16": [
+            "Node13",
+            "Node17"
+        ],
+        "Node17": [
+            "Node15",
+            "Node16",
+            "Node41"
+        ],
+        "Node2": [
+            "Node3",
+            "Node4",
+            "Node5"
+        ],
+        "Node3": [
+            "Node2",
+            "Node6"
+        ],
+        "Node36": [],
+        "Node38": [],
+        "Node39": [],
+        "Node4": [
+            "Node2",
+            "Node7"
+        ],
+        "Node40": [],
+        "Node41": [
+            "Node17",
+            "Node104",
+            "Node105",
+            "Node106"
+        ],
+        "Node5": [
+            "Node2",
+            "Node8"
+        ],
+        "Node6": [
+            "Node3",
+            "Node111",
+            "Node114"
+        ],
+        "Node7": [
+            "Node4",
+            "Node111",
+            "Node114"
+        ],
+        "Node8": [
+            "Node5",
+            "Node114",
+            "Node111"
+        ],
+        "Node9": []
+    },
+    "names": [
+        "Heidi",
+        "Donald"
+    ],
+    "nodes": {
+        "Donald": [
+            "Node39",
+            "Node12",
+            "Node41",
+            "Node40",
+            "Node109",
+            "Node110",
+            "Node16",
+            "Node105",
+            "Node106",
+            "Node9",
+            "Node11",
+            "Node15",
+            "Node17",
+            "Node14",
+            "Node108",
+            "Node13",
+            "Node10",
+            "Node107",
+            "Node104"
+        ],
+        "Heidi": [
+            "Node120",
+            "Node2",
+            "Node6",
+            "Node114",
+            "Node8",
+            "Node4",
+            "Node1",
+            "Node113",
+            "Node7",
+            "Node36",
+            "Node117",
+            "Node38",
+            "Node3",
+            "Node119",
+            "Node111",
+            "Node116",
+            "Node5",
+            "Node118"
+        ]
+    },
+    "tags": {
+        "Node1": [
+            "card_heidi_info",
+            "name_heidi",
+            "name_donald"
+        ],
+        "Node10": [
+            "greeting",
+            "flag_start",
+            "card_donald_info"
+        ],
+        "Node104": [
+            "question"
+        ],
+        "Node105": [
+            "question"
+        ],
+        "Node106": [
+            "question",
+            "flag_card_donald_like"
+        ],
+        "Node107": [
+            "answer",
+            "card_apothecary"
+        ],
+        "Node108": [
+            "answer"
+        ],
+        "Node109": [
+            "answer"
+        ],
+        "Node11": [
+            "reply"
+        ],
+        "Node110": [
+            "card_apothecary",
+            "name_heidi"
+        ],
+        "Node111": [
+            "question"
+        ],
+        "Node113": [
+            "card_fishmonger",
+            "name_heidi",
+            "name_donald"
+        ],
+        "Node114": [
+            "question"
+        ],
+        "Node116": [
+            "answer",
+            "card_fishmonger"
+        ],
+        "Node117": [
+            "answer"
+        ],
+        "Node118": [
+            "answer"
+        ],
+        "Node119": [
+            "question",
+            "flag_heidi_happy"
+        ],
+        "Node12": [
+            "reply"
+        ],
+        "Node120": [
+            "answer"
+        ],
+        "Node13": [
+            "reply"
+        ],
+        "Node14": [
+            "answer",
+            "card_donald_no_like"
+        ],
+        "Node15": [
+            "answer"
+        ],
+        "Node16": [
+            "answer",
+            "card_donald_like",
+            "flag_card_donald_like"
+        ],
+        "Node17": [
+            "question"
+        ],
+        "Node2": [
+            "greeting",
+            "flag_start",
+            "card_heidi_info"
+        ],
+        "Node3": [
+            "reply"
+        ],
+        "Node36": [
+            "card_heidi_angry",
+            "name_donald"
+        ],
+        "Node38": [
+            "card_heidi_happy"
+        ],
+        "Node39": [
+            "card_donald_no_like",
+            "name_heidi"
+        ],
+        "Node4": [
+            "reply"
+        ],
+        "Node40": [
+            "card_donald_like"
+        ],
+        "Node41": [
+            "answer"
+        ],
+        "Node5": [
+            "reply"
+        ],
+        "Node6": [
+            "answer",
+            "card_heidi_happy",
+            "flag_heidi_happy"
+        ],
+        "Node7": [
+            "answer"
+        ],
+        "Node8": [
+            "answer",
+            "card_heidi_angry"
+        ],
+        "Node9": [
+            "card_donald_info",
+            "name_heidi"
+        ]
+    },
+    "text": {
+        "Node1": "Name: Heidi\nAge: Middle Aged\n\nThis NPC works at the Fishmonger store.\n\n",
+        "Node10": "Hello there, buy something or get out. No loitering.",
+        "Node104": "What do you do?",
+        "Node105": "Tell me about Heidi.",
+        "Node106": "You like it when people are rude?",
+        "Node107": "I'm an Apothecary, have been for many years now.\n\nApothecary is the trade of salves, balmes and tonics.",
+        "Node108": "Not much to say really. Can't say that I know her.",
+        "Node109": "Polite people always hide their opinion of you, rude people are honest, I like that.",
+        "Node11": "Hi sir. I've actually come to ask you some questions if you don't mind.",
+        "Node110": "An Apothecary deals in Salves, Balmes and Tonics.\n\nDonald is one, has been one for years.",
+        "Node111": "Can you tell me what you do here?",
+        "Node113": "A fishmonger sells wares from the sea, like fish.",
+        "Node114": "Can you tell me about this place?",
+        "Node116": "Oh I'm a Fishmonger deary, it means I sell fish and other wares from the sea.\nMostly Fish though.",
+        "Node117": "Oh not much to say really. Its home I suppose.\n",
+        "Node118": "Anyway, I have to go, you have a good day now.",
+        "Node119": "Hold on before I go, can you tell me what happened here yesterday?",
+        "Node12": "Ok... I have some questions for you.",
+        "Node120": "I really don't know what you mean, sorry.\nGood day deary.",
+        "Node13": "What...? Who would buy something here? Be quiet for a second old man, I have some questions for you.",
+        "Node14": "Mind? Of course I mind, I am not answering any kind of questions, I have a business to run. Get out now!",
+        "Node15": "Questions? What kind of questions?",
+        "Node16": "Ah... ah hahahaha!\n\nAlright, you have some spunk in you. Lets hear these questions then.",
+        "Node17": "Ok, hold on.",
+        "Node2": "Hullo there sir, how do you do?",
+        "Node3": "I am very well thank you. Might I ask you some Questions?",
+        "Node36": "Heidi is now mad at you. Congratualtions.",
+        "Node38": "Heidi likes you, congratulations.",
+        "Node39": "Donald no like you... \n\nNo, he does not.",
+        "Node4": "Fine. I need to ask you some questions.",
+        "Node40": "Donald likes you!\n\nCongratulations.",
+        "Node41": "Alright.",
+        "Node5": "Could you let me speak? You are going to answer some questions, right now!",
+        "Node6": "Oh certainly sir. Go right ahead.",
+        "Node7": "Alright, I suppose I could do that.",
+        "Node8": "Well I never... Alright then, out with it, tell me these questions...!",
+        "Node9": "Name: Donald\nAge: Older man.\n\nDonald is the Apothecary and has his own store in the village.\n\n"
+    }
+}

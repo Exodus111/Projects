@@ -78,13 +78,20 @@ class DataBase():
 
         self.save_file(data, fname)
 
-    def save_file(self, data, fname):
+    def save_file(self, data, fname, backup=True):
         """
         Save method. Called from self.save.
         """
         print("writing data...")
-        with open(fname, "w") as f:
+        with open(fname, "w+") as f:
             json.dump(data, f, indent=4, sort_keys=True)
+        # Making a backup Save
+        if backup:
+            folder = "./data/backup"
+            amount = len(Path(folder).files("backup*.*"))
+            with open("{}/backup{}.json".format(folder, amount), "w+") as backup_file:
+                json.dump(data, backup_file, indent=4, sort_keys=True)
+            print("Saving backup.")
 
     def load(self, fname):
         """

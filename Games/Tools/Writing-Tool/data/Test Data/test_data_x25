@@ -1,0 +1,1048 @@
+{
+    "coords": {
+        "Node1": [
+            611.0757451731738,
+            327.4700796277922
+        ],
+        "Node10": [
+            494.26234074073227,
+            -6.762983325615636
+        ],
+        "Node1026": [
+            5253.0,
+            122.0
+        ],
+        "Node1027": [
+            5694,
+            99
+        ],
+        "Node1028": [
+            6113.0,
+            69.0
+        ],
+        "Node1029": [
+            6498.0,
+            -174.0
+        ],
+        "Node1030": [
+            6532.0,
+            216.0
+        ],
+        "Node1031": [
+            6577,
+            628
+        ],
+        "Node1032": [
+            7048.0,
+            290.0
+        ],
+        "Node1033": [
+            6955.0,
+            -293.0
+        ],
+        "Node1034": [
+            7400.0,
+            -385.0
+        ],
+        "Node1035": [
+            6007.85907902044,
+            -200.34274874417133
+        ],
+        "Node1036": [
+            6508.363471048995,
+            -218.9889908001369
+        ],
+        "Node1037": [
+            6467.145462293695,
+            176.50761701850615
+        ],
+        "Node1038": [
+            6479.903417384619,
+            -577.1931145068486
+        ],
+        "Node1039": [
+            6993.165764504103,
+            -409.3769360031565
+        ],
+        "Node104": [
+            3082.786126028319,
+            -354.0619896448339
+        ],
+        "Node1040": [
+            6971.5753789656155,
+            167.67518657094314
+        ],
+        "Node1041": [
+            7436,
+            -407
+        ],
+        "Node1042": [
+            7460,
+            134
+        ],
+        "Node105": [
+            3117.8709156125415,
+            -23.262544993528707
+        ],
+        "Node106": [
+            3035.672265729495,
+            385.72585930263267
+        ],
+        "Node107": [
+            3485.759994967178,
+            -473.35027423121414
+        ],
+        "Node108": [
+            3678.2251264006672,
+            -33.28677058902258
+        ],
+        "Node109": [
+            3455.6873181806977,
+            540.0989334732408
+        ],
+        "Node11": [
+            953.1656531928006,
+            -455.49356225041845
+        ],
+        "Node110": [
+            3525.1363994815056,
+            -823.6292094776826
+        ],
+        "Node111": [
+            2690.287581799801,
+            -110.26832326260688
+        ],
+        "Node113": [
+            3055.2282120843456,
+            -432.7087256380869
+        ],
+        "Node114": [
+            2967.9283902706993,
+            590.9108165619351
+        ],
+        "Node116": [
+            3098.582888374651,
+            -49.29622414742937
+        ],
+        "Node117": [
+            3396.910659045341,
+            574.5790042989411
+        ],
+        "Node118": [
+            3803.028390651791,
+            168.4612726924905
+        ],
+        "Node119": [
+            4274.473371310218,
+            87.89099886172022
+        ],
+        "Node12": [
+            967.8596016210668,
+            -12.414501951873035
+        ],
+        "Node120": [
+            4753.539864358043,
+            22.56374980974431
+        ],
+        "Node13": [
+            959.6642712499322,
+            491.3320174372361
+        ],
+        "Node14": [
+            1419.5320734847326,
+            -717.9901511755036
+        ],
+        "Node15": [
+            1545.3449627753841,
+            -11.919539725374989
+        ],
+        "Node16": [
+            1478.1001426372802,
+            515.193082647533
+        ],
+        "Node17": [
+            2199.3550683121393,
+            -45.54194979442863
+        ],
+        "Node2": [
+            987.4239565116277,
+            658.4156405823105
+        ],
+        "Node201": [
+            4658.321881683307,
+            -79.70889384700175
+        ],
+        "Node202": [
+            4157.59657203691,
+            -78.7013982541522
+        ],
+        "Node203": [
+            5141.919766251257,
+            -292.2904639383294
+        ],
+        "Node204": [
+            5137.8897838798575,
+            96.60283490172947
+        ],
+        "Node205": [
+            5572.120384398165,
+            -366.8451378092217
+        ],
+        "Node206": [
+            5545.925498984065,
+            96.60283490172947
+        ],
+        "Node287": [
+            -291.6265924134878,
+            1004.7933167677252
+        ],
+        "Node288": [
+            124.4790197828014,
+            996.9422674810016
+        ],
+        "Node289": [
+            58.688232489369284,
+            951.2994738320024
+        ],
+        "Node290": [
+            530.133213147796,
+            946.9443238952042
+        ],
+        "Node3": [
+            1418.8690495088922,
+            279.91217160234953
+        ],
+        "Node36": [
+            1936.3618234040969,
+            1595.3114361860362
+        ],
+        "Node39": [
+            1439.7854127476762,
+            -1091.5360156240424
+        ],
+        "Node4": [
+            1575.3691979794114,
+            626.840803540522
+        ],
+        "Node40": [
+            1480.0845534242794,
+            904.9132128136155
+        ],
+        "Node41": [
+            2630.735585431212,
+            -69.13646919034576
+        ],
+        "Node470": [
+            532.7335826923696,
+            974.3705007816757
+        ],
+        "Node471": [
+            887.0121817557194,
+            984.1843123900783
+        ],
+        "Node472": [
+            369.0,
+            194.0
+        ],
+        "Node473": [
+            765.0,
+            178.0
+        ],
+        "Node474": [
+            1173.0,
+            163.0
+        ],
+        "Node5": [
+            1339.337530391344,
+            1111.668906497676
+        ],
+        "Node6": [
+            1986.93086700686,
+            -84.1374236418165
+        ],
+        "Node7": [
+            2019.5944915328482,
+            584.3780916567375
+        ],
+        "Node728": [
+            369,
+            268
+        ],
+        "Node729": [
+            791,
+            271
+        ],
+        "Node730": [
+            1259,
+            247
+        ],
+        "Node731": [
+            1679.0,
+            245.0
+        ],
+        "Node732": [
+            2118.0,
+            239.0
+        ],
+        "Node733": [
+            2596.0,
+            249.0
+        ],
+        "Node734": [
+            3058.0,
+            239.0
+        ],
+        "Node735": [
+            3502.0,
+            238.0
+        ],
+        "Node736": [
+            3921,
+            245
+        ],
+        "Node8": [
+            2151.337777120999,
+            1069.9773096097592
+        ],
+        "Node9": [
+            89.61360710073546,
+            -294.990433264721
+        ]
+    },
+    "links": {
+        "Node1": [],
+        "Node10": [
+            "Node11",
+            "Node12",
+            "Node13"
+        ],
+        "Node1026": [
+            "Node1027"
+        ],
+        "Node1027": [
+            "Node1026",
+            "Node1028"
+        ],
+        "Node1028": [
+            "Node1027",
+            "Node1029",
+            "Node1030",
+            "Node1031"
+        ],
+        "Node1029": [
+            "Node1028",
+            "Node1033"
+        ],
+        "Node1030": [
+            "Node1028",
+            "Node1032"
+        ],
+        "Node1031": [
+            "Node1028",
+            "Node1032"
+        ],
+        "Node1032": [
+            "Node1030",
+            "Node1031"
+        ],
+        "Node1033": [
+            "Node1029",
+            "Node1034"
+        ],
+        "Node1034": [
+            "Node1033"
+        ],
+        "Node1035": [
+            "Node1036",
+            "Node1037",
+            "Node1038"
+        ],
+        "Node1036": [
+            "Node1035",
+            "Node1039"
+        ],
+        "Node1037": [
+            "Node1035",
+            "Node1040"
+        ],
+        "Node1038": [
+            "Node1035",
+            "Node1039"
+        ],
+        "Node1039": [
+            "Node1038",
+            "Node1036",
+            "Node1041"
+        ],
+        "Node104": [
+            "Node41",
+            "Node107"
+        ],
+        "Node1040": [
+            "Node1037",
+            "Node1042"
+        ],
+        "Node1041": [
+            "Node1039"
+        ],
+        "Node1042": [
+            "Node1040"
+        ],
+        "Node105": [
+            "Node41",
+            "Node108"
+        ],
+        "Node106": [
+            "Node41",
+            "Node109"
+        ],
+        "Node107": [
+            "Node104",
+            "Node202"
+        ],
+        "Node108": [
+            "Node105",
+            "Node202"
+        ],
+        "Node109": [
+            "Node106",
+            "Node202"
+        ],
+        "Node11": [
+            "Node10",
+            "Node14"
+        ],
+        "Node110": [],
+        "Node111": [
+            "Node6",
+            "Node7",
+            "Node8",
+            "Node116"
+        ],
+        "Node113": [],
+        "Node114": [
+            "Node7",
+            "Node6",
+            "Node8",
+            "Node117"
+        ],
+        "Node116": [
+            "Node111",
+            "Node118"
+        ],
+        "Node117": [
+            "Node114",
+            "Node118"
+        ],
+        "Node118": [
+            "Node116",
+            "Node117",
+            "Node119"
+        ],
+        "Node119": [
+            "Node118",
+            "Node120"
+        ],
+        "Node12": [
+            "Node10",
+            "Node15"
+        ],
+        "Node120": [
+            "Node119"
+        ],
+        "Node13": [
+            "Node10",
+            "Node16"
+        ],
+        "Node14": [
+            "Node11"
+        ],
+        "Node15": [
+            "Node12",
+            "Node17"
+        ],
+        "Node16": [
+            "Node13",
+            "Node17"
+        ],
+        "Node17": [
+            "Node15",
+            "Node16",
+            "Node41"
+        ],
+        "Node2": [
+            "Node3",
+            "Node4",
+            "Node5"
+        ],
+        "Node201": [
+            "Node203",
+            "Node204"
+        ],
+        "Node202": [
+            "Node108",
+            "Node107",
+            "Node109"
+        ],
+        "Node203": [
+            "Node201",
+            "Node205"
+        ],
+        "Node204": [
+            "Node201",
+            "Node206"
+        ],
+        "Node205": [
+            "Node203"
+        ],
+        "Node206": [
+            "Node204"
+        ],
+        "Node287": [
+            "Node288"
+        ],
+        "Node288": [
+            "Node287",
+            "Node470"
+        ],
+        "Node289": [
+            "Node290"
+        ],
+        "Node290": [
+            "Node289"
+        ],
+        "Node3": [
+            "Node2",
+            "Node6"
+        ],
+        "Node36": [],
+        "Node39": [],
+        "Node4": [
+            "Node2",
+            "Node7"
+        ],
+        "Node40": [],
+        "Node41": [
+            "Node17",
+            "Node104",
+            "Node105",
+            "Node106"
+        ],
+        "Node470": [
+            "Node288",
+            "Node471"
+        ],
+        "Node471": [
+            "Node470"
+        ],
+        "Node472": [
+            "Node473"
+        ],
+        "Node473": [
+            "Node472",
+            "Node474"
+        ],
+        "Node474": [
+            "Node473"
+        ],
+        "Node5": [
+            "Node2",
+            "Node8"
+        ],
+        "Node6": [
+            "Node3",
+            "Node111",
+            "Node114"
+        ],
+        "Node7": [
+            "Node4",
+            "Node111",
+            "Node114"
+        ],
+        "Node728": [
+            "Node729"
+        ],
+        "Node729": [
+            "Node728",
+            "Node730"
+        ],
+        "Node730": [
+            "Node729",
+            "Node731"
+        ],
+        "Node731": [
+            "Node730",
+            "Node732"
+        ],
+        "Node732": [
+            "Node731",
+            "Node733"
+        ],
+        "Node733": [
+            "Node732",
+            "Node734"
+        ],
+        "Node734": [
+            "Node733",
+            "Node735"
+        ],
+        "Node735": [
+            "Node734",
+            "Node736"
+        ],
+        "Node736": [
+            "Node735"
+        ],
+        "Node8": [
+            "Node5",
+            "Node114",
+            "Node111"
+        ],
+        "Node9": []
+    },
+    "names": [
+        "Heidi",
+        "Donald",
+        "trigger1",
+        "triggers"
+    ],
+    "nodes": {
+        "Donald": [
+            "Node41",
+            "Node1040",
+            "Node206",
+            "Node40",
+            "Node1039",
+            "Node105",
+            "Node202",
+            "Node205",
+            "Node13",
+            "Node471",
+            "Node1036",
+            "Node15",
+            "Node1038",
+            "Node288",
+            "Node1042",
+            "Node1041",
+            "Node204",
+            "Node104",
+            "Node1037",
+            "Node9",
+            "Node470",
+            "Node107",
+            "Node287",
+            "Node1035",
+            "Node108",
+            "Node203",
+            "Node106",
+            "Node109",
+            "Node110",
+            "Node201",
+            "Node11",
+            "Node12",
+            "Node10",
+            "Node16",
+            "Node17",
+            "Node39",
+            "Node14"
+        ],
+        "Heidi": [
+            "Node2",
+            "Node111",
+            "Node5",
+            "Node1027",
+            "Node1026",
+            "Node1029",
+            "Node8",
+            "Node1030",
+            "Node114",
+            "Node118",
+            "Node1033",
+            "Node4",
+            "Node120",
+            "Node119",
+            "Node1028",
+            "Node6",
+            "Node1034",
+            "Node36",
+            "Node7",
+            "Node290",
+            "Node289",
+            "Node113",
+            "Node1032",
+            "Node3",
+            "Node1031",
+            "Node117",
+            "Node1",
+            "Node116"
+        ],
+        "trigger1": [
+            "Node474",
+            "Node472",
+            "Node473"
+        ],
+        "triggers": [
+            "Node728",
+            "Node736",
+            "Node730",
+            "Node733",
+            "Node731",
+            "Node735",
+            "Node732",
+            "Node729",
+            "Node734"
+        ]
+    },
+    "tags": {
+        "Node1": [
+            "card_heidi_info",
+            "name_heidi",
+            "name_donald"
+        ],
+        "Node10": [
+            "greeting",
+            "start_donald",
+            "card_donald_info"
+        ],
+        "Node1026": [
+            "greeting",
+            "block_flag_card_heidi_angry"
+        ],
+        "Node1027": [
+            "reply"
+        ],
+        "Node1028": [
+            "answer"
+        ],
+        "Node1029": [
+            "question"
+        ],
+        "Node1030": [
+            "question"
+        ],
+        "Node1031": [
+            "question"
+        ],
+        "Node1032": [
+            "answer"
+        ],
+        "Node1033": [
+            "answer"
+        ],
+        "Node1034": [
+            "answer"
+        ],
+        "Node1035": [
+            "greeting",
+            "block_card_heidi_angry"
+        ],
+        "Node1036": [
+            "reply"
+        ],
+        "Node1037": [
+            "reply"
+        ],
+        "Node1038": [
+            "reply"
+        ],
+        "Node1039": [
+            "answer"
+        ],
+        "Node104": [
+            "question",
+            "save_test1"
+        ],
+        "Node1040": [
+            "answer"
+        ],
+        "Node1041": [
+            "question"
+        ],
+        "Node1042": [
+            "question"
+        ],
+        "Node105": [
+            "question",
+            "save_test1"
+        ],
+        "Node106": [
+            "question",
+            "block_flag_card_donald_like",
+            "save_test1"
+        ],
+        "Node107": [
+            "answer",
+            "card_apothecary"
+        ],
+        "Node108": [
+            "answer"
+        ],
+        "Node109": [
+            "answer"
+        ],
+        "Node11": [
+            "reply"
+        ],
+        "Node110": [
+            "card_apothecary",
+            "name_heidi"
+        ],
+        "Node111": [
+            "question"
+        ],
+        "Node113": [
+            "card_fishmonger",
+            "name_heidi",
+            "name_donald"
+        ],
+        "Node114": [
+            "question",
+            "flag_card_donald_like"
+        ],
+        "Node116": [
+            "answer",
+            "card_fishmonger"
+        ],
+        "Node117": [
+            "answer"
+        ],
+        "Node118": [
+            "answer"
+        ],
+        "Node119": [
+            "question",
+            "block_flag_heidi_happy"
+        ],
+        "Node12": [
+            "reply"
+        ],
+        "Node120": [
+            "answer"
+        ],
+        "Node13": [
+            "reply"
+        ],
+        "Node14": [
+            "answer",
+            "card_donald_no_like"
+        ],
+        "Node15": [
+            "answer"
+        ],
+        "Node16": [
+            "answer",
+            "card_donald_like",
+            "flag_card_donald_like"
+        ],
+        "Node17": [
+            "question"
+        ],
+        "Node2": [
+            "greeting",
+            "start_heidi",
+            "card_heidi_info",
+            "flag_heidi_info"
+        ],
+        "Node201": [
+            "greeting",
+            "block_card_flag_heidi_info"
+        ],
+        "Node202": [
+            "answer",
+            "back_test1"
+        ],
+        "Node203": [
+            "question",
+            "block_flag_card_donald_like"
+        ],
+        "Node204": [
+            "question"
+        ],
+        "Node205": [
+            "answer"
+        ],
+        "Node206": [
+            "answer"
+        ],
+        "Node287": [
+            "comment",
+            "start",
+            "busy"
+        ],
+        "Node288": [
+            "comment_reply"
+        ],
+        "Node289": [
+            "comment",
+            "start",
+            "busy"
+        ],
+        "Node290": [
+            "comment_reply"
+        ],
+        "Node3": [
+            "reply"
+        ],
+        "Node36": [
+            "card_heidi_angry",
+            "name_donald",
+            "name_heidi"
+        ],
+        "Node39": [
+            "card_donald_no_like",
+            "name_heidi"
+        ],
+        "Node4": [
+            "reply"
+        ],
+        "Node40": [
+            "card_donald_like"
+        ],
+        "Node41": [
+            "answer"
+        ],
+        "Node470": [
+            "comment"
+        ],
+        "Node471": [
+            "comment_reply"
+        ],
+        "Node472": [
+            "comment",
+            "start",
+            "busy"
+        ],
+        "Node473": [
+            "comment_reply"
+        ],
+        "Node474": [
+            "comment_reply"
+        ],
+        "Node5": [
+            "reply"
+        ],
+        "Node6": [
+            "answer",
+            "flag_heidi_happy"
+        ],
+        "Node7": [
+            "answer"
+        ],
+        "Node728": [
+            "comment_reply",
+            "start",
+            "event_idle_30"
+        ],
+        "Node729": [
+            "comment_reply"
+        ],
+        "Node730": [
+            "comment_reply"
+        ],
+        "Node731": [
+            "comment_reply"
+        ],
+        "Node732": [
+            "comment_reply"
+        ],
+        "Node733": [
+            "comment_reply"
+        ],
+        "Node734": [
+            "comment_reply"
+        ],
+        "Node735": [
+            "comment_reply"
+        ],
+        "Node736": [
+            "comment_reply"
+        ],
+        "Node8": [
+            "answer",
+            "card_heidi_angry"
+        ],
+        "Node9": [
+            "card_donald_info",
+            "name_heidi"
+        ]
+    },
+    "text": {
+        "Node1": "Name: Heidi\nAge: Middle Aged\n\nThis NPC works at the Fishmonger store.\n\n",
+        "Node10": "Hello there, buy something or get out. No loitering.",
+        "Node1026": "What do YOU want!?",
+        "Node1027": "Listen. I'm very sorry about my behavior before.",
+        "Node1028": "Well, I don't know what to say.. Such rudeness.",
+        "Node1029": "I... I can only apologize. It was not something I ever intended.\nIt just came out.",
+        "Node1030": "Well, I didn't have a lot of time. You can be a but long winded sometimes.",
+        "Node1031": "What the fuck am I saying, you had it coming you old hag and you know it!",
+        "Node1032": "OK THAT'S IT! WE ARE DONE TALKING!!",
+        "Node1033": "Well, it can happen to the best of us deary. I'm very glad you apologized.",
+        "Node1034": "Anyway, I better be off. Talk some other time then.",
+        "Node1035": "Well? I don't have all day, what did you do now?",
+        "Node1036": "I think I pissed off Heidi.",
+        "Node1037": "Pretty sure Heidi got her panties in a bunch over something I said.",
+        "Node1038": "I'm so sorry, but I just upset Heidi by saying something stupid.",
+        "Node1039": "Well, of course you did! Now what dumb thing do you actually say?",
+        "Node104": "What do you do?",
+        "Node1040": "Ahahaha!\nWell of course she did. That is just like her!",
+        "Node1041": "You know, it doesn't matter.",
+        "Node1042": "That's what I thought.\nAnyway thanks for understanding.",
+        "Node105": "Tell me about Heidi.",
+        "Node106": "You like it when people are rude?",
+        "Node107": "I'm an Apothecary, have been for many years now.\n\nApothecary is the trade of salves, balmes and tonics.",
+        "Node108": "Not much to say really. Can't say that I know her.",
+        "Node109": "Polite people always hide their opinion of you, rude people are honest, I like that.",
+        "Node11": "Hi sir. I've actually come to ask you some questions if you don't mind.",
+        "Node110": "An Apothecary deals in Salves, Balmes and Tonics.\n\nDonald is one, has been one for years.",
+        "Node111": "Can you tell me what you do here?",
+        "Node113": "A fishmonger sells wares from the sea, like fish.",
+        "Node114": "Can you tell me about this place?",
+        "Node116": "Oh I'm a Fishmonger deary, it means I sell fish and other wares from the sea.\nMostly Fish though.",
+        "Node117": "Oh not much to say really. Its home I suppose.\n",
+        "Node118": "Anyway, I have to go, you have a good day now.",
+        "Node119": "Hold on before I go, can you tell me what happened here yesterday?",
+        "Node12": "Ok... I have some questions for you.",
+        "Node120": "I really don't know what you mean, sorry.\nGood day deary.",
+        "Node13": "What...? Who would buy something here? Be quiet for a second old man, I have some questions for you.",
+        "Node14": "Mind? Of course I mind, I am not answering any kind of questions, I have a business to run. Get out now!",
+        "Node15": "Questions? What kind of questions?",
+        "Node16": "Ah... ah hahahaha!\n\nAlright, you have some spunk in you. Lets hear these questions then.",
+        "Node17": "Ok, hold on.",
+        "Node2": "Hullo there sir, how do you do?",
+        "Node201": "You again, what do you want now?",
+        "Node202": "Well, I have got things to do. You know where the door is.",
+        "Node203": "Hey now, don't give me that old man. I need to know something about Heidi.",
+        "Node204": "I need to ask about Heidi",
+        "Node205": "Hehe, alright alright. What do you want to know about her?",
+        "Node206": "Well, ask then.",
+        "Node287": "I don't have time for this right now.",
+        "Node288": "Oh, ok then.",
+        "Node289": "Sorry Deary. Busy busy busy!",
+        "Node290": "Oh, some other time then.",
+        "Node3": "I am very well thank you. Might I ask you some Questions?",
+        "Node36": "Heidi is now mad at you. Congratualtions.",
+        "Node39": "Donald no like you... \n\nNo, he does not.",
+        "Node4": "Fine. I need to ask you some questions.",
+        "Node40": "Donald likes you!\n\nCongratulations.",
+        "Node41": "Alright.",
+        "Node470": "I'm serious. Don't give me that look. I am a busy man.",
+        "Node471": "I get it, it's fine.",
+        "Node472": "",
+        "Node473": "I seem to have triggered something...",
+        "Node474": "Oh well, maybe it was nothing.",
+        "Node5": "Could you let me speak? You are going to answer some questions, right now!",
+        "Node6": "Oh certainly sir. Go right ahead.",
+        "Node7": "Alright, I suppose I could do that.",
+        "Node728": "Uhmm... hello!",
+        "Node729": "Anyone there?",
+        "Node730": "Did you like... go get a cup of coffee or something? ",
+        "Node731": "Maybe some Tea?\n\nTea is nice. I could use a cup right now, but I'm stuck standing out here.\n\n\n",
+        "Node732": "...",
+        "Node733": "I hope everything is ok.",
+        "Node734": "Should I call the police or something?\nI mean, I don't want to impose or anything. But something could be seriously wrong.",
+        "Node735": "Wait I forgot, the phone has not been invented yet.",
+        "Node736": "Guess I'll just stand here in silence then.",
+        "Node8": "Well I never... Alright then, out with it, tell me these questions...!",
+        "Node9": "Name: Donald\nAge: Older man.\n\nDonald is the Apothecary and has his own store in the village.\n\n"
+    }
+}
