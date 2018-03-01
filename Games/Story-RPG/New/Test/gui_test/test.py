@@ -1,10 +1,6 @@
 #!/usr/bin/python3
 
-a = "block_card_name1"
+a = ["a", "b", "c"]
 
-for t in ("block_", "flag_", "card_"):
-	a = a.replace(t, "")
-
-print(a)
-
-
+t = "check"*any([(i in ("d", "e", "f")) for i in a]) or "not check"
+print(t)

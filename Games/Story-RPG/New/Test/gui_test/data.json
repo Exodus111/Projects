@@ -700,12 +700,12 @@
         ],
         "Node10": [
             "greeting",
-            "start_donald",
+            "block_start_donald",
             "card_donald_info"
         ],
         "Node1026": [
             "greeting",
-            "block_flag_card_heidi_angry"
+            "block_card_heidi_angry"
         ],
         "Node1027": [
             "reply"
@@ -780,7 +780,7 @@
             "answer"
         ],
         "Node11": [
-            "reply"
+            "question"
         ],
         "Node110": [
             "card_apothecary",
@@ -813,13 +813,13 @@
             "block_flag_heidi_happy"
         ],
         "Node12": [
-            "reply"
+            "question"
         ],
         "Node120": [
             "answer"
         ],
         "Node13": [
-            "reply"
+            "question"
         ],
         "Node14": [
             "answer",
@@ -838,13 +838,13 @@
         ],
         "Node2": [
             "greeting",
-            "start_heidi",
+            "block_start_heidi",
             "card_heidi_info",
             "flag_heidi_info"
         ],
         "Node201": [
             "greeting",
-            "block_card_flag_heidi_info"
+            "block_card_heidi_info"
         ],
         "Node202": [
             "answer",
@@ -880,7 +880,7 @@
             "comment_reply"
         ],
         "Node3": [
-            "reply"
+            "question"
         ],
         "Node36": [
             "card_heidi_angry",
@@ -892,7 +892,7 @@
             "name_heidi"
         ],
         "Node4": [
-            "reply"
+            "question"
         ],
         "Node40": [
             "card_donald_like"
@@ -918,7 +918,7 @@
             "comment_reply"
         ],
         "Node5": [
-            "reply"
+            "question"
         ],
         "Node6": [
             "answer",
