@@ -12,12 +12,12 @@ class Dialogue:
 
 ##### Init Methods.
 
-	def assemble_nodes(self, dict):
+	def assemble_nodes(self, _dict):
 		node_dict = {}
-		for name in dict["names"]:
-			for node in dict["nodes"][name]:
-				tags = self.fix_tags(dict["tags"][node])
-				n = Node(node, name, dict["text"][node], dict["links"][node], tags, coords)
+		for name in _dict["names"]:
+			for node in _dict["nodes"][name]:
+				tags = self.fix_tags(_dict["tags"][node])
+				n = Node(node, name, _dict["text"][node], _dict["links"][node], tags, _dict["coords"])
 				n.type = "comment"*any([(t in ("comment", "comment_reply", "start")) for t in tags]) or "dialogue"
 				node_dict[node] = n
 		return node_dict
@@ -32,7 +32,7 @@ class Dialogue:
 
 	def gather_nodes(self, pat):
 		nodelist = []
-		for node in self.nodes.keys:
+		for node in self.nodes.keys():
 			if pat in self.nodes[node].tags:
 				nodelist.append(self.nodes[node])
 		return nodelist
@@ -89,11 +89,9 @@ class Events:
 			self.flags["flag_start_"+npc] = True
 
 class DialogueSystem:
-	def __init__(self, events, jsonfile):
-		with open(jsonfile, "r+") as f:
-			dialoguedict = json.load(f)
-		self.dialogue = Dialogue(dialoguedict)
-		self.events = Events(self.dialogue)
+	def __init__(self, events, dialoguedata):
+		self.dialogue = dialoguedata
+		self.events = events
 		self.callback_list = []
 		self.current_answer = None
 		self.current_questions = None
@@ -118,6 +116,12 @@ class DialogueSystem:
 		else:
 			return None
 
+	def find_busy(self, npc):
+		for comment in self.dialogue.comment_starts:
+			if npc == comment.npc and "busy" in comment.tags:
+				return comment
+		raise Exception("Busy comment missing. Something went wrong. NPC: "+npc)
+
 	def find_comment(self, npc):
 		for comment in self.dialogue.comment_starts:
 			if npc == comment.npc:
@@ -127,18 +131,12 @@ class DialogueSystem:
 							return comment
 		return None 
 
-	def find_busy(self, npc):
-		for comment in self.dialogue.comment_starts:
-			if npc == comment.npc and "busy" in comment.tags:
-				return comment
-		raise Exception("Busy comment missing. Something went wrong. NPC: "+npc)
-
 ### Setting up a conversation.
-	def setup_conversation(self, node)
-		if node.type = "dialogue":
+	def setup_conversation(self, node):
+		if node.type == "dialogue":
 			self.current_answer = node
 			self.current_questions = self.get_questions(node)
-		elif node.type = "comment":
+		elif node.type == "comment":
 			self.current_comment = node
 
 	def get_questions(self, node):
@@ -194,7 +192,6 @@ class DialogueSystem:
 		# Find which card the tag names.
 		# Add it to some kind of inventory.
 		pass
-
 
 class Main:
 	def setup(self):

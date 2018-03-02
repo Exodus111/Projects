@@ -17,8 +17,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import *
 
 from gui.gui import GUI
-from logic.dialogue import Dialogue
-from logic.events import EventCreator
+from alt_logic import Dialogue, DialogueSystem, Events
 from random import choice, randint
 import json
 
@@ -38,8 +37,9 @@ class MyGame(Widget):
         # Initializing Dialogue
         with open("data.json", "r+") as f:
             data = json.load(f)
-        self.events = EventCreator()
-        self.diag = Dialogue(self.events, **data)
+        dialoguedata = Dialogue(data)
+        self.events = Events(dialoguedata)
+        self.diag = Dialogue(self.events, dialoguedata)
         
         self.button1 = Button(text="Donald", on_release=lambda *_: self.start_conversation("Donald"))
         self.button2 = Button(text="Heidi", on_release=lambda *_: self.start_conversation("Heidi"))
@@ -57,28 +57,17 @@ class MyGame(Widget):
         self.add_widget(self.gui)
 
     def start_conversation(self, name):
-        # Might have had a minor mental breakdown when I wrote this code.
-        # But it works so...
-        once = False
-        while True:
-            if self.diag.current_conv != None:
-                if self.diag.current_conv.npc.lower() == name.lower():
-                    if self.diag.current_conv.type == "comment":
-                        self.manage_comments()
-                        return
-            if once:
-                break
-            once = True
-            self.diag.find_conversation(name)
-        conv = self.diag.current_conv
-        self.gui.add_text_to_conv_panels({"top_text":conv.top_text, "question_list":conv.bottom_question_list})
+        self.diag.start_conversation(name)
+        self.add_conversation_to_gui()
+
+    def add_conversation_to_gui(self):
+        self.gui.add_text_to_conv_panels({"top_text":self.diag.current_answer, "question_list":self.diag.current_questions})
         self.gui.conv_panels_toggle()
 
     def question_picked(self, text):
         if self.button_cooldown:      #<-- Needed because Kivy sometimes presses a button multiple times.
-            self.diag.current_conv.question_picked(text)
-            conv = self.diag.current_conv
-            self.gui.add_text_to_conv_panels({"top_text":conv.top_text, "question_list":conv.bottom_question_list})
+            self.diag.next_step("question", text)
+            self.add_conversation_to_gui()
             self.cooldown_flipper()
             Clock.schedule_once(self.cooldown_flipper, 0.1)
 
