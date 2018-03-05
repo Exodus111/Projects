@@ -6,21 +6,34 @@ class Dialogue:
 		Keys: names, text, nodes, links, coords, tags
 	"""
 	def __init__(self, dialoguedict):
+		self.names = []
 		self.nodes = self.assemble_nodes(dialoguedict)
 		self.starts = self.gather_nodes("greeting")
 		self.comment_starts = self.gather_nodes("start")
+		self.cards = self.find_cards()
 
 ##### Init Methods.
 
 	def assemble_nodes(self, _dict):
 		node_dict = {}
 		for name in _dict["names"]:
+			self.names.append(name)
 			for node in _dict["nodes"][name]:
 				tags = self.fix_tags(_dict["tags"][node])
-				n = Node(node, name, _dict["text"][node], _dict["links"][node], tags, _dict["coords"])
-				n.type = "comment"*any([(t in ("comment", "comment_reply", "start")) for t in tags]) or "dialogue"
+				n = Node(node, name, _dict["text"][node], _dict["links"][node], tags, _dict["coords"][node])
+				self.set_type(n)
 				node_dict[node] = n
 		return node_dict
+
+	def set_type(self, node):
+		if node.tags[0] in ("comment", "comment_reply", "start"):
+			node.type = "comment"
+		elif node.tags[0] in ("greeting", "question", "answer"):
+			node.type = "dialogue"
+		elif "card" in node.tags[0]:
+			node.type = "card"
+		else:
+			node.type = "unknown"
 
 	def fix_tags(self, tags):
 		taglist = []
@@ -36,6 +49,13 @@ class Dialogue:
 			if pat in self.nodes[node].tags:
 				nodelist.append(self.nodes[node])
 		return nodelist
+
+	def find_cards(self):
+		cards = []
+		for node in self.nodes.keys():
+			if self.nodes[node].type == "Card":
+				cards.append(node)
+		return cards
 
 #### Public Methods.
 
@@ -64,6 +84,7 @@ class Node():
 		self.links = links
 		self.tags = tags
 		self.coords = coords
+		self.names = [t[:4] for t in tags if "name" in t]
 
 	def __repr__(self):
 		return self.text
@@ -73,6 +94,7 @@ class Events:
 		self.data = dialogue
 		self.flags = self.get_flags()
 		self.blocks = []
+		self.playerwait_30 = False
 		self.set_start_flags()
 
 	def get_flags(self):
@@ -81,26 +103,36 @@ class Events:
 			for tag in self.data.nodes[node].tags:
 				if "flag" in tag:
 					flags[tag] = False
+				elif tag[:4] == "card":
+					flags["flag_"+tag] = False
 		return flags
 
 	def set_start_flags(self):
 		self.flags["flag_tutorial"] = True
 		for npc in self.data.names:
-			self.flags["flag_start_"+npc] = True
+			self.flags["flag_start_"+npc.lower()] = True
+
+	def update(self, dt):
+		pass
 
 class DialogueSystem:
 	def __init__(self, events, dialoguedata):
 		self.dialogue = dialoguedata
 		self.events = events
+		self.card_inventory = []
+		self.retired_cards = []
+		self.card_changed = None
 		self.callback_list = []
 		self.current_answer = None
 		self.current_questions = None
 		self.current_comment = None
+		self.in_conversation = False
 
 ### Starting Conversations.
 	def start_conversation(self, npc):
+		self.in_conversation = True
 		node = None
-		for meth in (find_conversation, find_comment, find_busy):
+		for meth in (self.find_conversation, self.find_comment, self.find_busy):
 			node = meth(npc)
 			if node != None:
 				break
@@ -152,13 +184,17 @@ class DialogueSystem:
 	def check_for_blocks(self, nodelist):
 		return [i for i in nodelist if not self.blocked(i)]
 
-	def blocked(self, tag):
-		flag = tag.replace("block", "flag")
-		if self.events.flags[flag]:
-			if tag not in self.events.blocks:
-				self.events.blocks.append(tag)
-				return False
-		return True
+	def blocked(self, node):  ## <--- FIX THIS. NODE IS A TAG FOR SOME REASON!!!!!
+		blocked = False
+		for tag in node.tags:
+			if "block" in tag:
+				blocked = True
+				flag = tag.replace("block", "flag")
+				if self.events.flags[flag]:
+					blocked = False
+					if tag not in self.events.blocks:
+						self.events.blocks.append(tag)
+		return blocked
 
 	def next_step(self, next_type, text=None):
 		if next_type == "question":

@@ -17,11 +17,12 @@ Primary Tags:
 * comment
 * comment_reply
 
+* card_<id>
+
 Secondary Tags:
 
 * flag_<id>
 * block_<id>
-* card_<id>
 * card_name_<npc>
 * block_start_<npc>
 * start
@@ -33,10 +34,6 @@ Secondary Tags:
  * greeting
     The first node of any conversation.
     Greetings always begin with the NPC talking.
-
- #* reply
- #   The reply to a greeting.               <-- Deleted
- #   This is always the player talking.
 
  * question
     The Player asking a question.
@@ -55,7 +52,7 @@ Secondary Tags:
     Card tag, gives this card to the player.
     Cards are objects.
 
- * card_name_<npc>
+ * name_<npc>
      These are the names of the people that can be asked about this card.
      Those people need Question tags with the card Flag on them.
 

@@ -39,7 +39,7 @@ class MyGame(Widget):
             data = json.load(f)
         dialoguedata = Dialogue(data)
         self.events = Events(dialoguedata)
-        self.diag = Dialogue(self.events, dialoguedata)
+        self.diag = DialogueSystem(self.events, dialoguedata)
         
         self.button1 = Button(text="Donald", on_release=lambda *_: self.start_conversation("Donald"))
         self.button2 = Button(text="Heidi", on_release=lambda *_: self.start_conversation("Heidi"))
@@ -95,10 +95,8 @@ class MyGame(Widget):
         self.gui.update(dt)
         self.update_cards(dt)
 
-        if self.diag.current_conv != None:
-            if self.diag.current_conv.end_conversation:
-                self.gui.conv_panels_toggle()
-                self.diag.current_conv.end_conversation = False
+        if self.diag.in_conversation:
+            self.gui.conv_panels_toggle()
 
         if self.events.playerwait_30:
             self.events.playerwait_30 = False
