@@ -33,6 +33,8 @@ class GUI(Widget):
     def __repr__(self):
         return "Main GUI Object \n"
 
+#### Init Methods.
+
     def setup(self):
         self.menus = Menus(size=self.size)
         self.menus.setup()
@@ -44,6 +46,8 @@ class GUI(Widget):
         self.add_widget(self.panels)
         self.add_widget(self.menus)
         self.add_widget(self.hud)
+
+#### Public Methods.
 
     def size_changed(self, value):
         """
@@ -86,10 +90,7 @@ class GUI(Widget):
             This method is a toggle.
         """
         self.panel_toggle = not self.panel_toggle
-        if self.panel_toggle:
-            self.panels.drop_panels()
-        else:
-            self.panels.drop_panels()
+        self.panels.drop_panels()
 
     def add_text_to_conv_panels(self, text_dict):
         """
@@ -113,6 +114,8 @@ class GUI(Widget):
                 neg += 1
             else:
                 self.textpos_list.append((i, abs(n-neg)*4))
+
+#### Update Methods.
 
     def run_comments(self, dt):
         if self.textpos_list != []:

@@ -116,7 +116,8 @@ class Events:
 		pass
 
 class DialogueSystem:
-	def __init__(self, events, dialoguedata):
+	def __init__(self, parent, events, dialoguedata):
+		self.parent = parent
 		self.dialogue = dialoguedata
 		self.events = events
 		self.card_inventory = []
@@ -143,7 +144,7 @@ class DialogueSystem:
 			if start.npc.lower() == npc.lower():
 				for tag in start.tags:
 					if "block" in tag:
-						if not self.blocked(tag):
+						if not self.blocked(start):
 							return start
 		else:
 			return None
@@ -168,8 +169,28 @@ class DialogueSystem:
 		if node.type == "dialogue":
 			self.current_answer = node
 			self.current_questions = self.get_questions(node)
+			text_dict = {"top_text":str(node),
+			"question_list":[str(n) for n in self.current_questions]}
+			self.parent.gui.add_text_to_conv_panel(text_dict)
 		elif node.type == "comment":
-			self.current_comment = node
+			nodelist = []
+			while True:
+				name = "player"*("comment_reply" in node.tags) or node.npc 
+				pos = self.parent.get_npc_pos(name)
+				nodelist.append({"pos":pos, "text"::str(node)})
+				next_list = self.dialogue.next_nodes(node)
+				if next_list == []:
+					break
+				else:
+					node = next_list[0]
+			self.parent.gui.add_comment(nodelist)
+
+	def question_picked(self, text):       ## HERE!! TEST THIS!! MAKE IT WORK! (Good Luck...)
+		for node in self.current_questions:
+			if text == node.text:
+				break
+		next_node = self.dialogue.next_nodes(node)[0]
+		self.setup_conversation(next_node)
 
 	def get_questions(self, node):
 		nodelist = self.dialogue.next_nodes(node)
@@ -184,7 +205,7 @@ class DialogueSystem:
 	def check_for_blocks(self, nodelist):
 		return [i for i in nodelist if not self.blocked(i)]
 
-	def blocked(self, node):  ## <--- FIX THIS. NODE IS A TAG FOR SOME REASON!!!!!
+	def blocked(self, node):
 		blocked = False
 		for tag in node.tags:
 			if "block" in tag:
@@ -196,9 +217,8 @@ class DialogueSystem:
 						self.events.blocks.append(tag)
 		return blocked
 
-	def next_step(self, next_type, text=None):
+	def next_step(self, next_type):
 		if next_type == "question":
-			node = self.dialogue.find_node(text=text)
 			node = self.check_tags(node)
 		elif next_type == "answer":
 			node = self.current_answer

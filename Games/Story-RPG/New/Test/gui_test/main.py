@@ -39,7 +39,7 @@ class MyGame(Widget):
             data = json.load(f)
         dialoguedata = Dialogue(data)
         self.events = Events(dialoguedata)
-        self.diag = DialogueSystem(self.events, dialoguedata)
+        self.diag = DialogueSystem(self, self.events, dialoguedata)
         
         self.button1 = Button(text="Donald", on_release=lambda *_: self.start_conversation("Donald"))
         self.button2 = Button(text="Heidi", on_release=lambda *_: self.start_conversation("Heidi"))
