@@ -171,13 +171,13 @@ class DialogueSystem:
 			self.current_questions = self.get_questions(node)
 			text_dict = {"top_text":str(node),
 			"question_list":[str(n) for n in self.current_questions]}
-			self.parent.gui.add_text_to_conv_panel(text_dict)
+			self.parent.gui.add_text_to_conv_panels(text_dict)
 		elif node.type == "comment":
 			nodelist = []
 			while True:
 				name = "player"*("comment_reply" in node.tags) or node.npc 
 				pos = self.parent.get_npc_pos(name)
-				nodelist.append({"pos":pos, "text"::str(node)})
+				nodelist.append({"pos":pos, "text":str(node)})
 				next_list = self.dialogue.next_nodes(node)
 				if next_list == []:
 					break
@@ -210,7 +210,10 @@ class DialogueSystem:
 		for tag in node.tags:
 			if "block" in tag:
 				blocked = True
-				flag = tag.replace("block", "flag")
+				if "flag" not in tag:
+					flag = tag.replace("block", "flag")
+				else:
+					flag = tag.replace("block_", "")
 				if self.events.flags[flag]:
 					blocked = False
 					if tag not in self.events.blocks:

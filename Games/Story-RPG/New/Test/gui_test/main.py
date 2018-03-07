@@ -25,6 +25,7 @@ class MyGame(Widget):
     ordinal = lambda c, n: "%d%s" % (n,"tsnrhtdd"[(n/10%10!=1)*(n%10<4)*n%10::4])
     button_cooldown = BooleanProperty(True)
     card_counter = DictProperty({"inv":0, "ret":0})
+    once = BooleanProperty(True)
 
     def cooldown_flipper(self, *_):
         self.button_cooldown = not self.button_cooldown
@@ -58,7 +59,6 @@ class MyGame(Widget):
 
     def start_conversation(self, name):
         self.diag.start_conversation(name)
-        self.add_conversation_to_gui()
 
     def add_conversation_to_gui(self):
         self.gui.add_text_to_conv_panels({"top_text":self.diag.current_answer, "question_list":self.diag.current_questions})
@@ -67,7 +67,6 @@ class MyGame(Widget):
     def question_picked(self, text):
         if self.button_cooldown:      #<-- Needed because Kivy sometimes presses a button multiple times.
             self.diag.next_step("question", text)
-            self.add_conversation_to_gui()
             self.cooldown_flipper()
             Clock.schedule_once(self.cooldown_flipper, 0.1)
 
@@ -96,7 +95,12 @@ class MyGame(Widget):
         self.update_cards(dt)
 
         if self.diag.in_conversation:
-            self.gui.conv_panels_toggle()
+            if self.once:
+                self.gui.conv_panels_toggle()
+                self.once = False
+        else:
+            if not self.once:
+                self.once = True
 
         if self.events.playerwait_30:
             self.events.playerwait_30 = False

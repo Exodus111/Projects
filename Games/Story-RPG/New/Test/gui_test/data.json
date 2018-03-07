@@ -830,8 +830,7 @@
         ],
         "Node16": [
             "answer",
-            "card_donald_like",
-            "flag_card_donald_like"
+            "card_donald_like"
         ],
         "Node17": [
             "question"
@@ -839,8 +838,7 @@
         "Node2": [
             "greeting",
             "block_start_heidi",
-            "card_heidi_info",
-            "flag_heidi_info"
+            "card_heidi_info"
         ],
         "Node201": [
             "greeting",
