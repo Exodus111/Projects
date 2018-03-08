@@ -125,19 +125,24 @@ class DialogueSystem:
 		self.card_changed = None
 		self.callback_list = []
 		self.current_answer = None
-		self.current_questions = None
+		self.current_questions = []
 		self.current_comment = None
 		self.in_conversation = False
 
 ### Starting Conversations.
 	def start_conversation(self, npc):
 		self.in_conversation = True
+		self.parent.gui.conv_panels_toggle()
 		node = None
 		for meth in (self.find_conversation, self.find_comment, self.find_busy):
 			node = meth(npc)
 			if node != None:
 				break
 		self.setup_conversation(node)
+
+	def end_conversation(self):
+		self.in_conversation = False
+		self.parent.gui.conv_panels_toggle()
 
 	def find_conversation(self, npc):
 		for start in self.dialogue.starts:
@@ -165,7 +170,7 @@ class DialogueSystem:
 		return None 
 
 ### Setting up a conversation.
-	def setup_conversation(self, node):
+	def setup_conversation(self, node):  ## All conversations begin as new. FIX IT!!
 		if node.type == "dialogue":
 			self.current_answer = node
 			self.current_questions = self.get_questions(node)
@@ -185,12 +190,21 @@ class DialogueSystem:
 					node = next_list[0]
 			self.parent.gui.add_comment(nodelist)
 
-	def question_picked(self, text):       ## HERE!! TEST THIS!! MAKE IT WORK! (Good Luck...)
-		for node in self.current_questions:
-			if text == node.text:
-				break
-		next_node = self.dialogue.next_nodes(node)[0]
-		self.setup_conversation(next_node)
+	def question_picked(self, text):
+		text = text[3:]
+		if text != "Continue...":
+			for node in self.current_questions:
+				if text == node.text:
+					break
+			else:
+				raise Exception("Selected text not found among Questions. That is not supposed to happen. \n{}\n{}".format(text, self.current_questions))
+		else:
+			node = self.current_answer
+		next_list = self.dialogue.next_nodes(node)
+		if next_list != []:
+			self.setup_conversation(next_list[0])
+		else:
+			self.end_conversation()
 
 	def get_questions(self, node):
 		nodelist = self.dialogue.next_nodes(node)
@@ -200,12 +214,12 @@ class DialogueSystem:
 				return nodelist
 		elif len(nodelist) > 1:
 			return nodelist
-		return None
+		return ["Continue..."]
 
 	def check_for_blocks(self, nodelist):
 		return [i for i in nodelist if not self.blocked(i)]
 
-	def blocked(self, node):
+	def blocked(self, node): # Not sure if this works. Saved doesn't seem to work at all Is it even implemented???
 		blocked = False
 		for tag in node.tags:
 			if "block" in tag:

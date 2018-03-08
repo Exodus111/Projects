@@ -1,3 +1,4 @@
+from kivy.clock import Clock
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.floatlayout import FloatLayout
@@ -12,6 +13,7 @@ class DialoguePanels(FloatLayout):
     bottom_buttons = ListProperty()
     open_close = BooleanProperty(False)
     question_big = ObjectProperty()
+    button_cooldown = BooleanProperty(True)
 
     def set_size(self, size):
         self.size = size
@@ -39,14 +41,20 @@ class DialoguePanels(FloatLayout):
             This method is called when the player selects a question.
             This needs to call something in a parent widget.
         """
-        if touch != None:
-            if button.collide_point(*touch.pos):
-                if touch.button == "right":
-                    self.question_menu(button)
-                elif touch.button == "left":
-                    self.parent.parent.diag.question_picked(button.question_text)    # <---Calling outside the module
-        else:
-            self.parent.parent.diag.question_picked(self.question_big.text)          # <---Calling outside the module
+        if self.button_cooldown:
+            if touch != None:
+                if button.collide_point(*touch.pos):
+                    if touch.button == "right":
+                        self.question_menu(button)
+                    elif touch.button == "left":
+                        self.parent.parent.diag.question_picked(button.question_text)    # <---Calling outside the module
+                        self.button_cooldown = False
+                        Clock.schedule_once(self.cooldown_flip, 0.1)
+            else:
+                self.parent.parent.diag.question_picked(self.question_big.text)          # <---Calling outside the module
+
+    def cooldown_flip(self, e):
+        self.button_cooldown = True
 
     def drop_panels(self):
         self.open_close = not self.open_close

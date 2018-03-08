@@ -93,15 +93,6 @@ class MyGame(Widget):
         self.events.update(dt)
         self.gui.update(dt)
         self.update_cards(dt)
-
-        if self.diag.in_conversation:
-            if self.once:
-                self.gui.conv_panels_toggle()
-                self.once = False
-        else:
-            if not self.once:
-                self.once = True
-
         if self.events.playerwait_30:
             self.events.playerwait_30 = False
             node_list = []
