@@ -148,6 +148,30 @@
             959.6642712499322,
             491.3320174372361
         ],
+        "Node1332": [
+            302.0,
+            -259.0
+        ],
+        "Node1333": [
+            765,
+            -268
+        ],
+        "Node1334": [
+            1231,
+            -284
+        ],
+        "Node1335": [
+            297.0,
+            64.0
+        ],
+        "Node1336": [
+            767.0,
+            68.0
+        ],
+        "Node1337": [
+            1221.0,
+            61.0
+        ],
         "Node14": [
             1419.5320734847326,
             -717.9901511755036
@@ -241,16 +265,16 @@
             984.1843123900783
         ],
         "Node472": [
-            369.0,
-            194.0
+            297,
+            436
         ],
         "Node473": [
-            765.0,
-            178.0
+            776,
+            410
         ],
         "Node474": [
-            1173.0,
-            163.0
+            1217,
+            405
         ],
         "Node5": [
             1339.337530391344,
@@ -453,6 +477,26 @@
         "Node13": [
             "Node10",
             "Node16"
+        ],
+        "Node1332": [
+            "Node1333"
+        ],
+        "Node1333": [
+            "Node1332",
+            "Node1334"
+        ],
+        "Node1334": [
+            "Node1333"
+        ],
+        "Node1335": [
+            "Node1336"
+        ],
+        "Node1336": [
+            "Node1335",
+            "Node1337"
+        ],
+        "Node1337": [
+            "Node1336"
         ],
         "Node14": [
             "Node11"
@@ -679,7 +723,13 @@
         "trigger1": [
             "Node474",
             "Node472",
-            "Node473"
+            "Node473",
+            "Node1332",
+            "Node1333",
+            "Node1334",
+            "Node1335",
+            "Node1336",
+            "Node1337"
         ],
         "triggers": [
             "Node728",
@@ -820,6 +870,30 @@
         ],
         "Node13": [
             "question"
+        ],
+        "Node1332": [
+            "comment_reply",
+            "start",
+            "block_tutorial_part1"
+        ],
+        "Node1333": [
+            "comment_reply"
+        ],
+        "Node1334": [
+            "comment_reply",
+            "flag_tutorial_part2"
+        ],
+        "Node1335": [
+            "comment_reply",
+            "start",
+            "block_tutorial_part2"
+        ],
+        "Node1336": [
+            "comment_reply"
+        ],
+        "Node1337": [
+            "comment_reply",
+            "flag_tutorial_over"
         ],
         "Node14": [
             "answer",
@@ -1001,6 +1075,12 @@
         "Node12": "Ok... I have some questions for you.",
         "Node120": "I really don't know what you mean, sorry.\nGood day deary.",
         "Node13": "What...? Who would buy something here? Be quiet for a second old man, I have some questions for you.",
+        "Node1332": "Hei, this begins the tutorial!",
+        "Node1333": "This continues the tutorial!",
+        "Node1334": "This ends the tutorial part 1.",
+        "Node1335": "This starts the tutorial part 2.",
+        "Node1336": "This continues part 2 of the tutorial.",
+        "Node1337": "This ends the tutorial part 2.",
         "Node14": "Mind? Of course I mind, I am not answering any kind of questions, I have a business to run. Get out now!",
         "Node15": "Questions? What kind of questions?",
         "Node16": "Ah... ah hahahaha!\n\nAlright, you have some spunk in you. Lets hear these questions then.",

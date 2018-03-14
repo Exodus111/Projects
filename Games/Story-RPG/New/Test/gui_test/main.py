@@ -58,7 +58,7 @@ class MyGame(Widget):
         self.add_widget(self.gui)
 
     def start_conversation(self, name):
-        self.diag.start_conversation(name)
+        self.diag.start_conversation(name.lower())
 
     def add_conversation_to_gui(self):
         self.gui.add_text_to_conv_panels({"top_text":self.diag.current_answer, "question_list":self.diag.current_questions})
@@ -92,7 +92,7 @@ class MyGame(Widget):
     def update(self, dt):
         self.events.update(dt)
         self.gui.update(dt)
-        self.update_cards(dt)
+        #self.update_cards(dt)
         if self.events.playerwait_30:
             self.events.playerwait_30 = False
             node_list = []

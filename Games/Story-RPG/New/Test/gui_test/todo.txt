@@ -43,10 +43,14 @@ Secondary Tags:
 
  * flag_<id>
     If they are found in a node, they set this flag to true.
+    Flags open blocked nodes. Once a flag does that the flag is reset to false.
+    Because of this Flags should follow serially, and an End flag set at the end.
+    Flags are set in answer nodes, comments and by other events.  
 
  * block_<id>
  	This flag blocks a node from being read, unless that flag is true.
-    Blocks are saved in a block list. A block can only be passed once. 
+    Blocks are saved in a block list. A block can only be passed once.
+    Blocks belong to greeting nodes, start comments, and question nodes.
  
  * card_<id>
     Card tag, gives this card to the player.
@@ -66,7 +70,7 @@ Secondary Tags:
  * back_<id>
     This tags takes you back to the saved tag. But ommits the conversation path you last took.
 
-* once
+ * once
    This only exists after a block tag.
    It signifies that the block tag will not be part of a callback loop, the player will get only one chance to select this choice.
 
@@ -84,3 +88,107 @@ Secondary Tags:
 
  * comment_reply
     This is the players comments. Appears over the players head.
+
+# EXAMPLES
+
+#### General Conversation.
+
+  ----------------------             ---------------               --------------
+ | greeting, block_<id> |           |question       |             |answer        |
+  ----------------------             ---------------               --------------
+ | Text here.           |---------> | Text Here.    |-----------> | Text here.   |   
+ |                      |           |               |             |              |
+ |                      |           |               |             |              |
+ -----------------------             ---------------               --------------
+
+ #### Flag Example.
+
+  ----------------------             ---------------               -----------------
+ | greeting, block_<id> |           |question       |             |answer, flag_<id>|
+  ----------------------             ---------------               -----------------
+ | Text here.           |---------> | Text Here.    |-----------> | Text here.      |   
+ |                      |           |               |             |                 |
+ |                      |           |               |             |                 |
+ -----------------------             ---------------               -----------------
+
+             --------------------               --------------
+            |question, block_<id>|             |answer        |
+             --------------------               --------------
+ ---------> | Text Here.         |-----------> | Text here.   |   
+            |                    |             |              |
+            |                    |             |              |
+             --------------------               --------------
+
+ #### Block example.
+
+  ----------------------             --------------------               --------------
+ | greeting, block_<id> |           |question, block_<id>|             |answer        |
+  ----------------------             --------------------               --------------
+ | Text here.           |---------> | Text Here.         |-----------> | Text here.   |   
+ |                      |   |       |                    |             |              |
+ |                      |   |       |                    |             |              |
+ -----------------------    |        --------------------               --------------
+                            |
+                            |        --------------------               --------------
+                            |       |question,           |             |answer        |
+                            |        --------------------               --------------
+                             -----> | Text Here.         |-----------> | Text here.   |   
+                                    |                    |             |              |
+                                    |                    |             |              |
+                                     --------------------               --------------
+
+  #### Card example.
+
+  ----------------------             ---------------               ------------------
+ | greeting, block_<id> |           |question       |             |answer, card_<id> |
+  ----------------------             ---------------               ------------------
+ | Text here.           |---------> | Text Here.    |-----------> | Text here.       |   
+ |                      |           |               |             |                  |
+ |                      |           |               |             |                  |
+ -----------------------             ---------------               ------------------
+
+  --------------------------- 
+ | greeting, block_card_<id> | 
+  ---------------------------  
+ | Text here.                |--------->
+ |                           | 
+ |                           | 
+  ---------------------------
+
+ ### Save, Back example.
+
+  ----------------------             --------------------               --------------
+ | greeting, block_<id> |           |question, save _<id>|             |answer        |
+  ----------------------             --------------------               --------------
+ | Text here.           |---------> | Text Here.         |-----------> | Text here.   |          -------------------
+ |                      |   |       |                    |             |              |----     | answer, back_<id> |
+ |                      |   |       |                    |             |              |   |      -------------------
+ -----------------------    |        --------------------               --------------    |     | Text here.        |
+                            |                                                              ---->|                   |
+                            |        --------------------               --------------    |     |                   |
+                            |       |question, save _<id>|             |answer        |   |      -------------------
+                            |        --------------------               --------------    |
+                             -----> | Text Here.         |-----------> | Text here.   |----   
+                                    |                    |             |              |
+                                    |                    |             |              |
+                                     --------------------               --------------
+
+### Comment example.
+
+  ---------------------------             ---------------               --------------
+ | comment, start, block_<id>|           |comment_reply  |             |comment       |
+  ---------------------------             ---------------               --------------
+ | Text here.                |---------> | Text Here.    |-----------> | Text here.   |   
+ |                           |           |               |             |              |
+ |                           |           |               |             |              |
+ ----------------------------             ---------------               --------------
+
+### Comment Busy example.
+
+  ---------------------------             ---------------               --------------
+ | comment, start, busy      |           |comment_reply  |             |comment       |
+  ---------------------------             ---------------               --------------
+ | Text here.                |---------> | Text Here.    |-----------> | Text here.   |   
+ |                           |           |               |             |              |
+ |                           |           |               |             |              |
+ ----------------------------             ---------------               --------------
