@@ -128,6 +128,7 @@ class DialogueSystem:
 		self.current_questions = []
 		self.current_comment = None
 		self.in_conversation = False
+		self.p_counter = 0
 
 ### Starting Conversations.
 	def start_conversation(self, npc):
@@ -168,22 +169,27 @@ class DialogueSystem:
 
 ### Setting up a conversation.
 	def setup_conversation(self, node):
+		"""
+			Sets up the initial and following conversations.
+			Takes the greeting/start node of the conversation/comment or the answer node of a dialogue. 
+		"""
 		if node.type == "dialogue":
-			if not self.in_conversation:
+			if not self.in_conversation:  # <-- This happens at the beginning.
+				self.once_list = []
 				self.in_conversation = True
 				self.parent.gui.conv_panels_toggle()
-			node, back = self.check_answer_tags(node)
-			self.current_questions = self.get_questions(node)
-			if not back:
+			node, back = self.check_answer_tags(node)  # <-- Checking flag/card/back tags, can return a different node (back tag).
+			self.current_questions = self.get_questions(node)  # <-- This returns a list of questions or Continue...
+			if not back: # Normal.
 				self.current_answer = node
 			text_dict = {"top_text":str(self.current_answer),
-			"question_list":[str(n) for n in self.current_questions]}
+			"question_list":[str(n) for n in self.current_questions]}   # <-- Constructing dict for the GUI.
 			self.parent.gui.add_text_to_conv_panels(text_dict)
 		elif node.type == "comment":
 			nodelist = []
 			while True:
 				self.check_answer_tags(node)
-				name = "player"*("comment_reply" in node.tags) or node.npc.lower() 
+				name = "player"*("comment_reply" in node.tags) or node.npc.lower()
 				pos = self.parent.get_npc_pos(name)
 				nodelist.append({"pos":pos, "text":str(node)})
 				next_list = self.next_nodes(node)
@@ -194,19 +200,23 @@ class DialogueSystem:
 			self.parent.gui.add_comments(nodelist)
 
 	def question_picked(self, text):
-		text = text[3:]
+		"""
+			When the player clicks on a question in a dialogue.
+			The text is the string of the question. Contains numbering.
+		"""
+		text = text[3:]      # <-- Removes Numbering.            
 		if text != "Continue...":
-			for node in self.current_questions:
+			for node in self.current_questions:  # We find the question node.
 				if text == node.text:
-					self.check_question_tags(node) 
-					break
+					self.check_question_tags(node) # Checking for save tag.
+					break                          # Breaking means the node we found sticks around.
 			else:
 				raise Exception("Selected text not found among Questions. That is not supposed to happen. \n{}\n{}".format(text, self.current_questions))
 		else:
-			node = self.current_answer
-		next_list = self.next_nodes(node)
+			node = self.current_answer    # Continue means no questions, so we stick to the answer node we came from.
+		next_list = self.next_nodes(node) # Get the connected nodes to the right of our node. 
 		if next_list != []:
-			self.setup_conversation(next_list[0])
+			self.setup_conversation(next_list[0])   # <-- Sending answer node to setup.
 		else:
 			self.end_conversation()
 
@@ -217,10 +227,19 @@ class DialogueSystem:
 				next_nodes.append(self.dialogue.nodes[n])
 		return next_nodes
 
-	def get_questions(self, node):
-		nodelist = self.next_nodes(node)
-		nodelist = self.check_for_blocks(nodelist)
-		nodelist = [q for q in nodelist if q not in self.once_list]
+	def get_questions(self, node): # PROBLEM HERE!! Electing Continue... too many times. 
+		"""
+			Gets next question nodes.
+			node is an answer node.
+		"""
+		qlist = self.next_nodes(node)
+		qlist = self.check_for_blocks(qlist)
+		nodelist = []
+		for q in qlist:    # <-- Checking if nodes are in the once list. Can be answer node.    
+			if q in self.once_list:
+				self.once_list.remove(q)  # THIS IS WRONG. The Once list needs to last beyond one return.
+			else:
+				nodelist.append(q)
 		if len(nodelist) == 1:
 			if "question" in nodelist[0].tags:
 				return nodelist
@@ -270,14 +289,13 @@ class DialogueSystem:
 				self.callback_dict[tag] = self.current_answer
 
 	def add_card_to_inventory(self, tag):
-		node = self.find_card(tag)      ## <--- THIS IS COMING BACK NONE!! WHY??   
+		node = self.find_card(tag)
 		self.deck.append(node)
 		self.parent.gui.add_card(node.dict)
 
 	def find_card(self, tag):
 		for k, node in self.dialogue.nodes.items():
 			if node.type == "card":
-				print("Found Card, ", tag)
 				if tag == node.tags[0]:
 					return node
 		else:
