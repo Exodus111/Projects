@@ -87,6 +87,16 @@ class Node():
 
 	def __repr__(self):
 		return self.text
+
+	def remove_block(self):
+		tags = []
+		if "greeting" not in self.tags:
+			if "start" not in self.tags:
+				for tag in self.tags:
+					if "block" not in tag:
+						tags.append(tag)
+				self.tags = tags
+
 		
 class Events:
 	def __init__(self, dialogue):
@@ -235,11 +245,9 @@ class DialogueSystem:
 		nodelist = self.next_nodes(node)
 		nodelist = self.check_for_blocks(nodelist)
 		nodelist = [q for q in nodelist if q not in self.once_list]   # Eliminate questions we have already asked.
-		if len(nodelist) == 1:
+		if nodelist != []:
 			if "question" in nodelist[0].tags:
 				return nodelist
-		elif len(nodelist) > 1:
-			return nodelist
 		return ["Continue..."]
 
 	def check_for_blocks(self, nodelist):
@@ -259,6 +267,7 @@ class DialogueSystem:
 					blocked = False
 					if tag not in self.events.blocks:
 						self.events.blocks.append(tag)
+					node.remove_block()
 		return blocked
 
 	def check_answer_tags(self, node):
@@ -271,15 +280,14 @@ class DialogueSystem:
 				self.add_card_to_inventory(tag)
 			elif "back" in tag:                        # The answer tag contains a back tag. We need to check to see if we need to go back. 
 				saved = tag.replace("back", "save")
-				if not last_save_tag(saved):
+				if not self.last_save_tag(saved):
 					if saved in self.callback_dict.keys(): # <-- THIS SHOULD WORK NOW! TEST IT!!
 						node = self.callback_dict[saved]
-						del(self.callback_dict[saved])     # Delete the saved node after one use. It will be resaved if we hit another save node.
 						back = True
 		return node, back
 
 	def last_save_tag(self, tag):
-		howmany = [k for k in self.dialogue.nodes.keys() if tag in self.dialogue.data[k].tags]
+		howmany = [k for k in self.dialogue.nodes.keys() if tag in self.dialogue.nodes[k].tags]
 		amount = [i for i in self.once_list if tag in i.tags]
 		return len(howmany) == len(amount) 
 
@@ -287,7 +295,8 @@ class DialogueSystem:
 		for tag in question.tags:
 			if "save" in tag:
 				self.once_list.append(question)               # We save the question for future elimination.
-				self.callback_dict[tag] = self.current_answer # We save the answer node to return to it from a back node.
+				if tag not in self.callback_dict.keys(): 
+					self.callback_dict[tag] = self.current_answer # We save the answer node to return to it from a back node.
 
 	def add_card_to_inventory(self, tag):
 		node = self.find_card(tag)
