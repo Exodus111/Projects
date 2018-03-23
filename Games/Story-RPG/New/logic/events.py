@@ -6,6 +6,7 @@ class EventCreator:
 
 		self.master = master
 		self.flags = {}            ## All flags start as False
+		self.blocks = []
 		self.room = ""
 		self.prev_room = ""
 		self.poi = {"exit_poi":self.poi_exit,
@@ -27,6 +28,26 @@ class EventCreator:
 		self.cooldown = {}
 		self.trigger = defaultdict(bool) # Defaults as False
 		self.trigger["Tutorial"] = True
+
+	def setup_dialogue(self, data):
+		self.data = data
+		self.flags = self.get_flags()
+		self.set_start_flags()
+
+	def get_flags(self):
+		flags = {}
+		for node in self.data.nodes.keys():
+			for tag in self.data.nodes[node].tags:
+				if "flag" in tag:
+					flags[tag] = False
+				elif tag[:4] == "card":
+					flags["flag_"+tag] = False
+		return flags
+
+	def set_start_flags(self):
+		self.flags["flag_tutorial_part1"] = True
+		for npc in self.data.names:
+			self.flags["flag_start_"+npc.lower()] = True
 
 	def save(self, player_pos): # Not tested, should work.
 		savedict = {"player_pos":player_pos, "flags":[]}

@@ -68,7 +68,7 @@ class Dialogue:
 		else:
 			return None
 
-class Node:
+class Node():
 	def __init__(self, node, npc, text, links, tags, coords, type_):
 		self.node = node
 		self.npc = npc
@@ -237,7 +237,7 @@ class DialogueSystem:
 				next_nodes.append(self.dialogue.nodes[n])
 		return next_nodes
 
-	def get_questions(self, node): # PROBLEM HERE!! Electing Continue... too many times.
+	def get_questions(self, node):
 		"""
 			Gets next question nodes.
 			node is an answer node.
@@ -267,6 +267,9 @@ class DialogueSystem:
 					blocked = False
 					if tag not in self.events.blocks:
 						self.events.blocks.append(tag)
+					if "card" in tag:
+						node.dict["tags"] = [t for t in node.dict["tags"] if node.npc.lower() not in t]
+						self.parent.gui.update_card(node.dict)
 					node.remove_block()
 		return blocked
 
@@ -310,3 +313,17 @@ class DialogueSystem:
 					return node
 		else:
 			assert Exception("Card not found. This should not happen. {}".format(tag))
+
+#### Card Inventory
+
+	def add_card_to_inventory(self, tag):
+		for node in self.dialogue.cards:
+			if tag in node.tags:
+				self.parent.gui.add_card(node.dict)
+
+	def update_card(self, tag, npc):
+		for node in self.dialogue.cards:
+			if tag in node.tags:
+				node.dict["tags"].remove(npc)
+				self.parent.gui.update_card(node.dict)
+

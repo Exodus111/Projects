@@ -26,7 +26,9 @@ from entities import Player, NPCController, TestWidget
 from world import World
 from gui.gui import GUI
 from gui.startmenu import StartMenu
-from logic.dialogue import Dialogue
+from logic.alt_logic import Dialogue, DialogueSystem
+
+#from logic.dialogue import Dialogue
 from logic.events import EventCreator
 
 import json
@@ -97,86 +99,14 @@ class Game(Widget):
         # Setting up the Dialogue controller.
         with open("data/dialogue/dialogue.json", "r+") as f:
             data = json.load(f)
-        self.diag = Dialogue(self.events, **data)
-        self.diag.master = self
+        diag_data = Dialogue(self.events, **data)
+        self.events.setup_dialogue(diag_data)
+        self.dialogue = DialogueSystem(self, self.events, diag_data)
 
         self.gui.hud.add_text_to_top_bar(text2=self.world.home)
 
         # Centering Screen on the player
         self.center_screen(0.2)
-
-    def change_resolution(self, new):
-        global SIZE
-        SIZE = new
-        self.startmenu.gamesize = SIZE
-
-    def insert_menu(self, menu):
-        self.add_widget(menu)
-        self.menu_on_off()
-
-    def draw_test_nodes(self):
-        for node in self.npcs.npc_paths['djonsiscus_01']["points"]:
-            w = TestWidget(pos=node)
-            self.world.add_widget(w)
-
-    def menu_on_off(self):
-        self.menu_on = not self.menu_on
-        if self.menu_on:
-            self.add_widget(self.startmenu)
-        else:
-            self.remove_widget(self.startmenu)
-
-    def toggle_classmenu(self):
-        if self.gui.classmenu.alpha == 0.:
-            self.in_conversation = True
-        else:
-            self.in_conversation = False
-        self.gui.toggle_class_menu()
-
-    def center_screen(self, delay=0.1):
-        Clock.schedule_once(self.world.center_screen, delay)
-
-    def size_changed(self, _, value):
-        self.gui.size_changed(value)
-
-    def update(self, dt):
-        if self.game_started:
-            if not self.in_conversation:
-                self.npcs.update(dt)
-                self.player.update(dt)
-            else:
-                self.player.set_frame("idle", 1)
-                for direction in self.player.moving: direction = False
-                self.player.collide_world(x=(SIZE[0]/2)-50, y=(SIZE[1]/2)-50, speedup=25)
-            self.update_cards(dt)
-            if self.diag.current_conv != None:
-                if self.diag.current_conv.end_conversation:
-                    self.gui.conv_panels_toggle()
-                    self.diag.current_conv.end_conversation = False
-                    self.in_conversation = False
-            self.gui.update(dt)
-        self.events.update(dt)
-
-    def update_cards(self, dt):
-        if len(self.diag.card_inventory) != self.card_counter["inv"]:
-            card = self.diag.card_inventory[-1]
-            self.gui.add_card(card)
-            self.card_counter["inv"] += 1
-
-        if len(self.diag.retired_cards) != self.card_counter["ret"]:
-            card_title = self.diag.tag_strip(self.diag.retired_cards[-1], "card")
-            self.gui.retire_card(card_title)
-            self.card_counter["ret"] += 1
-            self.card_counter["inv"] -= 1
-
-        if self.diag.card_changed != None:
-            self.gui.update_card(self.diag.card_changed)
-            self.diag.card_changed = None
-
-    def mouse_over(self, pos):
-        if self.game_started:
-            if self.gui.classmenu.alpha != 0.:
-                self.gui.classmenu.check_for_hover(pos)
 
     def key_down(self, key, mod):
         if not self.menu_on:
@@ -193,13 +123,99 @@ class Game(Widget):
             if key[1] in ("w", "a", "s", "d", "up", "down", "left", "right"):
                 self.player.keyup(key[1])
 
+    def change_resolution(self, new):
+        global SIZE
+        SIZE = new
+        self.startmenu.gamesize = SIZE
+
+    def draw_test_nodes(self):
+        for node in self.npcs.npc_paths['djonsiscus_01']["points"]:
+            w = TestWidget(pos=node)
+            self.world.add_widget(w)
+
+    def center_screen(self, delay=0.1):
+        Clock.schedule_once(self.world.center_screen, delay)
+
+    def update(self, dt):
+        if self.game_started:
+            if not self.in_conversation:
+                self.npcs.update(dt)
+                self.player.update(dt)
+            else:
+                self.player.set_frame("idle", 1)
+                for direction in self.player.moving: direction = False
+                self.player.collide_world(x=(SIZE[0]/2)-50, y=(SIZE[1]/2)-50, speedup=25)
+            self.update_cards(dt)
+            if self.dialogue.current_conv != None:
+                if self.dialogue.current_conv.end_conversation:
+                    self.gui.conv_panels_toggle()
+                    self.dialogue.current_conv.end_conversation = False
+                    self.in_conversation = False
+            self.gui.update(dt)
+        self.events.update(dt)
+
+#### GUI Methods
+
+    def insert_menu(self, menu):
+        self.add_widget(menu)
+        self.menu_on_off()
+
+    def menu_on_off(self):
+        self.menu_on = not self.menu_on
+        if self.menu_on:
+            self.add_widget(self.startmenu)
+        else:
+            self.remove_widget(self.startmenu)
+
+    def toggle_classmenu(self):
+        if self.gui.classmenu.alpha == 0.:
+            self.in_conversation = True
+        else:
+            self.in_conversation = False
+        self.gui.toggle_class_menu()
+
+    def size_changed(self, _, value):
+        self.gui.size_changed(value)
+
+    def mouse_over(self, pos):
+        if self.game_started:
+            if self.gui.classmenu.alpha != 0.:
+                self.gui.classmenu.check_for_hover(pos)
+
+##### Dialogue Methods
+
+    def question_picked(self, text):
+        if self.button_cooldown:      #<-- Needed because Kivy sometimes presses a button multiple times.
+            self.dialogue.next_step("question", text)
+            self.cooldown_flipper()
+            Clock.schedule_once(self.cooldown_flipper, 0.1)
+
     def begin_conv(self, name):
         if self.events.check_cooldown("Conversation", 2):
             if not self.in_conversation:
-                self.diag.start_conversation(name)
-                if self.diag.current_conv.type != "comment":
+                self.dialogue.start_conversation(name)
+                if self.dialogue.current_conv.type != "comment":
                     self.events.reset_cooldown("Conversation")
                     self.in_conversation = True
+
+    def update_cards(self, dt):
+        if len(self.dialogue.card_inventory) != self.card_counter["inv"]:
+            card = self.dialogue.card_inventory[-1]
+            self.gui.add_card(card)
+            self.card_counter["inv"] += 1
+
+        if len(self.dialogue.retired_cards) != self.card_counter["ret"]:
+            card_title = self.dialogue.tag_strip(self.dialogue.retired_cards[-1], "card")
+            self.gui.retire_card(card_title)
+            self.card_counter["ret"] += 1
+            self.card_counter["inv"] -= 1
+
+        if self.dialogue.card_changed != None:
+            self.gui.update_card(self.dialogue.card_changed)
+            self.dialogue.card_changed = None
+
+    def cooldown_flipper(self, *_):
+        self.button_cooldown = not self.button_cooldown
 
     def cooldown(self, call, time):
         Clock.schedule_once(call, time)

@@ -86,7 +86,7 @@ class GUI(Widget):
         """
         num = self.menus.card_lookup[card["title"]]
         self.menus.card_db[num]["tags"] = card["tags"]
-        if not any(self.menus.card_db[num]["tags"].values()):
+        if self.menus.card_db[num]["tags"] == []:
             self.retire_card(card["title"])
         self.update_card_top_list()
 

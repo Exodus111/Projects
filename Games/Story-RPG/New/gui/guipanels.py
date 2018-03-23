@@ -47,9 +47,9 @@ class DialoguePanels(FloatLayout):
                 if touch.button == "right":
                     self.question_menu(button)
                 elif touch.button == "left":
-                    self.parent.parent.diag.question_picked(button.question_text)    # <---Calling outside the module
+                    self.parent.parent.question_picked(button.question_text)    # <---Calling outside the module
         else:
-            self.parent.parent.diag.question_picked(self.question_big.text)          # <---Calling outside the module
+            self.parent.parent.question_picked(self.question_big.text)          # <---Calling outside the module
 
     def drop_panels(self):
         self.open_close = not self.open_close
