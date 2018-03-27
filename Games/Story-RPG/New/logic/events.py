@@ -21,6 +21,7 @@ class EventCreator:
 		self.player_outside = False
 		self.player_outside_bounds = False
 		self.player_outside_bounds_lament = False
+		self.in_conversation = False
 
 		# Triggers and timers.
 		self.uptime = 0.0 

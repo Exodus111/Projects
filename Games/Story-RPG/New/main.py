@@ -99,7 +99,7 @@ class Game(Widget):
         # Setting up the Dialogue controller.
         with open("data/dialogue/dialogue.json", "r+") as f:
             data = json.load(f)
-        diag_data = Dialogue(self.events, **data)
+        diag_data = Dialogue(data)
         self.events.setup_dialogue(diag_data)
         self.dialogue = DialogueSystem(self, self.events, diag_data)
 
@@ -145,7 +145,7 @@ class Game(Widget):
                 self.player.set_frame("idle", 1)
                 for direction in self.player.moving: direction = False
                 self.player.collide_world(x=(SIZE[0]/2)-50, y=(SIZE[1]/2)-50, speedup=25)
-            self.update_cards(dt)
+            #self.update_cards(dt)
             if self.dialogue.current_conv != None:
                 if self.dialogue.current_conv.end_conversation:
                     self.gui.conv_panels_toggle()

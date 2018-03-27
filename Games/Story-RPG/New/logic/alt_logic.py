@@ -6,6 +6,15 @@ class Dialogue:
 		Keys: names, text, nodes, links, coords, tags
 	"""
 	def __init__(self, dialoguedict):
+		self.portraits = {
+		"mrjohes":"images/portraits/Portrait Apothecary.png",
+		"jarold":"images/portraits/Portrait Blacksmith.png",
+		"sheila":"images/portraits/Portrait Girl.png",
+		"riff":"images/portraits/Portrait Guy.png",
+		"vonduren":"images/portraits/Portrait Old.png",
+		"tylda":"images/portraits/Portrait Wife.png",
+		"djonsiscus":"images/portraits/Portrait Priest.png",
+		}		
 		self.names = []
 		self.nodes = self.assemble_nodes(dialoguedict)
 		self.starts = self.gather_nodes("greeting")
@@ -20,7 +29,15 @@ class Dialogue:
 			self.names.append(name)
 			for node in _dict["nodes"][name]:
 				tags = self.fix_tags(_dict["tags"][node])
-				n = Node(node, name.lower(), _dict["text"][node], _dict["links"][node], tags, _dict["coords"][node], self.set_type(tags))
+				portrait = "None"*(name not in self.portraits.keys()) or self.portraits[name.lower()]  
+				n = Node(node, 
+						name.lower(),
+						portrait, 
+						_dict["text"][node], 
+						_dict["links"][node], 
+						tags, 
+						_dict["coords"][node], 
+						self.set_type(tags))
 				node_dict[node] = n
 		return node_dict
 
@@ -69,9 +86,10 @@ class Dialogue:
 			return None
 
 class Node():
-	def __init__(self, node, npc, text, links, tags, coords, type_):
+	def __init__(self, node, npc, portrait, text, links, tags, coords, type_):
 		self.node = node
 		self.npc = npc
+		self.portrait = portrait
 		self.text = text
 		self.links = links
 		self.tags = tags
@@ -137,7 +155,6 @@ class DialogueSystem:
 		self.current_answer = None
 		self.current_questions = []
 		self.current_comment = None
-		self.in_conversation = False
 		self.p_counter = 0
 
 ### Starting Conversations.
@@ -150,7 +167,7 @@ class DialogueSystem:
 		self.setup_conversation(node)
 
 	def end_conversation(self):
-		self.in_conversation = False
+		self.events.in_conversation = False
 		self.parent.gui.conv_panels_toggle()
 
 	def find_conversation(self, npc):
@@ -184,22 +201,22 @@ class DialogueSystem:
 			Takes the greeting/start node of the conversation/comment or the answer node of a dialogue. 
 		"""
 		if node.type == "dialogue":
-			if not self.in_conversation:  # <-- This happens at the beginning.
+			if not self.events.in_conversation:  # <-- This happens at the beginning.
 				self.once_list = []
-				self.in_conversation = True
+				self.events.in_conversation = True
 				self.parent.gui.conv_panels_toggle()
 			node, back = self.check_answer_tags(node)  # <-- Checking flag/card/back tags, can return a different node (back tag).
 			self.current_questions = self.get_questions(node)  # <-- This returns a list of questions or Continue...
 			if not back: # Normal.
 				self.current_answer = node
 			text_dict = {"top_text":str(self.current_answer),
-			"question_list":[str(n) for n in self.current_questions]}   # <-- Constructing dict for the GUI.
-			self.parent.gui.add_text_to_conv_panels(text_dict)
+						 "question_list":[str(n) for n in self.current_questions]}   # <-- Constructing dict for the GUI.
+			self.parent.gui.add_text_to_conv_panels(text_dict, self.current_answer.portrait)
 		elif node.type == "comment":
 			nodelist = []
 			while True:
 				self.check_answer_tags(node)
-				name = "player"*("comment_reply" in node.tags) or node.npc.lower()
+				name = "player"*("comment_reply" in node.tags) or node.npc.lower() #<-- Top level coding right there.
 				pos = self.parent.get_npc_pos(name)
 				nodelist.append({"pos":pos, "text":str(node)})
 				next_list = self.next_nodes(node)
@@ -300,19 +317,6 @@ class DialogueSystem:
 				self.once_list.append(question)               # We save the question for future elimination.
 				if tag not in self.callback_dict.keys(): 
 					self.callback_dict[tag] = self.current_answer # We save the answer node to return to it from a back node.
-
-	def add_card_to_inventory(self, tag):
-		node = self.find_card(tag)
-		self.deck.append(node)
-		self.parent.gui.add_card(node.dict)
-
-	def find_card(self, tag):
-		for k, node in self.dialogue.nodes.items():
-			if node.type == "card":
-				if tag == node.tags[0]:
-					return node
-		else:
-			assert Exception("Card not found. This should not happen. {}".format(tag))
 
 #### Card Inventory
 
