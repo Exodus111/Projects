@@ -102,17 +102,16 @@ class EventCreator:
 		self.time_idles(dt)
 		self.check_bounds(dt)
 
-	def tutorial_event_checker(self):
+	def tutorial_event_checker(self):   # <-- THIS IS A FUCKING MESS!!! FIX IT!!!! AAAAAAAARRRRGGGGHHHH!!!
 		if self.trigger["Tutorial"]:
 			if self.room == "church main":
-				if not self.flags["flag_tutorial_part2"]:
+				if self.flags["flag_tutorial_part1"]:
 					self.tutorial_start(1)
 			elif self.room == "church thack_room":
-				if self.flags["flag_tutorial_part2"]:
+				if self.flags["flag_tutorial_part3"]:
 					self.tutorial_start(2)
-					self.flags["flag_tutorial_part2"] = False
-				elif self.flags["flag_tutorial_part3"] and not self.trigger["commenting"]:
 					self.flags["flag_tutorial_part3"] = False
+				elif not self.trigger["commenting"]:
 					self.tutorial_start(3)
 		if not self.trigger["Tutorial"] and not self.trigger["game started"]:
 			self.trigger["game started"] = True

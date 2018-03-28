@@ -160,11 +160,13 @@ class DialogueSystem:
 ### Starting Conversations.
 	def start_conversation(self, npc):
 		node = None
+		print("Starting conversation.")
 		for meth in (self.find_conversation, self.find_comment, self.find_busy):
 			node = meth(npc)
 			if node != None:
 				break
-		self.setup_conversation(node)
+		if node != None:
+			self.setup_conversation(node)
 
 	def end_conversation(self):
 		self.events.in_conversation = False
@@ -187,7 +189,7 @@ class DialogueSystem:
 
 	def find_comment(self, npc):
 		for comment in self.dialogue.comment_starts:
-			if npc == comment.npc:
+			if npc.lower() == comment.npc:
 				for tag in comment.tags:
 					if "block" in tag:
 						if not self.blocked(comment):
@@ -217,8 +219,8 @@ class DialogueSystem:
 			while True:
 				self.check_answer_tags(node)
 				name = "player"*("comment_reply" in node.tags) or node.npc.lower() #<-- Top level coding right there.
-				pos = self.parent.get_npc_pos(name)
-				nodelist.append({"pos":pos, "text":str(node)})
+				npc = self.parent.get_npc(name)
+				nodelist.append({"entity":npc, "text":str(node), "tags":node.tags})
 				next_list = self.next_nodes(node)
 				if next_list == []:
 					break
@@ -231,7 +233,7 @@ class DialogueSystem:
 			When the player clicks on a question in a dialogue.
 			The text is the string of the question. Contains numbering.
 		"""
-		text = text[3:]      # <-- Removes Numbering.            
+		text = text[3:]      # <-- Removes Numbering.
 		if text != "Continue...":
 			for node in self.current_questions:  # We find the question node.
 				if text == node.text:

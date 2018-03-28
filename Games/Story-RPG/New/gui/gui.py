@@ -92,7 +92,7 @@ class GUI(Widget):
 
     def update_card_top_list(self):
         self.active_card_amount = self.menus.check_for_amount_of_active_cards()
-        if self.active_card_amount == 0:            
+        if self.active_card_amount == 0:
             self.hud.add_text_to_top_bar(text3="Active Cards: None")
         else:
             self.hud.add_text_to_top_bar(text3="Active Cards: {}".format(self.active_card_amount))

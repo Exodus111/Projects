@@ -221,9 +221,10 @@
     },
     "tags": {
         "Node1": [
-            "start_tutorial",
+            "start",
             "comment",
-            "space_exception"
+            "space_exception",
+            "block_tutorial_part1"
         ],
         "Node10": [
             "comment_reply"
@@ -286,7 +287,7 @@
         "Node64": [
             "start",
             "comment",
-            "block_tutorial_part1"
+            "block_tutorial_part2"
         ],
         "Node65": [
             "comment"

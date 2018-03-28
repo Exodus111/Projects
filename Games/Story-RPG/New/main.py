@@ -146,11 +146,11 @@ class Game(Widget):
                 for direction in self.player.moving: direction = False
                 self.player.collide_world(x=(SIZE[0]/2)-50, y=(SIZE[1]/2)-50, speedup=25)
             #self.update_cards(dt)
-            if self.dialogue.current_conv != None:
-                if self.dialogue.current_conv.end_conversation:
-                    self.gui.conv_panels_toggle()
-                    self.dialogue.current_conv.end_conversation = False
-                    self.in_conversation = False
+            #if self.dialogue.current_conv != None:
+            #    if self.dialogue.current_conv.end_conversation:
+            #        self.gui.conv_panels_toggle()
+            #        self.dialogue.current_conv.end_conversation = False
+            #        self.in_conversation = False
             self.gui.update(dt)
         self.events.update(dt)
 
@@ -192,11 +192,10 @@ class Game(Widget):
 
     def begin_conv(self, name):
         if self.events.check_cooldown("Conversation", 2):
-            if not self.in_conversation:
+            if not self.events.in_conversation:
                 self.dialogue.start_conversation(name)
-                if self.dialogue.current_conv.type != "comment":
+                if self.dialogue.current_comment == None:
                     self.events.reset_cooldown("Conversation")
-                    self.in_conversation = True
 
     def update_cards(self, dt):
         if len(self.dialogue.card_inventory) != self.card_counter["inv"]:
@@ -219,6 +218,13 @@ class Game(Widget):
 
     def cooldown(self, call, time):
         Clock.schedule_once(call, time)
+
+    def get_npc(self, name):
+        npc = [n for n in self.npcs.npcgroup if n.name == name]
+        if npc == []:
+            return self.player
+        else:
+            return npc[0]
 
 class MainApp(App):
     def build(self):
