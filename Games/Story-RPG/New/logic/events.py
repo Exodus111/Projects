@@ -28,7 +28,7 @@ class EventCreator:
 		self.player_timer = defaultdict(float)
 		self.cooldown = {}
 		self.trigger = defaultdict(bool) # Defaults as False
-		self.trigger["Tutorial"] = True
+		self.trigger["Tutorial"] = False
 
 	def setup_dialogue(self, data):
 		self.data = data
@@ -46,6 +46,7 @@ class EventCreator:
 		return flags
 
 	def set_start_flags(self):
+		self.trigger["Tutorial"] = True
 		self.flags["flag_tutorial_part1"] = True
 		for npc in self.data.names:
 			self.flags["flag_start_"+npc.lower()] = True
@@ -102,16 +103,15 @@ class EventCreator:
 		self.time_idles(dt)
 		self.check_bounds(dt)
 
-	def tutorial_event_checker(self):   # <-- THIS IS A FUCKING MESS!!! FIX IT!!!! AAAAAAAARRRRGGGGHHHH!!!
+	def tutorial_event_checker(self):
 		if self.trigger["Tutorial"]:
 			if self.room == "church main":
 				if self.flags["flag_tutorial_part1"]:
 					self.tutorial_start(1)
 			elif self.room == "church thack_room":
-				if self.flags["flag_tutorial_part3"]:
+				if self.flags["flag_tutorial_part2"]:
 					self.tutorial_start(2)
-					self.flags["flag_tutorial_part3"] = False
-				elif not self.trigger["commenting"]:
+				elif self.flags["flag_tutorial_part3"]:
 					self.tutorial_start(3)
 		if not self.trigger["Tutorial"] and not self.trigger["game started"]:
 			self.trigger["game started"] = True

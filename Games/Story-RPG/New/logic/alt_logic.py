@@ -115,33 +115,6 @@ class Node():
 						tags.append(tag)
 				self.tags = tags
 
-		
-class Events:
-	def __init__(self, dialogue):
-		self.data = dialogue
-		self.flags = self.get_flags()
-		self.blocks = []
-		self.playerwait_30 = False
-		self.set_start_flags()
-
-	def get_flags(self):
-		flags = {}
-		for node in self.data.nodes.keys():
-			for tag in self.data.nodes[node].tags:
-				if "flag" in tag:
-					flags[tag] = False
-				elif tag[:4] == "card":
-					flags["flag_"+tag] = False
-		return flags
-
-	def set_start_flags(self):
-		self.flags["flag_tutorial_part1"] = True
-		for npc in self.data.names:
-			self.flags["flag_start_"+npc.lower()] = True
-
-	def update(self, dt):
-		pass
-
 class DialogueSystem:
 	def __init__(self, parent, events, dialoguedata):
 		self.parent = parent
@@ -160,7 +133,6 @@ class DialogueSystem:
 ### Starting Conversations.
 	def start_conversation(self, npc):
 		node = None
-		print("Starting conversation.")
 		for meth in (self.find_conversation, self.find_comment, self.find_busy):
 			node = meth(npc)
 			if node != None:
@@ -282,7 +254,9 @@ class DialogueSystem:
 				else:
 					flag = tag.replace("block_", "")
 				if self.events.flags[flag]:
+					print(flag, " Set to True")
 					self.events.flags[flag] = False
+					print(flag, " Set to False")
 					blocked = False
 					if tag not in self.events.blocks:
 						self.events.blocks.append(tag)

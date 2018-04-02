@@ -174,7 +174,6 @@ class GUI(Widget):
         if self.textpos_list != []:
             dct, tmr = self.textpos_list[0]
             if "space_exception" in dct["tags"]:
-                print("space exception found")
                 self.parent.events.add_cooldown("space exception", 2)
             if self.next_comment or self.parent.events.if_cooldown("space exception"):
                 self.activate_comment(dct)
