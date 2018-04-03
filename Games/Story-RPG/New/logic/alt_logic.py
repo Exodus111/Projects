@@ -70,7 +70,7 @@ class Dialogue:
 		cards = []
 		for node in self.nodes.keys():
 			if self.nodes[node].type == "card":
-				cards.append(node)
+				cards.append(self.nodes[node])
 		return cards
 
 #### Public Methods.
@@ -189,7 +189,6 @@ class DialogueSystem:
 		elif node.type == "comment":
 			nodelist = []
 			while True:
-				self.check_answer_tags(node)
 				name = "player"*("comment_reply" in node.tags) or node.npc.lower() #<-- Top level coding right there.
 				npc = self.parent.get_npc(name)
 				nodelist.append({"entity":npc, "text":str(node), "tags":node.tags})

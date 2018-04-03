@@ -200,7 +200,13 @@ class ClassMenu(FboFloatLayout):
         popup.open()
 
     def book_chosen(self, title):
-        self.parent.parent.events.flags["flag_"+title] = True
+        if title == "COMPENDIUM OF WITTY RETORTS":
+            flag = "flag_book_joker"
+        elif title == "A LOVERS GUIDE LOVE":
+            flag = "flag_book_lover"
+        elif title == "THE ART OF TELLING LIES":
+            flag = "flag_book_liar"
+        self.parent.parent.events.book_chosen(flag)
         self.parent.parent.toggle_classmenu()
 
 

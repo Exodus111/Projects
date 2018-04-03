@@ -52,6 +52,38 @@
             2951,
             778
         ],
+        "Node274": [
+            265,
+            359
+        ],
+        "Node276": [
+            816,
+            15
+        ],
+        "Node277": [
+            777,
+            429
+        ],
+        "Node278": [
+            801,
+            860
+        ],
+        "Node279": [
+            1232.0,
+            -128.0
+        ],
+        "Node280": [
+            1252.0,
+            391.0
+        ],
+        "Node281": [
+            1237.0,
+            814.0
+        ],
+        "Node282": [
+            1893,
+            251
+        ],
         "Node3": [
             1165.2557588945667,
             345.7813474578958
@@ -63,6 +95,18 @@
         "Node4": [
             1601.835117126302,
             215.02366838353947
+        ],
+        "Node432": [
+            663.0,
+            1128.0
+        ],
+        "Node433": [
+            1045.0,
+            1120.0
+        ],
+        "Node434": [
+            1406.0,
+            1122.0
         ],
         "Node5": [
             2028.688697575647,
@@ -145,6 +189,40 @@
         "Node206": [
             "Node205"
         ],
+        "Node274": [
+            "Node276",
+            "Node277",
+            "Node278"
+        ],
+        "Node276": [
+            "Node274",
+            "Node279"
+        ],
+        "Node277": [
+            "Node274",
+            "Node280"
+        ],
+        "Node278": [
+            "Node274",
+            "Node281"
+        ],
+        "Node279": [
+            "Node276",
+            "Node282"
+        ],
+        "Node280": [
+            "Node277",
+            "Node282"
+        ],
+        "Node281": [
+            "Node278",
+            "Node282"
+        ],
+        "Node282": [
+            "Node279",
+            "Node280",
+            "Node281"
+        ],
         "Node3": [
             "Node2",
             "Node4"
@@ -156,6 +234,9 @@
             "Node3",
             "Node5"
         ],
+        "Node432": [],
+        "Node433": [],
+        "Node434": [],
         "Node5": [
             "Node4",
             "Node6"
@@ -189,9 +270,20 @@
         ]
     },
     "names": [
-        "Tutorial"
+        "Tutorial",
+        "Djonsiscus"
     ],
     "nodes": {
+        "Djonsiscus": [
+            "Node274",
+            "Node276",
+            "Node277",
+            "Node278",
+            "Node279",
+            "Node280",
+            "Node281",
+            "Node282"
+        ],
         "Tutorial": [
             "Node4",
             "Node64",
@@ -216,7 +308,10 @@
             "Node205",
             "Node7",
             "Node12",
-            "Node206"
+            "Node206",
+            "Node432",
+            "Node433",
+            "Node434"
         ]
     },
     "tags": {
@@ -266,6 +361,34 @@
             "comment",
             "flag_tutorial_part3"
         ],
+        "Node274": [
+            "greeting",
+            "block_tutorial_part_4"
+        ],
+        "Node276": [
+            "question",
+            "block_book_joker"
+        ],
+        "Node277": [
+            "question",
+            "block_book_lover"
+        ],
+        "Node278": [
+            "question",
+            "block_book_liar"
+        ],
+        "Node279": [
+            "answer"
+        ],
+        "Node280": [
+            "answer"
+        ],
+        "Node281": [
+            "answer"
+        ],
+        "Node282": [
+            "answer"
+        ],
         "Node3": [
             "comment",
             "flag_spacebar_pressed"
@@ -276,6 +399,18 @@
         ],
         "Node4": [
             "comment_reply"
+        ],
+        "Node432": [
+            "card_book_lover",
+            "name_djonsiscus"
+        ],
+        "Node433": [
+            "card_book_joker",
+            "name_djonsiscus"
+        ],
+        "Node434": [
+            "card_book_liar",
+            "name_djonsiscus"
         ],
         "Node5": [
             "comment"
@@ -318,9 +453,20 @@
         "Node204": "They are supposed to help me get better at conversations, \nand... you know... speaking to people. \nI guess I can be kind of shy...",
         "Node205": "I suppose it's something that might come in handy... who knows.",
         "Node206": "Anyway... Let's pick one.",
+        "Node274": "Hello there Thack.\nDid you finish your reading? ",
+        "Node276": "I did. I picked the one with the Jokes.   \nNot sure how useful puns and one-liners would really be, but it was a fun read.",
+        "Node277": "Yeah... ehm... I read the one about... Love and stuff.",
+        "Node278": "No, didn't read any book.\nNo, I'm lying, I read the one about... lying. ",
+        "Node279": "Ah yes, the Compendium of Witty Retorts.    \nDo no underestimate the value of some levity, Thack, even in dire circumstances.",
+        "Node280": "Ah Yes, the Lovers Guidebook to Love. \nDo not be ashamed of the subject matter, young Thack, it is only natural to be curious about such things. Even for men of the cloth, like you and me.\n\nIt is an important, essential, and beautiful part of the human experience.\nWell worth studying.  ",
+        "Node281": "Mhm, the Art of Telling Lies. \nUnderstand Young Thack, that we serve the community we work in, we are their humble guides. Sometimes that requires a more complex relationship with the truth than we would like. \n\nBut do not try to lie to me, it will never work. Smarter people than you have tried, and i know every trick and tell as I know myself. ",
+        "Node282": "Now I have another task for you and this is very important.   \nThere has been a murder, and I want you, Thack, to investigate the murder on my behalf.",
         "Node3": "Nice! Ok, here we go. Welcome to the Game!\nWow! I never really thought anyone would actually play this...",
         "Node31": "I want to tell you more, but, let's go to my room first.\nIts the door on the left there.\n\nAnd the only door that is going to work because... \nWell as I said... this is a tutorial.",
         "Node4": "Damn, this is wrong... sorry.\nI'm terrible at this.",
+        "Node432": "This is the Card for the Lover book.",
+        "Node433": "This is the card for the Joker book.",
+        "Node434": "This is the card for the Liar book.",
         "Node5": "Ok... This is the tutorial for the game. \nRight... tutorial... lets do this!",
         "Node6": "Ok, so you can move using the WASD keys, as you do in most games.\n\nYou can also use the movement keys... but I'm not sure why you would want to... ",
         "Node64": "Ok, so.. \nI'm an apprentice to Father Djonsicus here in the Church.",

@@ -137,7 +137,6 @@ class EventCreator:
 			self.player_timer["player_idle"] += dt
 		else:
 			self.player_timer["player_idle"] = 0.
-
 		if self.player_timer["player_idle"] > 10.:
 			self.playerwait_10 = True
 		if self.player_timer["player_idle"] > 20.:
@@ -167,6 +166,11 @@ class EventCreator:
 			self.master.begin_conv("Tutorial")
 		elif section == 3:
 			self.master.toggle_classmenu()
+
+	def book_chosen(self, book):  ## <--- This didn't work. Card was not added to Inventory!
+		book = "card_"+book
+		self.flags["flag_"+book] = True
+		self.master.dialogue.add_card_to_inventory(book)
 
 	def game_start(self): # Once the Tutorial is over.
 		pass
