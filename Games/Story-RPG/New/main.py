@@ -191,6 +191,8 @@ class Game(Widget):
             Clock.schedule_once(self.cooldown_flipper, 0.1)
 
     def begin_conv(self, name):
+        name = name.strip()
+        name = name.lower()
         if self.events.check_cooldown("Conversation", 2):
             if not self.events.in_conversation:
                 self.dialogue.start_conversation(name)

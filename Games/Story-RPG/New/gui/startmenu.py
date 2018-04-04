@@ -201,12 +201,12 @@ class ClassMenu(FboFloatLayout):
 
     def book_chosen(self, title):
         if title == "COMPENDIUM OF WITTY RETORTS":
-            flag = "flag_book_joker"
+            book = "book_joker"
         elif title == "A LOVERS GUIDE LOVE":
-            flag = "flag_book_lover"
+            book = "book_lover"
         elif title == "THE ART OF TELLING LIES":
-            flag = "flag_book_liar"
-        self.parent.parent.events.book_chosen(flag)
+            book = "book_liar"
+        self.parent.parent.events.book_chosen(book)
         self.parent.parent.toggle_classmenu()
 
 

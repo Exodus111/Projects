@@ -314,7 +314,7 @@ class World(RelativeLayout):
                     self.parent.events.activate_poi(poi)
                     return
                 if self.once:
-                    if not self.parent.events.trigger["Tutorial"] or poi.name == "to_thack_room":    
+                    if not self.parent.events.trigger["Tutorial"] or poi.name in ("to_thack_room", "from_thack_room"):  
                         self.check_door(poi.name)
                         self.once = False
                         self.colliding_with.append(poi)

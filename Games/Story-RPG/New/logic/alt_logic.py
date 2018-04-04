@@ -253,9 +253,7 @@ class DialogueSystem:
 				else:
 					flag = tag.replace("block_", "")
 				if self.events.flags[flag]:
-					print(flag, " Set to True")
 					self.events.flags[flag] = False
-					print(flag, " Set to False")
 					blocked = False
 					if tag not in self.events.blocks:
 						self.events.blocks.append(tag)

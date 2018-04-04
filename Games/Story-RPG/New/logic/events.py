@@ -48,6 +48,9 @@ class EventCreator:
 	def set_start_flags(self):
 		self.trigger["Tutorial"] = True
 		self.flags["flag_tutorial_part1"] = True
+		self.flags["flag_tutorial_part2"] = False
+		self.flags["flag_tutorial_part3"] = False
+		self.flags["flag_tutorial_part4"] = False
 		for npc in self.data.names:
 			self.flags["flag_start_"+npc.lower()] = True
 
@@ -97,8 +100,8 @@ class EventCreator:
 			self.tutorial_event_checker()
 			self.prev_room = self.room
 		if self.master.game_started:
-			if self.master.gui.commenting != self.trigger["commenting"]:  ## Fix this. 
-				self.tutorial_event_checker()                             ## This part is not working.
+			if self.master.gui.commenting != self.trigger["commenting"]:
+				self.tutorial_event_checker()                           
 				self.trigger["commenting"] = self.master.gui.commenting
 		self.time_idles(dt)
 		self.check_bounds(dt)
@@ -167,11 +170,10 @@ class EventCreator:
 		elif section == 3:
 			self.master.toggle_classmenu()
 
-	def book_chosen(self, book):  ## <--- This didn't work. Card was not added to Inventory!
+	def book_chosen(self, book):
 		book = "card_"+book
 		self.flags["flag_"+book] = True
 		self.master.dialogue.add_card_to_inventory(book)
 
 	def game_start(self): # Once the Tutorial is over.
 		pass
-

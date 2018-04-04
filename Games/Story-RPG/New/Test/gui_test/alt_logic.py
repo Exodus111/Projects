@@ -237,7 +237,7 @@ class DialogueSystem:
 				next_nodes.append(self.dialogue.nodes[n])
 		return next_nodes
 
-	def get_questions(self, node): # PROBLEM HERE!! Electing Continue... too many times.
+	def get_questions(self, node):
 		"""
 			Gets next question nodes.
 			node is an answer node.
@@ -281,7 +281,7 @@ class DialogueSystem:
 			elif "back" in tag:                        # The answer tag contains a back tag. We need to check to see if we need to go back. 
 				saved = tag.replace("back", "save")
 				if not self.last_save_tag(saved):
-					if saved in self.callback_dict.keys(): # <-- THIS SHOULD WORK NOW! TEST IT!!
+					if saved in self.callback_dict.keys():
 						node = self.callback_dict[saved]
 						back = True
 		return node, back
