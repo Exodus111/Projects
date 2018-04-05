@@ -29,6 +29,7 @@ class EventCreator:
 		self.cooldown = {}
 		self.trigger = defaultdict(bool) # Defaults as False
 		self.trigger["Tutorial"] = False
+		self.trigger["game_started"] = False
 
 	def setup_dialogue(self, data):
 		self.data = data
@@ -48,9 +49,10 @@ class EventCreator:
 	def set_start_flags(self):
 		self.trigger["Tutorial"] = True
 		self.flags["flag_tutorial_part1"] = True
-		self.flags["flag_tutorial_part2"] = False
-		self.flags["flag_tutorial_part3"] = False
 		self.flags["flag_tutorial_part4"] = False
+		self.flags["flag_book_lover"] = False
+		self.flags["flag_book_liar"] = False
+		self.flags["flag_book_joker"] = False
 		for npc in self.data.names:
 			self.flags["flag_start_"+npc.lower()] = True
 
@@ -95,7 +97,8 @@ class EventCreator:
 			self.flags[flag] = False
 
 	def update(self, dt):
-		self.uptime += dt
+		if self.trigger["game_started"]: self.uptime += dt  ## <--- FIX THIS!!
+		print(self.uptime)
 		if self.prev_room != self.room:
 			self.tutorial_event_checker()
 			self.prev_room = self.room
@@ -107,7 +110,7 @@ class EventCreator:
 		self.check_bounds(dt)
 
 	def tutorial_event_checker(self):
-		if self.trigger["Tutorial"]:
+		if self.trigger["Tutorial"] and self.uptime > 4.:
 			if self.room == "church main":
 				if self.flags["flag_tutorial_part1"]:
 					self.tutorial_start(1)
@@ -171,9 +174,9 @@ class EventCreator:
 			self.master.toggle_classmenu()
 
 	def book_chosen(self, book):
-		book = "card_"+book
 		self.flags["flag_"+book] = True
-		self.master.dialogue.add_card_to_inventory(book)
+		self.master.dialogue.add_card_to_inventory("card_"+book)
+		self.flags["flag_tutorial_part4"] = True
 
 	def game_start(self): # Once the Tutorial is over.
 		pass

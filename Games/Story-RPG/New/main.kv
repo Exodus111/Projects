@@ -352,26 +352,14 @@
             name: "top_panel"
             size_hint: 1., .25
             pos_hint: {"x":0., "top":.975}
-            BoxLayout:
-                orientation: "horizontal"
+            Label:
+                text: root.top_text
                 size_hint: 1., 1.
                 pos_hint: {"x":.0, "y":.0}
-                Image:
-                    size_hint: .1, 1.
-                    source: root.portrait
-                    allow_stretch: True
-                    canvas:
-                        Rectangle:
-                            texture: self.texture
-                            size: self.width + 53, self.height + 53
-                            pos: self.pos[0]-33, self.pos[1]-28
-                Label:
-                    size_hint: .7, 1.
-                    text: root.top_text
-                    text_size: self.size
-                    padding: 20, 20
-                    valign: "top"
-                    split_str: " "
+                text_size: self.size
+                padding: 20, 20
+                valign: "top"
+                split_str: " "
 
     ScreenManager:
         id: bottom_manager
@@ -454,7 +442,7 @@
     background_down: "images/gui/seethrough_box.png"
     text_size: self.size
     halign: "left"
-    valign: "center"
+    valign: "middle"
     shorten: True
     shorten_from: "right"
     padding_x: 20

@@ -101,7 +101,7 @@ class Node():
 			title = title.strip()
 			title = title.capitalize()
 			names = [t[:4] for t in tags if "name" in t]
-			self.dict = {"title":title, "maintext":self.text, "tags":names}
+			self.dict = {"title":title, "maintext":self.text, "tags":{name:True for name in names}}
 
 	def __repr__(self):
 		return self.text

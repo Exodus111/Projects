@@ -55,9 +55,9 @@ class GUI(Widget):
         self.panels = DialoguePanels(size=self.size)
 
         self.add_widget(self.panels)
-        self.add_widget(self.menus)
         self.add_widget(self.ingame)
         self.add_widget(self.classmenu)
+        self.add_widget(self.menus)
         self.add_widget(self.hud)
 
         self.update_card_top_list()
@@ -334,7 +334,6 @@ class Select(RelativeLayout):
                 self.next_button.disabled = False
 
     def toggle_retired_cards(self):
-        print("Retired Cards Button Pressed!")
         for screen in self.button_manager.screen_names:
             if screen != "page0":
                 self.button_manager.remove_widget(self.button_manager.get_screen(screen))
@@ -359,7 +358,7 @@ class Card(RelativeLayout):
         self.parent.manager.current = "Selection"
 
     def button_two(self):
-        self.parent.manager.current = "None"
+        self.parent.manager.current = "Selection"
 
 class Menus(FboFloatLayout):
     manager = ObjectProperty()

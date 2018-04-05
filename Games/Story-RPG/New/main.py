@@ -107,6 +107,7 @@ class Game(Widget):
 
         # Centering Screen on the player
         self.center_screen(0.2)
+        self.events.trigger["game_started"] = True
 
     def key_down(self, key, mod):
         if not self.menu_on:
@@ -186,7 +187,7 @@ class Game(Widget):
 
     def question_picked(self, text):
         if self.button_cooldown:      #<-- Needed because Kivy sometimes presses a button multiple times.
-            self.dialogue.next_step("question", text)
+            self.dialogue.question_picked(text)
             self.cooldown_flipper()
             Clock.schedule_once(self.cooldown_flipper, 0.1)
 
