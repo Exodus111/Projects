@@ -8,7 +8,7 @@ class EventCreator:
 		self.flags = {}            ## All flags start as False
 		self.blocks = []
 		self.room = ""
-		self.prev_room = ""
+		self.prev_room = "church main"
 		self.poi = {"exit_poi":self.poi_exit,
 					"class_poi":self.poi_class_menu}
 
@@ -50,6 +50,7 @@ class EventCreator:
 		self.trigger["Tutorial"] = True
 		self.flags["flag_tutorial_part1"] = True
 		self.flags["flag_tutorial_part4"] = False
+		self.flags["flag_tutorial_end"] = False
 		self.flags["flag_book_lover"] = False
 		self.flags["flag_book_liar"] = False
 		self.flags["flag_book_joker"] = False
@@ -97,31 +98,42 @@ class EventCreator:
 			self.flags[flag] = False
 
 	def update(self, dt):
-		if self.trigger["game_started"]: self.uptime += dt  ## <--- FIX THIS!!
-		print(self.uptime)
-		if self.prev_room != self.room:
-			self.tutorial_event_checker()
-			self.prev_room = self.room
-		if self.master.game_started:
-			if self.master.gui.commenting != self.trigger["commenting"]:
-				self.tutorial_event_checker()                           
-				self.trigger["commenting"] = self.master.gui.commenting
+		if self.trigger["game_started"]:
+			self.uptime += dt
+			if self.trigger["Tutorial"] and self.check_commenting() and (self.room_check() or self.check_uptime(10)):
+				self.tutorial_event_checker()
+			self.flag_activators()
 		self.time_idles(dt)
 		self.check_bounds(dt)
 
+	def flag_activators(self):
+		if self.flags["flag_tutorial_part3"]:
+			self.flags["flag_tutorial_part3"] = False
+			self.master.toggle_classmenu()
+		if self.flags["flag_tutorial_part5"]:
+			self.flags["flag_tutorial_part5"] = False
+			self.flags["flag_tutorial_end"] = True
+			self.trigger["Tutorial"] = False
+
+	def check_commenting(self):
+		if self.master.gui.commenting != self.trigger["commenting"]:
+			self.trigger["commenting"] = self.master.gui.commenting
+		if self.trigger["commenting"]:
+			return False
+		return True
+
+	def check_uptime(self, num):
+		return self.uptime > num and self.uptime < num + 1
+
+	def room_check(self):
+		if self.prev_room != self.room:
+			self.prev_room = self.room
+			return True
+		return False
+
 	def tutorial_event_checker(self):
-		if self.trigger["Tutorial"] and self.uptime > 4.:
-			if self.room == "church main":
-				if self.flags["flag_tutorial_part1"]:
-					self.tutorial_start(1)
-			elif self.room == "church thack_room":
-				if self.flags["flag_tutorial_part2"]:
-					self.tutorial_start(2)
-				elif self.flags["flag_tutorial_part3"]:
-					self.tutorial_start(3)
-		if not self.trigger["Tutorial"] and not self.trigger["game started"]:
-			self.trigger["game started"] = True
-			self.game_start()
+		if self.flags["flag_tutorial_part1"] or self.flags["flag_tutorial_part2"]:
+			self.master.begin_conv("Tutorial")
 
 	def check_comment_tags(self, tags):
 		for tag in tags:
@@ -165,18 +177,10 @@ class EventCreator:
 	def poi_exit(self):
 		pass
 
-	def tutorial_start(self, section):
-		if section == 1:
-			self.master.begin_conv("Tutorial")  ## Opening.
-		elif section == 2:
-			self.master.begin_conv("Tutorial")
-		elif section == 3:
-			self.master.toggle_classmenu()
-
 	def book_chosen(self, book):
 		self.flags["flag_"+book] = True
 		self.master.dialogue.add_card_to_inventory("card_"+book)
 		self.flags["flag_tutorial_part4"] = True
 
-	def game_start(self): # Once the Tutorial is over.
+	def tutorial_over(self): 
 		pass
