@@ -21,8 +21,8 @@
             191.24954491547476
         ],
         "Node134": [
-            248.87136339825116,
-            1199.4885083565857
+            130,
+            1450
         ],
         "Node14": [
             5647.758674600602,
@@ -105,12 +105,16 @@
             1120.0
         ],
         "Node434": [
-            1406.0,
-            1122.0
+            1374,
+            1130
         ],
         "Node5": [
             2028.688697575647,
             312.28144620744104
+        ],
+        "Node584": [
+            539.0,
+            1458.0
         ],
         "Node6": [
             2376.655413790049,
@@ -161,7 +165,9 @@
             "Node12",
             "Node14"
         ],
-        "Node134": [],
+        "Node134": [
+            "Node584"
+        ],
         "Node14": [
             "Node13",
             "Node31"
@@ -241,6 +247,9 @@
             "Node4",
             "Node6"
         ],
+        "Node584": [
+            "Node134"
+        ],
         "Node6": [
             "Node5",
             "Node7"
@@ -311,7 +320,8 @@
             "Node206",
             "Node432",
             "Node433",
-            "Node434"
+            "Node434",
+            "Node584"
         ]
     },
     "tags": {
@@ -416,6 +426,9 @@
         "Node5": [
             "comment"
         ],
+        "Node584": [
+            "comment_reply"
+        ],
         "Node6": [
             "comment_reply"
         ],
@@ -458,17 +471,18 @@
         "Node276": "I did. I picked the one with the Jokes.   \nNot sure how useful puns and one-liners would really be, but it was a fun read.",
         "Node277": "Yeah... ehm... I read the one about... Love and stuff.",
         "Node278": "No, didn't read any book.\nNo, I'm lying, I read the one about... lying. ",
-        "Node279": "Ah yes, the Compendium of Witty Retorts.    \nDo no underestimate the value of some levity, Thack, even in dire circumstances.",
-        "Node280": "Ah Yes, the Lovers Guidebook to Love. \nDo not be ashamed of the subject matter, young Thack, it is only natural to be curious about such things. Even for men of the cloth, like you and me.\n\nIt is an important, essential, and beautiful part of the human experience.\nWell worth studying.  ",
-        "Node281": "Mhm, the Art of Telling Lies. \nUnderstand Young Thack, that we serve the community we work in, we are their humble guides. Sometimes that requires a more complex relationship with the truth than we would like. \n\nBut do not try to lie to me, it will never work. Smarter people than you have tried, and i know every trick and tell as I know myself. ",
+        "Node279": "Ah yes, the Compendium of Witty Retorts.    \nDo no underestimate the value of some levity, Thack, even in dire circumstances.\nIt has the ability to bring out the most closed person. \nYou will need people to feel like they trust you when you talk to them. Some humor goes a long way to achieve comity. \n",
+        "Node280": "Ah Yes, the Lovers Guidebook to Love. \nDo not be ashamed of the subject matter, young Thack, it is only natural to be curious about such things. Even for men of the cloth, like you and me.\n\nIt is an important, essential, and beautiful part of the human experience and well worth studying.  ",
+        "Node281": "Mhm, the Art of Telling Lies. \nUnderstand Young Thack, that we serve the community we work in, we are their humble servants and guides. Sometimes that requires a more complex relationship with the truth than we might like. \n\nBut do not try to lie to me, it will never work. I would not be in the position I am if I could not discern lie from truth.",
         "Node282": "Now I have another task for you and this is very important.   \nThere has been a murder, and I want you, Thack, to investigate the murder on my behalf.",
         "Node3": "Nice! Ok, here we go. Welcome to the Game!\nWow! I never really thought anyone would actually play this...",
         "Node31": "I want to tell you more, but, let's go to my room first.\nIts the door on the left there.\n\nAnd the only door that is going to work because... \nWell as I said... this is a tutorial.",
         "Node4": "Damn, this is wrong... sorry.\nI'm terrible at this.",
-        "Node432": "This is the Card for the Lover book.",
-        "Node433": "This is the card for the Joker book.",
-        "Node434": "This is the card for the Liar book.",
+        "Node432": "You have chosen to read the book, the Lovers Guide to Love.\n\nThis book have given you insigt into how a gentleman approaches the fairer sex, as well as how gentlemen discuss the subject among themselves.\n\nThis is useful to approach characters that care a lot about this subject, and to recognize when love might be on someones mind. ",
+        "Node433": "You have chosen to read the book the Compendium of Witty Retorts.\n\nThis book has prepared you with jokes, puns and witticisms to use in conversation to gain levity and lighten the mood.\n\nThis is useful for characters that are very closed-in and hard to approach, as well as characters that enjoy humor and a good joke. \n\n",
+        "Node434": "You have chosen to read the book the Art of Telling Lies.\n\nThis book explains how to get away with telling lies, and making untrue things up on the spot.\n\nThis is usefull in all situations. As long as the person you are talking to acutally believes you. ",
         "Node5": "Ok... This is the tutorial for the game. \nRight... tutorial... lets do this!",
+        "Node584": "Oh ok, sorry.",
         "Node6": "Ok, so you can move using the WASD keys, as you do in most games.\n\nYou can also use the movement keys... but I'm not sure why you would want to... ",
         "Node64": "Ok, so.. \nI'm an apprentice to Father Djonsicus here in the Church.",
         "Node65": "I'm new here, but this village is... \nI don't actually remember the name of the Village.. \nSorry. As I said, I'm new, I just arrived a few days ago actually.",

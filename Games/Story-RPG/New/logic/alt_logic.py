@@ -282,7 +282,7 @@ class DialogueSystem:
 	def last_save_tag(self, tag):
 		howmany = [k for k in self.dialogue.nodes.keys() if tag in self.dialogue.nodes[k].tags]
 		amount = [i for i in self.once_list if tag in i.tags]
-		return len(howmany) == len(amount) 
+		return len(howmany) == len(amount)
 
 	def check_question_tags(self, question):
 		for tag in question.tags:
