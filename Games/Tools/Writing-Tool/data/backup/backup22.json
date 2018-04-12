@@ -1,0 +1,719 @@
+{
+    "coords": {
+        "Node1": [
+            306.14538811677113,
+            356.58776721610707
+        ],
+        "Node10": [
+            4110.005143007137,
+            226.9107301175719
+        ],
+        "Node11": [
+            4516.326525915882,
+            237.71714987578312
+        ],
+        "Node12": [
+            4892.389933501632,
+            223.66880419010857
+        ],
+        "Node13": [
+            5255.485637377529,
+            191.24954491547476
+        ],
+        "Node134": [
+            130,
+            1450
+        ],
+        "Node14": [
+            5647.758674600602,
+            191.24954491547476
+        ],
+        "Node2": [
+            753.5311661067178,
+            232.3139399966775
+        ],
+        "Node202": [
+            1483,
+            769
+        ],
+        "Node203": [
+            1879.0,
+            773.0
+        ],
+        "Node204": [
+            2249,
+            762
+        ],
+        "Node205": [
+            2568.0,
+            748.0
+        ],
+        "Node206": [
+            2951,
+            778
+        ],
+        "Node274": [
+            267.6348942625,
+            362.80498667812503
+        ],
+        "Node276": [
+            841.8566080351561,
+            4.30721982187498
+        ],
+        "Node277": [
+            801.2129658625,
+            435.75511365468753
+        ],
+        "Node278": [
+            826.22443796875,
+            884.9194668960936
+        ],
+        "Node279": [
+            1275.3887912101563,
+            -144.7194681445314
+        ],
+        "Node280": [
+            1296.2316846320314,
+            396.15361615312486
+        ],
+        "Node281": [
+            1280.5995145656248,
+            836.9808120257812
+        ],
+        "Node282": [
+            1989.257890909375,
+            240.87406016015626
+        ],
+        "Node3": [
+            1165.2557588945667,
+            345.7813474578958
+        ],
+        "Node31": [
+            6025.983366137994,
+            195.57211281875917
+        ],
+        "Node4": [
+            1601.835117126302,
+            215.02366838353947
+        ],
+        "Node432": [
+            663.0,
+            1128.0
+        ],
+        "Node433": [
+            1045.0,
+            1120.0
+        ],
+        "Node434": [
+            1374,
+            1130
+        ],
+        "Node5": [
+            2028.688697575647,
+            312.28144620744104
+        ],
+        "Node584": [
+            539.0,
+            1458.0
+        ],
+        "Node6": [
+            2376.655413790049,
+            286.34603878773373
+        ],
+        "Node64": [
+            253.193931301536,
+            789.9251995203789
+        ],
+        "Node65": [
+            690.8539315090923,
+            785.6026316170946
+        ],
+        "Node66": [
+            1087.4495366354456,
+            789.9251995203789
+        ],
+        "Node7": [
+            2794.863858432825,
+            298.23310052176635
+        ],
+        "Node752": [
+            2425.9165080976563,
+            -83.23293255000002
+        ],
+        "Node753": [
+            2582.238208761719,
+            242.9583495023437
+        ],
+        "Node754": [
+            2519,
+            785
+        ],
+        "Node755": [
+            2876.123006010156,
+            -222.8803184765626
+        ],
+        "Node756": [
+            3306.5287551718748,
+            -259.3553819648438
+        ],
+        "Node757": [
+            3838.022537429688,
+            -261.4396713070313
+        ],
+        "Node758": [
+            2972.000315750781,
+            280.47555766171877
+        ],
+        "Node759": [
+            3334.6666612914055,
+            74.1309127851562
+        ],
+        "Node760": [
+            3878,
+            770
+        ],
+        "Node761": [
+            3727.55520229375,
+            76.21520212734373
+        ],
+        "Node762": [
+            4127.73875599375,
+            403.44862885078135
+        ],
+        "Node763": [
+            4188.183146917187,
+            25.150113243749956
+        ],
+        "Node764": [
+            4564.3973731820315,
+            -6.114226889062479
+        ],
+        "Node766": [
+            4248,
+            -297
+        ],
+        "Node767": [
+            5019,
+            142
+        ],
+        "Node768": [
+            3015,
+            875
+        ],
+        "Node769": [
+            422.0,
+            1197.0
+        ],
+        "Node8": [
+            3254.1366981568053,
+            244.20100173071
+        ],
+        "Node9": [
+            3736.103019373028,
+            269.05576717459587
+        ]
+    },
+    "links": {
+        "Node1": [
+            "Node2"
+        ],
+        "Node10": [
+            "Node9",
+            "Node11"
+        ],
+        "Node11": [
+            "Node10",
+            "Node12"
+        ],
+        "Node12": [
+            "Node11",
+            "Node13"
+        ],
+        "Node13": [
+            "Node12",
+            "Node14"
+        ],
+        "Node134": [
+            "Node584"
+        ],
+        "Node14": [
+            "Node13",
+            "Node31"
+        ],
+        "Node2": [
+            "Node1",
+            "Node3"
+        ],
+        "Node202": [
+            "Node66",
+            "Node203"
+        ],
+        "Node203": [
+            "Node202",
+            "Node204"
+        ],
+        "Node204": [
+            "Node203",
+            "Node205"
+        ],
+        "Node205": [
+            "Node204",
+            "Node206"
+        ],
+        "Node206": [
+            "Node205"
+        ],
+        "Node274": [
+            "Node276",
+            "Node277",
+            "Node278"
+        ],
+        "Node276": [
+            "Node274",
+            "Node279"
+        ],
+        "Node277": [
+            "Node274",
+            "Node280"
+        ],
+        "Node278": [
+            "Node274",
+            "Node281"
+        ],
+        "Node279": [
+            "Node276",
+            "Node282"
+        ],
+        "Node280": [
+            "Node277",
+            "Node282"
+        ],
+        "Node281": [
+            "Node278",
+            "Node282"
+        ],
+        "Node282": [
+            "Node279",
+            "Node280",
+            "Node281",
+            "Node752",
+            "Node753",
+            "Node754"
+        ],
+        "Node3": [
+            "Node2",
+            "Node4"
+        ],
+        "Node31": [
+            "Node14"
+        ],
+        "Node4": [
+            "Node3",
+            "Node5"
+        ],
+        "Node432": [],
+        "Node433": [],
+        "Node434": [],
+        "Node5": [
+            "Node4",
+            "Node6"
+        ],
+        "Node584": [
+            "Node134"
+        ],
+        "Node6": [
+            "Node5",
+            "Node7"
+        ],
+        "Node64": [
+            "Node65"
+        ],
+        "Node65": [
+            "Node64",
+            "Node66"
+        ],
+        "Node66": [
+            "Node65",
+            "Node202"
+        ],
+        "Node7": [
+            "Node6",
+            "Node8"
+        ],
+        "Node752": [
+            "Node282",
+            "Node755"
+        ],
+        "Node753": [
+            "Node282",
+            "Node758"
+        ],
+        "Node754": [
+            "Node282",
+            "Node768"
+        ],
+        "Node755": [
+            "Node752",
+            "Node756"
+        ],
+        "Node756": [
+            "Node755",
+            "Node757"
+        ],
+        "Node757": [
+            "Node756",
+            "Node766"
+        ],
+        "Node758": [
+            "Node753",
+            "Node759",
+            "Node760"
+        ],
+        "Node759": [
+            "Node758",
+            "Node761"
+        ],
+        "Node760": [
+            "Node758",
+            "Node767"
+        ],
+        "Node761": [
+            "Node759",
+            "Node762",
+            "Node763"
+        ],
+        "Node762": [
+            "Node761",
+            "Node767"
+        ],
+        "Node763": [
+            "Node761",
+            "Node764"
+        ],
+        "Node764": [
+            "Node763",
+            "Node767"
+        ],
+        "Node766": [
+            "Node757",
+            "Node767"
+        ],
+        "Node767": [
+            "Node762",
+            "Node764",
+            "Node760",
+            "Node766"
+        ],
+        "Node768": [
+            "Node754"
+        ],
+        "Node769": [],
+        "Node8": [
+            "Node7",
+            "Node9"
+        ],
+        "Node9": [
+            "Node8",
+            "Node10"
+        ]
+    },
+    "names": [
+        "Tutorial",
+        "Djonsiscus"
+    ],
+    "nodes": {
+        "Djonsiscus": [
+            "Node274",
+            "Node276",
+            "Node277",
+            "Node278",
+            "Node279",
+            "Node280",
+            "Node281",
+            "Node282",
+            "Node752",
+            "Node753",
+            "Node754",
+            "Node755",
+            "Node756",
+            "Node757",
+            "Node758",
+            "Node759",
+            "Node760",
+            "Node761",
+            "Node762",
+            "Node763",
+            "Node764",
+            "Node766",
+            "Node767",
+            "Node768",
+            "Node769"
+        ],
+        "Tutorial": [
+            "Node4",
+            "Node64",
+            "Node13",
+            "Node203",
+            "Node5",
+            "Node9",
+            "Node8",
+            "Node202",
+            "Node204",
+            "Node66",
+            "Node10",
+            "Node14",
+            "Node6",
+            "Node2",
+            "Node134",
+            "Node31",
+            "Node1",
+            "Node3",
+            "Node65",
+            "Node11",
+            "Node205",
+            "Node7",
+            "Node12",
+            "Node206",
+            "Node432",
+            "Node433",
+            "Node434",
+            "Node584"
+        ]
+    },
+    "tags": {
+        "Node1": [
+            "start",
+            "comment",
+            "space_exception",
+            "block_tutorial_part1"
+        ],
+        "Node10": [
+            "comment_reply"
+        ],
+        "Node11": [
+            "comment"
+        ],
+        "Node12": [
+            "comment_reply"
+        ],
+        "Node13": [
+            "comment"
+        ],
+        "Node134": [
+            "busy",
+            "start",
+            "comment"
+        ],
+        "Node14": [
+            "comment_reply",
+            ""
+        ],
+        "Node2": [
+            "comment_reply"
+        ],
+        "Node202": [
+            "comment"
+        ],
+        "Node203": [
+            "comment"
+        ],
+        "Node204": [
+            "comment"
+        ],
+        "Node205": [
+            "comment"
+        ],
+        "Node206": [
+            "comment",
+            "flag_tutorial_part3"
+        ],
+        "Node274": [
+            "greeting",
+            "block_tutorial_part4"
+        ],
+        "Node276": [
+            "question",
+            "block_book_joker"
+        ],
+        "Node277": [
+            "question",
+            "block_book_lover"
+        ],
+        "Node278": [
+            "question",
+            "block_book_liar"
+        ],
+        "Node279": [
+            "answer"
+        ],
+        "Node280": [
+            "answer"
+        ],
+        "Node281": [
+            "answer"
+        ],
+        "Node282": [
+            "answer",
+            "flag_tutorial_part5"
+        ],
+        "Node3": [
+            "comment",
+            "flag_spacebar_pressed"
+        ],
+        "Node31": [
+            "comment",
+            "flag_tutorial_part2"
+        ],
+        "Node4": [
+            "comment_reply"
+        ],
+        "Node432": [
+            "card_book_lover",
+            "name_djonsiscus"
+        ],
+        "Node433": [
+            "card_book_joker",
+            "name_djonsiscus"
+        ],
+        "Node434": [
+            "card_book_liar",
+            "name_djonsiscus"
+        ],
+        "Node5": [
+            "comment"
+        ],
+        "Node584": [
+            "comment_reply"
+        ],
+        "Node6": [
+            "comment_reply"
+        ],
+        "Node64": [
+            "start",
+            "comment",
+            "block_tutorial_part2"
+        ],
+        "Node65": [
+            "comment"
+        ],
+        "Node66": [
+            "comment"
+        ],
+        "Node7": [
+            "comment"
+        ],
+        "Node752": [
+            "question"
+        ],
+        "Node753": [
+            "question"
+        ],
+        "Node754": [
+            "question"
+        ],
+        "Node755": [
+            "answer"
+        ],
+        "Node756": [
+            "answer"
+        ],
+        "Node757": [
+            "answer"
+        ],
+        "Node758": [
+            "answer"
+        ],
+        "Node759": [
+            "question"
+        ],
+        "Node760": [
+            "question"
+        ],
+        "Node761": [
+            "answer"
+        ],
+        "Node762": [
+            "question"
+        ],
+        "Node763": [
+            "question"
+        ],
+        "Node764": [
+            "answer"
+        ],
+        "Node766": [
+            "answer"
+        ],
+        "Node767": [
+            "answer",
+            "card_mayor_dellry"
+        ],
+        "Node768": [
+            "answer"
+        ],
+        "Node769": [
+            "card_mayor_dellry"
+        ],
+        "Node8": [
+            "comment_reply"
+        ],
+        "Node9": [
+            "comment"
+        ]
+    },
+    "text": {
+        "Node1": "Did we... did we start?",
+        "Node10": "I hope that doesn't sound boring to you.\n\nIt's honestly quite entertaining once you get into it, well... \nIn MY opinion anyway. Take that for what it's worth I guess.",
+        "Node11": "Also... This is not a \"funny\" game.\n\nThis might seem funny, because you kinda caught me off guard, \nand I'm not used to this... \nBut no, the game is not like that really. \n\nIt's quite serious... oh and ADULT!",
+        "Node12": "I mean... It's not like an adult game or anything...\n\nBut it contains some pretty adult themes, \nand is not appropriate for children, \nso you know.... trigger warning and all that.",
+        "Node13": "Ok, that's about it. What else... No I think that's all...\n\nNo wait, I forgot...",
+        "Node134": "Can't talk, busy right now.",
+        "Node14": "Nice to meet you.\nMy name is Thack.",
+        "Node2": "You need to press Spacebar to continue.",
+        "Node202": "Speaking of which... I've got some books to read.",
+        "Node203": "I don't have time to read all of them, one would do for now.\nBut you have to help me pick.",
+        "Node204": "They are supposed to help me get better at conversations, \nand... you know... speaking to people. \nI guess I can be kind of shy...",
+        "Node205": "I suppose it's something that might come in handy... who knows.",
+        "Node206": "Anyway... Let's pick one.",
+        "Node274": "Hello there Thack.\nDid you finish your reading? ",
+        "Node276": "I did. I picked the one with the Jokes.   \nNot sure how useful puns and one-liners would really be, but it was a fun read.",
+        "Node277": "Yeah... ehm... I read the one about... Love and stuff.",
+        "Node278": "No, didn't read any book.\nNo, I'm lying, I read the one about... lying. ",
+        "Node279": "Ah yes, the Compendium of Witty Retorts.    \nDo no underestimate the value of some levity, Thack, even in dire circumstances.\nIt has the ability to bring out the most closed person. \nYou will need people to feel like they trust you when you talk to them. Some humor goes a long way to achieve comity. \n",
+        "Node280": "Ah Yes, the Lovers Guidebook to Love. \nDo not be ashamed of the subject matter, young Thack, it is only natural to be curious about such things. Even for men of the cloth, like you and me.\n\nIt is an important, essential, and beautiful part of the human experience and well worth studying.  ",
+        "Node281": "Mhm, the Art of Telling Lies. \nUnderstand Young Thack, that we serve the community we work in, we are their humble servants and guides. Sometimes that requires a more complex relationship with the truth than we might like. \n\nBut do not try to lie to me, it will never work. I would not be in the position I am if I could not discern lie from truth.",
+        "Node282": "Thack... There has been a murder.\nI need you, to investigate the murder on my behalf.",
+        "Node3": "Nice! Ok, here we go. Welcome to the Game!\nWow! I never really thought anyone would actually play this...",
+        "Node31": "I want to tell you more, but, let's go to my room first.\nIts the door on the left there.\n\nAnd the only door that is going to work because... \nWell as I said... this is a tutorial.",
+        "Node4": "Damn, this is wrong... sorry.\nI'm terrible at this.",
+        "Node432": "You have chosen to read the book, the Lovers Guide to Love.\n\nThis book have given you insigt into how a gentleman approaches the fairer sex, as well as how gentlemen discuss the subject among themselves.\n\nThis is useful to approach characters that care a lot about this subject, and to recognize when love might be on someones mind. ",
+        "Node433": "You have chosen to read the book the Compendium of Witty Retorts.\n\nThis book has prepared you with jokes, puns and witticisms to use in conversation to gain levity and lighten the mood.\n\nThis is useful for characters that are very closed-in and hard to approach, as well as characters that enjoy humor and a good joke. \n\n",
+        "Node434": "You have chosen to read the book the Art of Telling Lies.\n\nThis book explains how to get away with telling lies, and making untrue things up on the spot.\n\nThis is usefull in all situations. As long as the person you are talking to acutally believes you. ",
+        "Node5": "Ok... This is the tutorial for the game. \nRight... tutorial... lets do this!",
+        "Node584": "Oh ok, sorry.",
+        "Node6": "Ok, so you can move using the WASD keys, as you do in most games.\n\nYou can also use the movement keys... but I'm not sure why you would want to... ",
+        "Node64": "Ok, so.. \nI'm an apprentice to Father Djonsicus here in the Church.",
+        "Node65": "I'm new here, but this village is... \nI don't actually remember the name of the Village.. \nSorry. As I said, I'm new, I just arrived a few days ago actually.",
+        "Node66": "Anyway, there is not a lot of people in the village at the moment, \nmost are away at some festival I believe. \nAnd I've mostly been doing chores and required reading.",
+        "Node7": "I don't know. Maybe you like using the movement keys instead of the WASD keys.\n\nThat's up to you.. I don't... it really has nothing to do with me.\nYou can use either, its fine... really.",
+        "Node752": "WHAAAAT!! WHO...!! WHY ME????\n\nAre you serious? I must be the least qualified person for this job in the entire Village. I literally don't know anyone! I can't even remember the name of this place. ",
+        "Node753": "Wait, someone got killed?\nWho, and how? Are you certain it was murder?\n\nThere are not that many people in the village, if someone did this that person could not be far.",
+        "Node754": "Yes! This is exactly the kind of thing I have been waiting for!\n\nThank you for trusting in me sir. I will not let you down, I was born for this!",
+        "Node755": "Calm down Thack, this is a serious situation.\nA man is dead, and it does not look accidental. This has not happened here since... well, it's been awhile.\n\nYou are the perfect person to investigate Thack, simply BECAUSE you do not know anyone. You are the only person I can trust had no part in this. \n",
+        "Node756": "This is a small village, everyone here knows everyone else.\nWhen something like this happens, it is likely many, if not everyone here knows at least something about it.\n\nIt is also just as likely that everyone will make up their own theories and use it as justification to accuse anyone that feel have slighted them in some way or other.",
+        "Node757": "I need you to be the impartial witness. Ask everyone, about everything, but keep a polite tounge, and try to consider what people are telling you.\n\nPeople rarely say what they truly mean, if you are to unravel this mystery, you will need to hear what they are not saying, and I think you can do just that.",
+        "Node758": "Good, you react as I had hoped. With curiosity, not emotion.\n\nThis is why you are perfect for this task, you are impartial and certainly not involved. ",
+        "Node759": "I'm not sure, why can't you do it?\n\nThey would be far more likely to tell you truth then me.",
+        "Node760": "Go on. Who is the victim?",
+        "Node761": "No, I cannot. I take confessions, as such I cannot reveal what is told to me in confidence. ",
+        "Node762": "I understand, please go on, who is the victim?",
+        "Node763": "Wait a minute, if you take confessions, then you should already know who the murderer is, at least have some knowledge of who MIGHT have done it!",
+        "Node764": "Thack, confessions is a divine sacrament. In confessions I am a vessel for the Gods themselves, betraying that trust, directly or indirectly is something I will never do.\n\nLet it go Thack. You have other things to focus on.",
+        "Node766": "Also our Village is called Tyford. As you should well know.",
+        "Node767": "The victim is our mayor, Mayor Dellry. He died during the night, in a most... gruesome manner.\n\nYou will have to see the body yourself, I am sorry Thack, I cannot spare you this. You will find him in his office, in the second floor of his home. ",
+        "Node768": "Ok then...",
+        "Node769": "Mayor Dellry has been killed.\n\nHis body can be found in his home, on the second floor, in his office.\n\nEveryone in the village can be asked about this card.",
+        "Node8": "Ok, moving around, easy right?\n\nSecondly the rest of the game... \nSo this is an RPG, it really is.\nBut, its probably different from games you've played before.",
+        "Node9": "I mean. There is no combat here, this game is about... \nyou know... dialogue... talking to people. \nThinking about what they say, and so on..."
+    }
+}
