@@ -100,7 +100,7 @@ class EventCreator:
 	def update(self, dt):
 		if self.trigger["game_started"]:
 			self.uptime += dt
-			if self.trigger["Tutorial"] and self.check_commenting() and (self.room_check() or self.check_uptime(10)):
+			if self.trigger["Tutorial"] and self.check_commenting() and (self.room_check() or self.check_uptime(5)):
 				self.tutorial_event_checker()
 			self.flag_activators()
 		self.time_idles(dt)

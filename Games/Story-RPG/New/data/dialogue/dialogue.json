@@ -53,36 +53,36 @@
             778
         ],
         "Node274": [
-            265,
-            359
+            267.6348942625,
+            362.80498667812503
         ],
         "Node276": [
-            816,
-            15
+            841.8566080351561,
+            4.30721982187498
         ],
         "Node277": [
-            777,
-            429
+            801.2129658625,
+            435.75511365468753
         ],
         "Node278": [
-            801,
-            860
+            826.22443796875,
+            884.9194668960936
         ],
         "Node279": [
-            1232.0,
-            -128.0
+            1275.3887912101563,
+            -144.7194681445314
         ],
         "Node280": [
-            1252.0,
-            391.0
+            1296.2316846320314,
+            396.15361615312486
         ],
         "Node281": [
-            1237.0,
-            814.0
+            1280.5995145656248,
+            836.9808120257812
         ],
         "Node282": [
-            1893,
-            251
+            1989.257890909375,
+            240.87406016015626
         ],
         "Node3": [
             1165.2557588945667,
@@ -136,6 +136,74 @@
             2794.863858432825,
             298.23310052176635
         ],
+        "Node752": [
+            2425.9165080976563,
+            -83.23293255000002
+        ],
+        "Node753": [
+            2582.238208761719,
+            242.9583495023437
+        ],
+        "Node754": [
+            2519,
+            785
+        ],
+        "Node755": [
+            2876.123006010156,
+            -222.8803184765626
+        ],
+        "Node756": [
+            3306.5287551718748,
+            -259.3553819648438
+        ],
+        "Node757": [
+            3838.022537429688,
+            -261.4396713070313
+        ],
+        "Node758": [
+            2972.000315750781,
+            280.47555766171877
+        ],
+        "Node759": [
+            3334.6666612914055,
+            74.1309127851562
+        ],
+        "Node760": [
+            3709,
+            567
+        ],
+        "Node761": [
+            3727.55520229375,
+            76.21520212734373
+        ],
+        "Node762": [
+            4060,
+            329
+        ],
+        "Node763": [
+            4188.183146917187,
+            25.150113243749956
+        ],
+        "Node764": [
+            4657,
+            -36
+        ],
+        "Node766": [
+            4248,
+            -297
+        ],
+        "Node767": [
+            4732,
+            413
+        ],
+        "Node768": [
+            3015,
+            875
+        ],
+        "Node769": [
+            422.0,
+            1197.0
+        ],
         "Node8": [
             3254.1366981568053,
             244.20100173071
@@ -143,6 +211,26 @@
         "Node9": [
             3736.103019373028,
             269.05576717459587
+        ],
+        "Node937": [
+            3425.0,
+            889.0
+        ],
+        "Node939": [
+            3442,
+            1244
+        ],
+        "Node940": [
+            3970,
+            1175
+        ],
+        "Node941": [
+            5105.0,
+            389.0
+        ],
+        "Node942": [
+            5483,
+            389
         ]
     },
     "links": {
@@ -227,7 +315,10 @@
         "Node282": [
             "Node279",
             "Node280",
-            "Node281"
+            "Node281",
+            "Node752",
+            "Node753",
+            "Node754"
         ],
         "Node3": [
             "Node2",
@@ -269,6 +360,79 @@
             "Node6",
             "Node8"
         ],
+        "Node752": [
+            "Node282",
+            "Node755"
+        ],
+        "Node753": [
+            "Node282",
+            "Node758"
+        ],
+        "Node754": [
+            "Node282",
+            "Node768"
+        ],
+        "Node755": [
+            "Node752",
+            "Node756"
+        ],
+        "Node756": [
+            "Node755",
+            "Node757"
+        ],
+        "Node757": [
+            "Node756",
+            "Node766"
+        ],
+        "Node758": [
+            "Node753",
+            "Node759",
+            "Node760"
+        ],
+        "Node759": [
+            "Node758",
+            "Node761"
+        ],
+        "Node760": [
+            "Node758",
+            "Node767"
+        ],
+        "Node761": [
+            "Node759",
+            "Node762",
+            "Node763"
+        ],
+        "Node762": [
+            "Node761",
+            "Node767"
+        ],
+        "Node763": [
+            "Node761",
+            "Node764"
+        ],
+        "Node764": [
+            "Node763",
+            "Node767"
+        ],
+        "Node766": [
+            "Node757",
+            "Node767"
+        ],
+        "Node767": [
+            "Node762",
+            "Node764",
+            "Node760",
+            "Node766",
+            "Node937",
+            "Node940",
+            "Node941"
+        ],
+        "Node768": [
+            "Node754",
+            "Node937",
+            "Node939"
+        ],
+        "Node769": [],
         "Node8": [
             "Node7",
             "Node9"
@@ -276,6 +440,25 @@
         "Node9": [
             "Node8",
             "Node10"
+        ],
+        "Node937": [
+            "Node768",
+            "Node767"
+        ],
+        "Node939": [
+            "Node768",
+            "Node940"
+        ],
+        "Node940": [
+            "Node939",
+            "Node767"
+        ],
+        "Node941": [
+            "Node767",
+            "Node942"
+        ],
+        "Node942": [
+            "Node941"
         ]
     },
     "names": [
@@ -291,7 +474,29 @@
             "Node279",
             "Node280",
             "Node281",
-            "Node282"
+            "Node282",
+            "Node752",
+            "Node753",
+            "Node754",
+            "Node755",
+            "Node756",
+            "Node757",
+            "Node758",
+            "Node759",
+            "Node760",
+            "Node761",
+            "Node762",
+            "Node763",
+            "Node764",
+            "Node766",
+            "Node767",
+            "Node768",
+            "Node769",
+            "Node937",
+            "Node939",
+            "Node940",
+            "Node941",
+            "Node942"
         ],
         "Tutorial": [
             "Node4",
@@ -446,11 +651,78 @@
         "Node7": [
             "comment"
         ],
+        "Node752": [
+            "question"
+        ],
+        "Node753": [
+            "question"
+        ],
+        "Node754": [
+            "question"
+        ],
+        "Node755": [
+            "answer"
+        ],
+        "Node756": [
+            "answer"
+        ],
+        "Node757": [
+            "answer"
+        ],
+        "Node758": [
+            "answer"
+        ],
+        "Node759": [
+            "question"
+        ],
+        "Node760": [
+            "question"
+        ],
+        "Node761": [
+            "answer"
+        ],
+        "Node762": [
+            "question"
+        ],
+        "Node763": [
+            "question"
+        ],
+        "Node764": [
+            "answer"
+        ],
+        "Node766": [
+            "answer"
+        ],
+        "Node767": [
+            "answer",
+            "card_mayor_dellry"
+        ],
+        "Node768": [
+            "answer"
+        ],
+        "Node769": [
+            "card_mayor_dellry"
+        ],
         "Node8": [
             "comment_reply"
         ],
         "Node9": [
             "comment"
+        ],
+        "Node937": [
+            "question"
+        ],
+        "Node939": [
+            "question"
+        ],
+        "Node940": [
+            "answer"
+        ],
+        "Node941": [
+            "answer"
+        ],
+        "Node942": [
+            "answer"
         ]
     },
     "text": {
@@ -474,7 +746,7 @@
         "Node279": "Ah yes, the Compendium of Witty Retorts.    \nDo no underestimate the value of some levity, Thack, even in dire circumstances.\nIt has the ability to bring out the most closed person. \nYou will need people to feel like they trust you when you talk to them. Some humor goes a long way to achieve comity. \n",
         "Node280": "Ah Yes, the Lovers Guidebook to Love. \nDo not be ashamed of the subject matter, young Thack, it is only natural to be curious about such things. Even for men of the cloth, like you and me.\n\nIt is an important, essential, and beautiful part of the human experience and well worth studying.  ",
         "Node281": "Mhm, the Art of Telling Lies. \nUnderstand Young Thack, that we serve the community we work in, we are their humble servants and guides. Sometimes that requires a more complex relationship with the truth than we might like. \n\nBut do not try to lie to me, it will never work. I would not be in the position I am if I could not discern lie from truth.",
-        "Node282": "Now I have another task for you and this is very important.   \nThere has been a murder, and I want you, Thack, to investigate the murder on my behalf.",
+        "Node282": "Thack... There is no easy way to say this. There has been a murder.\nAnd I need you, to investigate the murder on my behalf.",
         "Node3": "Nice! Ok, here we go. Welcome to the Game!\nWow! I never really thought anyone would actually play this...",
         "Node31": "I want to tell you more, but, let's go to my room first.\nIts the door on the left there.\n\nAnd the only door that is going to work because... \nWell as I said... this is a tutorial.",
         "Node4": "Damn, this is wrong... sorry.\nI'm terrible at this.",
@@ -488,7 +760,29 @@
         "Node65": "I'm new here, but this village is... \nI don't actually remember the name of the Village.. \nSorry. As I said, I'm new, I just arrived a few days ago actually.",
         "Node66": "Anyway, there is not a lot of people in the village at the moment, \nmost are away at some festival I believe. \nAnd I've mostly been doing chores and required reading.",
         "Node7": "I don't know. Maybe you like using the movement keys instead of the WASD keys.\n\nThat's up to you.. I don't... it really has nothing to do with me.\nYou can use either, its fine... really.",
+        "Node752": "WHAAAAT!! WHO...!! WHY ME????\n\nAre you serious? I must be the least qualified person for this job in the entire Village. I literally don't know anyone! I can't even remember the name of this place. ",
+        "Node753": "Wait, someone got killed?\nWho, and how? Are you certain it was murder?\n\nThere are not that many people in the village, if someone did this that person could not be far.",
+        "Node754": "Yes! This is exactly the kind of thing I have been waiting for!\n\nThank you for trusting in me sir. I will not let you down, I was born for this!",
+        "Node755": "Calm down Thack, this is a serious situation.\nA man is dead, and it does not look accidental. This has not happened here since... well, it's been awhile.\n\nYou are the perfect person to investigate Thack, simply BECAUSE you do not know anyone. You are the only person I can trust had no part in this. \n",
+        "Node756": "This is a small village, everyone here knows everyone else.\nWhen something like this happens, it is likely many, if not everyone here knows at least something about it.\n\nIt is also just as likely that everyone will make up their own theories and use it as justification to accuse anyone that feel have slighted them in some way or other.",
+        "Node757": "I need you to be the impartial witness. Ask everyone, about everything, but keep a polite tounge, and try to consider what people are telling you.\n\nPeople rarely say what they truly mean, if you are to unravel this mystery, you will need to hear what they are not saying, and I think you can do just that.",
+        "Node758": "Good, you react as I had hoped. With curiosity, not emotion.\n\nThis is why I want you to handle this investigation. Tyford has not had a murder since... Well it's been awhile. Suffice it to say our Village will be torn once people get back from the festival in Brountown. If you can get to the bottom of what happened before then we can focus on comforting those affected, not have everyone accuse each other wildly. ",
+        "Node759": "I'm not sure, why can't you do it?\n\nThey would be far more likely to tell you truth then me.",
+        "Node760": "Alright, go on. Who is the victim?",
+        "Node761": "No, I cannot. I take confessions, as such I cannot reveal what is told to me in confidence. ",
+        "Node762": "I understand, please go on, who is the victim?",
+        "Node763": "Wait a minute, if you take confessions, then you should already know who the murderer is, at least have some knowledge of who MIGHT have done it!",
+        "Node764": "Thack, confessions is a divine sacrament. In confessions I am a vessel for the Gods themselves, betraying that trust, directly or indirectly is something I will never do.\n\nLet it go Thack. You have other things to focus on.",
+        "Node766": "Also our Village is called Tyford. As you should well know.",
+        "Node767": "The victim is our mayor, Mayor Dellry. He died during the night, in a most... gruesome manner.\n\nYou will have to see the body yourself, I am sorry Thack, I cannot spare you this. You will find him in his office, in the second floor of his home. ",
+        "Node768": "Thack, this is no time for sarcasm. A man is dead.\n",
+        "Node769": "Mayor Dellry has been killed.\n\nHis body can be found in his home, on the second floor, in his office.\n\nEveryone in the village can be asked about this card.",
         "Node8": "Ok, moving around, easy right?\n\nSecondly the rest of the game... \nSo this is an RPG, it really is.\nBut, its probably different from games you've played before.",
-        "Node9": "I mean. There is no combat here, this game is about... \nyou know... dialogue... talking to people. \nThinking about what they say, and so on..."
+        "Node9": "I mean. There is no combat here, this game is about... \nyou know... dialogue... talking to people. \nThinking about what they say, and so on...",
+        "Node937": "I'm sorry. I don't know why I even said that. Who died?",
+        "Node939": "Oh no sir. I am totally serious.\nI truly believe I was called for this. This is perhaps the most exiting thing that has ever happened to me. I am ready! I ",
+        "Node940": "Well ok Thack. Your enthusiasm is helpful, if surprising.\nThis is the most harrowing crime we have seen here in Tyford since... Well, it's been awhile.",
+        "Node941": "Talk to the other villagers, the few that are not away at the Harvest festival in Brountown. I have alerted the few that are here. Now I must write a letter for the Township, and prepare the funeral arrangements.\n\nYou are on your own from now on Thack. The Village is not large, you will find your way around. ",
+        "Node942": "I have one advice for you.\n\nWhen you talk to people do not be too rude, but also do not be too polite.\nA murder investigation is a serious affair, do not hold yourself to propriety, nothing matters more than solving this. "
     }
 }

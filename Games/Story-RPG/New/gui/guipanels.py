@@ -15,14 +15,13 @@ class DialoguePanels(FloatLayout):
     question_big = ObjectProperty()
     portrait = StringProperty()
 
-
     def set_size(self, size):
         self.size = size
 
     def add_text_to_panels(self, top_text, question_list=[]):
         self.top_text = top_text
         for n, q in enumerate(question_list):
-            question = Question(question_text="{}. {}".format(n+1, q), on_touch_up=lambda x,y: self.question_selected(x, y))
+            question = QuestionBox(question_text="{}. {}".format(n+1, q), on_touch_up=lambda x,y: self.question_selected(x, y))
             self.bottom_panel.add_widget(question)
 
     def clear_text(self):
@@ -60,6 +59,6 @@ class DialoguePanels(FloatLayout):
             self.top_manager.current = "None"
             self.bottom_manager.current = "None"
 
-class Question(Button):
+class QuestionBox(Button):
     question_text = StringProperty()
     question_id = StringProperty()
