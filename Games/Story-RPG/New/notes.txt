@@ -10,7 +10,6 @@ Tags come in the following types:
 Primary Tags:
 
 * greeting
-* reply
 
 * question
 * answer
@@ -18,13 +17,14 @@ Primary Tags:
 * comment
 * comment_reply
 
+* card_<id>
+
 Secondary Tags:
 
 * flag_<id>
 * block_<id>
-* card_<id>
 * card_name_<npc>
-* start_<npc>
+* block_start_<npc>
 * start
 * save_<id>          
 * back_<id>          
@@ -32,18 +32,55 @@ Secondary Tags:
 * once
 
  * greeting
-    The first node of any conversation. 
+    The first node of any conversation.
     Greetings always begin with the NPC talking.
-
- * reply
-    The reply to a greeting. 
-    This is always the player talking.
 
  * question
     The Player asking a question.
 
  * answer
     The NPC answering a question, or generally talking.
+
+ * flag_<id>
+    If they are found in a node, they set this flag to true.
+    Flags open blocked nodes. Once a flag does that the flag is reset to false.
+    Because of this Flags should follow serially, and an End flag set at the end.
+    Flags are set in answer nodes, comments and by other events.  
+
+ * block_<id>
+    This flag blocks a node from being read, unless that flag is true.
+    Blocks are saved in a block list. A block can only be passed once.
+    Blocks belong to greeting nodes, start comments, and question nodes.
+ 
+ * card_<id>
+    Card tag, gives this card to the player.
+    Cards are objects.
+
+ * name_<npc>
+     These are the names of the people that can be asked about this card.
+     Those people need Question tags with the card Flag on them.
+
+ * block_start_<npc>
+     This is the first greeting flag of an NPC, the default one.
+
+### Callback Loop in dialogue.
+ * save_<id>  
+    This tag saves a spot in the conversation that can be returned to later.
+
+ * back_<id>
+    This tags takes you back to the saved tag. But ommits the conversation path you last took.
+
+ * once
+   This only exists after a block tag.
+   It signifies that the block tag will not be part of a callback loop, the player will get only one chance to select this choice.
+
+### Comment specific tags.
+ * start
+    Indicates the first node in a COMMENT chain.
+
+ * busy
+    This tag belongs to a COMMENT, on the starting node.
+     It signifies that this comment chain is to be used when the NPC is busy.
 
  * comment
     This text is said outside of conversations. 
@@ -52,35 +89,106 @@ Secondary Tags:
  * comment_reply
     This is the players comments. Appears over the players head.
 
- * flag_<id>
-    If they are found in a node, they set this flag to true.
+# EXAMPLES
 
- * block_<id>
- 	This flag blocks a node from being read, unless that flag is true.
- 
- * card_<id>
-    Card tag, gives this card to the player.
+#### General Conversation.
 
- * card_name_<npc>
-     These are the names of the people that can be asked about this card.
-     Those people need Question tags with the card Flag on them.
+  ----------------------             ---------------               --------------
+ | greeting, block_<id> |           |question       |             |answer        |
+  ----------------------             ---------------               --------------
+ | Text here.           |---------> | Text Here.    |-----------> | Text here.   |   
+ |                      |           |               |             |              |
+ |                      |           |               |             |              |
+ -----------------------             ---------------               --------------
 
- * start_<npc>
-     This is the first greeting node of an NPC, the default one.
+ #### Flag Example.
 
- * start
-    Indicates the first node in a comment chain.
+  ----------------------             ---------------               -----------------
+ | greeting, block_<id> |           |question       |             |answer, flag_<id>|
+  ----------------------             ---------------               -----------------
+ | Text here.           |---------> | Text Here.    |-----------> | Text here.      |   
+ |                      |           |               |             |                 |
+ |                      |           |               |             |                 |
+ -----------------------             ---------------               -----------------
 
- * save_<id>  
-    This tag saves a spot in the conversation that can be returned to later.
+             --------------------               --------------
+            |question, block_<id>|             |answer        |
+             --------------------               --------------
+ ---------> | Text Here.         |-----------> | Text here.   |   
+            |                    |             |              |
+            |                    |             |              |
+             --------------------               --------------
 
- * back_<id>  
-    This tags takes you back to the saved tag. But ommits the conversation path you last took.
+ #### Block example.
 
- * busy
-    This tag belongs to a comment, on the starting node.
-     It signifies that this comment chain is to be used when the NPC is busy.
+  ----------------------             --------------------               --------------
+ | greeting, block_<id> |           |question, block_<id>|             |answer        |
+  ----------------------             --------------------               --------------
+ | Text here.           |---------> | Text Here.         |-----------> | Text here.   |   
+ |                      |   |       |                    |             |              |
+ |                      |   |       |                    |             |              |
+ -----------------------    |        --------------------               --------------
+                            |
+                            |        --------------------               --------------
+                            |       |question,           |             |answer        |
+                            |        --------------------               --------------
+                             -----> | Text Here.         |-----------> | Text here.   |   
+                                    |                    |             |              |
+                                    |                    |             |              |
+                                     --------------------               --------------
 
- * once
-    This only exists after a block tag.
-    It signifies that the block tag will not be part of a callback loop, the player will get only one chance to select this choice.
+  #### Card example.
+
+  ----------------------             ---------------               ------------------
+ | greeting, block_<id> |           |question       |             |answer, card_<id> |
+  ----------------------             ---------------               ------------------
+ | Text here.           |---------> | Text Here.    |-----------> | Text here.       |   
+ |                      |           |               |             |                  |
+ |                      |           |               |             |                  |
+ -----------------------             ---------------               ------------------
+
+  --------------------------- 
+ | greeting, block_card_<id> | 
+  ---------------------------  
+ | Text here.                |--------->
+ |                           | 
+ |                           | 
+  ---------------------------
+
+ ### Save, Back example.
+
+  ----------------------             --------------------               --------------
+ | greeting, block_<id> |           |question, save _<id>|             |answer        |
+  ----------------------             --------------------               --------------
+ | Text here.           |---------> | Text Here.         |-----------> | Text here.   |          -------------------
+ |                      |   |       |                    |             |              |----     | answer, back_<id> |
+ |                      |   |       |                    |             |              |   |      -------------------
+ -----------------------    |        --------------------               --------------    |     | Text here.        |
+                            |                                                              ---->|                   |
+                            |        --------------------               --------------    |     |                   |
+                            |       |question, save _<id>|             |answer        |   |      -------------------
+                            |        --------------------               --------------    |
+                             -----> | Text Here.         |-----------> | Text here.   |----   
+                                    |                    |             |              |
+                                    |                    |             |              |
+                                     --------------------               --------------
+
+### Comment example.
+
+  ---------------------------             ---------------               --------------
+ | comment, start, block_<id>|           |comment_reply  |             |comment       |
+  ---------------------------             ---------------               --------------
+ | Text here.                |---------> | Text Here.    |-----------> | Text here.   |   
+ |                           |           |               |             |              |
+ |                           |           |               |             |              |
+ ----------------------------             ---------------               --------------
+
+### Comment Busy example.
+
+  ---------------------------             ---------------               --------------
+ | comment, start, busy      |           |comment_reply  |             |comment       |
+  ---------------------------             ---------------               --------------
+ | Text here.                |---------> | Text Here.    |-----------> | Text here.   |   
+ |                           |           |               |             |              |
+ |                           |           |               |             |              |
+ ----------------------------             ---------------               --------------

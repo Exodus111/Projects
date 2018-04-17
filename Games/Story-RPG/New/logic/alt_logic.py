@@ -7,13 +7,13 @@ class Dialogue:
 	"""
 	def __init__(self, dialoguedict):
 		self.portraits = {
-		"mrjohes":"images/portraits/Portrait Apothecary.png",
-		"jarold":"images/portraits/Portrait Blacksmith.png",
-		"sheila":"images/portraits/Portrait Girl.png",
-		"riff":"images/portraits/Portrait Guy.png",
-		"vonduren":"images/portraits/Portrait Old.png",
-		"tylda":"images/portraits/Portrait Wife.png",
-		"djonsiscus":"images/portraits/Portrait Priest.png",
+		"mrjohes":"images/portraits/Portrait_Apothecary.png",
+		"jarold":"images/portraits/Portrait_Blacksmith.png",
+		"sheila":"images/portraits/Portrait_Girl.png",
+		"riff":"images/portraits/Portrait_Guy.png",
+		"vonduren":"images/portraits/Portrait_Old.png",
+		"tylda":"images/portraits/Portrait_Wife.png",
+		"djonsiscus":"images/portraits/Portrait_Priest.png",
 		}		
 		self.names = []
 		self.nodes = self.assemble_nodes(dialoguedict)
@@ -172,13 +172,13 @@ class DialogueSystem:
 	def setup_conversation(self, node):
 		"""
 			Sets up the initial and following conversations.
-			Takes the greeting/start node of the conversation/comment or the answer node of a dialogue. 
+			Takes the greeting/start node of the conversation/comment or the answer node of a dialogue.
 		"""
 		if node.type == "dialogue":
 			if not self.events.in_conversation:  # <-- This happens at the beginning.
 				self.once_list = []
 				self.events.in_conversation = True
-				self.parent.gui.conv_panels_toggle()
+				self.parent.gui.conv_panels_toggle(self.dialogue.portraits[node.npc])
 			node, back = self.check_answer_tags(node)  # <-- Checking flag/card/back tags, can return a different node (back tag).
 			self.current_questions = self.get_questions(node)  # <-- This returns a list of questions or Continue...
 			if not back: # Normal.

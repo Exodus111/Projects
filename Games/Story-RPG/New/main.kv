@@ -352,16 +352,22 @@
             name: "top_panel"
             size_hint: 1., .25
             pos_hint: {"x":0., "top":.975}
-            Label:
-                text: root.top_text
-                font_name: './fonts/MagicMedieval.ttf'
-                font_size: 18
-                size_hint: 1., 1.
-                pos_hint: {"x":.0, "y":.0}
-                text_size: self.size
-                padding: 20, 20
-                valign: "top"
-                split_str: " "
+            BoxLayout:
+                Image:
+                    source: root.portrait
+                    size_hint: (.25, 1.)
+                    allow_stretch: True
+                    keep_ratio: True
+                Label:
+                    size_hint: .75, 1.
+                    text: root.top_text
+                    font_name: './fonts/MagicMedieval.ttf'
+                    font_size: 18
+                    pos_hint: {"x":.0, "y":.0}
+                    text_size: self.size
+                    padding: 20, 20
+                    valign: "top"
+                    split_str: " "
 
     ScreenManager:
         id: bottom_manager
@@ -533,6 +539,7 @@
         padding_y: 10
         padding_x: 15
         split_str: " "
+
     Label:
         text: root.tags_text
         markup: True
@@ -551,6 +558,7 @@
                 texture: root.img_tex
                 size: self.width/4, self.height/2
                 pos: self.pos
+                
     BoxLayout:
         orientation: "horizontal"
         size_hint: .2, .1

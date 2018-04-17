@@ -13,7 +13,7 @@ class DialoguePanels(FloatLayout):
     bottom_buttons = ListProperty()
     open_close = BooleanProperty(False)
     question_big = ObjectProperty()
-    portrait = StringProperty()
+    portrait = StringProperty("./images/portraits/Portrait_Guy.png")
 
     def set_size(self, size):
         self.size = size
@@ -50,9 +50,11 @@ class DialoguePanels(FloatLayout):
         else:
             self.parent.parent.question_picked(self.question_big.text)          # <---Calling outside the module
 
-    def drop_panels(self):
+    def drop_panels(self, portrait=None):
         self.open_close = not self.open_close
         if self.open_close:
+            if portrait != None:
+                self.portrait = portrait
             self.top_manager.current = "top_panel"
             self.bottom_manager.current = "bottom_panel"
         else:

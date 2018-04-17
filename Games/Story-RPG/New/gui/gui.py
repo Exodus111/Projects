@@ -124,15 +124,13 @@ class GUI(Widget):
     def retire_card(self, card_title):
         self.menus.retire_card(card_title)
 
-    def conv_panels_toggle(self):
+    def conv_panels_toggle(self, portrait=None):
         """
             This method is a toggle.
         """
         self.panel_toggle = not self.panel_toggle
-        if self.panel_toggle:
-            self.panels.drop_panels()
-        else:
-            self.panels.drop_panels()
+        self.panels.drop_panels(portrait)
+
 
     def add_text_to_conv_panels(self, text_dict, portrait):
         """
