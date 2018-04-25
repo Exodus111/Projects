@@ -13,20 +13,20 @@
             237.71714987578312
         ],
         "Node1110": [
-            154.2028053125,
-            233.56522968750002
+            175,
+            236
         ],
         "Node1112": [
-            762.2511246875001,
-            370.42833937499995
+            757.0,
+            367.0
         ],
         "Node1114": [
-            757.027341875,
-            743.4064321875
+            752,
+            724
         ],
         "Node1115": [
-            145.84475281250002,
-            574.1558690625001
+            167,
+            562
         ],
         "Node12": [
             4892.389933501632,
@@ -83,14 +83,6 @@
         "Node14": [
             5647.758674600602,
             191.24954491547476
-        ],
-        "Node1605": [
-            -160,
-            573
-        ],
-        "Node1606": [
-            -467.0,
-            562.0
         ],
         "Node2": [
             753.5311661067178,
@@ -338,8 +330,6 @@
             "Node13",
             "Node31"
         ],
-        "Node1605": [],
-        "Node1606": [],
         "Node2": [
             "Node1",
             "Node3"
@@ -588,9 +578,7 @@
             "Node1110",
             "Node1112",
             "Node1114",
-            "Node1115",
-            "Node1605",
-            "Node1606"
+            "Node1115"
         ],
         "Riff": [
             "Node1300",
@@ -723,12 +711,6 @@
         "Node14": [
             "comment_reply",
             ""
-        ],
-        "Node1605": [
-            "card_suspect_mrjohes"
-        ],
-        "Node1606": [
-            "card_mrtraversteen"
         ],
         "Node2": [
             "comment_reply"
@@ -921,8 +903,6 @@
         "Node1307": "Leave an old lady alone!",
         "Node134": "Can't talk, busy right now.",
         "Node14": "Nice to meet you.\nMy name is Thack.",
-        "Node1605": "Mr Johes is a suspect for the Murder.",
-        "Node1606": "Mr. Traversteen, Husband to Tylda. \nDied a year ago due to, seemingly natural causes. ",
         "Node2": "You need to press Spacebar to continue.",
         "Node202": "Speaking of which... I've got some books to read.",
         "Node203": "I don't have time to read all of them, one would do for now.\nBut you have to help me pick.",
