@@ -13,20 +13,20 @@
             237.71714987578312
         ],
         "Node1110": [
-            55.57275992612483,
-            204.6000339419555
+            68.71931654263307,
+            203.79794605191432
         ],
         "Node1112": [
-            760.3315017020809,
-            363.2312971252031
+            746.672266847004,
+            356.39560325100797
         ],
         "Node1114": [
-            423.9474652843239,
-            764.2373974680368
+            423.082736974653,
+            742.1492700056665
         ],
         "Node1115": [
-            45.8853545408885,
-            599.3618033903426
+            59.40037564497868,
+            583.5447876313378
         ],
         "Node12": [
             4892.389933501632,
@@ -85,44 +85,44 @@
             191.24954491547476
         ],
         "Node1605": [
-            -308.6041758182639,
-            598.0220927124441
+            -281.6059981864206,
+            582.2560334055346
         ],
         "Node1606": [
-            -664.432696070752,
-            585.2725366121919
+            -623.9004328744004,
+            569.9914119672029
         ],
         "Node1904": [
-            1265.9290839147109,
-            116.01639506100764
+            1233.0392350154907,
+            118.58362266984645
         ],
         "Node1905": [
-            1385.3243136585431,
-            522.8865923286423
+            1347.8932176040908,
+            509.9783429870638
         ],
         "Node1906": [
-            1248.957595456088,
-            864.9211478200472
+            1216.713264169658,
+            839.0034720931005
         ],
         "Node1907": [
-            1877.1387071755967,
-            511.7089924759821
+            1821.0012463840137,
+            499.22588778752015
         ],
         "Node1908": [
-            1734.0654290615448,
-            62.3694783990378
+            1683.3698198298544,
+            66.97718876586336
         ],
         "Node1909": [
-            1820.132947927029,
-            986.7569862140451
+            1766.1637248663405,
+            956.2052337681275
         ],
         "Node1910": [
-            2326.4782212525406,
-            223.32691627734616
+            2253.2499454056697,
+            221.8125436392926
         ],
         "Node1911": [
-            2281.7678218418987,
-            1045.9982654331443
+            2210.240124607495,
+            1013.193246325709
         ],
         "Node2": [
             753.5311661067178,
@@ -149,56 +149,60 @@
             778
         ],
         "Node2209": [
-            2678.57261661134,
-            -148.88715881624182
+            2591.9522841912967,
+            -136.24421450551245
         ],
         "Node2210": [
-            2918.8910134435373,
-            197.61843661622757
+            2823.130070981487,
+            197.08189668034214
         ],
         "Node2211": [
-            2896.535813738216,
-            583.2456315330081
+            2801.6251605823977,
+            568.0416010645997
         ],
         "Node2212": [
-            2743.4026957567708,
-            908.5137872454229
+            2654.316524348651,
+            880.9380473713215
         ],
         "Node2213": [
-            2725.5185359925163,
-            1288.5521822358733
+            2637.112596029382,
+            1246.5215241558071
         ],
         "Node2214": [
-            3104.173333392777,
-            -317.6951749118424
+            3001.3651009327114,
+            -298.6315475929282
         ],
         "Node2215": [
-            3306.8261231185124,
-            114.5589138116687
+            3196.3099076274975,
+            117.18157732520459
         ],
         "Node2216": [
-            3349.943737953774,
-            524.1762547466667
+            3237.7875260731953,
+            511.2189525593452
         ],
         "Node2217": [
-            3005.002819271672,
-            -703.5978276874458
+            2905.966578507604,
+            -669.8562326819344
         ],
         "Node2517": [
-            3486.8421650557357,
-            -439.5024368214604
+            3369.4789646382906,
+            -415.805819702028
         ],
         "Node2518": [
-            3913.1964955264016,
-            -450.9319479253445
+            3779.6167310592455,
+            -426.80060460372147
         ],
         "Node2519": [
-            3882.9838960297907,
-            -834.2179072215981
+            3750.5532803335736,
+            -795.5081232367331
         ],
         "Node2520": [
-            4300.303541759154,
-            -471.9300134662129
+            4152.0,
+            -447.0
+        ],
+        "Node2521": [
+            4134.0,
+            -812.0
         ],
         "Node274": [
             267.6348942625,
@@ -231,10 +235,6 @@
         "Node282": [
             1989.257890909375,
             240.87406016015626
-        ],
-        "Node2825": [
-            4728,
-            -480
         ],
         "Node3": [
             1165.2557588945667,
@@ -530,9 +530,9 @@
         ],
         "Node2519": [],
         "Node2520": [
-            "Node2518",
-            "Node2825"
+            "Node2518"
         ],
+        "Node2521": [],
         "Node274": [
             "Node276",
             "Node277",
@@ -569,9 +569,6 @@
             "Node752",
             "Node753",
             "Node754"
-        ],
-        "Node2825": [
-            "Node2520"
         ],
         "Node3": [
             "Node2",
@@ -785,7 +782,7 @@
             "Node2518",
             "Node2519",
             "Node2520",
-            "Node2825"
+            "Node2521"
         ],
         "Riff": [
             "Node1300",
@@ -1016,7 +1013,11 @@
             "card_magic_is_real"
         ],
         "Node2520": [
-            "answer"
+            "answer",
+            "card_the_war"
+        ],
+        "Node2521": [
+            "card_the_war"
         ],
         "Node274": [
             "greeting",
@@ -1046,9 +1047,6 @@
         "Node282": [
             "answer",
             "flag_tutorial_part5"
-        ],
-        "Node2825": [
-            "answer"
         ],
         "Node3": [
             "comment",
@@ -1199,7 +1197,7 @@
         "Node1905": "Yes sir, I am. I have been told to ask you some questions sir. About the mayor.",
         "Node1906": "Sure. Did you kill the Mayor!?",
         "Node1907": "The Priest told me you would. What a shock. I was not the one to find the body, but I was in there. By the Gods, who, WHAT could do such a thing!?\nIt was as if he burst from within, spewing his insides out!   ",
-        "Node1908": "Really? Well, good look to you young man. I saw the body, not a pretty sight. I can't imagine what did that.",
+        "Node1908": "Really. Well, good look to you young man. I saw the body, not a pretty sight. I can't imagine what did that.",
         "Node1909": "WHAT!? NO I DID NOT!\nWho told you that!? Was it the Priest? Did he accuse me? Just because I never go to confession he does not trust me!",
         "Node1910": "In anycase, I'm sure you have questions.",
         "Node1911": "Maybe you should investigate this properly instead.",
@@ -1219,9 +1217,10 @@
         "Node2216": "I've been thinking about that. \n\nI can only imagine someone came in from the outside. A wagrant perhaps. \n\nI don't know, it is a strange thing.",
         "Node2217": "",
         "Node2517": "Magic? What do you mean Magic?",
-        "Node2518": "Magic boy. It's real. Not wives-tales about walking 7 times through a door at sunset on midsummer eve, but spells and books, staves and wands.\n\nThough it's only in the hands of the nobles of course. I have never heard of anyone using magic that was not a noble. But wizards do exist, and magical weapons and armor, passed down through generation among the the noble families.\n\nI've seen spells that commanded balls of fire and strikes of lightning, as well as strange spells with destructive effect.  ",
+        "Node2518": "Magic boy. It's real. Not wives-tales about walking 7 times through a door at sunset on midsummer eve, but spells and books, staves and wands.\n\nThough it's only in the hands of the nobels of course. I have never heard of anyone using magic that was not a noble. But wizards do exist, and magical weapons and armor, passed down through generation among the the noble families.\n\nI've seen spells that commanded balls of fire and strikes of lightning, as well as strange spells with destructive effect.\n\nI might as well tell you about it. It was during the war.   ",
         "Node2519": "",
-        "Node2520": "I was a seargant at arms in his majesties royal forces. I fought in many battles during the war, and in the first one, the battle of Cors Bog, I fought alongside the Royal War Wizards of the Crown. Two of them.\n\nRed Robes, Red pointy hats, and long beards. Real Wizards!\n\nThey unleashed bolts of lightning and balls of fire so fierce we had to cover our ears and protect our eyes. The thundering sound and smell of sulphur and burning rock is something I will never forget. It was simply awesome to behold.\n\nThe enemy was decimated, their flanks running away in terror. We spent the rest of the night chasing down what few we could... It was... Memorable.       \n",
+        "Node2520": "As you I'm sure you know 5 years ago the war on the eastern steppes ended.\n",
+        "Node2521": "",
         "Node274": "Hello there Thack.\nDid you finish your reading? ",
         "Node276": "I did. I picked the one with the Jokes.   \nNot sure how useful puns and one-liners would really be, but it was a fun read.",
         "Node277": "Yeah... ehm... I read the one about... Love and stuff.",
@@ -1230,7 +1229,6 @@
         "Node280": "Ah Yes, the Lovers Guidebook to Love. \nDo not be ashamed of the subject matter, young Thack, it is only natural to be curious about such things. Even for men of the cloth, like you and me.\n\nIt is an important, essential, and beautiful part of the human experience and well worth studying.  ",
         "Node281": "Mhm, the Art of Telling Lies. \nUnderstand Young Thack, that we serve the community we work in, we are their humble servants and guides. Sometimes that requires a more complex relationship with the truth than we might like. \n\nBut do not try to lie to me, it will never work. I would not be in the position I am if I could not discern lie from truth.",
         "Node282": "Thack... There is no easy way to say this. There has been a murder.\nAnd I need you, to investigate the murder on my behalf.",
-        "Node2825": "Some of those bodies. Not the burned ones, looked like the Mayors body. Or similar enough to give me pause.",
         "Node3": "Nice! Ok, here we go. Welcome to the Game!\nWow! I never really thought anyone would actually play this...",
         "Node31": "I want to tell you more, but, let's go to my room first.\nIts the door on the left there.\n\nAnd the only door that is going to work because... \nWell as I said... this is a tutorial.",
         "Node4": "Damn, this is wrong... sorry.\nI'm terrible at this.",
