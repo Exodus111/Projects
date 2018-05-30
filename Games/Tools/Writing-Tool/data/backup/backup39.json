@@ -348,38 +348,6 @@
             1601.835117126302,
             215.02366838353947
         ],
-        "Node4164": [
-            2438.0,
-            863.0
-        ],
-        "Node4165": [
-            2441,
-            1327
-        ],
-        "Node4166": [
-            2862.0,
-            1156.0
-        ],
-        "Node4167": [
-            2871,
-            1552
-        ],
-        "Node4168": [
-            3364,
-            1577
-        ],
-        "Node4169": [
-            3253.0,
-            1033.0
-        ],
-        "Node4170": [
-            3625.0,
-            966.0
-        ],
-        "Node4171": [
-            3129,
-            433
-        ],
         "Node432": [
             663.0,
             1128.0
@@ -636,12 +604,10 @@
             "Node2216"
         ],
         "Node2212": [
-            "Node1911",
-            "Node4164"
+            "Node1911"
         ],
         "Node2213": [
-            "Node1911",
-            "Node4165"
+            "Node1911"
         ],
         "Node2214": [
             "Node2209",
@@ -812,33 +778,6 @@
             "Node3",
             "Node5"
         ],
-        "Node4164": [
-            "Node2212"
-        ],
-        "Node4165": [
-            "Node2213",
-            "Node4166",
-            "Node4167"
-        ],
-        "Node4166": [
-            "Node4165",
-            "Node4169"
-        ],
-        "Node4167": [
-            "Node4165",
-            "Node4168"
-        ],
-        "Node4168": [
-            "Node4167"
-        ],
-        "Node4169": [
-            "Node4166",
-            "Node4170"
-        ],
-        "Node4170": [
-            "Node4169"
-        ],
-        "Node4171": [],
         "Node432": [],
         "Node433": [],
         "Node434": [],
@@ -1065,15 +1004,7 @@
             "Node3816",
             "Node3817",
             "Node3820",
-            "Node3821",
-            "Node4164",
-            "Node4165",
-            "Node4166",
-            "Node4167",
-            "Node4168",
-            "Node4169",
-            "Node4170",
-            "Node4171"
+            "Node3821"
         ],
         "Riff": [
             "Node1300",
@@ -1288,8 +1219,7 @@
         ],
         "Node2216": [
             "answer",
-            "back_jarold_expo_01",
-            "card_suspect_the_vagrant"
+            "back_jarold_expo_01"
         ],
         "Node2217": [
             "card_perhaps_magic"
@@ -1431,31 +1361,6 @@
         "Node4": [
             "comment_reply"
         ],
-        "Node4164": [
-            "answer"
-        ],
-        "Node4165": [
-            "answer"
-        ],
-        "Node4166": [
-            "question"
-        ],
-        "Node4167": [
-            "question"
-        ],
-        "Node4168": [
-            "answer"
-        ],
-        "Node4169": [
-            "answer",
-            "card_suspect_mrjohes"
-        ],
-        "Node4170": [
-            "answer"
-        ],
-        "Node4171": [
-            "card_suspect_the_vagrant"
-        ],
         "Node432": [
             "card_book_lover",
             "name_djonsiscus"
@@ -1572,7 +1477,7 @@
         "Node11": "Also... This is not a \"funny\" game.\n\nThis might seem funny, because you kinda caught me off guard, \nand I'm not used to this... \nBut no, the game is not like that really. \n\nIt's quite serious... oh and ADULT!",
         "Node1110": "The Blacksmith",
         "Node1112": "Hello there. you must be Zack! The apprentice!",
-        "Node1114": "I cannot talk right now, too busy. Come back later.",
+        "Node1114": "I'm busy.",
         "Node1115": "About the War.",
         "Node12": "I mean... It's not like an adult game or anything...\n\nBut it contains some pretty adult themes, \nand is not appropriate for children, \nso you know.... trigger warning and all that.",
         "Node1298": "The Apothecary.",
@@ -1588,7 +1493,7 @@
         "Node1307": "Leave an old lady alone!",
         "Node134": "Can't talk, busy right now.",
         "Node14": "Nice to meet you.\nMy name is Thack.",
-        "Node1605": "Mr Johes is a suspect for the Murder.\n\nHe was walking the streets of the village two nights ago, and closed his shop conveniently until the day of the murder. ",
+        "Node1605": "Mr Johes is a suspect for the Murder.",
         "Node1606": "Mr. Traversteen, Husband to Tylda. \nDied a year ago due to, seemingly natural causes. ",
         "Node1904": "Yeah, that's me. I've been told to investigate the murder.",
         "Node1905": "Yes sir, I am. I have been told to ask you some questions sir. About the mayor.",
@@ -1654,14 +1559,6 @@
         "Node3820": "Let me see if I got this straight.\n\nYou where told, this Ragthack wanted to kill all humans.\nBut instead of waiting for him to actually attack, you charged into the Eastern Marches, where they have been living since forever, and simply attacked any camp you could find? Whether they were loyal to Ragthack or not?\n\nAll this simply on the word that he might one day attack us? ",
         "Node3821": "Have you ever seen what Orcs do to the people they attack?\n\nThey eat people Thack, Orcs only eat meat. They'll burn it sometimes, they'll eat it raw other times. And they don't always care to kill you first.\n\nWe found prisoners of war with most of their limbs missing, kept alive to keep the meat fresh. Luckily a mans mind was not meant to endure such things, Aye I said luckily, that is what I truly believe.\n\nThe victims where mostly catatonic, none survived for long after being freed.",
         "Node4": "Damn, this is wrong... sorry.\nI'm terrible at this.",
-        "Node4164": "What business is that of yours? Leave me alone.",
-        "Node4165": "This is a travesty, I am being falsely accused!\n\nI'll tell you who did it, it was that weasel Mr Johes! He's been up to something for days now!",
-        "Node4166": "Wait what? Why would you say that?",
-        "Node4167": "Falsely accused? You just accused someone else. Who is falsely accusing now!?",
-        "Node4168": "I cannot believe I am part of this conversation. In fact I won't be anymore. Have a good day!",
-        "Node4169": "I saw him walking around in the middle of the night two nights ago.\n\nHe then closed his shop for a day, and drew all the curtains.\nHe opens his shop again, and lo and behold the Mayor is dead.\n\nMighty suspiscious if you ask me.",
-        "Node4170": "Anyway, look into that, and leave me alone.",
-        "Node4171": "It is possible the Mayor was killed by someone who happened upon the village in the night. A Vagrant who came in unsean, killed the Mayor for unknown reasons, and then left equally as unseen.\n\nIf this is the case it is unlikely the murder will ever be solved.",
         "Node432": "You have chosen to read the book, the Lovers Guide to Love.\n\nThis book have given you insigt into how a gentleman approaches the fairer sex, as well as how gentlemen discuss the subject among themselves.\n\nThis is useful to approach characters that care a lot about this subject, and to recognize when love might be on someones mind. ",
         "Node433": "You have chosen to read the book the Compendium of Witty Retorts.\n\nThis book has prepared you with jokes, puns and witticisms to use in conversation to gain levity and lighten the mood.\n\nThis is useful for characters that are very closed-in and hard to approach, as well as characters that enjoy humor and a good joke. \n\n",
         "Node434": "You have chosen to read the book the Art of Telling Lies.\n\nThis book explains how to get away with telling lies, and making untrue things up on the spot.\n\nThis is usefull in all situations. As long as the person you are talking to acutally believes you. ",

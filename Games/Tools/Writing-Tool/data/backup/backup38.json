@@ -13,20 +13,20 @@
             237.71714987578312
         ],
         "Node1110": [
-            -770.6826903017695,
-            162.04954077860765
+            -719.1647598059619,
+            174.524087149882
         ],
         "Node1112": [
-            -34.41210991404,
-            327.77367485213426
+            -16.197264507974694,
+            332.7521659884323
         ],
         "Node1114": [
-            -385.8368671328791,
-            746.7099387634205
+            -351.7263321473961,
+            732.7390512122406
         ],
         "Node1115": [
-            -780.8032481077869,
-            574.4622713737956
+            -728.8275432464847,
+            568.2825123511594
         ],
         "Node12": [
             4892.389933501632,
@@ -85,44 +85,44 @@
             191.24954491547476
         ],
         "Node1605": [
-            -1151.14304921646,
-            573.0626582865107
+            -1082.4160870905455,
+            566.9462067421035
         ],
         "Node1606": [
-            -1522.8817103994566,
-            559.7430319900517
+            -1437.3402175910792,
+            554.2290554863841
         ],
         "Node1904": [
-            493.7922290066191,
-            69.50506655558848
+            488.11526817674576,
+            86.1655964249562
         ],
         "Node1905": [
-            618.5259710493158,
-            494.5676284328898
+            607.2070376410702,
+            492.001674121389
         ],
         "Node1906": [
-            476.0618953239393,
-            851.8955560719526
+            471.18691521560027,
+            833.1668992213415
         ],
         "Node1907": [
-            1132.3308343211718,
-            482.89024517671066
+            1097.7714136017871,
+            480.8524837586449
         ],
         "Node1908": [
-            982.8603286420873,
-            13.459438278333948
+            955.0617769586702,
+            32.65503117635414
         ],
         "Node1909": [
-            1072.7761797146602,
-            979.1790335642982
+            1040.9105427517939,
+            954.6930741752458
         ],
         "Node1910": [
-            1601.7616412195507,
-            181.61375716730512
+            1545.9688661840798,
+            193.20337239986168
         ],
         "Node1911": [
-            1555.0521081948327,
-            1041.0691648220447
+            1501.3721047331019,
+            1013.7837830977869
         ],
         "Node2": [
             753.5311661067178,
@@ -149,56 +149,56 @@
             778
         ],
         "Node2209": [
-            1969.5992137891735,
-            -207.24310526344027
+            1897.168362610501,
+            -178.06466667949894
         ],
         "Node2210": [
-            2220.662953797011,
-            154.75577567809444
+            2136.875955409487,
+            167.5602345655515
         ],
         "Node2211": [
-            2197.3081872846533,
-            557.6254980162537
+            2114.577574683999,
+            552.207302080204
         ],
         "Node2212": [
-            2037.328036675006,
-            897.4373507710486
+            1961.8336667144104,
+            876.648741636041
         ],
         "Node2213": [
-            2018.644223465124,
-            1294.4683814811187
+            1943.9949621340247,
+            1255.721213969322
         ],
         "Node2214": [
-            2414.2297918625386,
-            -383.59902483899384
+            2321.6873534909073,
+            -346.44363273802963
         ],
         "Node2215": [
-            2625.943784558206,
-            67.98241702782116
+            2523.8250717825094,
+            84.71181957543489
         ],
         "Node2216": [
-            2670.989314918982,
-            495.9149554552266
+            2566.833096950932,
+            493.2880586754759
         ],
         "Node2217": [
-            2310.625072032746,
-            -786.7565215679707
+            2222.768895603529,
+            -731.3654579954369
         ],
         "Node2517": [
-            2814.0088738144586,
-            -510.85264810819626
+            2703.383576860683,
+            -467.9413038388316
         ],
         "Node2518": [
-            3259.4267618642284,
-            -522.7932063094308
+            3128.654266011914,
+            -479.34176518384606
         ],
         "Node2519": [
-            3227.863268078628,
-            -923.217009488352
+            3098.5184562154222,
+            -861.6535476675995
         ],
         "Node2520": [
-            3663.842504028337,
-            -544.7301571925591
+            3514.7774235859524,
+            -500.2864610980396
         ],
         "Node274": [
             267.6348942625,
@@ -233,8 +233,8 @@
             240.87406016015626
         ],
         "Node2825": [
-            4110.662530332988,
-            -553.1609765875479
+            3941.386829295131,
+            -508.3359365915244
         ],
         "Node3": [
             1165.2557588945667,
@@ -245,140 +245,108 @@
             195.57211281875917
         ],
         "Node3133": [
-            4517.055865801362,
-            -676.4371040561044
+            4329.398129420086,
+            -626.0360224906117
         ],
         "Node3134": [
-            4978.818987336121,
-            -702.5549276723236
+            4770.27472236412,
+            -650.9724813675366
         ],
         "Node3451": [
-            4952.095569574916,
-            -1054.5164112668535
+            4744.760061654055,
+            -987.0139981065554
         ],
         "Node3452": [
-            5372.304659751692,
-            -1015.026882310482
+            5145.962200502869,
+            -949.3106645761852
         ],
         "Node3453": [
-            5644.681154348205,
-            -704.17341078212
+            5406.018526648245,
+            -652.5177570422436
         ],
         "Node3454": [
-            5434.070333247554,
-            -323.45384956171534
+            5204.934081152935,
+            -289.01895172380017
         ],
         "Node3455": [
-            5776.3129175361155,
-            -1143.620989424821
+            5531.696305082816,
+            -1072.0881865853403
         ],
         "Node3456": [
-            6025.400715568611,
-            -738.6001796158794
+            5769.517331966689,
+            -685.3873298635917
         ],
         "Node3457": [
-            6458.772982064179,
-            -736.5750755668347
+            6183.28724865896,
+            -683.453825579983
         ],
         "Node3458": [
-            7052.33375,
-            -688.967875
+            6750,
+            -638
         ],
         "Node3459": [
-            5940.0215,
-            -312.96025
+            5688,
+            -279
         ],
         "Node3460": [
-            6476.2775,
-            -364.281625
+            6200,
+            -328
         ],
         "Node3805": [
-            6749.038508460954,
-            -1059.8150404371654
+            6460.423447629507,
+            -992.0729590043352
         ],
         "Node3806": [
-            7097.941537082081,
-            -1076.2910167887185
+            6793.544849821775,
+            -1007.8036918856365
         ],
         "Node3808": [
-            7420.676838556623,
-            -122.62273855764067
+            7101.682146849622,
+            -97.2718592267723
         ],
         "Node3809": [
-            7166.752967726806,
-            297.0300708672145
+            6859.243793031917,
+            303.3991606322611
         ],
         "Node3810": [
-            7535.039497937993,
-            338.70459928584904
+            7210.871939790421,
+            343.18866144967086
         ],
         "Node3811": [
-            7883.942526559117,
-            167.16061021379494
+            7543.9933419826875,
+            179.40397203847232
         ],
         "Node3812": [
-            7864.559024969056,
-            569.3682682075929
+            7525.486597416451,
+            563.4189217878916
         ],
         "Node3814": [
-            8208.616178192668,
-            134.2086575106882
+            7853.98131346716,
+            147.94250627586896
         ],
         "Node3815": [
-            8291.96523502994,
-            602.3202209106995
+            7933.560315101982,
+            594.8803875504948
         ],
         "Node3816": [
-            8291.96523502994,
-            934.7472731802727
+            7933.560315101982,
+            912.2710568614609
         ],
         "Node3817": [
-            8712.587219534296,
-            -205.00262031540655
+            8335.156672189325,
+            -175.9255236332799
         ],
         "Node3820": [
-            6272.039374999999,
-            57.81049999999996
+            6005.0,
+            75.0
         ],
         "Node3821": [
-            6744.4055,
-            158.35850000000002
+            6365.0,
+            65.0
         ],
         "Node4": [
             1601.835117126302,
             215.02366838353947
-        ],
-        "Node4164": [
-            2438.0,
-            863.0
-        ],
-        "Node4165": [
-            2441,
-            1327
-        ],
-        "Node4166": [
-            2862.0,
-            1156.0
-        ],
-        "Node4167": [
-            2871,
-            1552
-        ],
-        "Node4168": [
-            3364,
-            1577
-        ],
-        "Node4169": [
-            3253.0,
-            1033.0
-        ],
-        "Node4170": [
-            3625.0,
-            966.0
-        ],
-        "Node4171": [
-            3129,
-            433
         ],
         "Node432": [
             663.0,
@@ -636,12 +604,10 @@
             "Node2216"
         ],
         "Node2212": [
-            "Node1911",
-            "Node4164"
+            "Node1911"
         ],
         "Node2213": [
-            "Node1911",
-            "Node4165"
+            "Node1911"
         ],
         "Node2214": [
             "Node2209",
@@ -768,8 +734,7 @@
             "Node3817"
         ],
         "Node3809": [
-            "Node3810",
-            "Node3821"
+            "Node3810"
         ],
         "Node3810": [
             "Node3809",
@@ -801,44 +766,13 @@
             "Node3460"
         ],
         "Node3820": [
-            "Node3459",
-            "Node3821"
+            "Node3459"
         ],
-        "Node3821": [
-            "Node3820",
-            "Node3809"
-        ],
+        "Node3821": [],
         "Node4": [
             "Node3",
             "Node5"
         ],
-        "Node4164": [
-            "Node2212"
-        ],
-        "Node4165": [
-            "Node2213",
-            "Node4166",
-            "Node4167"
-        ],
-        "Node4166": [
-            "Node4165",
-            "Node4169"
-        ],
-        "Node4167": [
-            "Node4165",
-            "Node4168"
-        ],
-        "Node4168": [
-            "Node4167"
-        ],
-        "Node4169": [
-            "Node4166",
-            "Node4170"
-        ],
-        "Node4170": [
-            "Node4169"
-        ],
-        "Node4171": [],
         "Node432": [],
         "Node433": [],
         "Node434": [],
@@ -1065,15 +999,7 @@
             "Node3816",
             "Node3817",
             "Node3820",
-            "Node3821",
-            "Node4164",
-            "Node4165",
-            "Node4166",
-            "Node4167",
-            "Node4168",
-            "Node4169",
-            "Node4170",
-            "Node4171"
+            "Node3821"
         ],
         "Riff": [
             "Node1300",
@@ -1288,8 +1214,7 @@
         ],
         "Node2216": [
             "answer",
-            "back_jarold_expo_01",
-            "card_suspect_the_vagrant"
+            "back_jarold_expo_01"
         ],
         "Node2217": [
             "card_perhaps_magic"
@@ -1431,31 +1356,6 @@
         "Node4": [
             "comment_reply"
         ],
-        "Node4164": [
-            "answer"
-        ],
-        "Node4165": [
-            "answer"
-        ],
-        "Node4166": [
-            "question"
-        ],
-        "Node4167": [
-            "question"
-        ],
-        "Node4168": [
-            "answer"
-        ],
-        "Node4169": [
-            "answer",
-            "card_suspect_mrjohes"
-        ],
-        "Node4170": [
-            "answer"
-        ],
-        "Node4171": [
-            "card_suspect_the_vagrant"
-        ],
         "Node432": [
             "card_book_lover",
             "name_djonsiscus"
@@ -1572,7 +1472,7 @@
         "Node11": "Also... This is not a \"funny\" game.\n\nThis might seem funny, because you kinda caught me off guard, \nand I'm not used to this... \nBut no, the game is not like that really. \n\nIt's quite serious... oh and ADULT!",
         "Node1110": "The Blacksmith",
         "Node1112": "Hello there. you must be Zack! The apprentice!",
-        "Node1114": "I cannot talk right now, too busy. Come back later.",
+        "Node1114": "I'm busy.",
         "Node1115": "About the War.",
         "Node12": "I mean... It's not like an adult game or anything...\n\nBut it contains some pretty adult themes, \nand is not appropriate for children, \nso you know.... trigger warning and all that.",
         "Node1298": "The Apothecary.",
@@ -1588,7 +1488,7 @@
         "Node1307": "Leave an old lady alone!",
         "Node134": "Can't talk, busy right now.",
         "Node14": "Nice to meet you.\nMy name is Thack.",
-        "Node1605": "Mr Johes is a suspect for the Murder.\n\nHe was walking the streets of the village two nights ago, and closed his shop conveniently until the day of the murder. ",
+        "Node1605": "Mr Johes is a suspect for the Murder.",
         "Node1606": "Mr. Traversteen, Husband to Tylda. \nDied a year ago due to, seemingly natural causes. ",
         "Node1904": "Yeah, that's me. I've been told to investigate the murder.",
         "Node1905": "Yes sir, I am. I have been told to ask you some questions sir. About the mayor.",
@@ -1654,14 +1554,6 @@
         "Node3820": "Let me see if I got this straight.\n\nYou where told, this Ragthack wanted to kill all humans.\nBut instead of waiting for him to actually attack, you charged into the Eastern Marches, where they have been living since forever, and simply attacked any camp you could find? Whether they were loyal to Ragthack or not?\n\nAll this simply on the word that he might one day attack us? ",
         "Node3821": "Have you ever seen what Orcs do to the people they attack?\n\nThey eat people Thack, Orcs only eat meat. They'll burn it sometimes, they'll eat it raw other times. And they don't always care to kill you first.\n\nWe found prisoners of war with most of their limbs missing, kept alive to keep the meat fresh. Luckily a mans mind was not meant to endure such things, Aye I said luckily, that is what I truly believe.\n\nThe victims where mostly catatonic, none survived for long after being freed.",
         "Node4": "Damn, this is wrong... sorry.\nI'm terrible at this.",
-        "Node4164": "What business is that of yours? Leave me alone.",
-        "Node4165": "This is a travesty, I am being falsely accused!\n\nI'll tell you who did it, it was that weasel Mr Johes! He's been up to something for days now!",
-        "Node4166": "Wait what? Why would you say that?",
-        "Node4167": "Falsely accused? You just accused someone else. Who is falsely accusing now!?",
-        "Node4168": "I cannot believe I am part of this conversation. In fact I won't be anymore. Have a good day!",
-        "Node4169": "I saw him walking around in the middle of the night two nights ago.\n\nHe then closed his shop for a day, and drew all the curtains.\nHe opens his shop again, and lo and behold the Mayor is dead.\n\nMighty suspiscious if you ask me.",
-        "Node4170": "Anyway, look into that, and leave me alone.",
-        "Node4171": "It is possible the Mayor was killed by someone who happened upon the village in the night. A Vagrant who came in unsean, killed the Mayor for unknown reasons, and then left equally as unseen.\n\nIf this is the case it is unlikely the murder will ever be solved.",
         "Node432": "You have chosen to read the book, the Lovers Guide to Love.\n\nThis book have given you insigt into how a gentleman approaches the fairer sex, as well as how gentlemen discuss the subject among themselves.\n\nThis is useful to approach characters that care a lot about this subject, and to recognize when love might be on someones mind. ",
         "Node433": "You have chosen to read the book the Compendium of Witty Retorts.\n\nThis book has prepared you with jokes, puns and witticisms to use in conversation to gain levity and lighten the mood.\n\nThis is useful for characters that are very closed-in and hard to approach, as well as characters that enjoy humor and a good joke. \n\n",
         "Node434": "You have chosen to read the book the Art of Telling Lies.\n\nThis book explains how to get away with telling lies, and making untrue things up on the spot.\n\nThis is usefull in all situations. As long as the person you are talking to acutally believes you. ",
