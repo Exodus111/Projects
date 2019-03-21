@@ -45,12 +45,12 @@
             191.24954491547476
         ],
         "Node1300": [
-            1821.957688113731,
-            437.21611695826
+            1874.6459163672619,
+            438.3720560147292
         ],
         "Node1301": [
-            2187.5473740072684,
-            427.41478489677013
+            2233.4437262567567,
+            428.752811781766
         ],
         "Node1302": [
             323.0,
@@ -61,12 +61,12 @@
             197.0
         ],
         "Node1304": [
-            -58,
-            1470
+            -35.96299396623482,
+            817.2607108357365
         ],
         "Node1305": [
-            -190,
-            1133
+            329.7360234340003,
+            770.595992469561
         ],
         "Node1306": [
             1830.067844499552,
@@ -1093,228 +1093,228 @@
             2002.287214912827
         ],
         "Node7701": [
-            2559.0178591376975,
-            185.32188297799402
+            2598.013082686027,
+            191.15747922759684
         ],
         "Node8": [
             3254.1366981568053,
             244.20100173071
         ],
         "Node8171": [
-            2867.7598190745994,
-            -50.89021970388984
+            2901.0192760243426,
+            -40.66630678679604
         ],
         "Node8172": [
-            2923.6274118250867,
-            261.7722730576073
+            2955.8489681522274,
+            266.18758424470263
         ],
         "Node8173": [
-            2872.6604851053435,
-            630.3023585695922
+            2905.8288981408223,
+            627.8711674040875
         ],
         "Node8174": [
-            3238.25017099888,
-            672.4480864339937
+            3264.626708030316,
+            669.2339176058248
         ],
         "Node8175": [
-            3343.124424056814,
-            316.65973260194573
+            3367.552621323016,
+            320.055351949292
         ],
         "Node8176": [
-            3349.9853564998575,
-            -147.92340711263066
+            3374.286092286092,
+            -135.8968246931235
         ],
         "Node8177": [
-            3710.6743763626523,
-            -223.39366398609488
+            3728.274280059105,
+            -209.96500528693298
         ],
         "Node8178": [
-            4036.0786008040823,
-            -233.19499604758383
+            4047.633188593454,
+            -219.58424951989525
         ],
         "Node8179": [
-            4395.787487460728,
-            -287.10232238577396
+            4400.659451943173,
+            -272.4900928011891
         ],
         "Node8180": [
-            4741.774509231285,
-            -343.9500483424094
+            4740.218773366743,
+            -328.2817093523705
         ],
         "Node8181": [
-            5039.735003900557,
-            -374.3341777330255
+            5032.643798048803,
+            -358.1013664745541
         ],
         "Node8182": [
-            5398.463757351052,
-            -375.31431093917405
+            5384.708136975227,
+            -359.06329089784987
         ],
         "Node8183": [
-            5747.391178740054,
-            -399.8176410928965
+            5727.153231668679,
+            -383.11140148025584
         ],
         "Node8184": [
-            6046.331806615468,
-            -384.135509794514
+            6020.5401807740345,
+            -367.7206107075161
         ],
         "Node8185": [
-            6338.411502047833,
-            -414.51963918512934
+            6307.193658916309,
+            -397.5402678296989
         ],
         "Node8186": [
-            6630.491197480211,
-            -324.3473842194317
+            6593.84713705859,
+            -309.0432208864459
         ],
         "Node8187": [
-            3740.0783725471147,
-            118.67282495986862
+            3757.132012757991,
+            125.74661844345218
         ],
         "Node8188": [
-            4087.0455275238264,
-            193.16294862718513
+            4097.65325860486,
+            198.85287461396655
         ],
         "Node8745": [
-            4442.833881355873,
-            7.917772665043458
+            4446.831824261393,
+            17.049158610977656
         ],
         "Node8746": [
-            4747.655308468181,
-            209.82521313171634
+            4745.990319906522,
+            215.20558981000266
         ],
         "Node8747": [
-            5081.880731764955,
-            18.699237932681342
+            5074.006548250537,
+            27.630327267236225
         ],
         "Node8748": [
-            5404.344556587943,
-            128.47415702135856
+            5390.479683515001,
+            135.36586267641542
         ],
         "Node8749": [
-            5745.430912327754,
-            -51.87035291003886
+            5725.229382822087,
+            -41.62823121009248
         ],
         "Node8750": [
-            6050.25233944006,
-            57.90456617863725
+            6024.387878467214,
+            66.10730419908572
         ],
         "Node8751": [
-            6284.504175709646,
-            504.84530818253336
+            6254.287815635016,
+            504.74484122216893
         ],
         "Node8752": [
-            6636.371996717104,
-            515.6267734501714
+            6599.618683598368,
+            515.3260098784277
         ],
         "Node8753": [
-            7007.842481847533,
-            473.48104558576915
+            6964.18804002764,
+            473.96325967669
         ],
         "Node8754": [
-            7379.312966977966,
-            262.75240626375705
+            7328.757396456915,
+            267.1495086679996
         ],
         "Node8755": [
-            7709.617857450148,
-            265.6928058822024
+            7652.925927107748,
+            270.0352819378869
         ],
         "Node8756": [
-            7384.213633008707,
-            588.1566307051892
+            7333.567018573393,
+            586.508417202349
         ],
         "Node8757": [
-            7715.498656687034,
-            604.8188952097214
+            7658.69747364752,
+            602.8611323983856
         ],
         "Node8758": [
-            8130.095002888022,
-            435.2558505459622
+            8065.591504701833,
+            436.4482071681366
         ],
         "Node8759": [
-            8492.744289163107,
-            439.176383370557
+            8421.503541321435,
+            440.2959048613209
         ],
         "Node8760": [
-            8798.545849481565,
-            227.46761084239586
+            8721.623961389863,
+            232.52022942933414
         ],
         "Node8761": [
-            8780.90345177088,
-            -90.09554794984581
+            8704.309321770526,
+            -79.14328371864562
         ],
         "Node8762": [
-            8805.406781924608,
-            550.9115688715315
+            8728.35743235294,
+            549.9552891170923
         ],
         "Node8763": [
-            9124.930207129142,
-            170.6198848857603
+            9041.944794347502,
+            176.72861287815292
         ],
         "Node8764": [
-            9112.18847544921,
-            639.1235574249317
+            9029.439776844658,
+            636.5284872137531
         ],
         "Node8765": [
-            8807.367048336906,
-            880.2363261375601
+            8730.281281199528,
+            873.1618953446268
         ],
         "Node8766": [
-            4316.3966977626715,
-            564.6334337576163
+            4322.743573656182,
+            563.4222310432395
         ],
         "Node8767": [
-            4684.926783274654,
-            619.520893301954
+            4684.427156815565,
+            617.2899987478282
         ],
         "Node8768": [
-            5045.615803137442,
-            559.7327677268718
+            5038.415344588574,
+            558.6126089267583
         ],
         "Node8769": [
-            5044.635669931294,
-            868.4747276637743
+            5037.45342016528,
+            861.6188022650726
         ],
         "Node8770": [
-            5487.655879110594,
-            746.93821010131
+            5472.243259495177,
+            742.340173776339
         ],
         "Node8771": [
-            5827.762101644261,
-            706.7527486492045
+            5806.031034378971,
+            702.9012724211922
         ],
         "Node8772": [
-            5838.543566911903,
-            1038.037772327532
+            5816.612203035233,
+            1028.0317274953204
         ],
         "Node8773": [
-            6135.52392837502,
-            1160.554423096145
+            6108.075303293993,
+            1148.2722804073512
         ],
         "Node8774": [
-            6180.610055857864,
-            797.9051368210525
+            6152.323826765616,
+            792.3602437877429
         ],
         "Node8775": [
-            6499.153347856257,
-            898.8588570543895
+            6464.949264336894,
+            891.4384593872562
         ],
         "Node8776": [
-            6858.862234512906,
-            920.4217875896647
+            6817.975527686616,
+            912.6007966997724
         ],
         "Node8777": [
-            6885.325831078915,
-            1258.567743711033
+            6843.947487115604,
+            1244.464722736973
         ],
         "Node8778": [
-            7206.809522695756,
-            887.0972585806015
+            7159.458697956776,
+            879.8953663076995
         ],
         "Node8779": [
-            7212.690321932656,
-            1218.3822822589284
+            7165.230244496555,
+            1205.0258213818279
         ],
         "Node8780": [
-            7510.65081660191,
-            941.9847181249397
+            7457.655269178604,
+            933.7631340122894
         ],
         "Node8781": [
             782.0,
@@ -1489,28 +1489,32 @@
             153
         ],
         "Node8828": [
-            134,
-            1122
+            506,
+            379
         ],
         "Node8829": [
-            532,
-            888
+            815,
+            146
         ],
         "Node8830": [
-            841,
-            894
+            1162,
+            113
         ],
         "Node8831": [
-            1121,
-            647
+            1489.6875942503689,
+            -84.60639717994695
         ],
         "Node8832": [
-            1205,
-            967
+            1535.3999714254003,
+            245.8559961478691
         ],
         "Node8833": [
-            1224,
-            1414
+            1598,
+            662
+        ],
+        "Node8834": [
+            1298,
+            804
         ],
         "Node9": [
             3736.103019373028,
@@ -1537,184 +1541,76 @@
             -16.551034536107807
         ],
         "Node9516": [
-            1500,
-            526
+            1872.5287530912385,
+            -220.79118751388808
         ],
         "Node9517": [
-            1530,
-            1008
+            1890.6232357230242,
+            250.61770210360183
         ],
         "Node9518": [
-            1863,
-            465
+            2274.4167357550423,
+            -368.40407214158677
         ],
         "Node9519": [
-            1878,
-            807
+            2277.273759328479,
+            -30.32294928459899
         ],
         "Node9520": [
-            2262,
-            835
+            2640.115753155273,
+            1.104310023233154
         ],
         "Node9521": [
-            2603,
-            721
+            3051.5271477305387,
+            -57.940843827846635
         ],
         "Node9522": [
-            2671,
-            1077
+            3048.670124157102,
+            257.2840904416271
         ],
         "Node9523": [
-            3015,
-            941
+            3411.512117983895,
+            156.33592418010392
         ],
         "Node9524": [
-            2194,
-            462
+            2619.164246950055,
+            -426.49688480152054
         ],
         "Node9525": [
-            1826.3513533006844,
-            1095.1824664031503
+            2225.847335006571,
+            322.99563263073173
         ],
         "Node9526": [
-            2120.091440824715,
-            1175.8513859619884
+            2544.881634040631,
+            410.6110222162041
         ],
         "Node9527": [
-            2399.802151034165,
-            1311.7609786969888
+            2848.6784740163453,
+            558.2239068439037
         ],
         "Node9528": [
-            2688.2812220652263,
-            1374.01634053044
+            3161.998725903526,
+            625.8401314153016
         ],
         "Node9529": [
-            1757.0813028099415,
-            1367.878487955311
+            2150.612380906001,
+            619.1737430772768
         ],
         "Node9530": [
-            2056.0824068269444,
-            1509.92593326544
+            2475.360727086943,
+            773.4530160430002
         ],
         "Node9531": [
-            2331.408936625584,
-            1611.6389187961486
+            2774.3958611069243,
+            883.9245942159878
         ],
         "Node9532": [
-            2618.134335492321,
-            1697.5688548479545
+            3085.8114306118064,
+            977.254030948339
         ],
         "Node9533": [
-            1453,
-            1735
-        ],
-        "Node9534": [
-            1828,
-            1870
-        ],
-        "Node9535": [
-            2138.614748806452,
-            1915.5447335567592
-        ],
-        "Node9536": [
-            2498.614832087887,
-            2006.6956497840274
-        ],
-        "Node9537": [
-            2843.8834541608785,
-            2028.7928415966985
-        ],
-        "Node9538": [
-            3188.2313599083395,
-            2041.6828701540912
-        ],
-        "Node9539": [
-            3498.512761611265,
-            2049.048600758316
-        ],
-        "Node9540": [
-            3831.812071452395,
-            2048.1278844327862
-        ],
-        "Node9541": [
-            4151.300636410599,
-            2026.0306926201165
-        ],
-        "Node9542": [
-            1567,
-            2186
-        ],
-        "Node9543": [
-            2370.6352628395002,
-            2283.8312637679473
-        ],
-        "Node9544": [
-            3774.727659269656,
-            2692.629312302367
-        ],
-        "Node9545": [
-            3763.6790633633236,
-            2382.347910599441
-        ],
-        "Node9546": [
-            4228.640807754948,
-            2478.1024084543487
-        ],
-        "Node9547": [
-            1927.7707102605473,
-            2384.1893432504976
-        ],
-        "Node9548": [
-            2672.630217612674,
-            2368.5371657165206
-        ],
-        "Node9549": [
-            2993.03949889641,
-            2442.1944717587603
-        ],
-        "Node9550": [
-            3294.113737344056,
-            2580.3019205879555
-        ],
-        "Node9551": [
-            3297.796602646169,
-            2894.2661875929925
-        ],
-        "Node9552": [
-            782,
-            1790
-        ],
-        "Node9553": [
-            368.07725481616103,
-            2202.808227121485
-        ],
-        "Node9554": [
-            962.8600011072313,
-            2140.1995169855836
-        ],
-        "Node9555": [
-            1290,
-            2200
-        ],
-        "Node9556": [
-            1218.8191396040088,
-            2605.1612613772086
-        ],
-        "Node9557": [
-            1541.9905698643256,
-            2713.80578778951
-        ],
-        "Node9558": [
-            1910.2771000755145,
-            2737.744412253237
-        ],
-        "Node9559": [
-            2258.3078711250855,
-            2754.3173061127404
-        ],
-        "Node9560": [
-            732.6809197252378,
-            2434.8287411545357
+            1901,
+            920
         ]
     },
     "links": {
@@ -3132,9 +3028,7 @@
             "Node8826"
         ],
         "Node8828": [
-            "Node8829",
-            "Node9552",
-            "Node9553"
+            "Node8829"
         ],
         "Node8829": [
             "Node8828",
@@ -3144,7 +3038,8 @@
             "Node8829",
             "Node8831",
             "Node8832",
-            "Node8833"
+            "Node8833",
+            "Node8834"
         ],
         "Node8831": [
             "Node8830",
@@ -3157,6 +3052,9 @@
         "Node8833": [
             "Node8830",
             "Node9533"
+        ],
+        "Node8834": [
+            "Node8830"
         ],
         "Node9": [
             "Node8",
@@ -3250,114 +3148,7 @@
             "Node9531"
         ],
         "Node9533": [
-            "Node8833",
-            "Node9534",
-            "Node9542"
-        ],
-        "Node9534": [
-            "Node9533",
-            "Node9535"
-        ],
-        "Node9535": [
-            "Node9534",
-            "Node9536",
-            "Node9543"
-        ],
-        "Node9536": [
-            "Node9535",
-            "Node9537"
-        ],
-        "Node9537": [
-            "Node9536",
-            "Node9538",
-            "Node9544"
-        ],
-        "Node9538": [
-            "Node9537",
-            "Node9539"
-        ],
-        "Node9539": [
-            "Node9538",
-            "Node9540",
-            "Node9545"
-        ],
-        "Node9540": [
-            "Node9539",
-            "Node9541"
-        ],
-        "Node9541": [
-            "Node9540"
-        ],
-        "Node9542": [
-            "Node9533",
-            "Node9547"
-        ],
-        "Node9543": [
-            "Node9535",
-            "Node9548"
-        ],
-        "Node9544": [
-            "Node9537",
-            "Node9546"
-        ],
-        "Node9545": [
-            "Node9539",
-            "Node9546"
-        ],
-        "Node9546": [
-            "Node9545",
-            "Node9544"
-        ],
-        "Node9547": [
-            "Node9542"
-        ],
-        "Node9548": [
-            "Node9543",
-            "Node9549"
-        ],
-        "Node9549": [
-            "Node9548",
-            "Node9550"
-        ],
-        "Node9550": [
-            "Node9549"
-        ],
-        "Node9551": [],
-        "Node9552": [
-            "Node8828",
-            "Node9554"
-        ],
-        "Node9553": [
-            "Node8828",
-            "Node9560"
-        ],
-        "Node9554": [
-            "Node9552",
-            "Node9555",
-            "Node9556"
-        ],
-        "Node9555": [
-            "Node9554",
-            "Node9557"
-        ],
-        "Node9556": [
-            "Node9554",
-            "Node9557"
-        ],
-        "Node9557": [
-            "Node9556",
-            "Node9555",
-            "Node9558"
-        ],
-        "Node9558": [
-            "Node9557",
-            "Node9559"
-        ],
-        "Node9559": [
-            "Node9558"
-        ],
-        "Node9560": [
-            "Node9553"
+            "Node8833"
         ]
     },
     "names": [
@@ -3618,6 +3409,7 @@
             "Node8831",
             "Node8832",
             "Node8833",
+            "Node8834",
             "Node9516",
             "Node9517",
             "Node9518",
@@ -3635,34 +3427,7 @@
             "Node9530",
             "Node9531",
             "Node9532",
-            "Node9533",
-            "Node9534",
-            "Node9535",
-            "Node9536",
-            "Node9537",
-            "Node9538",
-            "Node9539",
-            "Node9540",
-            "Node9541",
-            "Node9542",
-            "Node9543",
-            "Node9544",
-            "Node9545",
-            "Node9546",
-            "Node9547",
-            "Node9548",
-            "Node9549",
-            "Node9550",
-            "Node9551",
-            "Node9552",
-            "Node9553",
-            "Node9554",
-            "Node9555",
-            "Node9556",
-            "Node9557",
-            "Node9558",
-            "Node9559",
-            "Node9560"
+            "Node9533"
         ],
         "mrJohes": [
             "Node1298",
@@ -3876,9 +3641,7 @@
             "busy"
         ],
         "Node1304": [
-            "comment",
-            "start",
-            "busy"
+            "card_tylda_traversteen"
         ],
         "Node1305": [
             "card_tylda_traversteen"
@@ -4161,7 +3924,7 @@
             "name_djonsiscus"
         ],
         "Node4525": [
-            "greeting",
+            "greetings",
             "block_tutorial_end"
         ],
         "Node4526": [
@@ -5085,6 +4848,10 @@
             "question",
             "save_tylda_save"
         ],
+        "Node8834": [
+            "answer",
+            "save_tylda_save"
+        ],
         "Node9": [
             "comment"
         ],
@@ -5161,93 +4928,6 @@
         ],
         "Node9533": [
             "answer"
-        ],
-        "Node9534": [
-            "question"
-        ],
-        "Node9535": [
-            "answer"
-        ],
-        "Node9536": [
-            "question"
-        ],
-        "Node9537": [
-            "answer"
-        ],
-        "Node9538": [
-            "question"
-        ],
-        "Node9539": [
-            "answer"
-        ],
-        "Node9540": [
-            "question"
-        ],
-        "Node9541": [
-            "answer",
-            "back_tylda_save"
-        ],
-        "Node9542": [
-            "question"
-        ],
-        "Node9543": [
-            "question"
-        ],
-        "Node9544": [
-            "question"
-        ],
-        "Node9545": [
-            "question"
-        ],
-        "Node9546": [
-            "answer",
-            "back_tylda_save"
-        ],
-        "Node9547": [
-            "question",
-            "back_tylda_save"
-        ],
-        "Node9548": [
-            "answer"
-        ],
-        "Node9549": [
-            "question"
-        ],
-        "Node9550": [
-            "answer",
-            "card_travisteen_died_from_being_too_fat",
-            "back_tylda_save"
-        ],
-        "Node9551": [
-            "card_travisteen_died_from_being_too_fat"
-        ],
-        "Node9552": [
-            "question"
-        ],
-        "Node9553": [
-            "question"
-        ],
-        "Node9554": [
-            "answer"
-        ],
-        "Node9555": [
-            "question"
-        ],
-        "Node9556": [
-            "question"
-        ],
-        "Node9557": [
-            "answer"
-        ],
-        "Node9558": [
-            "question"
-        ],
-        "Node9559": [
-            "answer",
-            "back_tylda_save"
-        ],
-        "Node9560": [
-            "answer"
         ]
     },
     "text": {
@@ -5266,7 +4946,7 @@
         "Node1301": "I'm kinda busy right now.",
         "Node1302": "Young woman.",
         "Node1303": "Go away, I'm busy!",
-        "Node1304": "Not right now dear.",
+        "Node1304": "",
         "Node1305": "Woman that runs the General Store.",
         "Node1306": "Mrs von Duren is the richest person in town. She inherited her wealth from her late husband, who died many years ago.",
         "Node1307": "Leave an old lady alone!",
@@ -5629,6 +5309,7 @@
         "Node8831": "Do you know anything about the murder of Mayor Dellry?",
         "Node8832": "Did you know the Mayor at all?",
         "Node8833": "Can you tell me something about yourself and your store?",
+        "Node8834": "What can you tell me about Sheila?",
         "Node9": "I mean. There is no combat here, this game is about... \nyou know... dialogue... talking to people. \nThinking about what they say, and so on...",
         "Node937": "I'm sorry. I don't know why I even said that. Who died?",
         "Node939": "Oh no sir. I am totally serious.\nI truly believe I was called for this. This is perhaps the most exiting thing that has ever happened to me. I am ready! I ",
@@ -5652,33 +5333,6 @@
         "Node9530": "He was a young man back then, the war was still going on, and there weren't a lot of those around. He helped the sawmill get rebuilt after a fire, everyone liked him after that. ",
         "Node9531": "So he was not in the war then?",
         "Node9532": "I don't believe he was no. I'm not sure why, he was never injured or anything like that, not to my eyes anyway. ",
-        "Node9533": "Certainly, this is the general goods store, the only one in the village.\nWe sell... well, traders come by a few times a year and we sell whatever they bring us. My husband used to travel to Browntown to pickup essential items every now and then, but since his passing we haven't done that.\n\nThe truth is it hasn't really been necessary, until you arrived this village had not seen any new people moving in for a long time. And I know what everyone wants, and how much of it they need.  ",
-        "Node9534": "How did your husband pass away, if you don't mind me asking?",
-        "Node9535": "Nothing wrong with asking dear. \nHe passed away last year from some trouble with his stomach. I miss him  dearly, but its just me and Sheila now. Mother and Daughter, so we keep it going together.",
-        "Node9536": "So Sheila is your daughter?",
-        "Node9537": "Of course, in every way that matters.\n\nYes, she is adopted, we don't usually tell people that, but its no big secret.\nHer mother was too poor you see, the poor dear. So we took the child in to give her a better life. A child should have a mother, so I insisted she called me her mother from then on. ",
-        "Node9538": "Really? But what about her real mother. Where is she now?",
-        "Node9539": "I AM her 'real' mother. As for the other one, I don't know. She was a beggar or something, I'm not sure she is still alive, but it doesn't matter. Sheila doesn't need her.",
-        "Node9540": "Well, you might be her real mother now, but her biological mother is always going to be important in some way. Sheila might want to find her one day to see what has become of her.",
-        "Node9541": "Absolute nonsense. There is nothing Sheila could possibly want from that... person.\n\nShe has everything she needs right here, and this is the last I will talk of this.",
-        "Node9542": "Traders?\n\nWhen do they come by?",
-        "Node9543": "Stomach trouble, could he have been poisoned?",
-        "Node9544": "Alright thanks.",
-        "Node9545": "Ok, thank you.",
-        "Node9546": "I am sorry for getting upset dear. It's my inner 'mamabear' coming out I guess.",
-        "Node9547": "Before winter dear, and during spring. Should be a while still.",
-        "Node9548": "No, no, no no! I can't imagine who could have done that.\nFather Djonsicus told me he was a big man, who liked his food. It's not the most healthy way to live. That's all.  ",
-        "Node9549": "Father Djonsicus said he died because he was too fat?\nHow big was he?",
-        "Node9550": "He was a big man, with a stomach. I wouldn't call him enourmous or anything like that, but that is what father Djonsicus said.",
-        "Node9551": "Apparently Father Djonsicus diagnosed the death a Mister Travisteen a year ago, as a death caused by his obesity.  ",
-        "Node9552": "What do you know about the Mayors murder?",
-        "Node9553": "THE MAYOR IS DEAD AND I THINK YOU KILLED HIM!",
-        "Node9554": "Oh, dear me. Nothing. Was he really 'murdered' as you say? What happened to him could have been some kind of strange accident.",
-        "Node9555": "Accident, are you kidding me? It's like he fell and broke his leg, his body was completely blown apart.",
-        "Node9556": "Whatever did kill him was nowhere to be found in his office with his body.\nIf it was an accident, SOMETHING, must have been found with him. \nIt was not, therefore one can only assume someone must have taken it with them.\n\nWhich either means someone killed him, or someone stole something from him after his death.",
-        "Node9557": "Well, I didn't see his body, but I suppose you are right.\n\nOh I don't know what it could have been, it's all just so awful. First my husband, now this.",
-        "Node9558": "Your husband? He died a year ago didn't he?\nAre you saying the deaths are connected?",
-        "Node9559": "No, not at all. How could they be, my husband died of being sick to the stomach, not by some horrible murder.",
-        "Node9560": "What? Dear you joking? You cannot joke about these things. That's a serious allegation. I think you better leave!"
+        "Node9533": "Certainly, this is the general goods store, the only one in the village.\nWe sell... well, traders come by a few times a year and we sell whatever they bring us. My husband used to travel to Browntown to pickup essential items every now and then, but since his passing we haven't done that.\n\nThe truth is it hasn't really been necessary, until you arrived this village had not seen any new people moving in for a long time. And I know what everyone wants, and how much of it they need.  "
     }
 }

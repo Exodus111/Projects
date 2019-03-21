@@ -188,7 +188,7 @@ class Player(Entity):
             if self.moving[mov]:
                 moving = True
 
-                # Clutter Collision Code.
+                # Clutter (and NPC) Collision Code.
                 old_pos = self.collider.pos.copy()
                 self.collider.pos = Vector(self.collider.pos) + Vector(self.dirs[mov])*self.walk_speed
                 for w in self.parent.cluttergroup.children:
@@ -355,11 +355,11 @@ class NPC(Entity):
 
 class NPCController(Widget):
     npcs = DictProperty({"Djonsiscus":{"home":"church main", "place":(1955, 733)},
-                         "Jarod":{"home":"blacksmith main", "place":(400, 280)},
-                         "Tylda Travisteene":{"home":"goods main", "place":(610, 238)},
-                         "Sheila Travisteene":{"home":"goods main", "place":(106, 214)},
-                         "Mr Johes":{"home":"apothecary main", "place":(142, 328)},
-                         "Riff Danner":{"home":"outside", "place":(1955, 733)}})
+                         "Jarold":{"home":"blacksmith main", "place":(400, 280)},
+                         "Tylda":{"home":"goods main", "place":(610, 238)},
+                         "Sheila":{"home":"goods main", "place":(106, 214)},
+                         "MrJohes":{"home":"apothecary main", "place":(142, 328)},
+                         "Riff":{"home":"outside", "place":(1955, 733)}})
     npc_paths = DictProperty()
     npcgroup = ListProperty([])
 

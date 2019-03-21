@@ -146,6 +146,8 @@ class DialogueSystem:
 
 	def find_conversation(self, npc):
 		for start in self.dialogue.starts:
+
+			
 			if start.npc.lower() == npc:
 				for tag in start.tags:
 					if "block" in tag:

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+    	{% for thumb in thumbs %}
+	    <div class="col-xs-2 col-md-2">
+	        <a href="{{ thumb }}"><img src="{{ thumbs[thumb] }}" alt="" class="img-responsive mythumb"></a>
+	        <br>
+	    </div>
+	    {% endfor %}
+    </div>
+</div>
+{% endblock %}

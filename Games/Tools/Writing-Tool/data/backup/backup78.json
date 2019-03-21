@@ -61,12 +61,12 @@
             197.0
         ],
         "Node1304": [
-            -58,
-            1470
+            -256.1343418323726,
+            1550.2603930448577
         ],
         "Node1305": [
-            -190,
-            1133
+            80.57071371756217,
+            1507.2954250189555
         ],
         "Node1306": [
             1830.067844499552,
@@ -3876,9 +3876,7 @@
             "busy"
         ],
         "Node1304": [
-            "comment",
-            "start",
-            "busy"
+            "card_tylda_traversteen"
         ],
         "Node1305": [
             "card_tylda_traversteen"
@@ -5266,7 +5264,7 @@
         "Node1301": "I'm kinda busy right now.",
         "Node1302": "Young woman.",
         "Node1303": "Go away, I'm busy!",
-        "Node1304": "Not right now dear.",
+        "Node1304": "",
         "Node1305": "Woman that runs the General Store.",
         "Node1306": "Mrs von Duren is the richest person in town. She inherited her wealth from her late husband, who died many years ago.",
         "Node1307": "Leave an old lady alone!",

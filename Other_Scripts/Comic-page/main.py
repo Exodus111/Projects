@@ -5,7 +5,7 @@
 
 from flask import Flask, render_template, url_for, redirect
 from path import Path
-from comics import Series
+from comics import FolderManager
 import os
 
 #This is a hack for Atom, since it doesn't run your file from the files own directory.
@@ -23,8 +23,8 @@ def index():
     Thumbs is a dictionary where the keys are url routes and the values image src.
     Series is an object that handles all the Comic Objects.
     """
-    global series
-    return render_template("index.html", thumbs=series.toplayer_thumbs)
+    global fm
+    return render_template("index.html", issues=fm.folderdict)
 
 @app.route("/folder<int:fid>")
 def pick_folder(fid):
@@ -33,9 +33,9 @@ def pick_folder(fid):
     `fid` : (int) The Folder ID number.
     We call our method to get the correct thumbnail dictionary.
     """
-    global series
-    thumbs = series.set_active_folder(fid)
-    return render_template("index.html", thumbs=thumbs)
+    global fm
+    thumbs = fm.pick_folder(fid)
+    return render_template("issues.html", thumbs=fm.series.coverdict)
 
 @app.route("/issue<int:cid>")
 def set_page(cid):
@@ -44,8 +44,8 @@ def set_page(cid):
     `cid` : (int) The Comic ID number.
     We redirect to the `get_page` function.
     """
-    global series
-    series.set_active_issue(cid)
+    global fm
+    fm.series.set_current("issue" + str(cid))
     return redirect(url_for("get_page", num=0))
 
 
@@ -54,11 +54,11 @@ def get_page(num=0):
     """
     A simple page turner. Num is the page we are on, it enumerates from 0.
     """
-    global series
-    image = series.active_comic.get_image(num)
+    global fm
+    image = fm.series.get_image(num)
     return render_template("pages.html", image=image, num=num)
 
 
 if __name__ == "__main__":
-    series = Series("./static/comics")
+    fm = FolderManager("/home/aurelio/Pictures/comics", "./static/extracted")
     app.run(host='0.0.0.0')
