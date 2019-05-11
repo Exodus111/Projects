@@ -30,6 +30,7 @@ from logic.alt_logic import Dialogue, DialogueSystem
 
 #from logic.dialogue import Dialogue
 from logic.events import EventCreator
+from tools import tools
 
 import json
 from random import choice
@@ -50,6 +51,7 @@ class Game(Widget):
     menu_on = BooleanProperty(True)
     in_conversation = BooleanProperty(False)
     game_started = BooleanProperty(False)
+    game_console = BooleanProperty(False)
 
     def gamesetup(self):
         # Setting up the Input Handler.
@@ -118,6 +120,8 @@ class Game(Widget):
                     self.gui.next_comment = True
                 else:
                     print(self.player.pos)
+            elif key[1] == "tab":
+                self.game_console = True
 
     def key_up(self, key):
         if not self.menu_on:
@@ -138,6 +142,9 @@ class Game(Widget):
         Clock.schedule_once(self.world.center_screen, delay)
 
     def update(self, dt):
+        if self.game_console:
+            tools.console(self)
+            self.game_console = False
         if self.game_started:
             if not self.in_conversation:
                 self.npcs.update(dt)

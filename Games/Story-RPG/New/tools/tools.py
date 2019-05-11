@@ -8,6 +8,18 @@ from kivy.graphics.texture import Texture
 
 NUMBER = iter(i for i in range(10000))
 
+def console(game):
+    while True:
+        inp = input(">>> ")
+        if inp.lower() in ("quit", "exit", "q"):
+            print("Closing console.")
+            break
+        else:
+            try:
+                print(eval(inp))
+            except Exception as e:
+                print(e)
+
 def mult_tuple(tup, num):
     return (int(tup[0]*num), int(tup[1]*num))
 
