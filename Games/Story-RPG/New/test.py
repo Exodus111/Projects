@@ -1,15 +1,12 @@
 #!/usr/bin/python3
 
+my_text = """ 
+****************************************************
+*   My Name:    Aurelio Aguirre                    *
+*   My Twitter: @ThatGameDesign1                   *
+*   My Twitch:  ThatGameDesignerGuy                *
+*   My Patreon: ThatGameDesignerGuy                *                               
+**************************************************** 
+"""
 
-def myfunc():
-	"""
-	>>> myfunc()
-	4
-	"""
-	return 4
-
-if __name__ == "__main__":
-	from doctest import testmod
-	testmod() 
-
-
+print(my_text)
