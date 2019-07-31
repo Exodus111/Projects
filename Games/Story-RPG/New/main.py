@@ -92,7 +92,7 @@ class Game(Widget):
         # Adding everything to the Widget stack
         self.add_widget(self.input)
         self.world.add_npcs(self.npcs.npcgroup)
-        self.world.add_widget(self.player, index=2)
+        self.world.add_widget(self.player)
         self.add_widget(self.world)
         self.world.set_home_text(self.world.home)
 

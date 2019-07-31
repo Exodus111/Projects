@@ -56,16 +56,22 @@ class Entity(Widget):
     timer = NumericProperty(0.)
     size_adjust = NumericProperty(0)
     comment_pos = ListProperty()
+    typeid = StringProperty("Entity")
 
     def place(self, x, y):
         self.pos = self.to_widget(x, y)
 
     def entitysetup(self, atlasfile, screen_size):
-        self.atlas = Atlas(atlasfile)
+        self.atlas_small = Atlas("images/atlas_small/" + atlasfile)
+        self.atlas_big = Atlas("images/atlas_big/" + atlasfile)
         self.frame_pos = self.pos_to_frame()
-        for pose in self.atlas.textures.keys():
-            self.frames_big[pose] = scale_and_convert(self.atlas[pose], self.multiplier, True, False) # <-- The False stops the image from being flipped. No idea why it happens.
-            self.frames_small[pose] = self.atlas[pose]
+        for pose in self.atlas_small.textures.keys():
+            self.frames_small[pose] = self.atlas_small[pose]
+        for pose in self.atlas_big.textures.keys():
+            self.frames_big[pose] = self.atlas_big[pose]
+        # for pose in self.atlas.textures.keys():
+        #     self.frames_big[pose] = scale_and_convert(self.atlas[pose], self.multiplier, True, False) # <-- The False stops the image from being flipped. No idea why it happens.
+        #     self.frames_small[pose] = self.atlas[pose]
         self.resize_entity("big")
         self.set_frame("idle", 1)
         self.gen = self._num()
@@ -141,10 +147,14 @@ class Player(Entity):
     screen_size = ListProperty([0,0])
     collider_size = ListProperty([48, 48])
     walk_speed = NumericProperty(6)
+    typeid = StringProperty("Player")
+
+    def __init__(self, *args, **kwargs):
+        Entity.__init__(self, *args, **kwargs)
 
     def playersetup(self, screen_size):
         self.screen_size = screen_size
-        self.entitysetup("images/player_sheet.atlas", screen_size)
+        self.entitysetup("player_sheet.atlas", screen_size)
         self.name = "Thack"
 
     def collide_world(self, x=500, y=500, speedup=0):
@@ -238,6 +248,11 @@ class NPC(Entity):
     move_list = ListProperty()
     npc_speed = NumericProperty(8)
     cooldowns = DictProperty()
+    typeid = StringProperty("NPC")
+
+    def __init__(self, *args, **kwargs):
+        Entity.__init__(self, *args, **kwargs)
+
 
     def npcsetup(self, atlasfile, size):
         self.entitysetup(atlasfile, size)
@@ -370,7 +385,7 @@ class NPCController(Widget):
             npc.name = name
             npc.home = self.npcs[name]["home"]
             npc.pos = self.npcs[name]["place"]
-            npc.npcsetup("images/{}.atlas".format(name), size)
+            npc.npcsetup("{}.atlas".format(name), size)
             self.npcgroup.append(npc)
 
     @staticmethod

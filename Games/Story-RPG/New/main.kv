@@ -64,6 +64,7 @@
             orientation: "vertical"
             Label:
                 size_hint: 1., .89
+                font_name: './fonts/MagicMedieval.ttf'
                 text: root.book_text
                 padding: 15, 15
                 text_size: self.size
@@ -262,7 +263,7 @@
 <HUD>:
     top_bar: top_bar
     info_manager: info_manager
-    floatmenu: floatmenu
+#    floatmenu: floatmenu
     TopBar:
         id: top_bar
         size_hint: 1., .025
@@ -280,28 +281,29 @@
             pos_hint: {"right":1., "y":.5}
             Label:
                 text: root.info_text
+                font_name: './fonts/MagicMedieval.ttf'
                 font_size: 54
-    FloatMenu:
-        id: floatmenu
-        size_hint: .3, .08
-        pos_hint: {"x":.7, "top":.95}
-        BoxLayout:
-            orientation: "horizontal"
-            pos_hint: {"x":.6, "y":.0}
-            Button:
-                size_hint: None, None
-                size: 64, 64
-                background_normal: "images/gui/ingamemenu/inventory_icon.png"
-                background_down: "images/gui/ingamemenu/inventory_icon_down.png"
-                border: 0,0,64,64
-                on_press: root.on_press_inv()
-            Button:
-                size_hint: None, None
-                size: 64, 64
-                background_normal: "images/gui/ingamemenu/options_icon.png"
-                background_down: "images/gui/ingamemenu/options_icon_down.png"
-                border: 0,0,64,64
-                on_press: root.on_press_opt()
+    # FloatMenu:
+    #     id: floatmenu
+    #     size_hint: .3, .08
+    #     pos_hint: {"x":.7, "top":.95}
+    #     BoxLayout:
+    #         orientation: "horizontal"
+    #         pos_hint: {"x":.6, "y":.0}
+    #         Button:
+    #             size_hint: None, None
+    #             size: 64, 64
+    #             background_normal: "images/gui/ingamemenu/inventory_icon.png"
+    #             background_down: "images/gui/ingamemenu/inventory_icon_down.png"
+    #             border: 0,0,64,64
+    #             on_press: root.on_press_inv()
+    #         Button:
+    #             size_hint: None, None
+    #             size: 64, 64
+    #             background_normal: "images/gui/ingamemenu/options_icon.png"
+    #             background_down: "images/gui/ingamemenu/options_icon_down.png"
+    #             border: 0,0,64,64
+    #             on_press: root.on_press_opt()
 
 <Menus>:
     manager: manager
@@ -359,15 +361,15 @@
                     allow_stretch: True
                     keep_ratio: True
                 Label:
-                    size_hint: .75, 1.
+                    pos_hint: {"top":.9}
                     text: root.top_text
                     font_name: './fonts/MagicMedieval.ttf'
                     font_size: 18
-                    pos_hint: {"x":.0, "y":.0}
-                    text_size: self.size
-                    padding: 20, 20
+                    padding: 150, 20
                     valign: "top"
-                    split_str: " "
+                    text_size: self.width, None
+                    size_hint: 1, None
+                    height: self.texture_size[1]
 
     ScreenManager:
         id: bottom_manager
@@ -385,7 +387,6 @@
                 id: bottom_panel
                 orientation: "vertical"
                 size_hint: .99, .9
-                pos_hint: {"y":.05}
         Menu:
             name: "question_big"
             size_hint: 1., .35
@@ -444,19 +445,19 @@
             pos: 5, 5
 
 <QuestionBox>:
-    text: self.question_text
-    size: self.size
     pos: self.pos
     background_normal: "images/gui/blank_box.png"
     background_down: "images/gui/seethrough_box.png"
-    text_size: self.size
     font_name: './fonts/MagicMedieval.ttf'
     font_size: 18
+    text: self.question_text
+    text_size: self.width, None
+    height: self.texture_size[1]
+    size_hint: 1, None
+    valing: "top"
     halign: "left"
-    valign: "middle"
-    shorten: True
-    shorten_from: "right"
     padding_x: 20
+
 
 <Select>:
     buttons: buttons

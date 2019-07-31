@@ -90,7 +90,7 @@ class Node():
 		self.node = node
 		self.npc = npc
 		self.portrait = portrait
-		self.text = text
+		self.text = self.fix_text(text)
 		self.links = links
 		self.tags = tags
 		self.coords = coords
@@ -105,6 +105,19 @@ class Node():
 
 	def __repr__(self):
 		return self.text
+
+	def fix_text(self, text):
+		prev = ""
+		new_text = ""
+		for letter in text:
+			if prev == "\n" and letter == "\n":
+				letter = ""
+			if letter == "\n":
+				prev = "\n"
+			else:
+				prev = ""
+			new_text += letter
+		return new_text
 
 	def remove_block(self):
 		tags = []
@@ -207,6 +220,7 @@ class DialogueSystem:
 			The text is the string of the question. Contains numbering.
 		"""
 		text = text[3:]      # <-- Removes Numbering.
+		text = text.strip("\n")
 		if text != "Continue...":
 			for node in self.current_questions:  # We find the question node.
 				if text == node.text:
