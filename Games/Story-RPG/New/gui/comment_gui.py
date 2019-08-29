@@ -9,7 +9,7 @@ class CommentGUI(RelativeLayout):
     speechbox = ObjectProperty()
     timeout = NumericProperty(6.)
     entity = ObjectProperty()
-    moveup = NumericProperty(0) 
+    moveup = NumericProperty(0)
     moveside = NumericProperty(0)
     timing_out = BooleanProperty(False)
 
@@ -19,7 +19,7 @@ class CommentGUI(RelativeLayout):
     def setup(self, entity, text):
         self.size = (200, 150)
         self.text = text
-        self.timeout = float((len(text)/15)+5)
+        self.timeout = float((len(text)/15)+.5)
         self.entity = entity
         self.set_center()
 

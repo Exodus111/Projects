@@ -169,16 +169,16 @@
             1450
         ],
         "Node13826": [
-            428,
-            -750
+            581.0,
+            -810.0
         ],
         "Node13827": [
-            717,
-            -850
+            1074,
+            -872
         ],
         "Node13828": [
-            1016,
-            -927
+            1421.0,
+            -951.0
         ],
         "Node13830": [
             1734.0,
@@ -248,61 +248,9 @@
             7900,
             -1275
         ],
-        "Node13847": [
-            3780,
-            -1108
-        ],
-        "Node13848": [
-            4143,
-            -1190
-        ],
-        "Node13849": [
-            4500,
-            -1226
-        ],
-        "Node13850": [
-            4822,
-            -1222
-        ],
         "Node14": [
             5647.758674600602,
             191.24954491547476
-        ],
-        "Node14558": [
-            1345.0,
-            -991.0
-        ],
-        "Node15266": [
-            -3258.0,
-            -688.0
-        ],
-        "Node15267": [
-            -2861.0,
-            -707.0
-        ],
-        "Node15268": [
-            -2458.0,
-            -683.0
-        ],
-        "Node15269": [
-            -2113.0,
-            -696.0
-        ],
-        "Node15270": [
-            -1745.0,
-            -695.0
-        ],
-        "Node15271": [
-            -1427.0,
-            -697.0
-        ],
-        "Node15272": [
-            -1118,
-            -696
-        ],
-        "Node15273": [
-            -812,
-            -711
         ],
         "Node1605": [
             723.4621821844477,
@@ -2055,11 +2003,11 @@
         ],
         "Node13828": [
             "Node13827",
-            "Node14558"
+            "Node13830"
         ],
         "Node13830": [
-            "Node13831",
-            "Node14558"
+            "Node13828",
+            "Node13831"
         ],
         "Node13831": [
             "Node13830",
@@ -2079,11 +2027,11 @@
         ],
         "Node13835": [
             "Node13834",
-            "Node13847"
+            "Node13836"
         ],
         "Node13836": [
-            "Node13837",
-            "Node13850"
+            "Node13835",
+            "Node13837"
         ],
         "Node13837": [
             "Node13836",
@@ -2124,59 +2072,9 @@
         "Node13846": [
             "Node13845"
         ],
-        "Node13847": [
-            "Node13835",
-            "Node13848"
-        ],
-        "Node13848": [
-            "Node13847",
-            "Node13849"
-        ],
-        "Node13849": [
-            "Node13848",
-            "Node13850"
-        ],
-        "Node13850": [
-            "Node13849",
-            "Node13836"
-        ],
         "Node14": [
             "Node13",
             "Node31"
-        ],
-        "Node14558": [
-            "Node13828",
-            "Node13830"
-        ],
-        "Node15266": [
-            "Node15267"
-        ],
-        "Node15267": [
-            "Node15266",
-            "Node15268"
-        ],
-        "Node15268": [
-            "Node15267",
-            "Node15269"
-        ],
-        "Node15269": [
-            "Node15268",
-            "Node15270"
-        ],
-        "Node15270": [
-            "Node15269",
-            "Node15271"
-        ],
-        "Node15271": [
-            "Node15270",
-            "Node15272"
-        ],
-        "Node15272": [
-            "Node15271",
-            "Node15273"
-        ],
-        "Node15273": [
-            "Node15272"
         ],
         "Node1605": [],
         "Node1606": [],
@@ -3865,12 +3763,7 @@
             "Node13843",
             "Node13844",
             "Node13845",
-            "Node13846",
-            "Node13847",
-            "Node13848",
-            "Node13849",
-            "Node13850",
-            "Node14558"
+            "Node13846"
         ],
         "Jarold": [
             "Node1110",
@@ -3956,15 +3849,7 @@
             "Node13115",
             "Node13116",
             "Node13117",
-            "Node13118",
-            "Node15266",
-            "Node15267",
-            "Node15268",
-            "Node15269",
-            "Node15270",
-            "Node15271",
-            "Node15272",
-            "Node15273"
+            "Node13118"
         ],
         "Riff": [
             "Node1300",
@@ -4478,7 +4363,7 @@
             "comment"
         ],
         "Node13834": [
-            "comment_reply"
+            "commment_reply"
         ],
         "Node13835": [
             "comment"
@@ -4516,50 +4401,9 @@
         "Node13846": [
             "comment"
         ],
-        "Node13847": [
-            "comment_reply"
-        ],
-        "Node13848": [
-            "comment"
-        ],
-        "Node13849": [
-            "comment_reply"
-        ],
-        "Node13850": [
-            "comment"
-        ],
         "Node14": [
             "comment_reply",
             ""
-        ],
-        "Node14558": [
-            "comment_reply"
-        ],
-        "Node15266": [
-            "start",
-            "comment_reply",
-            "block_tutorial_part1"
-        ],
-        "Node15267": [
-            "comment"
-        ],
-        "Node15268": [
-            "comment"
-        ],
-        "Node15269": [
-            "comment"
-        ],
-        "Node15270": [
-            "comment_reply"
-        ],
-        "Node15271": [
-            "comment"
-        ],
-        "Node15272": [
-            "comment_reply"
-        ],
-        "Node15273": [
-            "comment"
         ],
         "Node1605": [
             "card_suspect_mrjohes"
@@ -5953,40 +5797,27 @@
         "Node13117": "-Lie- I heard Ragthack yet lives!",
         "Node13118": "This sounds like a tragedy to me.\nWhen will the races of men stop their aggression against the goblin races.\nI know it goes both ways, but we are supposed to know better. All we do is perpetuate the cycle of violence.",
         "Node134": "Can't talk, busy right now.",
-        "Node13826": "Oh... did we start?\nOk, cue the music!",
+        "Node13826": "Oh... did we start?",
         "Node13827": "Hello, and welcome to this Kickstarter.\nMy name is Thack, and... boy... there is a lot going on right now!",
-        "Node13828": "First off, the Mayor is dead. Someone MURDERED him. \nIn a really really F... Messed up way!",
-        "Node13830": "I have been tasked to find the killer.\nBut that's the part I don't understand, I'm just an apprentice, I can't do this.",
-        "Node13831": "Ok, so. You get it right. \nThat's the game, help me out, uncover the killer. \nInvestigate the murder. Pretty dark stuff.",
+        "Node13828": "First off, the Mayor is dead. Someone MURDERED him. Just like that, and it had to have been one of the Villagers.",
+        "Node13830": "I have been tasked to find the killer. But that's the part I don't understand, I'm just an apprentice, I can't do this.",
+        "Node13831": "Ok, so. You get it right. That's the game, help me out, uncover the killer. Investigate the murder.Pretty dark stuff.",
         "Node13832": "Thack!",
         "Node13833": "Thack! THACK!! There you are!",
-        "Node13834": "Oh hi father Djonsiscus.\nI'm his apprentice.",
-        "Node13835": "Indeed you are. Did you talk to the Villagers?",
-        "Node13836": "The Kickstarter people! \nThis is the Kickstarter Video.",
+        "Node13834": "Oh hi father Djonsiscus. I'm his apprentice.",
+        "Node13835": "Indeed you are. Who are you standing here talking to?",
+        "Node13836": "The Kickstarter people! This is the Kickstarter Video.",
         "Node13837": "Did you tell them it's a Dark Fantasy Murder Mystery?",
         "Node13838": "Yeah... I mean, I was getting to that.",
         "Node13839": "People love Dark stories Thack, you gotta sell them on the Darkness!",
         "Node13840": "Yes sir.",
-        "Node13841": "Now. Tell them about all the choices they'll have. \nThey'll really like that one!",
-        "Node13842": "Yes sir. Ok so, the game consists of Dialogue, \nbut the amount of choices you have in conversation is unprecedented. \nIt's never been done before in any game!",
-        "Node13843": "If you are tired of games limiting what you might want to say during an in-game conversation, \nyou have come to the right Kickstarter.",
-        "Node13844": "We are all about choice. \nIn fact every single conversation has between 50 and 100 different options.",
+        "Node13841": "Now. Tell them about all the choices they'll have. They'll really like that one!",
+        "Node13842": "Yes sir. Ok so, the game consists of Dialogue, but the amount of choices you have in conversation is unprecedented. It''s never been done before in any game!",
+        "Node13843": "If you are tired of games limiting what you might want to say during an in-game conversation, you have come to the right Kickstarter.",
+        "Node13844": "We are all about choice. In fact every single conversation has between 50 and 100 different options.",
         "Node13845": "Wait... That, can't be true! That's too many options!",
         "Node13846": "What did you say, between 50 and 100 choices in every single conversation?\nThat DOES seem like a lot Thack. The Game Designer might be overpromising on this one.",
-        "Node13847": "Yeah, I mean I tried..",
-        "Node13848": "Did they respect your Authority? \nI sent you in my name you know.",
-        "Node13849": "Uhmm...",
-        "Node13850": "So, who were you standing here talking to?",
         "Node14": "Nice to meet you.\nMy name is Thack.",
-        "Node14558": "It had to have been one of the villagers, \nbut who could even do something like that!?",
-        "Node15266": "Oh.. also make sure to SHARE this Kickstarter as much as you can, \nthat really helps!",
-        "Node15267": "Hey Boy!",
-        "Node15268": "Hey! Am I too late for the Kickstarter Video!?",
-        "Node15269": "I have an idea for a new type of Horseshoe!\nIt's going to be the best horseshoe anyone has ever seen!",
-        "Node15270": "What...? Why would... NO! That's not how this works. \nThis is the Kickstarter for a Video Game!",
-        "Node15271": "Video Games? People still play those?\nI'm telling you, Horseshoes are the Future! ",
-        "Node15272": "....\nThank you for watching!",
-        "Node15273": "What about my horseshoes idea??",
         "Node1605": "Mr Johes is a suspect for the Murder.\n\nHe was walking the streets of the village two nights ago, and closed his shop conveniently until the day of the murder. ",
         "Node1606": "Mr. Traversteen, Husband to Tylda. \nDied a year ago due to, seemingly natural causes. ",
         "Node1904": "Yeah, that's me. I've been told to investigate the murder.",

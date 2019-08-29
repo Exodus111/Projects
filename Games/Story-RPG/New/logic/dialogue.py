@@ -263,12 +263,12 @@ class Dialogue():
         self.master.gui.add_comments(commentlist)
 
     def get_npc_pos(self, name):
-        if name in ("player", "Thack"):
+        if name.lower() in ("player", "thack"):
             return self.master.player
         else:
             for npc in self.master.npcs.npcgroup:
                 if name == npc.name.lower():
-                    return npc
+                    return npcs
             else:
                 return self.master.player
 

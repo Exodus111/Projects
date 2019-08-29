@@ -335,12 +335,14 @@
             size: self.size
             pos: 0,0
 
+################################################################################################
+
 <DialoguePanels>:
     top_manager: top_manager
     bottom_manager: bottom_manager
     top_panel: top_panel
     bottom_panel: bottom_panel
-    question_big: question_big
+    #question_big: question_big
     ScreenManager:
         id: top_manager
         transition: FadeTransition()
@@ -357,7 +359,7 @@
             BoxLayout:
                 Image:
                     source: root.portrait
-                    size_hint: (.25, 1.)
+                    size_hint: (.15, 1.)
                     allow_stretch: True
                     keep_ratio: True
                 Label:
@@ -365,47 +367,67 @@
                     text: root.top_text
                     font_name: './fonts/MagicMedieval.ttf'
                     font_size: 18
-                    padding: 150, 20
+                    padding: 15, 20
                     valign: "top"
                     text_size: self.width, None
-                    size_hint: 1, None
+                    size_hint: (1., None)
                     height: self.texture_size[1]
 
     ScreenManager:
         id: bottom_manager
         transition: FadeTransition()
+        size_hint: (None, None)
         size: root.size
         Screen:
             name: "None"
             size_hint: 1., .35
-            pos_hint: {"x":0., "y":0.067}
+            pos_hint: {"x":0., "y":0.0}
         Menu:
             name: "bottom_panel"
             size_hint: 1., .35
-            pos_hint: {"x":0., "y":0.067}
-            BoxLayout:
-                id: bottom_panel
-                orientation: "vertical"
-                size_hint: .99, .9
-        Menu:
-            name: "question_big"
-            size_hint: 1., .35
-            pos_hint: {"x":0., "y":0.067}
-            Label:
-                id: question_big
-                text_size: self.parent.size
-                padding: 20, 20
-                valign: "top"
-            Button:
-                text: "Ask this"
-                size_hint: .1, .1
-                pos_hint: {"x":.88, "y":.1}
-                on_release: root.question_selected(self)
-            Button:
-                text: "Go Back"
-                size_hint: .1, .1
-                pos_hint: {"x":.78, "y":.1}
-                on_release: self.parent.parent.current = "bottom_panel"
+            pos_hint: {"x":0., "y":0.0}
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                scroll_bar: ["bars", "content"]
+                size_hint: 1, None
+                size: (1200, 240)
+                pos_hint: {"x":0., "y":0.05}
+                GridLayout:
+                    id: bottom_panel
+                    cols: 1
+                    size_hint_x: .99
+                    size_hint_y: None
+                    height: self.minimum_height
+
+<QuestionBox>:
+    pos: self.pos
+    background_normal: "images/gui/blank_box.png"
+    background_down: "images/gui/seethrough_box.png"
+    font_name: './fonts/MagicMedieval.ttf'
+    font_size: 18
+    text: self.question_text
+    text_size: self.width, None
+    size_hint_y: None
+    height: self.texture_size[1]
+    valing: "top"
+    halign: "left"
+    padding_x: 20
+
+<Menu>:
+    canvas:
+        Color:
+            rgba: .12,.12,.12, 1.
+        Rectangle:
+            size: self.size
+            pos: 0,0
+        Color:
+            rgba: 0.435, 0.325, 0.239, 1.
+        Rectangle:
+            size: self.size[0]-20, self.size[1]-20
+            pos: 10, 10
+
+####################################################################################################
 
 <CommentGUI>:
     speechbox: speechbox
@@ -443,21 +465,6 @@
         Rectangle:
             size: self.size[0]-10, self.size[1]-10
             pos: 5, 5
-
-<QuestionBox>:
-    pos: self.pos
-    background_normal: "images/gui/blank_box.png"
-    background_down: "images/gui/seethrough_box.png"
-    font_name: './fonts/MagicMedieval.ttf'
-    font_size: 18
-    text: self.question_text
-    text_size: self.width, None
-    height: self.texture_size[1]
-    size_hint: 1, None
-    valing: "top"
-    halign: "left"
-    padding_x: 20
-
 
 <Select>:
     buttons: buttons
@@ -575,19 +582,6 @@
     size_hint: None, None
     size: 100, 40
     pos_hint: {"center_x":.5, "center_y":.5}
-
-<Menu>:
-    canvas:
-        Color:
-            rgba: .12,.12,.12, 1.
-        Rectangle:
-            size: self.size
-            pos: 0,0
-        Color:
-            rgba: 0.435, 0.325, 0.239, 1.
-        Rectangle:
-            size: self.size[0]-20, self.size[1]-20
-            pos: 10, 10
 
 <TopBar>:
     size: self.size

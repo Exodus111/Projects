@@ -7,7 +7,7 @@ from gui import Menu
 
 BLACK = (0,0,0)
 WHITE = (255,255,255)
-MAP = "priest_room"
+MAP = "main"
 
 class Main(Template):
     def __init__(self, size):

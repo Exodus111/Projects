@@ -176,7 +176,7 @@ class DialogueSystem:
 
 	def find_comment(self, npc):
 		for comment in self.dialogue.comment_starts:
-			if npc.lower() == comment.npc:
+			if npc.lower() == comment.npc.lower():
 				for tag in comment.tags:
 					if "block" in tag:
 						if not self.blocked(comment):

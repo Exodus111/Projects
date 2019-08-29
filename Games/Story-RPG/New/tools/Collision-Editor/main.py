@@ -232,7 +232,11 @@ class Editor(RelativeLayout):
 
     def save_path(self, filename):
         if self.path_list != []:
-            savedict = {"points":self.path_list,
+            new_path = []
+            for cent in self.path_list: # Doing an adjustment in the Y axis.
+                new_cent = (cent[0]-300, cent[1]-300)
+                new_path.append(new_cent)
+            savedict = {"points":new_path,
                         "npc":self.parent.npc,
                         "room": self.parent.scene,
                         "id":self.parent.path_id}

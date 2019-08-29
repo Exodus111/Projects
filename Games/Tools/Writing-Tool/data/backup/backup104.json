@@ -272,38 +272,6 @@
             1345.0,
             -991.0
         ],
-        "Node15266": [
-            -3258.0,
-            -688.0
-        ],
-        "Node15267": [
-            -2861.0,
-            -707.0
-        ],
-        "Node15268": [
-            -2458.0,
-            -683.0
-        ],
-        "Node15269": [
-            -2113.0,
-            -696.0
-        ],
-        "Node15270": [
-            -1745.0,
-            -695.0
-        ],
-        "Node15271": [
-            -1427.0,
-            -697.0
-        ],
-        "Node15272": [
-            -1118,
-            -696
-        ],
-        "Node15273": [
-            -812,
-            -711
-        ],
         "Node1605": [
             723.4621821844477,
             103.10737151632586
@@ -2148,36 +2116,6 @@
             "Node13828",
             "Node13830"
         ],
-        "Node15266": [
-            "Node15267"
-        ],
-        "Node15267": [
-            "Node15266",
-            "Node15268"
-        ],
-        "Node15268": [
-            "Node15267",
-            "Node15269"
-        ],
-        "Node15269": [
-            "Node15268",
-            "Node15270"
-        ],
-        "Node15270": [
-            "Node15269",
-            "Node15271"
-        ],
-        "Node15271": [
-            "Node15270",
-            "Node15272"
-        ],
-        "Node15272": [
-            "Node15271",
-            "Node15273"
-        ],
-        "Node15273": [
-            "Node15272"
-        ],
         "Node1605": [],
         "Node1606": [],
         "Node1904": [
@@ -3956,15 +3894,7 @@
             "Node13115",
             "Node13116",
             "Node13117",
-            "Node13118",
-            "Node15266",
-            "Node15267",
-            "Node15268",
-            "Node15269",
-            "Node15270",
-            "Node15271",
-            "Node15272",
-            "Node15273"
+            "Node13118"
         ],
         "Riff": [
             "Node1300",
@@ -4534,32 +4464,6 @@
         ],
         "Node14558": [
             "comment_reply"
-        ],
-        "Node15266": [
-            "start",
-            "comment_reply",
-            "block_tutorial_part1"
-        ],
-        "Node15267": [
-            "comment"
-        ],
-        "Node15268": [
-            "comment"
-        ],
-        "Node15269": [
-            "comment"
-        ],
-        "Node15270": [
-            "comment_reply"
-        ],
-        "Node15271": [
-            "comment"
-        ],
-        "Node15272": [
-            "comment_reply"
-        ],
-        "Node15273": [
-            "comment"
         ],
         "Node1605": [
             "card_suspect_mrjohes"
@@ -5979,14 +5883,6 @@
         "Node13850": "So, who were you standing here talking to?",
         "Node14": "Nice to meet you.\nMy name is Thack.",
         "Node14558": "It had to have been one of the villagers, \nbut who could even do something like that!?",
-        "Node15266": "Oh.. also make sure to SHARE this Kickstarter as much as you can, \nthat really helps!",
-        "Node15267": "Hey Boy!",
-        "Node15268": "Hey! Am I too late for the Kickstarter Video!?",
-        "Node15269": "I have an idea for a new type of Horseshoe!\nIt's going to be the best horseshoe anyone has ever seen!",
-        "Node15270": "What...? Why would... NO! That's not how this works. \nThis is the Kickstarter for a Video Game!",
-        "Node15271": "Video Games? People still play those?\nI'm telling you, Horseshoes are the Future! ",
-        "Node15272": "....\nThank you for watching!",
-        "Node15273": "What about my horseshoes idea??",
         "Node1605": "Mr Johes is a suspect for the Murder.\n\nHe was walking the streets of the village two nights ago, and closed his shop conveniently until the day of the murder. ",
         "Node1606": "Mr. Traversteen, Husband to Tylda. \nDied a year ago due to, seemingly natural causes. ",
         "Node1904": "Yeah, that's me. I've been told to investigate the murder.",

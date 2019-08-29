@@ -369,8 +369,16 @@ class NPC(Entity):
                 return False
 
 class NPCController(Widget):
+    """
+        NPC Placement:
+        "church main"
+        "blacksmith main"
+        "goods main"
+        "apothecary main"  
+    """
+
     npcs = DictProperty({"Djonsiscus":{"home":"church main", "place":(1955, 733)},
-                         "Jarold":{"home":"blacksmith main", "place":(400, 280)},
+                         "Jarold":{"home":"church main", "place":(840, 134)},
                          "Tylda":{"home":"goods main", "place":(610, 238)},
                          "Sheila":{"home":"goods main", "place":(106, 214)},
                          "MrJohes":{"home":"apothecary main", "place":(142, 328)},
@@ -409,11 +417,11 @@ class NPCController(Widget):
         nameid = "{}{}{}".format(name.lower(), "_", path_id)
         for key in self.npc_paths.keys():
             if nameid == key:
-                 self.move_npc(name, self.npc_paths[key]["points"])
+                self.move_npc(name, self.npc_paths[key]["points"])
 
     def move_npc(self, name, poslist):
         for npc in self.npcgroup:
-            if npc.name == name:
+            if npc.name.lower() == name.lower():
                 for pos in poslist:
                     npc.move_list.append(pos)
 

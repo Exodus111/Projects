@@ -30,6 +30,7 @@ class EventCreator:
 		self.trigger = defaultdict(bool) # Defaults as False
 		self.trigger["Tutorial"] = False
 		self.trigger["game_started"] = False
+		self.trigger["hacky"] = False   # <-- Hacky fix. See fix_tutorial_end_flag method. 
 
 	def setup_dialogue(self, data):
 		self.data = data
@@ -105,6 +106,15 @@ class EventCreator:
 			self.flag_activators()
 		self.time_idles(dt)
 		self.check_bounds(dt)
+		self.fix_tutorial_end_flag()
+
+	def fix_tutorial_end_flag(self): # Hacky method to fix an issue for the Kickstarter. REMOVE THIS!!
+		if self.trigger["game_started"]:
+			if self.flags["flag_tutorial_end"]:
+				self.trigger["hacky"] = True
+			if self.trigger["hacky"]:
+				if not self.flags["flag_tutorial_end"]:
+					self.flags["flag_tutorial_end"] = True
 
 	def flag_activators(self):
 		if self.flags["flag_tutorial_part3"]:
@@ -133,7 +143,8 @@ class EventCreator:
 
 	def tutorial_event_checker(self):
 		if self.flags["flag_tutorial_part1"] or self.flags["flag_tutorial_part2"]:
-			self.master.begin_conv("Tutorial")
+			#self.master.begin_conv("Djonsiscus") # <--- Right here!!
+			pass
 
 	def check_comment_tags(self, tags):
 		for tag in tags:

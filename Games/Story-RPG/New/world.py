@@ -120,9 +120,9 @@ class World(RelativeLayout):
         self.set_home_text(scene + " " + part)
 
         # Adding NPCs. (Not on first load.)
-        if not first:    
-            if self.parent != None:
-                self.add_npcs(self.parent.npcs.npcgroup)
+        #if not first: # Removing.
+        if self.parent != None:
+            self.add_npcs(self.parent.npcs.npcgroup)
 
         # This sets up the collison for the walls.
         if scene not in self.walls.keys():

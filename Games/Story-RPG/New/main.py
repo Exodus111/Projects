@@ -122,6 +122,15 @@ class Game(Widget):
                     print(self.player.pos)
             elif key[1] == "tab":
                 self.game_console = True
+            elif key[1] == "1":
+                print("Starting a path")
+                self.npcs.npc_walk_path("djonsiscus", "01")
+            elif key[1] == "2":
+                print("Starting Jarod Conversation.")
+                self.npcs.npc_walk_path("jarold", "01")
+                self.begin_conv("Jarold")
+            else:
+                print(key[1])
 
     def key_up(self, key):
         if not self.menu_on:
@@ -230,7 +239,7 @@ class Game(Widget):
         Clock.schedule_once(call, time)
 
     def get_npc(self, name):
-        npc = [n for n in self.npcs.npcgroup if n.name == name]
+        npc = [n for n in self.npcs.npcgroup if n.name.lower() == name.lower()]
         if npc == []:
             return self.player
         else:

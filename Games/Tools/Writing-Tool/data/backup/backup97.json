@@ -1,8 +1,8 @@
 {
     "coords": {
         "Node1": [
-            328,
-            327
+            290,
+            358
         ],
         "Node10": [
             4110.005143007137,
@@ -168,141 +168,9 @@
             130,
             1450
         ],
-        "Node13826": [
-            428,
-            -750
-        ],
-        "Node13827": [
-            717,
-            -850
-        ],
-        "Node13828": [
-            1016,
-            -927
-        ],
-        "Node13830": [
-            1734.0,
-            -1000.0
-        ],
-        "Node13831": [
-            2123,
-            -998
-        ],
-        "Node13832": [
-            2492.0,
-            -1017.0
-        ],
-        "Node13833": [
-            2875.0,
-            -1032.0
-        ],
-        "Node13834": [
-            3207.0,
-            -1062.0
-        ],
-        "Node13835": [
-            3477,
-            -1069
-        ],
-        "Node13836": [
-            5161,
-            -1200
-        ],
-        "Node13837": [
-            5426,
-            -1202
-        ],
-        "Node13838": [
-            5691,
-            -1207
-        ],
-        "Node13839": [
-            5963,
-            -1210
-        ],
-        "Node13840": [
-            6228,
-            -1211
-        ],
-        "Node13841": [
-            6497,
-            -1214
-        ],
-        "Node13842": [
-            6769,
-            -1214
-        ],
-        "Node13843": [
-            7047,
-            -1204
-        ],
-        "Node13844": [
-            7338,
-            -1214
-        ],
-        "Node13845": [
-            7608,
-            -1240
-        ],
-        "Node13846": [
-            7900,
-            -1275
-        ],
-        "Node13847": [
-            3780,
-            -1108
-        ],
-        "Node13848": [
-            4143,
-            -1190
-        ],
-        "Node13849": [
-            4500,
-            -1226
-        ],
-        "Node13850": [
-            4822,
-            -1222
-        ],
         "Node14": [
             5647.758674600602,
             191.24954491547476
-        ],
-        "Node14558": [
-            1345.0,
-            -991.0
-        ],
-        "Node15266": [
-            -3258.0,
-            -688.0
-        ],
-        "Node15267": [
-            -2861.0,
-            -707.0
-        ],
-        "Node15268": [
-            -2458.0,
-            -683.0
-        ],
-        "Node15269": [
-            -2113.0,
-            -696.0
-        ],
-        "Node15270": [
-            -1745.0,
-            -695.0
-        ],
-        "Node15271": [
-            -1427.0,
-            -697.0
-        ],
-        "Node15272": [
-            -1118,
-            -696
-        ],
-        "Node15273": [
-            -812,
-            -711
         ],
         "Node1605": [
             723.4621821844477,
@@ -2046,137 +1914,9 @@
         "Node134": [
             "Node584"
         ],
-        "Node13826": [
-            "Node13827"
-        ],
-        "Node13827": [
-            "Node13826",
-            "Node13828"
-        ],
-        "Node13828": [
-            "Node13827",
-            "Node14558"
-        ],
-        "Node13830": [
-            "Node13831",
-            "Node14558"
-        ],
-        "Node13831": [
-            "Node13830",
-            "Node13832"
-        ],
-        "Node13832": [
-            "Node13831",
-            "Node13833"
-        ],
-        "Node13833": [
-            "Node13832",
-            "Node13834"
-        ],
-        "Node13834": [
-            "Node13833",
-            "Node13835"
-        ],
-        "Node13835": [
-            "Node13834",
-            "Node13847"
-        ],
-        "Node13836": [
-            "Node13837",
-            "Node13850"
-        ],
-        "Node13837": [
-            "Node13836",
-            "Node13838"
-        ],
-        "Node13838": [
-            "Node13837",
-            "Node13839"
-        ],
-        "Node13839": [
-            "Node13838",
-            "Node13840"
-        ],
-        "Node13840": [
-            "Node13839",
-            "Node13841"
-        ],
-        "Node13841": [
-            "Node13840",
-            "Node13842"
-        ],
-        "Node13842": [
-            "Node13841",
-            "Node13843"
-        ],
-        "Node13843": [
-            "Node13842",
-            "Node13844"
-        ],
-        "Node13844": [
-            "Node13843",
-            "Node13845"
-        ],
-        "Node13845": [
-            "Node13844",
-            "Node13846"
-        ],
-        "Node13846": [
-            "Node13845"
-        ],
-        "Node13847": [
-            "Node13835",
-            "Node13848"
-        ],
-        "Node13848": [
-            "Node13847",
-            "Node13849"
-        ],
-        "Node13849": [
-            "Node13848",
-            "Node13850"
-        ],
-        "Node13850": [
-            "Node13849",
-            "Node13836"
-        ],
         "Node14": [
             "Node13",
             "Node31"
-        ],
-        "Node14558": [
-            "Node13828",
-            "Node13830"
-        ],
-        "Node15266": [
-            "Node15267"
-        ],
-        "Node15267": [
-            "Node15266",
-            "Node15268"
-        ],
-        "Node15268": [
-            "Node15267",
-            "Node15269"
-        ],
-        "Node15269": [
-            "Node15268",
-            "Node15270"
-        ],
-        "Node15270": [
-            "Node15269",
-            "Node15271"
-        ],
-        "Node15271": [
-            "Node15270",
-            "Node15272"
-        ],
-        "Node15272": [
-            "Node15271",
-            "Node15273"
-        ],
-        "Node15273": [
-            "Node15272"
         ],
         "Node1605": [],
         "Node1606": [],
@@ -3845,32 +3585,7 @@
             "Node10270",
             "Node10271",
             "Node10980",
-            "Node10981",
-            "Node13826",
-            "Node13827",
-            "Node13828",
-            "Node13830",
-            "Node13831",
-            "Node13832",
-            "Node13833",
-            "Node13834",
-            "Node13835",
-            "Node13836",
-            "Node13837",
-            "Node13838",
-            "Node13839",
-            "Node13840",
-            "Node13841",
-            "Node13842",
-            "Node13843",
-            "Node13844",
-            "Node13845",
-            "Node13846",
-            "Node13847",
-            "Node13848",
-            "Node13849",
-            "Node13850",
-            "Node14558"
+            "Node10981"
         ],
         "Jarold": [
             "Node1110",
@@ -3956,15 +3671,7 @@
             "Node13115",
             "Node13116",
             "Node13117",
-            "Node13118",
-            "Node15266",
-            "Node15267",
-            "Node15268",
-            "Node15269",
-            "Node15270",
-            "Node15271",
-            "Node15272",
-            "Node15273"
+            "Node13118"
         ],
         "Riff": [
             "Node1300",
@@ -4454,112 +4161,9 @@
             "start",
             "comment"
         ],
-        "Node13826": [
-            "start",
-            "comment_reply",
-            "block_tutorial_part1"
-        ],
-        "Node13827": [
-            "comment_reply"
-        ],
-        "Node13828": [
-            "comment_reply"
-        ],
-        "Node13830": [
-            "comment_reply"
-        ],
-        "Node13831": [
-            "comment_reply"
-        ],
-        "Node13832": [
-            "comment"
-        ],
-        "Node13833": [
-            "comment"
-        ],
-        "Node13834": [
-            "comment_reply"
-        ],
-        "Node13835": [
-            "comment"
-        ],
-        "Node13836": [
-            "comment_reply"
-        ],
-        "Node13837": [
-            "comment"
-        ],
-        "Node13838": [
-            "comment_reply"
-        ],
-        "Node13839": [
-            "comment"
-        ],
-        "Node13840": [
-            "comment_reply"
-        ],
-        "Node13841": [
-            "comment"
-        ],
-        "Node13842": [
-            "comment_reply"
-        ],
-        "Node13843": [
-            "comment_reply"
-        ],
-        "Node13844": [
-            "comment_reply"
-        ],
-        "Node13845": [
-            "comment_reply"
-        ],
-        "Node13846": [
-            "comment"
-        ],
-        "Node13847": [
-            "comment_reply"
-        ],
-        "Node13848": [
-            "comment"
-        ],
-        "Node13849": [
-            "comment_reply"
-        ],
-        "Node13850": [
-            "comment"
-        ],
         "Node14": [
             "comment_reply",
             ""
-        ],
-        "Node14558": [
-            "comment_reply"
-        ],
-        "Node15266": [
-            "start",
-            "comment_reply",
-            "block_tutorial_part1"
-        ],
-        "Node15267": [
-            "comment"
-        ],
-        "Node15268": [
-            "comment"
-        ],
-        "Node15269": [
-            "comment"
-        ],
-        "Node15270": [
-            "comment_reply"
-        ],
-        "Node15271": [
-            "comment"
-        ],
-        "Node15272": [
-            "comment_reply"
-        ],
-        "Node15273": [
-            "comment"
         ],
         "Node1605": [
             "card_suspect_mrjohes"
@@ -5911,15 +5515,15 @@
         ]
     },
     "text": {
-        "Node1": "Oh, hi there! I guess we started already!",
-        "Node10": "Together we can do this. \nSupport this Kickstarter, or the murderer with forever go unpunished!",
+        "Node1": "Hi, name is Thack and I\u2019m a Detective!",
+        "Node10": "I hope that doesn't sound boring to you.\n\nIt's honestly quite entertaining once you get into it, well... \nIn MY opinion anyway. Take that for what it's worth I guess.",
         "Node10268": "Hello Yeah! I was being Sarcastic! You can't be serious about this.",
         "Node10269": "-Lie- I already know about the murder. There is more to me than you think.",
         "Node10270": "Actually, in the face of horrible incidents it is quite in its place to make some light of events. It keeps emotions under control. ",
         "Node10271": "At the academy they never mentioned this would be part of the job. Do you have the Bishops permmission for this?",
         "Node10980": "Why don't I travel to one of the other villages, and see if I can get an investigator?",
         "Node10981": "Could I not have some more time to finish my reading? \nThere are two more books I'd like to read.",
-        "Node11": "Then how would you feel? ",
+        "Node11": "Also... This is not a \"funny\" game.\n\nThis might seem funny, because you kinda caught me off guard, \nand I'm not used to this... \nBut no, the game is not like that really. \n\nIt's quite serious... oh and ADULT!",
         "Node1110": "The Blacksmith",
         "Node1112": "Hello there. you must be Zack! The apprentice!",
         "Node1114": "I cannot talk right now, too busy. Come back later.",
@@ -5953,40 +5557,7 @@
         "Node13117": "-Lie- I heard Ragthack yet lives!",
         "Node13118": "This sounds like a tragedy to me.\nWhen will the races of men stop their aggression against the goblin races.\nI know it goes both ways, but we are supposed to know better. All we do is perpetuate the cycle of violence.",
         "Node134": "Can't talk, busy right now.",
-        "Node13826": "Oh... did we start?\nOk, cue the music!",
-        "Node13827": "Hello, and welcome to this Kickstarter.\nMy name is Thack, and... boy... there is a lot going on right now!",
-        "Node13828": "First off, the Mayor is dead. Someone MURDERED him. \nIn a really really F... Messed up way!",
-        "Node13830": "I have been tasked to find the killer.\nBut that's the part I don't understand, I'm just an apprentice, I can't do this.",
-        "Node13831": "Ok, so. You get it right. \nThat's the game, help me out, uncover the killer. \nInvestigate the murder. Pretty dark stuff.",
-        "Node13832": "Thack!",
-        "Node13833": "Thack! THACK!! There you are!",
-        "Node13834": "Oh hi father Djonsiscus.\nI'm his apprentice.",
-        "Node13835": "Indeed you are. Did you talk to the Villagers?",
-        "Node13836": "The Kickstarter people! \nThis is the Kickstarter Video.",
-        "Node13837": "Did you tell them it's a Dark Fantasy Murder Mystery?",
-        "Node13838": "Yeah... I mean, I was getting to that.",
-        "Node13839": "People love Dark stories Thack, you gotta sell them on the Darkness!",
-        "Node13840": "Yes sir.",
-        "Node13841": "Now. Tell them about all the choices they'll have. \nThey'll really like that one!",
-        "Node13842": "Yes sir. Ok so, the game consists of Dialogue, \nbut the amount of choices you have in conversation is unprecedented. \nIt's never been done before in any game!",
-        "Node13843": "If you are tired of games limiting what you might want to say during an in-game conversation, \nyou have come to the right Kickstarter.",
-        "Node13844": "We are all about choice. \nIn fact every single conversation has between 50 and 100 different options.",
-        "Node13845": "Wait... That, can't be true! That's too many options!",
-        "Node13846": "What did you say, between 50 and 100 choices in every single conversation?\nThat DOES seem like a lot Thack. The Game Designer might be overpromising on this one.",
-        "Node13847": "Yeah, I mean I tried..",
-        "Node13848": "Did they respect your Authority? \nI sent you in my name you know.",
-        "Node13849": "Uhmm...",
-        "Node13850": "So, who were you standing here talking to?",
         "Node14": "Nice to meet you.\nMy name is Thack.",
-        "Node14558": "It had to have been one of the villagers, \nbut who could even do something like that!?",
-        "Node15266": "Oh.. also make sure to SHARE this Kickstarter as much as you can, \nthat really helps!",
-        "Node15267": "Hey Boy!",
-        "Node15268": "Hey! Am I too late for the Kickstarter Video!?",
-        "Node15269": "I have an idea for a new type of Horseshoe!\nIt's going to be the best horseshoe anyone has ever seen!",
-        "Node15270": "What...? Why would... NO! That's not how this works. \nThis is the Kickstarter for a Video Game!",
-        "Node15271": "Video Games? People still play those?\nI'm telling you, Horseshoes are the Future! ",
-        "Node15272": "....\nThank you for watching!",
-        "Node15273": "What about my horseshoes idea??",
         "Node1605": "Mr Johes is a suspect for the Murder.\n\nHe was walking the streets of the village two nights ago, and closed his shop conveniently until the day of the murder. ",
         "Node1606": "Mr. Traversteen, Husband to Tylda. \nDied a year ago due to, seemingly natural causes. ",
         "Node1904": "Yeah, that's me. I've been told to investigate the murder.",
@@ -5997,7 +5568,7 @@
         "Node1909": "WHAT!? NO I DID NOT!\nWho told you that!? Was it the Priest? Did he accuse me? Just because I never go to confession he does not trust me!",
         "Node1910": "In anycase, I'm sure you have questions.",
         "Node1911": "Maybe you should investigate this properly instead.",
-        "Node2": "Welcome to A Village Tale, a Fantasy Murder Mystery, with lots of choice.",
+        "Node2": "No. No I\u2019m not. I\u2019m just an apprentice here at the Church.",
         "Node202": "Speaking of which... I've got some books to read.",
         "Node203": "I don't have time to read all of them, one would do for now.\nBut you have to help me pick.",
         "Node204": "They are supposed to help me get better at conversations, \nand... you know... speaking to people. \nI guess I can be kind of shy...",
@@ -6025,7 +5596,7 @@
         "Node281": "Mhm, the Art of Telling Lies. \nUnderstand Young Thack, that we serve the community we work in, we are their humble servants and guides. Sometimes that requires a more complex relationship with the truth than we might like. \n\nBut do not try to lie to me, it will never work. I would not be in the position I am if I could not discern lie from truth.",
         "Node282": "Thack... There is no easy way to say this. There has been a murder.\nAnd I need you, to investigate the murder on my behalf.",
         "Node2825": "Some of those bodies. Not the burned ones, looked like the Mayors body. Or similar enough to give me pause.",
-        "Node3": "My name is Thack, and I\u2019m a Detective!",
+        "Node3": "But! I\u2019ve been tasked to solve a -real- murder. A really bad one too.",
         "Node31": "I want to tell you more, but, let's go to my room first.\nIts the door on the left there.\n\nAnd the only door that is going to work because... \nWell as I said... this is a tutorial.",
         "Node3133": "Tell me more about the war.",
         "Node3134": "Well, what do you know already? The war of the Eastern Marches began 10 years ago, and lasted for 5 long bloody years.\n\nIt started when Ragthack, vile and disgusting Half-Orc, \ngathered all the foul Goblin hordes into one warband and swore to tear down the kingdoms of men.\nWe gathered our own troops and marched into the Eastern marchlands where they live, to stop them.\n\nBut the war dragged on, always new waves of those pigmen and other of their kind crawling out of their holes to join they attack on humanity. \nFinally Ragthack was defeated and they all scurried away, from one day to another, it was all over.    ",
@@ -6051,7 +5622,7 @@
         "Node3817": "Alright, that's all the time I have.\n\nI'm sorry, if you have any more questions it will have to wait for another time.",
         "Node3820": "Let me see if I got this straight.\n\nYou where told, this Ragthack wanted to kill all humans.\nBut instead of waiting for him to actually attack, you charged into the Eastern Marches, where they have been living since forever, and simply attacked any camp you could find? Whether they were loyal to Ragthack or not?\n\nAll this simply on the word that he might one day attack us? ",
         "Node3821": "Have you ever seen what Orcs do to the people they attack?\n\nThey eat people Thack, Orcs only eat meat. They'll burn it sometimes, they'll eat it raw other times. And they don't always care to kill you first.\n\nWe found prisoners of war with most of their limbs missing, kept alive to keep the meat fresh. \nLuckily a mans mind was not meant to endure such things, Aye I said luckily, that is what I truly believe.\n\nThe victims where mostly catatonic, none survived for long after being freed.",
-        "Node4": "Ok, no I\u2019m not. I\u2019m actually just an apprentice here at the Church.",
+        "Node4": " I don\u2019t know the first thing about investigating.\nI have to go and interrogate all the villagers.",
         "Node4164": "What business is that of yours? Leave me alone.",
         "Node4165": "This is a travesty, I am being falsely accused!\n\nI'll tell you who did it, it was that weasel Mr Johes! He's been up to something for days now!",
         "Node4166": "Wait what? Why would you say that?",
@@ -6096,7 +5667,7 @@
         "Node4908": "Did you kill the Mayor?",
         "Node4909": "I did not.\nGood day.",
         "Node4910": "Well now. Not so boring after all. I guess I was wrong about you.\nGo on then, ask away.",
-        "Node5": "But for some reason I have been tasked to solve an actual murder. A -bad- one!",
+        "Node5": "I'm sure they will respect my newfound authority.",
         "Node5288": "Wait... You don't mind me being rude?",
         "Node5289": "Not at all, I find polite people to, more often than not, be the worst kinds of people. A man that is rude is being perfectly honest. Not enough of that in the world if you ask me.",
         "Node5290": "What do you know about the murder of Mayor Dellry?",
@@ -6120,7 +5691,7 @@
         "Node5685": "C'mon tell the truth, nobody breaks in and steals nothing. What are you hiding?",
         "Node5686": "Oh this is over! Get the fuck out of my store right now!\nWe are done here!",
         "Node584": "Oh ok, sorry.",
-        "Node6": "But I don\u2019t know how. \nI can\u2019t fight, I don\u2019t know any magic or anything like that,\nI don\u2019t even know anything about this place. \nHeck, I wasn\u2019t even supposed to be here today!",
+        "Node6": "But one of them did this, one of them killed the Mayor. Somehow!",
         "Node6064": "Yes yes, I have not patience for your theories. Go play detective somewhere else.",
         "Node6065": "Something like that yes, he was with the forward support battalion of his majesties forces. But his squad was mostly used for scouting operations.\n\nBut war is war, and sons don't always come back. No matter how gifted they mauy be at what they do. ",
         "Node6066": "He told you a lot about it?",
@@ -6165,7 +5736,7 @@
         "Node6856": "Do you have any reason to believe that his death was not natural.\n",
         "Node6857": "I do.\n\nI've long suspected it, same with Travisteens death a year later. There is something afoot in the village. These deaths are not natural, I'm sure of it. And now the Mayor, looking like that? This is getting worse. \n\nTravisteen could have been poisoned as well. But the Mayor, if it is done by the same person he is no longer bothering to be careful.",
         "Node6858": "Mr Johes the Apothecary believes his son was murdered by Poison.\n\nAnd that, perhaps this person is the same as the killer of the Mayor.",
-        "Node7": "One of the villagers did this heinous crime, somehow. \nAnd I have to go out there and interrogate all of them. \nBut I don\u2019t know the first thing about that! ",
+        "Node7": "Help me out, you are my only hope. You play video games right?\nYou can figure this out!",
         "Node7236": "Hello there young man.",
         "Node7237": "Hello ma'am, If you don't mind I'd like to ask you some questions.",
         "Node7238": "Do you know anything about the murder of the Mayor?",
@@ -6240,7 +5811,7 @@
         "Node7699": "Everyone, I suppose. Specially that Travisteen girl, Sheila. I never liked her, she always plays so coy.",
         "Node7700": "I'm tired now, It's time for my nap. Good day young man.",
         "Node7701": "Hello, how can I help you?",
-        "Node8": "Though I\u2019m sure they will respect my newfound Authority.",
+        "Node8": "So support this Kickstarter, or the murderer will forever go unpunished. \nThen how would you feel?",
         "Node8171": "Hello, I'm here to ask you some questions about the murder, if you don't mind.",
         "Node8172": "Hi. What do you know about the murder of Mayor Dellry?",
         "Node8173": "I'll tell you how you can \"help\" me, by answering some damn questions, and fast!",
@@ -6344,7 +5915,7 @@
         "Node8831": "Do you know anything about the murder of Mayor Dellry?",
         "Node8832": "Did you know the Mayor at all?",
         "Node8833": "Can you tell me something about yourself and your store?",
-        "Node9": "Help me out, you are my only hope.\nYou play Video Games right? You must be a smart person!",
+        "Node9": "I mean. There is no combat here, this game is about... \nyou know... dialogue... talking to people. \nThinking about what they say, and so on...",
         "Node937": "I'm sorry. I don't know why I even said that. Who died?",
         "Node939": "Oh no sir. I am totally serious.\nI truly believe I was called for this. This is perhaps the most exiting thing that has ever happened to me. I am ready!",
         "Node940": "Very well Thack. Your enthusiasm is helpful, if surprising.\nThis is the most harrowing crime we have seen here in Tyford since... Well, it's been awhile.",

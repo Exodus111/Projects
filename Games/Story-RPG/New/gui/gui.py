@@ -179,7 +179,7 @@ class GUI(Widget):
                 self.parent.events.check_comment_tags(dct["tags"])
                 del(self.textpos_list[0])
                 if len(self.comment_list) >= 2:
-                    [i.timeout_comment(4) for i in self.comment_list[0:-1] if not i.timing_out]
+                    [i.timeout_comment(0) for i in self.comment_list[0:-1] if not i.timing_out]
                 if len(self.textpos_list) == 0:
                     self.comment_list[-1].timeout_comment(20)
                 self.next_comment = False
